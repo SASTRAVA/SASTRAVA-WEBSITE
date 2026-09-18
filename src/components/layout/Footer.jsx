@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Camera, Mail, Send, Share2 } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion as Motion } from 'framer-motion';
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -41,7 +41,7 @@ export const Footer = () => {
   ];
 
   return (
-    <motion.footer
+    <Motion.footer
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
@@ -50,7 +50,7 @@ export const Footer = () => {
     >
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-          <motion.div
+          <Motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -63,8 +63,8 @@ export const Footer = () => {
               Business consulting, innovation, and incubation for organizations ready to turn complex challenges into meaningful progress.
             </p>
             <div className="flex gap-4">
-              {socialLinks.map(({ icon: Icon, href, label }) => (
-                <motion.a
+              {socialLinks.map(({ icon: Graphic, href, label }) => (
+                <Motion.a
                   key={label}
                   href={href}
                   target={href.startsWith('http') ? '_blank' : undefined}
@@ -74,14 +74,14 @@ export const Footer = () => {
                   whileTap={{ scale: 0.95 }}
                   aria-label={label}
                 >
-                  <Icon size={18} />
-                </motion.a>
+                  {React.createElement(Graphic, { size: 18 })}
+                </Motion.a>
               ))}
             </div>
-          </motion.div>
+          </Motion.div>
 
           {footerLinks.map((section, idx) => (
-            <motion.div
+            <Motion.div
               key={section.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -101,13 +101,13 @@ export const Footer = () => {
                   </li>
                 ))}
               </ul>
-            </motion.div>
+            </Motion.div>
           ))}
         </div>
 
         <div className="h-px bg-gradient-to-r from-transparent via-gold-DEFAULT/30 to-transparent mb-8" />
 
-        <motion.div
+        <Motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.3 }}
@@ -124,10 +124,13 @@ export const Footer = () => {
             <Link to="/terms" className="text-offwhite/50 hover:text-gold-light transition-colors">
               Terms of Service
             </Link>
+            <Link to="/security" className="text-offwhite/50 hover:text-gold-light transition-colors">
+              Security
+            </Link>
           </div>
-        </motion.div>
+        </Motion.div>
       </div>
-    </motion.footer>
+    </Motion.footer>
   );
 };
 

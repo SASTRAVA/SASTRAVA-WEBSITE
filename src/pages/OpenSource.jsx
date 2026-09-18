@@ -113,7 +113,7 @@ const OpenSource = () => {
               viewport={{ once: true }}
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
             >
-              {projects.map((project, idx) => (
+              {projects.map((project) => (
                 <motion.div
                   key={project.name}
                   variants={itemVariants}
@@ -175,7 +175,7 @@ const OpenSource = () => {
               viewport={{ once: true }}
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4"
             >
-              {contributions.map((contrib, idx) => (
+              {contributions.map((contrib) => (
                 <motion.div
                   key={contrib.org}
                   variants={itemVariants}

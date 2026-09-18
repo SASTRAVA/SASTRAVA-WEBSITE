@@ -155,25 +155,25 @@ export const getPillarColor = (pillarId, type = 'primary') => {
  * Statistics for Each Pillar
  */
 export const PILLAR_STATISTICS = {
-  learn: {
+  LEARN: {
     students: '10,000+',
     courses: '50+',
     certifications: '25+',
     satisfaction: '98%'
   },
-  build: {
+  BUILD: {
     projects: '500+',
     clients: '200+',
     success: '95%',
     uptime: '99.9%'
   },
-  grow: {
+  GROW: {
     clients: '300+',
     growth: '3x avg',
     campaigns: '1000+',
     roi: '400%+'
   },
-  secure: {
+  SECURE: {
     audits: '150+',
     threats_prevented: '10,000+',
     uptime: '99.99%',

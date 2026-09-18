@@ -4,9 +4,9 @@ import { motion } from 'framer-motion';
 import { ArrowRight, BriefcaseBusiness, Camera, Lightbulb, Mail, MessageCircle, Phone, Search, Send, Share2, Sparkles, Sprout, Target } from 'lucide-react';
 import { Navbar } from '../components/layout/Navbar';
 import { Footer } from '../components/layout/Footer';
-import neonInnovationCycle from '../assets/sastrava/neon-innovation-cycle.png';
-import buildInnovateGrow from '../assets/sastrava/build-innovate-grow-together.png';
-import growthCycleLight from '../assets/sastrava/business-growth-cycle-light.png';
+import neonInnovationCycle from '../assets/sastrava/neon-innovation-cycle.webp';
+import buildInnovateGrow from '../assets/sastrava/build-innovate-grow-together.webp';
+import growthCycleLight from '../assets/sastrava/business-growth-cycle-light.webp';
 
 const pillars = [
   { title: 'Business Consultant', strapline: 'Understand. Analyze. Advise.', description: 'We uncover the root problem, clarify the opportunity, and turn uncertainty into an executable strategy.', outcomes: ['Business diagnosis', 'Growth strategy', 'Digital roadmaps'], Icon: BriefcaseBusiness, tone: 'peacock' },

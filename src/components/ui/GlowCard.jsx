@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { colors, glass, glows } from '../../styles/colors';
+import { glass } from '../../styles/colors';
 
 export const GlowCard = ({
   children,

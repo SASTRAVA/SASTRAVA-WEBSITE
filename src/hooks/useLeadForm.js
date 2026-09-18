@@ -178,6 +178,7 @@ export const useButtonAction = (navigate = null) => {
         window.location.href = `tel:${config.phone}`;
         break;
       case 'whatsapp':
+        // eslint-disable-next-line no-case-declarations -- Scoped to this case branch.
         const message = encodeURIComponent(config.message || 'Hi, I\'m interested in SASTRAVA\'s services.');
         window.open(`https://wa.me/${config.phone}?text=${message}`, '_blank');
         break;

@@ -18,6 +18,13 @@ export const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (!isOpen) return undefined;
+    const closeOnEscape = (event) => { if (event.key === 'Escape') setIsOpen(false); };
+    window.addEventListener('keydown', closeOnEscape);
+    return () => window.removeEventListener('keydown', closeOnEscape);
+  }, [isOpen]);
+
   const navLinks = [
     { name: 'Home', href: '/' },
     { name: 'About', href: '/about' },

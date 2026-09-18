@@ -88,9 +88,9 @@ export const ServicesHub = () => {
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16"
             >
               {Object.values(ECOSYSTEM_PILLARS).map((pillar) => (
-                <motion.button
+                <motion.div
                   key={pillar.id}
-                  onClick={() => setSelectedPillar(pillar.name.toUpperCase())}
+                  className="h-full"
                   className="h-full"
                   variants={itemVariants}
                 >
@@ -98,9 +98,10 @@ export const ServicesHub = () => {
                     pillar={pillar}
                     size="md"
                     interactive={true}
+                    onClick={() => setSelectedPillar(pillar.name.toUpperCase())}
                     featured={selectedPillar === pillar.name.toUpperCase()}
                   />
-                </motion.button>
+                </motion.div>
               ))}
             </motion.div>
           </div>
@@ -162,6 +163,7 @@ export const ServicesHub = () => {
                   style={{ backgroundColor: currentPillar.color.primary }}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
+                  onClick={() => navigate('/contact')}
                 >
                   {currentPillar.cta}
                 </motion.button>

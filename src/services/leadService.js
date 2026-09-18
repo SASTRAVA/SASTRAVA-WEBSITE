@@ -4,7 +4,6 @@
  */
 
 import { LEAD_TYPES, LEAD_STATUS, createLeadObject } from './leadTypes';
-import { GOOGLE_FORM_CONFIG, isGoogleFormConfigured, submitToGoogleForm } from '../config/googleFormConfig';
 
 // API Configuration
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001/api';
@@ -124,49 +123,16 @@ export const submitLead = async (formData, leadType = LEAD_TYPES.GENERAL_INQUIRY
     // Sanitize input
     const sanitizedData = sanitizeFormData(formData);
 
-    const persistManualSheetEntry = (payload) => {
-      if (typeof window === 'undefined') return;
-      try {
-        const key = 'sastrava_contact_sheet';
-        const current = JSON.parse(localStorage.getItem(key) || '[]');
-        const existing = Array.isArray(current) ? current : [];
-        existing.push({
-          ...payload,
-          submittedAt: new Date().toISOString(),
-          sourcePage: metadata.sourcePage || window.location.pathname,
-        });
-        localStorage.setItem(key, JSON.stringify(existing));
-      } catch (error) {
-        console.warn('Manual contact sheet fallback failed:', error);
-      }
-    };
-
-    // The Contact page's "Send Message" form is wired to submit to a
-    // Google Form associated with neeraj@sastrava.com (see
-    // src/config/googleFormConfig.js) instead of the generic lead API.
     if (leadType === LEAD_TYPES.CONTACT_INQUIRY) {
-      if (!isGoogleFormConfigured()) {
-        console.warn(
-          'Google Form integration is not configured yet. ' +
-          'Set GOOGLE_FORM_CONFIG.formActionUrl and entryIds in ' +
-          'src/config/googleFormConfig.js to enable Contact form delivery.'
-        );
-
-        persistManualSheetEntry(sanitizedData);
-
-        return {
-          success: true,
-          message: 'Your inquiry has been saved to the local contact sheet for now. Please email siri@sastrava.com when the live sheet is connected.',
-        };
-      }
-
-      await submitToGoogleForm(sanitizedData);
-      persistManualSheetEntry(sanitizedData);
-
-      return {
-        success: true,
-        message: 'Thank you! We\'ll be in touch shortly.',
-      };
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...sanitizedData, sourcePage: metadata.sourcePage || window.location.pathname }),
+      });
+      const result = await response.json().catch(() => ({}));
+      return response.ok
+        ? { success: true, message: result.message || 'Thank you! We will be in touch shortly.' }
+        : { success: false, message: result.error || 'We could not send your message. Please try again later.' };
     }
 
     // Get system metadata
@@ -174,7 +140,6 @@ export const submitLead = async (formData, leadType = LEAD_TYPES.GENERAL_INQUIRY
       sourcePage: metadata.sourcePage || window.location.pathname,
       sourceButton: metadata.sourceButton || '',
       campaign: metadata.campaign || '',
-      ipAddress: await getUserIP(),
       userAgent: navigator.userAgent,
       referrer: document.referrer,
       submittedAt: new Date().toISOString(),
@@ -218,18 +183,6 @@ export const submitLead = async (formData, leadType = LEAD_TYPES.GENERAL_INQUIRY
   }
 };
 
-/**
- * Helper: Get User IP (using free IP service)
- */
-const getUserIP = async () => {
-  try {
-    const response = await fetch('https://api.ipify.org?format=json');
-    const data = await response.json();
-    return data.ip || 'unknown';
-  } catch {
-    return 'unknown';
-  }
-};
 
 /**
  * Get Lead Status

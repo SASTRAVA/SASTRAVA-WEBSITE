@@ -6,15 +6,6 @@ import { motion } from 'framer-motion';
 import { Target, Star, Rocket, GraduationCap, Palette, Code2, FlaskConical, CheckCircle2 } from 'lucide-react';
 
 const About = () => {
-  const coreValues = [
-    {
-      title: 'Our Motto',
-      description: '"Reaching the Pinnacles of Teaching, Innovation, and Development."',
-      icon: Target,
-      highlight: true,
-    },
-  ];
-
   const segments = [
     {
       title: 'Mentoring',

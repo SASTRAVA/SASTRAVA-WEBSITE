@@ -26,6 +26,7 @@ export const usePillarNavigation = (defaultPillar = 'LEARN') => {
     };
 
     if (pillarMap[pillarPath]) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- URL changes are an external synchronization source.
       setActivePillar(pillarMap[pillarPath]);
     }
   }, [location.pathname]);

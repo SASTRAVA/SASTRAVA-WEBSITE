@@ -39,48 +39,11 @@ const PORTFOLIO_DOMAINS = [
 ];
 
 const TEAM_CAROUSEL = [
-  {
-    name: 'Neeraj Kumar',
-    designation: 'CEO',
-    image: '/images/team/neeraj-kumar.png',
-    width: 152,
-    height: 202,
-  },
-  {
-    name: 'Siri Perumalla',
-    designation: 'COO',
-    image: '/images/team/siri-perumalla.png',
-    width: 152,
-    height: 201,
-  },
-  {
-    name: 'Rajmohan',
-    designation: 'Special Ops - Lead',
-    image: '/images/team/rajmohan.png',
-    width: 152,
-    height: 101,
-  },
-  {
-    name: 'Jaya Surya Krishna',
-    designation: 'Digital Marketing Head',
-    image: '/images/team/jaya-surya.png',
-    width: 152,
-    height: 228,
-  },
-  {
-    name: 'Krishna Sai',
-    designation: 'Software Development Head',
-    image: '/images/team/krishna-sai.png',
-    width: 152,
-    height: 189,
-  },
-  {
-    name: 'Suhas Raj',
-    designation: 'Digital Learning Head',
-    image: '/images/team/suhas-raj.png',
-    width: 152,
-    height: 183,
-  },
+  { name: 'Neeraj Kumar', designation: 'CEO', image: '/images/team/neeraj-kumar.png', width: 152, height: 202, profile: '/portfolios/06_S_Neeraj_Kumar.html' },
+  { name: 'Siri Perumalla', designation: 'COO', image: '/images/team/siri-perumalla.png', width: 152, height: 201, profile: '/portfolios/05_P_Prasanna_Siri.html' },
+  { name: 'Jaya Surya Krishna', designation: 'Digital Marketing Head', image: '/images/team/jaya-surya.png', width: 152, height: 228, profile: '/portfolios/02_K_Jaya_Surya_Krishna.html' },
+  { name: 'Krishna Sai', designation: 'Software Development Head', image: '/images/team/krishna-sai.png', width: 152, height: 189, profile: '/portfolios/01_A_Geetha_Krishna_Sai.html' },
+  { name: 'Suhas Raj', designation: 'Digital Learning Head', image: '/images/team/suhas-raj.png', width: 152, height: 183, profile: '/portfolios/03_Y_Suhas_Raj.html' },
 ];
 
 const PORTFOLIO_STATS = [
@@ -371,7 +334,7 @@ const TeamCarouselSection = () => {
                 whileHover={{ y: -8 }}
                 className="w-[260px] shrink-0 overflow-hidden rounded-2xl border border-gold-DEFAULT/20 bg-navy-900/80 shadow-glow-gold"
               >
-                <img
+                <a href={member.profile} aria-label={`View ${member.name} portfolio`} className="block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-light"><img
                   src={member.image}
                   alt={member.name}
                   width={member.width}
@@ -379,7 +342,7 @@ const TeamCarouselSection = () => {
                   loading="lazy"
                   decoding="async"
                   className="h-72 w-full bg-navy-950/70 object-contain object-center"
-                />
+                /></a>
                 <div className="p-5">
                   <h3 className="text-xl font-bold text-offwhite">{member.name}</h3>
                   <p className="text-gold-light mt-2">{member.designation}</p>

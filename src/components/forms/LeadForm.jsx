@@ -28,7 +28,6 @@ export const LeadForm = ({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null); // 'success', 'error', null
   const [successMessage, setSuccessMessage] = useState('');
-  const [submittedFields, setSubmittedFields] = useState({});
 
   const requiredFields = fields
     .filter(field => field.required)
@@ -56,9 +55,6 @@ export const LeadForm = ({
 
     if (error) {
       setErrors(prev => ({ ...prev, [name]: error }));
-      setSubmittedFields(prev => ({ ...prev, [name]: false }));
-    } else if (value.trim()) {
-      setSubmittedFields(prev => ({ ...prev, [name]: true }));
     }
   };
 
@@ -84,7 +80,6 @@ export const LeadForm = ({
         setSubmitStatus('success');
         setSuccessMessage(result.message);
         setFormData({});
-        setSubmittedFields({});
 
         // Call success callback
         if (onSuccess) {

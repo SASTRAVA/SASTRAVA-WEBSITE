@@ -11,7 +11,6 @@ export const CaseStudyPreview = ({
   title,
   client,
   challenge,
-  result,
   industry,
   resultMetric,
   pillarColor = '#C9A84C',

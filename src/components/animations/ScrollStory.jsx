@@ -18,6 +18,7 @@ export const ScrollStory = ({ items = [] }) => {
       <div className="max-w-4xl mx-auto px-4">
         <div className="space-y-24">
           {items.map((item, index) => {
+            // eslint-disable-next-line react-hooks/rules-of-hooks -- Each rendered story item has a stable mapped animation value.
             const itemProgress = useTransform(
               scrollYProgress,
               [(index) / items.length, (index + 1) / items.length],

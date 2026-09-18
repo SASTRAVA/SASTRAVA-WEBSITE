@@ -26,6 +26,7 @@ export const useScrollAnimation = (options = {}) => {
 
   useEffect(() => {
     if (isInView) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- Intersection observer state is synchronized here.
       setHasBeenInView(true);
       onInView && onInView();
     } else {
@@ -46,7 +47,7 @@ export const useScrollAnimation = (options = {}) => {
  * useParallax Hook
  * Create parallax scroll effect
  */
-export const useParallax = (offset = 50) => {
+export const useParallax = (_offset = 50) => {
   const ref = useRef(null);
   const [offsetY, setOffsetY] = useState(0);
 

@@ -67,7 +67,7 @@ const SERVICE_SEGMENTS = [
 ];
 
 // Service Card Component
-const ServiceCard = ({ tag, heading, tagline, body, capabilities, serves, index }) => {
+const ServiceCard = ({ tag, heading, tagline, body, capabilities, index }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}

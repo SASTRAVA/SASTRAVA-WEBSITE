@@ -28,6 +28,7 @@ export const Button = ({
           break;
 
         case 'scroll':
+          // eslint-disable-next-line no-case-declarations -- Scoped to this case branch.
           const element = document.getElementById(actionConfig.sectionId);
           if (element) {
             element.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -42,6 +43,8 @@ export const Button = ({
         case 'openInternship':
           if (onFormOpen) {
             onFormOpen(action, actionConfig);
+          } else {
+            navigate('/contact');
           }
           break;
 
@@ -54,6 +57,7 @@ export const Button = ({
           break;
 
         case 'whatsapp':
+          // eslint-disable-next-line no-case-declarations -- Scoped to this case branch.
           const message = encodeURIComponent(actionConfig.message || 'Hi, I\'m interested in SASTRAVA\'s services.');
           window.open(`https://wa.me/${actionConfig.phone}?text=${message}`, '_blank');
           break;
@@ -63,6 +67,7 @@ export const Button = ({
           break;
 
         case 'download':
+          // eslint-disable-next-line no-case-declarations -- Scoped to this case branch.
           const link = document.createElement('a');
           link.href = actionConfig.url;
           link.download = actionConfig.filename || 'download';

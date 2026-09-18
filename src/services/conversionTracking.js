@@ -230,7 +230,7 @@ export const initializeAnalytics = (config = {}) => {
   const {
     googleAnalyticsId = '',
     googleTagManagerId = '',
-    hotjarId = ''
+    hotjarId: _hotjarId = ''
   } = config;
 
   // Initialize Google Analytics

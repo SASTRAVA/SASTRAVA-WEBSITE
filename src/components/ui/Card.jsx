@@ -7,7 +7,6 @@ export const FeatureCard = ({
   description,
   gradient = 'gold',
   delay = 0,
-  index = 0,
 }) => {
   const gradientClass = gradient === 'gold' ? 'from-gold-DEFAULT to-gold-mid' : 'from-peacock-blue to-peacock-green';
   const glowColor = gradient === 'gold' ? 'shadow-glow-gold' : 'shadow-glow-teal';

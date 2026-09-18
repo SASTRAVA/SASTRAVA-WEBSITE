@@ -1,8 +1,10 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion as Motion } from 'framer-motion';
 import { Home } from './pages/Home';
 import { NotFound } from './pages/NotFound';
+import { RouteMeta } from './components/RouteMeta';
+import { ErrorBoundary } from './components/ErrorBoundary';
 
 // Lazy load non-critical pages to reduce initial bundle size
 const About = lazy(() => import('./pages/About'));
@@ -22,6 +24,7 @@ const Privacy = lazy(() => import('./pages/Privacy'));
 const Terms = lazy(() => import('./pages/Terms'));
 const Faq = lazy(() => import('./pages/Faq'));
 const Support = lazy(() => import('./pages/Support'));
+const Security = lazy(() => import('./pages/Security'));
 
 // Login / Portal Access
 const LoginHub = lazy(() => import('./pages/LoginHub'));
@@ -50,7 +53,7 @@ const SEO = lazy(() => import('./pages/DigitalMarketing_SEO'));
  * Timing: 300ms for smooth, minimal delay
  */
 const PageWrapper = ({ children }) => (
-  <motion.div
+  <Motion.div
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
     
@@ -58,7 +61,7 @@ const PageWrapper = ({ children }) => (
     transition={{ duration: 0.3, ease: 'easeInOut' }}
   >
     {children}
-  </motion.div>
+  </Motion.div>
 );
 
 // Fallback loader for lazy-loaded pages
@@ -94,6 +97,7 @@ function AppRoutes() {
         <Route path="/terms" element={<PageWrapper><Terms /></PageWrapper>} />
         <Route path="/faq" element={<PageWrapper><Faq /></PageWrapper>} />
         <Route path="/support" element={<PageWrapper><Support /></PageWrapper>} />
+        <Route path="/security" element={<PageWrapper><Security /></PageWrapper>} />
 
         {/* Login / Portal Access */}
         <Route path="/login" element={<PageWrapper><LoginHub /></PageWrapper>} />
@@ -130,9 +134,12 @@ function App() {
   const location = useLocation();
 
   return (
-    <AnimatePresence mode="sync">
-      <AppRoutes key={location.pathname} />
-    </AnimatePresence>
+    <ErrorBoundary>
+      <RouteMeta />
+      <AnimatePresence mode="wait">
+        <AppRoutes key={location.pathname} />
+      </AnimatePresence>
+    </ErrorBoundary>
   );
 }
 
