@@ -39,10 +39,11 @@ const parseResponse = async (response) => {
 
 const authNetworkError = 'Unable to reach the authentication service. Please try again later.';
 
-export const getGoogleAuthUrl = (returnTo = '/student-dashboard', course = '') => {
+export const getGoogleAuthUrl = (returnTo = '/student-dashboard', course = '', role = AUTH_ROLES.STUDENT) => {
   if (!GOOGLE_AUTH_URL) return null;
   const url = new URL(GOOGLE_AUTH_URL, window.location.origin);
   url.searchParams.set('returnTo', returnTo);
+  url.searchParams.set('role', role);
   if (course) url.searchParams.set('course', course);
   return url.toString();
 };
@@ -125,7 +126,7 @@ export const login = async (role, credentials) => {
     }
 
     if (data.token) {
-      sessionStorage.setItem(SESSION_KEY, JSON.stringify({ role, token: data.token }));
+      sessionStorage.setItem(SESSION_KEY, JSON.stringify({ role, token: data.token, user: data.user }));
     }
 
     return { success: true, user: data.user };

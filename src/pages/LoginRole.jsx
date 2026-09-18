@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, useSearchParams, Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import { Navbar } from '../components/layout/Navbar';
 import { Footer } from '../components/layout/Footer';
@@ -16,6 +16,7 @@ import { NotFound } from './NotFound';
  */
 export const LoginRole = () => {
   const { role } = useParams();
+  const [searchParams] = useSearchParams();
   const roleConfig = LOGIN_ROLES[role];
 
   if (!roleConfig) {
@@ -40,7 +41,7 @@ export const LoginRole = () => {
             Back to Login Options
           </Link>
 
-          {role === 'student' ? (
+          {role === 'student' && searchParams.get('mode') === 'otp' ? (
             <StudentAccessForm />
           ) : (
             <LoginForm

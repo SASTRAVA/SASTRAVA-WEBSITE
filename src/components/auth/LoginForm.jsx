@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { AlertCircle, CheckCircle, Loader2, Lock, User } from 'lucide-react';
+import { AlertCircle, ArrowRight, CheckCircle, Loader2, LockKeyhole, Mail } from 'lucide-react';
 import { FormInput } from '../ui/FormInput';
 import { Button } from '../ui/Button';
-import { login } from '../../services/authService';
+import { getGoogleAuthUrl, login } from '../../services/authService';
 
 /**
  * Reusable LoginForm
@@ -13,6 +14,7 @@ import { login } from '../../services/authService';
  * authService, which is a clean, replaceable integration point.
  */
 export const LoginForm = ({ role, title, accent = 'gold' }) => {
+  const [searchParams] = useSearchParams();
   const [formData, setFormData] = useState({ identifier: '', password: '' });
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -20,6 +22,18 @@ export const LoginForm = ({ role, title, accent = 'gold' }) => {
   const [statusMessage, setStatusMessage] = useState('');
 
   const isGold = accent === 'gold';
+  const returnTo = searchParams.get('returnTo') || '';
+  const course = searchParams.get('course') || '';
+
+  const handleGoogleLogin = () => {
+    const url = getGoogleAuthUrl(returnTo || '/login', course, role);
+    if (!url) {
+      setStatus('error');
+      setStatusMessage('Google sign-in is not configured yet. Please use email and password.');
+      return;
+    }
+    window.location.assign(url);
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -67,10 +81,12 @@ export const LoginForm = ({ role, title, accent = 'gold' }) => {
       }}
     >
       <div className="flex flex-col items-center mb-8">
-        <div className={`mb-4 p-4 rounded-2xl ${isGold ? 'bg-gold-DEFAULT/10' : 'bg-peacock-light/10'}`}>
-          <Lock className={`w-8 h-8 ${isGold ? 'text-gold-light' : 'text-peacock-light'}`} strokeWidth={1.75} />
+        <div className="mb-4 p-4 rounded-2xl bg-gold-DEFAULT/10">
+          <LockKeyhole className="w-8 h-8 text-gold-light" strokeWidth={1.75} />
         </div>
+        <p className="mb-2 text-xs uppercase tracking-[0.2em] text-gold-light">SASTRAVA access</p>
         <h1 className="text-2xl md:text-3xl font-bold text-offwhite text-center">{title}</h1>
+        <p className="mt-3 text-center text-sm text-offwhite/60">Sign in with your authorized SASTRAVA account.</p>
       </div>
 
       <AnimatePresence>
@@ -97,6 +113,17 @@ export const LoginForm = ({ role, title, accent = 'gold' }) => {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <button type="button" onClick={handleGoogleLogin} className="mb-7 flex w-full items-center justify-center gap-3 rounded-xl border border-offwhite/20 bg-offwhite/5 px-5 py-3.5 text-sm font-semibold text-offwhite transition-colors hover:border-gold-light/50 hover:bg-offwhite/10">
+        <Mail className="h-5 w-5 text-gold-light" />
+        Continue with Google
+      </button>
+
+      <div className="mb-7 flex items-center gap-3 text-xs uppercase tracking-[0.16em] text-offwhite/35">
+        <span className="h-px flex-1 bg-offwhite/10" />
+        or
+        <span className="h-px flex-1 bg-offwhite/10" />
+      </div>
 
       <form onSubmit={handleSubmit} noValidate>
         <FormInput
@@ -130,10 +157,21 @@ export const LoginForm = ({ role, title, accent = 'gold' }) => {
           loading={isSubmitting}
           disabled={isSubmitting}
         >
-          <User className="w-5 h-5" />
-          Sign In
+          Sign in
         </Button>
       </form>
+
+      <div className="mt-7 flex flex-col items-center gap-3 text-sm">
+        <button type="button" onClick={() => { setStatus('error'); setStatusMessage('Password recovery is handled by the authentication backend for this role.'); }} className="text-offwhite/70 underline underline-offset-4 hover:text-gold-light transition-colors">
+          Forgot your password?
+        </button>
+        {role === 'student' && (
+          <Link to={`/login/student?mode=otp${returnTo ? `&returnTo=${encodeURIComponent(returnTo)}` : ''}${course ? `&course=${encodeURIComponent(course)}` : ''}`} className="inline-flex items-center gap-1 text-peacock-light hover:text-gold-light transition-colors">
+            Use phone OTP instead <ArrowRight className="h-4 w-4" />
+          </Link>
+        )}
+        <span className="text-offwhite/50">Need access? Ask your SASTRAVA administrator</span>
+      </div>
     </motion.div>
   );
 };
