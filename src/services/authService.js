@@ -18,7 +18,7 @@
  * error rather than silently pretending to succeed.
  */
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001/api';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api';
 const GOOGLE_AUTH_URL = import.meta.env.VITE_GOOGLE_AUTH_URL || '';
 
 export const AUTH_ROLES = {
