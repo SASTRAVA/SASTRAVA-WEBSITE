@@ -107,8 +107,8 @@ export const Navbar = () => {
           </div>
 
           <div className="hidden md:flex -translate-y-2 items-center gap-3">
-            <Button variant="primary" size="sm" action="navigate" actionConfig={{ path: '/contact' }}>
-              Start a Conversation
+            <Button variant="primary" size="sm" action="navigate" actionConfig={{ path: '/login' }}>
+              Login
             </Button>
           </div>
 
@@ -151,8 +151,8 @@ export const Navbar = () => {
                 </motion.div>
               ))}
               <div className="px-4 pt-2">
-                <Button variant="primary" size="md" className="w-full" action="navigate" actionConfig={{ path: '/contact' }}>
-                  Start a Conversation
+                <Button variant="primary" size="md" className="w-full" action="navigate" actionConfig={{ path: '/login' }}>
+                  Login
                 </Button>
               </div>
             </motion.div>
