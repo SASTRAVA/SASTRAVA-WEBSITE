@@ -29,6 +29,7 @@ const Security = lazy(() => import('./pages/Security'));
 // Login / Portal Access
 const LoginHub = lazy(() => import('./pages/LoginHub'));
 const LoginRole = lazy(() => import('./pages/LoginRole'));
+const StudentDashboard = lazy(() => import('./pages/StudentDashboard'));
 
 // Authority Building Pages (Phase 2B.2)
 const SuccessStories = lazy(() => import('./pages/SuccessStories'));
@@ -102,6 +103,7 @@ function AppRoutes() {
         {/* Login / Portal Access */}
         <Route path="/login" element={<PageWrapper><LoginHub /></PageWrapper>} />
         <Route path="/login/:role" element={<PageWrapper><LoginRole /></PageWrapper>} />
+        <Route path="/student-dashboard" element={<PageWrapper><StudentDashboard /></PageWrapper>} />
         
         {/* Authority Building Routes (Phase 2B.2) */}
         <Route path="/success-stories" element={<PageWrapper><SuccessStories /></PageWrapper>} />

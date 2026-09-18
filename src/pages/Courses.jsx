@@ -6,10 +6,12 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import { X, Clock, BarChart2, BookOpen, ChevronRight, CheckCircle } from "lucide-react";
 import { Navbar } from "../components/layout/Navbar";
 import { Footer } from "../components/layout/Footer";
 import { PageHero } from "../components/sections/PageHero";
+import { AUTH_ROLES, isAuthenticated } from "../services/authService";
 
 // ─── Brand Tokens ─────────────────────────────────────────────
 const C = {
@@ -845,15 +847,29 @@ function CourseCard({ course, index, onEnroll }) {
 
 // ─── Main Courses Page ─────────────────────────────────────────
 export default function Courses() {
+  const navigate = useNavigate();
   const [activeFilter, setActiveFilter] = useState("All");
   const [activeLevel,  setActiveLevel]  = useState("All Levels");
-  const [enrollCourse, setEnrollCourse] = useState(null);
+  const [enrollCourse, setEnrollCourse] = useState(() => {
+    const requestedCourse = new URLSearchParams(window.location.search).get('enroll');
+    if (!requestedCourse || !isAuthenticated(AUTH_ROLES.STUDENT)) return null;
+    return COURSES.find((item) => item.id === requestedCourse) || null;
+  });
 
   const filtered = COURSES.filter((c) => {
     const catMatch   = activeFilter === "All" || c.category === activeFilter;
     const levelMatch = activeLevel  === "All Levels" || c.level === activeLevel;
     return catMatch && levelMatch;
   });
+
+  const handleStartLearning = (course) => {
+    if (!isAuthenticated(AUTH_ROLES.STUDENT)) {
+      const returnTo = `/courses?enroll=${encodeURIComponent(course.id)}`;
+      navigate(`/login/student?returnTo=${encodeURIComponent(returnTo)}&course=${encodeURIComponent(course.title)}`);
+      return;
+    }
+    setEnrollCourse(course);
+  };
 
   return (
     <>
@@ -974,7 +990,7 @@ export default function Courses() {
                   key={course.id}
                   course={course}
                   index={i}
-                  onEnroll={setEnrollCourse}
+                  onEnroll={handleStartLearning}
                 />
               ))}
             </motion.div>

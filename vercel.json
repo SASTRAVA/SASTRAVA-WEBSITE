@@ -21,6 +21,7 @@
     { "source": "/support", "destination": "/index.html" },
     { "source": "/login", "destination": "/index.html" },
     { "source": "/login/:role", "destination": "/index.html" },
+    { "source": "/student-dashboard", "destination": "/index.html" },
     { "source": "/success-stories", "destination": "/index.html" },
     { "source": "/case-studies", "destination": "/index.html" },
     { "source": "/research", "destination": "/index.html" },

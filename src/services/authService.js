@@ -19,6 +19,7 @@
  */
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001/api';
+const GOOGLE_AUTH_URL = import.meta.env.VITE_GOOGLE_AUTH_URL || '';
 
 export const AUTH_ROLES = {
   HEAD_1: 'head-1',
@@ -30,6 +31,69 @@ export const AUTH_ROLES = {
 };
 
 const SESSION_KEY = 'sastrava_session';
+
+const parseResponse = async (response) => {
+  const data = await response.json().catch(() => ({}));
+  return { response, data };
+};
+
+const authNetworkError = 'Unable to reach the authentication service. Please try again later.';
+
+export const getGoogleAuthUrl = (returnTo = '/student-dashboard', course = '') => {
+  if (!GOOGLE_AUTH_URL) return null;
+  const url = new URL(GOOGLE_AUTH_URL, window.location.origin);
+  url.searchParams.set('returnTo', returnTo);
+  if (course) url.searchParams.set('course', course);
+  return url.toString();
+};
+
+export const requestPhoneOtp = async (phone) => {
+  if (!phone?.trim()) return { success: false, message: 'Please enter your phone number.' };
+
+  try {
+    const result = await fetch(`${API_BASE_URL}/auth/student/phone/request-otp`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ phone: phone.trim() }),
+    }).then(parseResponse);
+
+    if (!result.response.ok) {
+      return { success: false, message: result.data.message || 'We could not send a verification code.' };
+    }
+    return { success: true };
+  } catch (error) {
+    console.error('OTP request error:', error);
+    return { success: false, message: authNetworkError };
+  }
+};
+
+export const verifyPhoneOtp = async ({ phone, otp, name, email, returnTo, course }) => {
+  if (!phone?.trim() || !otp?.trim()) {
+    return { success: false, message: 'Phone number and verification code are required.' };
+  }
+
+  try {
+    const result = await fetch(`${API_BASE_URL}/auth/student/phone/verify-otp`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ phone: phone.trim(), otp: otp.trim(), name, email, returnTo, course }),
+    }).then(parseResponse);
+
+    if (!result.response.ok || !result.data.token) {
+      return { success: false, message: result.data.message || 'That verification code is invalid or expired.' };
+    }
+
+    sessionStorage.setItem(SESSION_KEY, JSON.stringify({
+      role: AUTH_ROLES.STUDENT,
+      token: result.data.token,
+      user: result.data.user,
+    }));
+    return { success: true, user: result.data.user };
+  } catch (error) {
+    console.error('OTP verification error:', error);
+    return { success: false, message: authNetworkError };
+  }
+};
 
 /**
  * Attempts to log in for a given role.

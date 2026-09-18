@@ -4,6 +4,7 @@ import { ArrowLeft } from 'lucide-react';
 import { Navbar } from '../components/layout/Navbar';
 import { Footer } from '../components/layout/Footer';
 import { LoginForm } from '../components/auth/LoginForm';
+import { StudentAccessForm } from '../components/auth/StudentAccessForm';
 import { LOGIN_ROLES } from '../config/authRoles';
 import { NotFound } from './NotFound';
 
@@ -39,11 +40,15 @@ export const LoginRole = () => {
             Back to Login Options
           </Link>
 
-          <LoginForm
-            role={role}
-            title={roleConfig.label}
-            accent={roleConfig.accent}
-          />
+          {role === 'student' ? (
+            <StudentAccessForm />
+          ) : (
+            <LoginForm
+              role={role}
+              title={roleConfig.label}
+              accent={roleConfig.accent}
+            />
+          )}
         </div>
       </section>
       <Footer />
