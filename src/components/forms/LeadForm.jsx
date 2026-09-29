@@ -136,15 +136,14 @@ export const LeadForm = ({
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
-            className="mb-6 p-4 rounded-xl bg-emerald-950/30 border border-emerald-500/30 flex items-start gap-3"
+            role="status"
+            aria-live="polite"
+            className="relative z-10 mb-6 p-4 rounded-xl bg-emerald-950/30 border border-emerald-500/30 flex items-start gap-3"
           >
             <CheckCircle className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
             <div>
               <p className="font-semibold text-emerald-400">Success!</p>
               <p className="text-emerald-200 text-sm mt-1">{successMessage}</p>
-              <p className="text-emerald-200/60 text-xs mt-2">
-                You'll receive a confirmation email shortly.
-              </p>
             </div>
           </motion.div>
         )}
@@ -154,12 +153,17 @@ export const LeadForm = ({
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
-            className="mb-6 p-4 rounded-xl bg-red-950/30 border border-red-500/30 flex items-start gap-3"
+            role="alert"
+            aria-live="assertive"
+            className="relative z-10 mb-6 p-4 rounded-xl bg-red-950/30 border border-red-500/30 flex items-start gap-3"
           >
-            <AlertCircle className="w-5 h-5 text-red-400 mt-0.5 flex-shrink-0" />
+            <AlertCircle className="w-5 h-5 text-red-300 mt-0.5 flex-shrink-0" />
             <div>
-              <p className="font-semibold text-red-400">Error</p>
-              <p className="text-red-200 text-sm mt-1">{successMessage}</p>
+              <p className="font-semibold text-red-300">Error</p>
+              <p className="text-red-100 text-sm mt-1">{successMessage}</p>
+              <a className="mt-2 inline-block text-sm font-semibold text-red-100 underline underline-offset-2" href="mailto:neeraj@sastrava.com">
+                Email neeraj@sastrava.com
+              </a>
             </div>
           </motion.div>
         )}
@@ -210,7 +214,7 @@ export const LeadForm = ({
                       ))}
                     </select>
                     {errors[field.name] && (
-                      <p className="text-red-400 text-xs mt-1">{errors[field.name]}</p>
+                      <p id={`${field.name}-error`} role="alert" className="text-red-300 text-sm mt-2 font-medium">{errors[field.name]}</p>
                     )}
                   </div>
                 ) : (

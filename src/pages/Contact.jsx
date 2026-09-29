@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Navigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { MapPin, Mail, Phone, Clock, Globe } from 'lucide-react';
 import { Navbar } from '../components/layout/Navbar';
@@ -7,15 +6,10 @@ import { Footer } from '../components/layout/Footer';
 import { PageHero } from '../components/sections/PageHero';
 import { LeadForm } from '../components/forms/LeadForm';
 import { CONTACT_FORM_CONFIG, LEAD_TYPES } from '../services/leadTypes';
-import { getSession } from '../services/authService';
 
 
 export const Contact = () => {
   const [selectedLocation, setSelectedLocation] = useState('headquarters');
-
-  if (!getSession()) {
-    return <Navigate to="/login/student?returnTo=%2Fcontact" replace />;
-  }
 
   // Office locations with Indian cities
   const offices = [

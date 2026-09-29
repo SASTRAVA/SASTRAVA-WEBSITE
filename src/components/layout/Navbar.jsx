@@ -14,6 +14,7 @@ export const Navbar = () => {
       setIsScrolled(window.scrollY > 50);
     };
 
+    handleScroll();
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -61,7 +62,7 @@ export const Navbar = () => {
     <motion.nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-navy-950/80 backdrop-blur-glass border-b border-gold-DEFAULT/20 shadow-elevation'
+          ? 'bg-navy-950/95 backdrop-blur-xl border-b border-gold-DEFAULT/20 shadow-elevation'
           : 'bg-transparent'
       }`}
       style={{

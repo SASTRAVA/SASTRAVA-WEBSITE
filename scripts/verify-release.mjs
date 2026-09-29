@@ -6,6 +6,9 @@ const requiredFiles = [
   'public/sitemap.xml',
   'public/.well-known/security.txt',
   'public/404.html',
+  'public/images/sastrava-mark.webp',
+  'public/logo.png',
+  'public/favicon.png',
   'api/contact.js',
 ];
 const requiredRoutes = ['/', '/about', '/services', '/courses', '/portfolio', '/contact', '/privacy', '/terms', '/security'];

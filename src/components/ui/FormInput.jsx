@@ -53,6 +53,8 @@ export const FormInput = ({
           onBlur={() => setIsFocused(false)}
           disabled={disabled}
           placeholder={placeholder}
+          aria-invalid={Boolean(error)}
+          aria-describedby={error ? `${name}-error` : undefined}
           className={`
             w-full px-4 py-3 
             bg-navy-900/40 backdrop-blur-sm
@@ -105,7 +107,7 @@ export const FormInput = ({
             initial={{ scale: 0, rotate: 90 }}
             animate={{ scale: 1, rotate: 0 }}
             transition={{ duration: 0.4, ease: 'easeOut' }}
-            className="absolute right-3 top-3 text-red-500"
+            className="absolute right-3 top-3 text-red-300"
           >
             <AlertCircle className="w-5 h-5" />
           </motion.div>
@@ -118,7 +120,9 @@ export const FormInput = ({
           initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
-          className="text-sm text-red-500 mt-2 font-medium"
+          id={`${name}-error`}
+          role="alert"
+          className="text-sm text-red-300 mt-2 font-medium"
         >
           {error}
         </motion.p>
@@ -186,6 +190,8 @@ export const FormTextarea = ({
           onBlur={() => setIsFocused(false)}
           disabled={disabled}
           placeholder={placeholder}
+          aria-invalid={Boolean(error)}
+          aria-describedby={error ? `${name}-error` : undefined}
           rows={rows}
           className={`
             w-full px-4 py-3 
@@ -215,7 +221,7 @@ export const FormTextarea = ({
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
-            className="absolute right-3 top-3 text-red-500"
+            className="absolute right-3 top-3 text-red-300"
           >
             <AlertCircle className="w-5 h-5" />
           </motion.div>
@@ -236,7 +242,9 @@ export const FormTextarea = ({
         <motion.p
           initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-sm text-red-500 mt-2 font-medium"
+          id={`${name}-error`}
+          role="alert"
+          className="text-sm text-red-300 mt-2 font-medium"
         >
           {error}
         </motion.p>

@@ -7,6 +7,23 @@ test('primary CTA navigates to the contact journey', async ({ page }) => {
   await expect(page.getByRole('heading', { name: /get in touch/i }).first()).toBeVisible();
 });
 
+test('route navigation resets the viewport to the top', async ({ page, isMobile }) => {
+  await page.goto('/');
+  await page.evaluate(() => window.scrollTo(0, 1200));
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(500);
+  if (isMobile) await page.getByRole('button', { name: /toggle navigation menu/i }).click();
+  await page.getByRole('navigation', { name: 'Primary' }).getByRole('link', { name: 'About', exact: true }).click();
+  await expect(page).toHaveURL(/\/about$/);
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
+});
+
+test('scrolled primary navigation has an opaque background', async ({ page }) => {
+  await page.goto('/');
+  await page.evaluate(() => window.scrollTo(0, 200));
+  const nav = page.getByRole('navigation', { name: 'Primary' });
+  await expect(nav).toHaveClass(/bg-navy-950\/95/);
+});
+
 test('mobile menu opens and closes with keyboard', async ({ page, isMobile }) => {
   test.skip(!isMobile, 'Mobile navigation only applies to the mobile project.');
   await page.goto('/');
@@ -23,6 +40,10 @@ test('contact form reports validation errors without submitting data', async ({ 
   await page.goto('/contact');
   await page.getByRole('button', { name: /^submit$/i }).first().click();
   await expect(page.getByText(/first\s*name is required/i)).toBeVisible();
+  await expect(page.getByText(/last\s*name is required/i)).toBeVisible();
+  await expect(page.getByText(/email is required/i)).toBeVisible();
+  await expect(page.getByText(/phone is required/i)).toBeVisible();
+  await expect(page.getByText(/message is required/i)).toBeVisible();
 });
 
 test('contact form handles a successful server response', async ({ page }) => {
@@ -47,6 +68,31 @@ test('contact form exposes a safe delivery failure', async ({ page }) => {
   await page.getByLabel(/message/i).first().fill('Synthetic test message.');
   await page.getByRole('button', { name: /^submit$/i }).first().click();
   await expect(page.getByText(/contact service is not configured/i)).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Email neeraj@sastrava.com', exact: true })).toHaveAttribute('href', 'mailto:neeraj@sastrava.com');
+});
+
+test('home content and calls to action fit narrow mobile viewports', async ({ page, isMobile }) => {
+  test.skip(!isMobile, 'Narrow viewport check runs in the mobile project.');
+
+  for (const width of [320, 360, 390]) {
+    await page.setViewportSize({ width, height: 844 });
+    await page.goto('/');
+    await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+
+    const overflow = await page.evaluate(() => ({
+      viewport: document.documentElement.clientWidth,
+      document: document.documentElement.scrollWidth,
+      controls: [...document.querySelectorAll('main a, main button, main input, main textarea')]
+        .filter((element) => {
+          const rect = element.getBoundingClientRect();
+          return rect.width > 0 && (rect.left < -1 || rect.right > document.documentElement.clientWidth + 1);
+        })
+        .map((element) => ({ text: element.textContent.trim(), right: Math.round(element.getBoundingClientRect().right) })),
+    }));
+
+    expect(overflow.document, `Horizontal page overflow at ${width}px`).toBeLessThanOrEqual(width);
+    expect(overflow.controls, `Interactive controls overflow at ${width}px: ${JSON.stringify(overflow.controls)}`).toEqual([]);
+  }
 });
 test('pillar CTAs always lead to the contact journey', async ({ page }) => {
   const ctas = [

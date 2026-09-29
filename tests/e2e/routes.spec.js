@@ -14,7 +14,8 @@ for (const route of routes) {
     page.on('console', (message) => { if (message.type() === 'error') errors.push(message.text()); });
     await page.goto(route, { waitUntil: 'networkidle' });
     await expect(page.getByRole('heading').first()).toBeVisible();
-    await expect(page).toHaveTitle(/SASTRAVA|Page not found/i);
+    await expect(page).toHaveTitle(/SASTRAVA/i);
+    await expect(page).not.toHaveTitle(/Page not found/i);
     expect(errors.filter((message) => !message.includes('favicon'))).toEqual([]);
   });
 }

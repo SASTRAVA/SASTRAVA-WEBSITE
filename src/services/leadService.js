@@ -17,9 +17,8 @@ export const validateEmail = (email) => {
 };
 
 export const validatePhone = (phone) => {
-  // Indian phone format: 10 digits
-  const phoneRegex = /^[0-9]{10}$/;
-  return phoneRegex.test(phone.replace(/\D/g, ''));
+  const digits = phone.replace(/\D/g, '');
+  return digits.length >= 7 && digits.length <= 15;
 };
 
 export const validateFormData = (data, requiredFields = []) => {
@@ -38,7 +37,7 @@ export const validateFormData = (data, requiredFields = []) => {
 
   // Phone validation
   if (data.phone && data.phone.trim() && !validatePhone(data.phone)) {
-    errors.phone = 'Please enter a valid 10-digit phone number';
+    errors.phone = 'Please enter a valid phone number';
   }
 
   return errors;

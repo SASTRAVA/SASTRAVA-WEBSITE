@@ -9,8 +9,8 @@ export const SEO_CONFIG = {
     siteName: 'SASTRAVA',
     siteDescription: 'Learn. Build. Grow. Secure. Your complete ecosystem for education, development, growth, and security.',
     siteUrl: 'https://www.sastrava.com',
-    logoUrl: 'https://www.sastrava.com/logo.png',
-    favicon: '/favicon.ico',
+    logoUrl: 'https://sastrava.com/logo.png',
+    favicon: '/favicon.png',
     language: 'en',
     locale: 'en_IN',
     twitterHandle: '@SASTRAVA',
@@ -133,7 +133,7 @@ export const SEO_CONFIG = {
       '@type': 'Organization',
       name: 'SASTRAVA',
       url: 'https://www.sastrava.com',
-      logo: 'https://www.sastrava.com/logo.png',
+      logo: 'https://sastrava.com/logo.png',
       description: 'Tech education and services company',
       sameAs: [
         'https://www.facebook.com/SASTRAVA',
@@ -196,7 +196,7 @@ export const SEO_CONFIG = {
       '@context': 'https://schema.org',
       '@type': 'LocalBusiness',
       name: 'SASTRAVA',
-      image: 'https://www.sastrava.com/logo.png',
+      image: 'https://sastrava.com/logo.png',
       address: {
         '@type': 'PostalAddress',
         streetAddress: 'Office Address',

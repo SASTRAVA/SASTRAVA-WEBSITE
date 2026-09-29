@@ -32,7 +32,7 @@ export const Home = () => (
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_45%,rgba(230,194,0,0.16),transparent_28%),radial-gradient(circle_at_18%_0%,rgba(20,184,166,0.18),transparent_35%)]" />
         <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-navy-950 to-transparent" />
         <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-6 lg:grid-cols-[1.05fr_0.95fr] lg:gap-8">
-          <motion.div {...reveal}>
+          <div>
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-gold-DEFAULT/35 bg-gold-DEFAULT/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-gold-light"><Sparkles className="h-4 w-4" aria-hidden="true" />From challenge to possibility</div>
             <h1 className="max-w-3xl font-display text-5xl font-bold leading-[1.02] text-offwhite sm:text-6xl lg:text-7xl">We don’t just advise.<span className="mt-2 block bg-[linear-gradient(135deg,#C9A84C_0%,#E6C200_30%,#FFF3B0_50%,#C9A84C_75%,#A67C00_100%)] bg-clip-text text-transparent"> We build what moves you forward.</span></h1>
             <p className="mt-7 max-w-2xl text-lg leading-relaxed text-offwhite/80 md:text-xl">SASTRAVA partners with startups, businesses, institutions, and ambitious organizations to find the root problem, create sophisticated solutions, and grow what matters.</p>
@@ -43,12 +43,12 @@ export const Home = () => (
             <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-offwhite/70">
               <span className="inline-flex items-center gap-2"><Search className="h-4 w-4 text-peacock-light" aria-hidden="true" />Diagnose the real issue</span><span className="inline-flex items-center gap-2"><Lightbulb className="h-4 w-4 text-gold-light" aria-hidden="true" />Design the right response</span><span className="inline-flex items-center gap-2"><Target className="h-4 w-4 text-peacock-light" aria-hidden="true" />Build measurable momentum</span>
             </div>
-          </motion.div>
-          <motion.figure {...reveal} transition={{ ...reveal.transition, delay: 0.12 }} className="relative mx-auto w-full max-w-xl lg:max-w-none">
+          </div>
+          <figure className="relative mx-auto w-full max-w-xl lg:max-w-none">
             <div className="absolute -inset-5 rounded-[2rem] bg-peacock-light/15 blur-3xl" />
             <div className="relative flex aspect-square items-center justify-center overflow-hidden rounded-[2rem] border border-peacock-light/30 bg-navy-900/70 p-2 shadow-[0_28px_80px_rgba(0,0,0,0.45)]"><img src={neonInnovationCycle} alt="SASTRAVA circular growth cycle connecting business consulting, innovation, and incubation" className="h-full w-full rounded-[1.55rem] object-contain" /></div>
             <figcaption className="absolute -bottom-5 left-1/2 w-[85%] -translate-x-1/2 rounded-2xl border border-gold-DEFAULT/30 bg-navy-950/95 px-5 py-3 text-center text-sm font-medium text-offwhite shadow-elevation backdrop-blur-glass">One connected partner for strategy, creation, and sustainable growth.</figcaption>
-          </motion.figure>
+          </figure>
         </div>
       </section>
 

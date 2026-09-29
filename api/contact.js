@@ -32,6 +32,53 @@ function getDatabasePool() {
   return databasePool;
 }
 
+async function sendEmailFallback(lead) {
+  const apiKey = process.env.RESEND_API_KEY;
+  const from = process.env.CONTACT_FROM_EMAIL;
+  if (!apiKey || !from) return false;
+
+  const recipient = process.env.CONTACT_TO_EMAIL || 'neeraj@sastrava.com';
+  const response = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      from,
+      to: [recipient],
+      reply_to: lead.email,
+      subject: `Website inquiry from ${lead.firstName} ${lead.lastName}`.replace(/[\r\n]+/g, ' '),
+      text: [
+        `Name: ${lead.firstName} ${lead.lastName}`,
+        `Email: ${lead.email}`,
+        `Phone: ${lead.phone || 'Not provided'}`,
+        `Company: ${lead.company || 'Not provided'}`,
+        `Source page: ${lead.sourcePage || 'Not provided'}`,
+        '',
+        'Message:',
+        lead.message,
+      ].join('\n'),
+    }),
+    signal: AbortSignal.timeout(8_000),
+  });
+
+  if (!response.ok) throw new Error(`Resend returned HTTP ${response.status}`);
+  return true;
+}
+
+async function deliverUnavailableLead(response, lead) {
+  try {
+    if (await sendEmailFallback(lead)) {
+      return json(response, 202, { ok: true, message: 'Thank you. We will be in touch shortly.' });
+    }
+  } catch (error) {
+    console.error('Contact email fallback failed', { message: error instanceof Error ? error.message : 'Unknown error' });
+  }
+
+  return json(response, 503, { error: 'We could not send your message. Please email neeraj@sastrava.com.' });
+}
+
 export default async function contact(request, response) {
   if (request.method !== 'POST') {
     response.setHeader('Allow', 'POST');
@@ -62,7 +109,7 @@ export default async function contact(request, response) {
   }
 
   const pool = getDatabasePool();
-  if (!pool) return json(response, 503, { error: 'The contact service is temporarily unavailable. Please email neeraj@sastrava.com.' });
+  if (!pool) return deliverUnavailableLead(response, lead);
 
   try {
     await pool.query(
@@ -73,6 +120,6 @@ export default async function contact(request, response) {
     return json(response, 202, { ok: true, message: 'Thank you. We will be in touch shortly.' });
   } catch (error) {
     console.error('Contact storage failed', { message: error instanceof Error ? error.message : 'Unknown error' });
-    return json(response, 503, { error: 'We could not send your message. Please email neeraj@sastrava.com.' });
+    return deliverUnavailableLead(response, lead);
   }
 }

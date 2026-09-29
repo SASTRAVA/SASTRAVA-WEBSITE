@@ -1,5 +1,5 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { AnimatePresence, motion as Motion } from 'framer-motion';
 import { Home } from './pages/Home';
 import { NotFound } from './pages/NotFound';
@@ -25,6 +25,16 @@ const Terms = lazy(() => import('./pages/Terms'));
 const Faq = lazy(() => import('./pages/Faq'));
 const Support = lazy(() => import('./pages/Support'));
 const Security = lazy(() => import('./pages/Security'));
+
+function ScrollToTop() {
+  const { pathname, hash } = useLocation();
+
+  useEffect(() => {
+    if (!hash) window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, [pathname, hash]);
+
+  return null;
+}
 
 // Login / Portal Access
 const LoginHub = lazy(() => import('./pages/LoginHub'));
@@ -137,6 +147,7 @@ function App() {
 
   return (
     <ErrorBoundary>
+      <ScrollToTop />
       <RouteMeta />
       <AnimatePresence mode="wait">
         <AppRoutes key={location.pathname} />
