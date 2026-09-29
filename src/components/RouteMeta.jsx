@@ -53,6 +53,7 @@ export function RouteMeta() {
   const { pathname } = useLocation();
 
   useEffect(() => {
+    const isPrivate = pathname === '/student-dashboard' || pathname === '/login' || pathname.startsWith('/login/');
     const route = pathname.startsWith('/services-hub/')
       ? '/services-hub'
       : pathname.startsWith('/login/')
@@ -68,6 +69,11 @@ export function RouteMeta() {
     upsertMeta('property', 'og:image', `${origin}/logo.png`);
     upsertMeta('name', 'twitter:card', 'summary_large_image');
     upsertMeta('name', 'twitter:image', `${origin}/logo.png`);
+    if (isPrivate) {
+      upsertMeta('name', 'robots', 'noindex, nofollow');
+    } else {
+      document.head.querySelector('meta[name="robots"]')?.remove();
+    }
 
     let canonicalElement = document.head.querySelector('link[rel="canonical"]');
     if (!canonicalElement) {

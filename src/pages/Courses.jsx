@@ -17,13 +17,13 @@ import { AUTH_ROLES, isAuthenticated } from "../services/authService";
 const C = {
   navy:       "#0D2B45",
   teal:       "#0E7C7B",
-  tealLight:  "#1FB8B8",
+  tealLight:  "#8AE8DE",
   gold:       "#C9A84C",
   goldLight:  "#F0C96A",
   offwhite:   "#F0EDE6",
   surface:    "#0A1F33",
   surface2:   "#112840",
-  muted:      "#4A6580",
+  muted:      "#A8BCD0",
 };
 
 // ─── Course Data ───────────────────────────────────────────────

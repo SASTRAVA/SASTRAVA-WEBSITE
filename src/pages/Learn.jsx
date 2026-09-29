@@ -13,6 +13,7 @@ import { StatCounter } from '../components/trust/StatCounter';
 import { ECOSYSTEM_PILLARS, PILLAR_STATISTICS } from '../config/businessModel';
 import * as Icons from 'lucide-react';
 import { Button } from '../components/ui/Button';
+import { contrastTextColor } from '../utils/contrastText';
 
 export const LearnPillar = () => {
   const pillar = ECOSYSTEM_PILLARS.LEARN;
@@ -60,7 +61,7 @@ export const LearnPillar = () => {
               viewport={{ once: true }}
               className="mb-16"
             >
-              <motion.p variants={itemVariants} className="text-gold-500 font-semibold uppercase mb-4">
+              <motion.p variants={itemVariants} className="text-[#725300] font-semibold uppercase mb-4">
                 About {pillar.name}
               </motion.p>
               <motion.h2 variants={itemVariants} className="text-4xl font-bold text-gray-900 dark:text-white mb-6">
@@ -105,8 +106,8 @@ export const LearnPillar = () => {
               </motion.div>
               <motion.div variants={itemVariants}>
                 <StatCounter
-                  value={`${stats.completionRate}%`}
-                  label="Completion Rate"
+                  value={stats.satisfaction}
+                  label="Learner Satisfaction"
                   icon={Icons.CheckCircle}
                   color={pillar.color.primary}
                 />
@@ -161,7 +162,7 @@ export const LearnPillar = () => {
                     </ul>
                     <Button
                       className="w-full"
-                      style={{ backgroundColor: pillar.color.primary }}
+                      style={{ backgroundColor: pillar.color.primary, color: contrastTextColor(pillar.color.primary) }}
                       action="openContact"
                     >
                       Enroll Now
@@ -176,15 +177,15 @@ export const LearnPillar = () => {
         {/* CTA Section */}
         <section className="py-16" style={{ backgroundColor: pillar.color.primary + '10' }}>
           <div className="max-w-4xl mx-auto px-4 text-center">
-            <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+            <h3 className="text-3xl font-bold text-offwhite mb-4">
               Ready to Start Learning?
             </h3>
-            <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
+            <p className="text-lg text-offwhite/85 mb-8">
               Choose from {pillar.services.length}+ courses and transform your skills today
             </p>
             <Button
-              className="text-white font-bold"
-              style={{ backgroundColor: pillar.color.primary }}
+              className="font-bold"
+              style={{ backgroundColor: pillar.color.primary, color: contrastTextColor(pillar.color.primary) }}
               action="openContact"
             >
               Explore Courses

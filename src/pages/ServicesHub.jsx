@@ -13,8 +13,9 @@ import { PageHero } from '../components/sections/PageHero';
 import { PillarCard } from '../components/services/PillarCard';
 import { ServiceCard } from '../components/services/ServiceCard';
 import { ECOSYSTEM_PILLARS, SERVICE_HIERARCHY } from '../config/businessModel';
-import * as Icons from 'lucide-react';
 import { Button } from '../components/ui/Button';
+import { contrastTextColor } from '../utils/contrastText';
+import { getBusinessIcon } from '../components/ui/businessIconMap';
 
 export const ServicesHub = () => {
   const { pillar: urlPillar } = useParams();
@@ -68,7 +69,7 @@ export const ServicesHub = () => {
               viewport={{ once: true }}
               className="text-center mb-12"
             >
-              <motion.p variants={itemVariants} className="text-gold-500 font-semibold uppercase mb-4">
+              <motion.p variants={itemVariants} className="text-[#725300] font-semibold uppercase mb-4">
                 Four Pillars
               </motion.p>
               <motion.h2 variants={itemVariants} className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
@@ -90,7 +91,6 @@ export const ServicesHub = () => {
               {Object.values(ECOSYSTEM_PILLARS).map((pillar) => (
                 <motion.div
                   key={pillar.id}
-                  className="h-full"
                   className="h-full"
                   variants={itemVariants}
                 >
@@ -130,7 +130,7 @@ export const ServicesHub = () => {
                     className="w-20 h-20 rounded-2xl flex items-center justify-center"
                     style={{ backgroundColor: currentPillar.color.primary + '20' }}
                   >
-                    {React.createElement(Icons[currentPillar.icon], {
+                    {React.createElement(getBusinessIcon(currentPillar.icon), {
                       size: 48,
                       style: { color: currentPillar.color.primary }
                     })}
@@ -140,7 +140,7 @@ export const ServicesHub = () => {
                 <motion.h2
                   variants={itemVariants}
                   className="text-5xl font-black mb-4"
-                  style={{ color: currentPillar.color.primary }}
+                  style={{ color: '#101828' }}
                 >
                   {currentPillar.name}
                 </motion.h2>
@@ -160,7 +160,10 @@ export const ServicesHub = () => {
                 <motion.button
                   variants={itemVariants}
                   className="px-8 py-4 rounded-lg font-bold text-white transition-all inline-block"
-                  style={{ backgroundColor: currentPillar.color.primary }}
+                  style={{
+                    backgroundColor: currentPillar.color.primary,
+                    color: contrastTextColor(currentPillar.color.primary),
+                  }}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => navigate('/contact')}
@@ -188,7 +191,7 @@ export const ServicesHub = () => {
                         className="p-3 rounded-lg"
                         style={{ backgroundColor: currentPillar.color.primary + '20' }}
                       >
-                        {React.createElement(Icons[category.icon], {
+                        {React.createElement(getBusinessIcon(category.icon), {
                           size: 24,
                           style: { color: currentPillar.color.primary }
                         })}
@@ -252,12 +255,15 @@ export const ServicesHub = () => {
                       <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
                         {offering.name}
                       </h4>
-                      <p className="text-2xl font-black mb-4" style={{ color: currentPillar.color.primary }}>
+                      <p className="text-2xl font-black mb-4 text-gray-900">
                         {offering.price}
                       </p>
                       <Button
                         className="w-full"
-                        style={{ backgroundColor: currentPillar.color.primary }}
+                        style={{
+                          backgroundColor: currentPillar.color.primary,
+                          color: contrastTextColor(currentPillar.color.primary),
+                        }}
                         action="openContact"
                       >
                         Enroll Now
@@ -273,10 +279,10 @@ export const ServicesHub = () => {
         {/* Integration CTA */}
         <section className="py-16 bg-gradient-to-r from-gold-500/10 to-peacock-500/10 border-t border-b border-gold-500/20">
           <div className="max-w-4xl mx-auto px-4 text-center">
-            <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+            <h3 className="text-3xl font-bold text-offwhite mb-4">
               Looking for Multiple Services?
             </h3>
-            <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
+            <p className="text-lg text-offwhite/85 mb-8">
               Combine services from different pillars for maximum impact
             </p>
             <Button

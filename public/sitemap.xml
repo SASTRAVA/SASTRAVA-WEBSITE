@@ -2,17 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://sastrava.com/</loc></url>
   <url><loc>https://sastrava.com/about</loc></url>
+  <url><loc>https://sastrava.com/domains</loc></url>
   <url><loc>https://sastrava.com/services</loc></url>
+  <url><loc>https://sastrava.com/services-hub</loc></url>
   <url><loc>https://sastrava.com/learn</loc></url>
   <url><loc>https://sastrava.com/build</loc></url>
   <url><loc>https://sastrava.com/grow</loc></url>
   <url><loc>https://sastrava.com/secure</loc></url>
   <url><loc>https://sastrava.com/courses</loc></url>
   <url><loc>https://sastrava.com/portfolio</loc></url>
+  <url><loc>https://sastrava.com/blog</loc></url>
+  <url><loc>https://sastrava.com/careers</loc></url>
   <url><loc>https://sastrava.com/contact</loc></url>
   <url><loc>https://sastrava.com/privacy</loc></url>
   <url><loc>https://sastrava.com/terms</loc></url>
   <url><loc>https://sastrava.com/security</loc></url>
   <url><loc>https://sastrava.com/faq</loc></url>
   <url><loc>https://sastrava.com/support</loc></url>
+  <url><loc>https://sastrava.com/success-stories</loc></url>
+  <url><loc>https://sastrava.com/case-studies</loc></url>
+  <url><loc>https://sastrava.com/research</loc></url>
+  <url><loc>https://sastrava.com/publications</loc></url>
+  <url><loc>https://sastrava.com/open-source</loc></url>
+  <url><loc>https://sastrava.com/achievements</loc></url>
+  <url><loc>https://sastrava.com/cybersecurity</loc></url>
+  <url><loc>https://sastrava.com/cybersecurity/penetration-testing</loc></url>
+  <url><loc>https://sastrava.com/cybersecurity/security-audits</loc></url>
+  <url><loc>https://sastrava.com/ai</loc></url>
+  <url><loc>https://sastrava.com/ai/genai</loc></url>
+  <url><loc>https://sastrava.com/digital-marketing</loc></url>
+  <url><loc>https://sastrava.com/digital-marketing/seo</loc></url>
 </urlset>

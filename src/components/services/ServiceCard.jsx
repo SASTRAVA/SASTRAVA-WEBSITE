@@ -6,7 +6,8 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import * as Icons from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import { getBusinessIcon } from '../ui/businessIconMap';
 
 export const ServiceCard = ({
   service,
@@ -14,7 +15,7 @@ export const ServiceCard = ({
   onClick,
   index = 0
 }) => {
-  const Icon = Icons[service.icon];
+  const Icon = getBusinessIcon(service.icon);
 
   return (
     <motion.div
@@ -46,11 +47,11 @@ export const ServiceCard = ({
           "
           style={{ backgroundColor: pillarColor + '15' }}
         >
-          <Icon 
-            size={24}
-            style={{ color: pillarColor }}
-            className="transition-colors"
-          />
+          {React.createElement(Icon, {
+            size: 24,
+            style: { color: pillarColor },
+            className: 'transition-colors',
+          })}
         </div>
 
         {/* Service Name */}
@@ -80,7 +81,7 @@ export const ServiceCard = ({
         {/* Learn More Arrow */}
         <div className="flex items-center text-sm font-semibold" style={{ color: pillarColor }}>
           Learn More
-          <Icons.ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+          <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
         </div>
       </div>
     </motion.div>

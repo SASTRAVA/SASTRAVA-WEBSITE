@@ -59,7 +59,7 @@ export const FormInput = ({
             w-full px-4 py-3 
             bg-navy-900/40 backdrop-blur-sm
             border border-gold-DEFAULT/20
-            text-offwhite placeholder-offwhite/40
+            text-offwhite placeholder-offwhite/75
             rounded-lg
             transition-all duration-300
             ${isFocused && !error ? 'border-gold-light/60 shadow-lg' : ''}
@@ -197,7 +197,7 @@ export const FormTextarea = ({
             w-full px-4 py-3 
             bg-navy-900/40 backdrop-blur-sm
             border border-gold-DEFAULT/20
-            text-offwhite placeholder-offwhite/40
+            text-offwhite placeholder-offwhite/75
             rounded-lg
             transition-all duration-300 resize-none
             ${isFocused && !error ? 'border-gold-light/60 shadow-lg' : ''}

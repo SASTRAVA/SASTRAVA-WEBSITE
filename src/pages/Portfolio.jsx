@@ -155,15 +155,15 @@ const PortfolioHero = () => {
           >
             <div className="glass-gold gloss rounded-lg p-4 border border-gold-DEFAULT/20">
               <div className="text-2xl md:text-3xl font-bold text-gold-light">700–900+</div>
-              <div className="text-xs md:text-sm text-slate-400">Students Trained</div>
+              <div className="text-xs md:text-sm text-slate-300">Students Trained</div>
             </div>
             <div className="glass-gold gloss rounded-lg p-4 border border-gold-DEFAULT/20">
               <div className="text-2xl md:text-3xl font-bold text-gold-light">5+</div>
-              <div className="text-xs md:text-sm text-slate-400">Domains</div>
+              <div className="text-xs md:text-sm text-slate-300">Domains</div>
             </div>
             <div className="glass-gold gloss rounded-lg p-4 border border-gold-DEFAULT/20">
               <div className="text-2xl md:text-3xl font-bold text-gold-light">∞</div>
-              <div className="text-xs md:text-sm text-slate-400">Opportunities</div>
+              <div className="text-xs md:text-sm text-slate-300">Opportunities</div>
             </div>
           </motion.div>
         </motion.div>

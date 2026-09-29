@@ -11,7 +11,13 @@ const requiredFiles = [
   'public/favicon.png',
   'api/contact.js',
 ];
-const requiredRoutes = ['/', '/about', '/services', '/courses', '/portfolio', '/contact', '/privacy', '/terms', '/security'];
+const publicRoutes = [
+  '/', '/about', '/domains', '/services', '/services-hub', '/learn', '/build', '/grow', '/secure',
+  '/courses', '/portfolio', '/blog', '/careers', '/contact', '/privacy', '/terms', '/security',
+  '/faq', '/support', '/success-stories', '/case-studies', '/research', '/publications',
+  '/open-source', '/achievements', '/cybersecurity', '/cybersecurity/penetration-testing',
+  '/cybersecurity/security-audits', '/ai', '/ai/genai', '/digital-marketing', '/digital-marketing/seo',
+];
 const fail = (message) => {
   console.error(`Release verification failed: ${message}`);
   process.exitCode = 1;
@@ -23,13 +29,17 @@ for (const file of requiredFiles) {
 
 const vercel = JSON.parse(readFileSync('vercel.json', 'utf8'));
 const rewritten = new Set((vercel.rewrites ?? []).map(({ source }) => source));
-for (const route of requiredRoutes.filter((route) => route !== '/')) {
+for (const route of publicRoutes.filter((route) => route !== '/')) {
   if (!rewritten.has(route)) fail(`Vercel rewrite missing for ${route}`);
 }
 
 const sitemap = readFileSync('public/sitemap.xml', 'utf8');
-for (const route of requiredRoutes) {
-  if (!sitemap.includes(`https://sastrava.com${route}`)) fail(`sitemap missing ${route}`);
+const sitemapRoutes = new Set([...sitemap.matchAll(/<loc>https:\/\/sastrava\.com(\/[^<]*)?<\/loc>/g)].map(([, route = '/']) => route));
+for (const route of publicRoutes) {
+  if (!sitemapRoutes.has(route)) fail(`sitemap missing ${route}`);
+}
+for (const route of sitemapRoutes) {
+  if (!publicRoutes.includes(route)) fail(`sitemap contains non-public or unknown route ${route}`);
 }
 
 const robots = readFileSync('public/robots.txt', 'utf8');

@@ -13,6 +13,7 @@ import { StatCounter } from '../components/trust/StatCounter';
 import { ECOSYSTEM_PILLARS, PILLAR_STATISTICS } from '../config/businessModel';
 import * as Icons from 'lucide-react';
 import { Button } from '../components/ui/Button';
+import { contrastTextColor } from '../utils/contrastText';
 
 export const BuildPillar = () => {
   const pillar = ECOSYSTEM_PILLARS.BUILD;
@@ -60,7 +61,7 @@ export const BuildPillar = () => {
               viewport={{ once: true }}
               className="mb-16"
             >
-              <motion.p variants={itemVariants} className="text-peacock-500 font-semibold uppercase mb-4">
+              <motion.p variants={itemVariants} className="text-[#00695C] font-semibold uppercase mb-4">
                 About {pillar.name}
               </motion.p>
               <motion.h2 variants={itemVariants} className="text-4xl font-bold text-gray-900 dark:text-white mb-6">
@@ -81,7 +82,7 @@ export const BuildPillar = () => {
             >
               <motion.div variants={itemVariants}>
                 <StatCounter
-                  value={`${stats.projectsCompleted}+`}
+                  value={stats.projects}
                   label="Projects Completed"
                   icon={Icons.Code}
                   color={pillar.color.primary}
@@ -89,24 +90,24 @@ export const BuildPillar = () => {
               </motion.div>
               <motion.div variants={itemVariants}>
                 <StatCounter
-                  value={`${stats.teamSize}+`}
-                  label="Developers"
+                  value={stats.clients}
+                  label="Clients Served"
                   icon={Icons.Users}
                   color={pillar.color.primary}
                 />
               </motion.div>
               <motion.div variants={itemVariants}>
                 <StatCounter
-                  value={`${stats.clientsServed}+`}
-                  label="Clients Served"
+                  value={stats.success}
+                  label="Project Success Rate"
                   icon={Icons.Briefcase}
                   color={pillar.color.primary}
                 />
               </motion.div>
               <motion.div variants={itemVariants}>
                 <StatCounter
-                  value={`${stats.avgDeliveryTime}`}
-                  label="Avg Delivery Time"
+                  value={stats.uptime}
+                  label="Service Uptime"
                   icon={Icons.Zap}
                   color={pillar.color.primary}
                 />
@@ -161,7 +162,7 @@ export const BuildPillar = () => {
                     </ul>
                     <Button
                       className="w-full"
-                      style={{ backgroundColor: pillar.color.primary }}
+                      style={{ backgroundColor: pillar.color.primary, color: contrastTextColor(pillar.color.primary) }}
                       action="openContact"
                     >
                       Start Project
@@ -176,15 +177,15 @@ export const BuildPillar = () => {
         {/* CTA Section */}
         <section className="py-16" style={{ backgroundColor: pillar.color.primary + '10' }}>
           <div className="max-w-4xl mx-auto px-4 text-center">
-            <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+            <h3 className="text-3xl font-bold text-offwhite mb-4">
               Ready to Build Something Great?
             </h3>
-            <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
+            <p className="text-lg text-offwhite/85 mb-8">
               Let's turn your vision into a powerful solution
             </p>
             <Button
-              className="text-white font-bold"
-              style={{ backgroundColor: pillar.color.primary }}
+              className="font-bold"
+              style={{ backgroundColor: pillar.color.primary, color: contrastTextColor(pillar.color.primary) }}
               action="openContact"
             >
               Get Started

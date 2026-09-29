@@ -13,6 +13,7 @@ import { StatCounter } from '../components/trust/StatCounter';
 import { ECOSYSTEM_PILLARS, PILLAR_STATISTICS } from '../config/businessModel';
 import * as Icons from 'lucide-react';
 import { Button } from '../components/ui/Button';
+import { contrastTextColor } from '../utils/contrastText';
 
 export const SecurePillar = () => {
   const pillar = ECOSYSTEM_PILLARS.SECURE;
@@ -60,7 +61,7 @@ export const SecurePillar = () => {
               viewport={{ once: true }}
               className="mb-16"
             >
-              <motion.p variants={itemVariants} className="text-green-600 font-semibold uppercase mb-4">
+              <motion.p variants={itemVariants} className="text-[#087F2E] font-semibold uppercase mb-4">
                 About {pillar.name}
               </motion.p>
               <motion.h2 variants={itemVariants} className="text-4xl font-bold text-gray-900 dark:text-white mb-6">
@@ -81,15 +82,15 @@ export const SecurePillar = () => {
             >
               <motion.div variants={itemVariants}>
                 <StatCounter
-                  value={`${stats.systemsSecured}+`}
-                  label="Systems Secured"
+                  value={stats.audits}
+                  label="Audits Completed"
                   icon={Icons.Lock}
                   color={pillar.color.primary}
                 />
               </motion.div>
               <motion.div variants={itemVariants}>
                 <StatCounter
-                  value={`${stats.threatsPrevented}+`}
+                  value={stats.threats_prevented}
                   label="Threats Prevented"
                   icon={Icons.Shield}
                   color={pillar.color.primary}
@@ -97,7 +98,7 @@ export const SecurePillar = () => {
               </motion.div>
               <motion.div variants={itemVariants}>
                 <StatCounter
-                  value={`${stats.uptime}%`}
+                  value={stats.uptime}
                   label="Uptime Guarantee"
                   icon={Icons.CheckCircle}
                   color={pillar.color.primary}
@@ -105,7 +106,7 @@ export const SecurePillar = () => {
               </motion.div>
               <motion.div variants={itemVariants}>
                 <StatCounter
-                  value={`${stats.certifications}`}
+                  value={stats.compliance}
                   label="Certifications"
                   icon={Icons.Award}
                   color={pillar.color.primary}
@@ -161,7 +162,7 @@ export const SecurePillar = () => {
                     </ul>
                     <Button
                       className="w-full"
-                      style={{ backgroundColor: pillar.color.primary }}
+                      style={{ backgroundColor: pillar.color.primary, color: contrastTextColor(pillar.color.primary) }}
                       action="openContact"
                     >
                       Get Security Audit
@@ -176,15 +177,15 @@ export const SecurePillar = () => {
         {/* CTA Section */}
         <section className="py-16" style={{ backgroundColor: pillar.color.primary + '10' }}>
           <div className="max-w-4xl mx-auto px-4 text-center">
-            <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+            <h3 className="text-3xl font-bold text-offwhite mb-4">
               Secure Your Business Today
             </h3>
-            <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
+            <p className="text-lg text-offwhite/85 mb-8">
               Don't wait for a breach. Get proactive security now
             </p>
             <Button
-              className="text-white font-bold"
-              style={{ backgroundColor: pillar.color.primary }}
+              className="font-bold"
+              style={{ backgroundColor: pillar.color.primary, color: contrastTextColor(pillar.color.primary) }}
               action="openContact"
             >
               Schedule Security Assessment

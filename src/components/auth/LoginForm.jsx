@@ -86,7 +86,7 @@ export const LoginForm = ({ role, title, accent = 'gold' }) => {
         </div>
         <p className="mb-2 text-xs uppercase tracking-[0.2em] text-gold-light">SASTRAVA access</p>
         <h1 className="text-2xl md:text-3xl font-bold text-offwhite text-center">{title}</h1>
-        <p className="mt-3 text-center text-sm text-offwhite/60">Sign in with your authorized SASTRAVA account.</p>
+        <p className="mt-3 text-center text-sm text-offwhite/85">Sign in with your authorized SASTRAVA account.</p>
       </div>
 
       <AnimatePresence>
@@ -119,7 +119,7 @@ export const LoginForm = ({ role, title, accent = 'gold' }) => {
         Continue with Google
       </button>
 
-      <div className="mb-7 flex items-center gap-3 text-xs uppercase tracking-[0.16em] text-offwhite/35">
+      <div className="mb-7 flex items-center gap-3 text-xs uppercase tracking-[0.16em] text-offwhite/80">
         <span className="h-px flex-1 bg-offwhite/10" />
         or
         <span className="h-px flex-1 bg-offwhite/10" />
@@ -162,7 +162,7 @@ export const LoginForm = ({ role, title, accent = 'gold' }) => {
       </form>
 
       <div className="mt-7 flex flex-col items-center gap-3 text-sm">
-        <button type="button" onClick={() => { setStatus('error'); setStatusMessage('Password recovery is handled by the authentication backend for this role.'); }} className="text-offwhite/70 underline underline-offset-4 hover:text-gold-light transition-colors">
+        <button type="button" onClick={() => { setStatus('error'); setStatusMessage('Password recovery is handled by the authentication backend for this role.'); }} className="text-offwhite underline underline-offset-4 hover:text-gold-light transition-colors">
           Forgot your password?
         </button>
         {role === 'student' && (
@@ -170,7 +170,7 @@ export const LoginForm = ({ role, title, accent = 'gold' }) => {
             Use phone OTP instead <ArrowRight className="h-4 w-4" />
           </Link>
         )}
-        <span className="text-offwhite/50">Need access? Ask your SASTRAVA administrator</span>
+        <span className="text-offwhite/85">Need access? Ask your SASTRAVA administrator</span>
       </div>
     </motion.div>
   );

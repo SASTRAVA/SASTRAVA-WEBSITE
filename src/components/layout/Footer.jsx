@@ -114,17 +114,17 @@ export const Footer = () => {
           viewport={{ once: true }}
           className="flex flex-col md:flex-row justify-between items-center gap-4"
         >
-          <p className="text-offwhite/50 text-sm">
+          <p className="text-offwhite/70 text-sm">
             © {currentYear} SASTRAVA. All rights reserved.
           </p>
           <div className="flex gap-6 text-sm">
-            <Link to="/privacy" className="text-offwhite/50 hover:text-gold-light transition-colors">
+            <Link to="/privacy" className="text-offwhite/70 hover:text-gold-light transition-colors">
               Privacy Policy
             </Link>
-            <Link to="/terms" className="text-offwhite/50 hover:text-gold-light transition-colors">
+            <Link to="/terms" className="text-offwhite/70 hover:text-gold-light transition-colors">
               Terms of Service
             </Link>
-            <Link to="/security" className="text-offwhite/50 hover:text-gold-light transition-colors">
+            <Link to="/security" className="text-offwhite/70 hover:text-gold-light transition-colors">
               Security
             </Link>
           </div>

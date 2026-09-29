@@ -93,7 +93,7 @@ export const StudentAccessForm = () => {
         Continue with Google
       </button>
 
-      <div className="flex items-center gap-3 my-7 text-xs uppercase tracking-[0.16em] text-offwhite/35">
+      <div className="flex items-center gap-3 my-7 text-xs uppercase tracking-[0.16em] text-offwhite/80">
         <span className="h-px flex-1 bg-offwhite/10" />
         or phone OTP
         <span className="h-px flex-1 bg-offwhite/10" />

@@ -5,15 +5,15 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import * as Icons from 'lucide-react';
 import { Card } from '../ui/Card';
+import { getBusinessIcon } from '../ui/businessIconMap';
 
 export const ValuePropositionCard = ({
   proposition,
   index = 0,
   layout = 'vertical'
 }) => {
-  const Icon = Icons[proposition.icon];
+  const Icon = getBusinessIcon(proposition.icon);
   const colors = ['#C9A84C', '#1ECDB0', '#FFF3B0', '#0F3D3E'];
   const color = colors[index % colors.length];
 
@@ -48,7 +48,7 @@ export const ValuePropositionCard = ({
         "
         style={{ backgroundColor: color + '20' }}
       >
-        <Icon size={32} style={{ color }} />
+        {React.createElement(Icon, { size: 32, style: { color } })}
       </div>
 
       {/* Content */}
@@ -84,7 +84,7 @@ export const ValuePropositionCard = ({
           "
           style={{ backgroundColor: color + '20' }}
         >
-          <Icon size={40} style={{ color }} />
+          {React.createElement(Icon, { size: 40, style: { color } })}
         </motion.div>
 
         {/* Title */}

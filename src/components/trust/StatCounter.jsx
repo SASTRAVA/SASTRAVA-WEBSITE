@@ -20,12 +20,14 @@ export const StatCounter = ({
   const isInView = useInView(ref, { once: true });
   const [displayValue, setDisplayValue] = useState(0);
 
-  // Parse numeric value from string (e.g., "10,000+" => 10000)
-  const numericValue = parseInt(value.replace(/[^0-9]/g, ''));
-  const suffix = value.replace(/[0-9,]/g, '');
+  // Animate leading numeric values while preserving text-only metrics verbatim.
+  const rawValue = String(value ?? '');
+  const numericMatch = rawValue.match(/^\s*[\d,]+(?:\.\d+)?/);
+  const numericValue = numericMatch ? Number(numericMatch[0].replace(/,/g, '')) : null;
+  const suffix = numericMatch ? rawValue.slice(numericMatch[0].length) : '';
 
   useEffect(() => {
-    if (!isInView) return;
+    if (!isInView || !Number.isFinite(numericValue)) return;
 
     let currentValue = 0;
     const increment = numericValue / 50;
@@ -70,9 +72,9 @@ export const StatCounter = ({
       {/* Value */}
       <motion.div
         className="text-4xl font-bold mb-2"
-        style={{ color }}
+        style={{ color: '#101828' }}
       >
-        {formatNumber(displayValue)}{suffix}
+        {Number.isFinite(numericValue) ? `${formatNumber(displayValue)}${suffix}` : rawValue}
       </motion.div>
 
       {/* Label */}

@@ -7,7 +7,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Card } from '../ui/Card';
-import * as Icons from 'lucide-react';
+import { contrastTextColor } from '../../utils/contrastText';
+import { getBusinessIcon } from '../ui/businessIconMap';
 
 export const PillarCard = ({
   pillar,
@@ -16,7 +17,7 @@ export const PillarCard = ({
   onClick,
   featured = false
 }) => {
-  const Icon = Icons[pillar.icon];
+  const Icon = getBusinessIcon(pillar.icon);
   
   const sizeStyles = {
     sm: 'p-4',
@@ -63,16 +64,15 @@ export const PillarCard = ({
           style={{ backgroundColor: `${pillar.color.primary}15` }}
           variants={contentVariants}
         >
-          <Icon 
-            size={size === 'lg' ? 48 : size === 'md' ? 36 : 28}
-            style={{ color: pillar.color.primary }}
-          />
+          {React.createElement(Icon, {
+            size: size === 'lg' ? 48 : size === 'md' ? 36 : 28,
+            style: { color: pillar.color.primary },
+          })}
         </motion.div>
 
         {/* Title */}
         <h3 
-          className="text-2xl font-bold mb-2"
-          style={{ color: pillar.color.primary }}
+          className="text-2xl font-bold mb-2 text-gray-900"
         >
           {pillar.name}
         </h3>
@@ -102,7 +102,7 @@ export const PillarCard = ({
           className="w-full py-3 rounded-lg font-semibold transition-all"
           style={{
             backgroundColor: pillar.color.primary,
-            color: pillar.color.primary === '#FFF3B0' ? '#000' : '#fff'
+            color: contrastTextColor(pillar.color.primary)
           }}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
@@ -113,8 +113,8 @@ export const PillarCard = ({
         {/* Badge */}
         {featured && (
           <div 
-            className="absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-bold text-white"
-            style={{ backgroundColor: pillar.color.primary }}
+            className="absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-bold"
+            style={{ backgroundColor: pillar.color.primary, color: contrastTextColor(pillar.color.primary) }}
           >
             Featured
           </div>

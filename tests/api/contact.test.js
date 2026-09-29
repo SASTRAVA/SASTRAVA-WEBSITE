@@ -86,3 +86,59 @@ test('contact API does not report success when the email fallback rejects the in
   assert.equal(response.statusCode, 503);
   assert.match(response.body.error, /email neeraj@sastrava\.com/i);
 });
+
+test('contact API rejects methods other than POST without sending email', async () => {
+  resetEnvironment();
+  let fetchCalled = false;
+  globalThis.fetch = async () => { fetchCalled = true; };
+
+  const response = makeResponse();
+  await contact({ ...request, method: 'GET' }, response);
+
+  assert.equal(response.statusCode, 405);
+  assert.equal(response.headers.Allow, 'POST');
+  assert.equal(fetchCalled, false);
+});
+
+test('contact API rejects cross-origin submissions', async () => {
+  resetEnvironment();
+  const response = makeResponse();
+  await contact({ ...request, headers: { ...request.headers, origin: 'https://example.com' } }, response);
+
+  assert.equal(response.statusCode, 403);
+  assert.equal(response.body.error, 'Request origin is not allowed.');
+});
+
+test('contact API rejects oversized request bodies', async () => {
+  resetEnvironment();
+  const response = makeResponse();
+  await contact({ ...request, headers: { ...request.headers, 'content-length': '20001' } }, response);
+
+  assert.equal(response.statusCode, 413);
+  assert.equal(response.body.error, 'Request is too large.');
+});
+
+test('contact API validates required fields before attempting delivery', async () => {
+  resetEnvironment();
+  let fetchCalled = false;
+  globalThis.fetch = async () => { fetchCalled = true; };
+
+  const response = makeResponse();
+  await contact({ ...request, body: { ...request.body, email: 'invalid' } }, response);
+
+  assert.equal(response.statusCode, 400);
+  assert.equal(fetchCalled, false);
+});
+
+test('contact API acknowledges honeypot submissions without delivery', async () => {
+  resetEnvironment();
+  let fetchCalled = false;
+  globalThis.fetch = async () => { fetchCalled = true; };
+
+  const response = makeResponse();
+  await contact({ ...request, body: { ...request.body, website: 'bot-filled' } }, response);
+
+  assert.equal(response.statusCode, 202);
+  assert.equal(response.body.ok, true);
+  assert.equal(fetchCalled, false);
+});

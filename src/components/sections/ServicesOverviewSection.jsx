@@ -6,7 +6,8 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ECOSYSTEM_PILLARS } from '../../config/businessModel';
-import * as Icons from 'lucide-react';
+import { getBusinessIcon } from '../ui/businessIconMap';
+import { contrastTextColor } from '../../utils/contrastText';
 
 export const ServicesOverviewSection = () => {
   const [activePillar, setActivePillar] = useState('LEARN');
@@ -63,7 +64,7 @@ export const ServicesOverviewSection = () => {
           className="flex flex-wrap justify-center gap-4 mb-16"
         >
           {Object.values(ECOSYSTEM_PILLARS).map((pillar) => {
-            const Icon = Icons[pillar.icon];
+            const Icon = getBusinessIcon(pillar.icon);
             const isActive = activePillar === pillar.name.toUpperCase();
 
             return (
@@ -74,11 +75,14 @@ export const ServicesOverviewSection = () => {
                   px-6 py-3 rounded-lg font-semibold transition-all duration-300
                   flex items-center gap-2
                   ${isActive
-                    ? 'text-white shadow-lg'
+                    ? 'shadow-lg'
                     : 'text-gray-700 dark:text-gray-300 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600'
                   }
                 `}
-                style={isActive ? { backgroundColor: pillar.color.primary } : {}}
+                style={isActive ? {
+                  backgroundColor: pillar.color.primary,
+                  color: contrastTextColor(pillar.color.primary),
+                } : {}}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >

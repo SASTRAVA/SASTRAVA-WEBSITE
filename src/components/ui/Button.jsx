@@ -15,6 +15,7 @@ export const Button = ({
   action = null, // 'navigate', 'scroll', 'openForm', 'email', 'phone', 'whatsapp', 'external'
   actionConfig = {}, // Configuration for the action
   onFormOpen = null, // Callback when form action is triggered
+  style: customStyle = {},
   ...props
 }) => {
   const navigate = useNavigate();
@@ -97,7 +98,7 @@ export const Button = ({
 
   const variantStyles = {
     primary: `${baseStyles} gloss
-      bg-gradient-gold bg-shine text-white font-bold
+      bg-gradient-gold bg-shine text-navy-950 font-bold
       shadow-glow-gold hover:shadow-glow-gold-lg
       hover:scale-104 hover:-translate-y-0.5
       active:scale-95
@@ -126,6 +127,16 @@ export const Button = ({
       active:scale-95
       disabled:opacity-50 disabled:cursor-not-allowed`,
   };
+  const variantBackgrounds = {
+    primary: {
+      backgroundImage: 'linear-gradient(135deg, #C9A84C 0%, #E6C200 25%, #FFF3B0 50%, #C9A84C 75%, #A67C00 100%)',
+      color: '#0B0F1A',
+    },
+    secondary: {
+      backgroundImage: 'linear-gradient(135deg, #0F3D3E 0%, #0A6E6E 55%, #0A7A70 100%)',
+      color: '#FFFFFF',
+    },
+  };
 
   return (
     <motion.button
@@ -133,6 +144,11 @@ export const Button = ({
       whileTap={!loading && !disabled ? { scale: 0.97 } : {}}
       transition={{ duration: 0.25, ease: 'easeOut' }}
       className={`${variantStyles[variant]} ${sizeStyles[size]} ${className}`}
+      style={{
+        ...variantBackgrounds[variant],
+        ...customStyle,
+        ...(customStyle.backgroundColor && !customStyle.backgroundImage ? { backgroundImage: 'none' } : {}),
+      }}
       onClick={handleClick}
       disabled={disabled || loading}
       {...props}

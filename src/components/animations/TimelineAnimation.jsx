@@ -5,7 +5,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import * as Icons from 'lucide-react';
+import { getBusinessIcon } from '../ui/businessIconMap';
 
 export const TimelineAnimation = ({ events = [] }) => {
   const containerVariants = {
@@ -49,7 +49,7 @@ export const TimelineAnimation = ({ events = [] }) => {
           {/* Timeline Events */}
           <div className="space-y-12 pl-24">
             {events.map((event, index) => {
-              const EventIcon = Icons[event.icon] || Icons.CheckCircle;
+              const EventIcon = getBusinessIcon(event.icon);
 
               return (
                 <motion.div
