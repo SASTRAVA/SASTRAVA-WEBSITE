@@ -9,7 +9,6 @@ import { Navbar } from '../components/layout/Navbar';
 import { Footer } from '../components/layout/Footer';
 import { PageHero } from '../components/sections/PageHero';
 import { Button } from '../components/ui/Button';
-import { TestimonialCard } from '../components/trust';
 import { CheckCircle, Search, TrendingUp, BarChart3 } from 'lucide-react';
 
 const SEO = () => {
@@ -57,23 +56,7 @@ const SEO = () => {
     { name: 'Monthly Reports', desc: 'Ranking and traffic analytics' },
     { name: 'Strategy Calls', desc: 'Bi-weekly optimization discussions' },
   ];
-
-  const testimonials = [
-    {
-      quote: 'Their SEO work increased our organic traffic by 250% in 8 months. Rankings improved for all target keywords.',
-      author: 'Marketing Director',
-      title: 'B2B SaaS Company',
-      rating: 5
-    },
-    {
-      quote: 'Professional, transparent, and results-driven. They explained everything clearly and delivered beyond expectations.',
-      author: 'CEO',
-      title: 'Digital Service Provider',
-      rating: 5
-    },
-  ];
-
-  const faqs = [
+  const faqs = [
     {
       q: 'How long before we see SEO results?',
       a: 'Typically 3-6 months to see meaningful improvements. Competitive keywords may take 6-12 months. We focus on sustainable growth.'
@@ -89,6 +72,10 @@ const SEO = () => {
     {
       q: 'Can you improve existing rankings?',
       a: 'Yes, we analyze current rankings, identify gaps, and develop strategies to improve positions for underperforming keywords.'
+    },
+    {
+      q: 'What is the difference between SEO, AEO, and GEO?',
+      a: 'SEO helps people discover useful pages in search. Answer engine optimization (AEO) makes clear answers easy to find and understand. Generative engine optimization (GEO) helps generative search systems interpret trustworthy, useful information. None can guarantee inclusion or a particular ranking.'
     },
   ];
 
@@ -200,27 +187,6 @@ const SEO = () => {
           </div>
         </section>
 
-        {/* Testimonials */}
-        <section className="py-20 bg-navy-900">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-white mb-12">Client Results</h2>
-
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="grid grid-cols-1 md:grid-cols-2 gap-6"
-            >
-              {testimonials.map((testimonial, idx) => (
-                <motion.div key={idx} variants={itemVariants}>
-                  <TestimonialCard {...testimonial} pillarColor="#C9A84C" />
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </section>
-
         {/* FAQs */}
         <section className="py-20 bg-gradient-to-b from-navy-950 to-navy-900">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -260,11 +226,8 @@ const SEO = () => {
               Let's develop an SEO strategy that drives sustainable organic growth
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" variant="primary">
-                Get Free SEO Audit
-              </Button>
-              <Button size="lg" variant="secondary">
-                Download SEO Checklist
+              <Button size="lg" variant="primary" action="navigate" actionConfig={{ path: '/contact' }}>
+                Discuss an SEO assessment
               </Button>
             </div>
           </div>

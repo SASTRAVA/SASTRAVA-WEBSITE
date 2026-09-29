@@ -1,3 +1,4 @@
+import { SeoAnswers } from '../components/seo/SeoAnswers';
 /**
  * Generative AI Solutions Service Page
  * LLM fine-tuning, RAG systems, and enterprise GenAI applications
@@ -9,7 +10,6 @@ import { Navbar } from '../components/layout/Navbar';
 import { Footer } from '../components/layout/Footer';
 import { PageHero } from '../components/sections/PageHero';
 import { Button } from '../components/ui/Button';
-import { TestimonialCard } from '../components/trust';
 import { CheckCircle, Brain, Zap, Settings } from 'lucide-react';
 
 const GenerativeAI = () => {
@@ -57,23 +57,7 @@ const GenerativeAI = () => {
     { name: 'Documentation', desc: 'Complete technical documentation' },
     { name: 'Support & Training', desc: '30 days of dedicated support' },
   ];
-
-  const testimonials = [
-    {
-      quote: 'Their GenAI solution reduced our content creation time by 70%. The fine-tuned model understands our brand voice perfectly.',
-      author: 'VP Marketing',
-      title: 'Fortune 500 Tech Company',
-      rating: 5
-    },
-    {
-      quote: 'Impressive accuracy and customization. Deployed their GenAI chatbot in 2 weeks. Customer satisfaction improved 45%.',
-      author: 'Operations Director',
-      title: 'E-commerce Startup',
-      rating: 5
-    },
-  ];
-
-  const faqs = [
+  const faqs = [
     {
       q: 'What LLMs do you work with?',
       a: 'We work with leading models: GPT-4, Claude, Gemini, LLaMA, and open-source options. We select based on your requirements.'
@@ -200,27 +184,6 @@ const GenerativeAI = () => {
           </div>
         </section>
 
-        {/* Testimonials */}
-        <section className="py-20 bg-navy-900">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-white mb-12">Client Success Stories</h2>
-
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="grid grid-cols-1 md:grid-cols-2 gap-6"
-            >
-              {testimonials.map((testimonial, idx) => (
-                <motion.div key={idx} variants={itemVariants}>
-                  <TestimonialCard {...testimonial} pillarColor="#1ECDB0" />
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </section>
-
         {/* FAQs */}
         <section className="py-20 bg-gradient-to-b from-navy-950 to-navy-900">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -260,12 +223,11 @@ const GenerativeAI = () => {
               Let's discuss how custom GenAI can transform your business
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" variant="primary">
-                Schedule GenAI Consultation
+              <Button size="lg" variant="primary" action="navigate" actionConfig={{ path: '/contact' }}>
+                Discuss a generative AI project
               </Button>
-              <Button size="lg" variant="secondary">
-                Download AI Implementation Guide
-              </Button>
+        <SeoAnswers />
+
             </div>
           </div>
         </section>

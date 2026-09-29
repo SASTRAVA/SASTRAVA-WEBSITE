@@ -1,3 +1,4 @@
+import { SeoAnswers } from '../components/seo/SeoAnswers';
 /**
  * AI Business Division Hub Page
  * Enterprise AI and Machine Learning Solutions
@@ -65,15 +66,7 @@ const AIHub = () => {
       color: '#1ECDB0'
     },
   ];
-
-  const stats = [
-    { metric: 'AI Models Deployed', value: '200+', description: 'In production' },
-    { metric: 'Data Processed', value: '500B+', description: 'Records annually' },
-    { metric: 'Average Uplift', value: '35%', description: 'In key metrics' },
-    { metric: 'Happy Clients', value: '150+', description: 'Enterprises' },
-  ];
-
-  const useCases = [
+  const useCases = [
     'Customer Churn Prediction',
     'Fraud Detection & Prevention',
     'Recommendation Engines',
@@ -107,31 +100,6 @@ const AIHub = () => {
           subtitle="Enterprise-grade artificial intelligence solutions"
           description="From strategy to deployment: custom AI solutions that drive business growth and operational excellence"
         />
-
-        {/* Statistics */}
-        <section className="py-16 bg-navy-900">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
-            >
-              {stats.map((stat, idx) => (
-                <motion.div
-                  key={idx}
-                  variants={itemVariants}
-                  className="bg-gradient-to-br from-navy-800 to-navy-900 rounded-lg border border-peacock/20 p-6 text-center hover:border-peacock/40 transition-all"
-                >
-                  <p className="text-3xl font-bold text-peacock mb-2">{stat.value}</p>
-                  <p className="font-semibold text-white text-sm mb-1">{stat.metric}</p>
-                  <p className="text-xs text-gray-400">{stat.description}</p>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </section>
 
         {/* Services */}
         <section className="py-20 bg-gradient-to-b from-navy-950 to-navy-900">
@@ -251,12 +219,11 @@ const AIHub = () => {
               Let's discuss how AI can transform your business operations and drive growth
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" variant="primary">
-                Schedule AI Consultation
+              <Button size="lg" variant="primary" action="navigate" actionConfig={{ path: '/contact' }}>
+                Discuss an AI project
               </Button>
-              <Button size="lg" variant="secondary">
-                Download AI Roadmap Template
-              </Button>
+        <SeoAnswers />
+
             </div>
           </div>
         </section>

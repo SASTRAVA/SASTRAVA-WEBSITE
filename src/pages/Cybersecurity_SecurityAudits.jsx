@@ -1,3 +1,4 @@
+import { SeoAnswers } from '../components/seo/SeoAnswers';
 /**
  * Security Audits Service Page
  * Comprehensive system security evaluation and compliance verification
@@ -9,7 +10,6 @@ import { Navbar } from '../components/layout/Navbar';
 import { Footer } from '../components/layout/Footer';
 import { PageHero } from '../components/sections/PageHero';
 import { Button } from '../components/ui/Button';
-import { TestimonialCard } from '../components/trust';
 import { CheckCircle, Shield, ClipboardList, Zap } from 'lucide-react';
 
 const SecurityAudits = () => {
@@ -57,23 +57,7 @@ const SecurityAudits = () => {
     { name: 'Executive Summary', desc: 'High-level overview for leadership' },
     { name: 'Implementation Guidance', desc: 'Steps to close gaps' },
   ];
-
-  const testimonials = [
-    {
-      quote: 'Their thorough audit helped us achieve ISO 27001 certification. Professional and comprehensive approach.',
-      author: 'Head of Security',
-      title: 'Healthcare Organization',
-      rating: 5
-    },
-    {
-      quote: 'Identified critical gaps we missed. Their remediation plan was clear and actionable.',
-      author: 'CISO',
-      title: 'Financial Services',
-      rating: 5
-    },
-  ];
-
-  const faqs = [
+  const faqs = [
     {
       q: 'How long does a security audit take?',
       a: 'Typically 2-4 weeks depending on organization size and complexity. Small organizations 1-2 weeks, enterprises 3-4 weeks.'
@@ -200,27 +184,6 @@ const SecurityAudits = () => {
           </div>
         </section>
 
-        {/* Testimonials */}
-        <section className="py-20 bg-navy-900">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-white mb-12">Client Feedback</h2>
-
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="grid grid-cols-1 md:grid-cols-2 gap-6"
-            >
-              {testimonials.map((testimonial, idx) => (
-                <motion.div key={idx} variants={itemVariants}>
-                  <TestimonialCard {...testimonial} pillarColor="#C9A84C" />
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </section>
-
         {/* FAQs */}
         <section className="py-20 bg-gradient-to-b from-navy-950 to-navy-900">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -260,12 +223,11 @@ const SecurityAudits = () => {
               Understand your security posture and compliance status
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" variant="primary">
-                Schedule Audit Consultation
+              <Button size="lg" variant="primary" action="navigate" actionConfig={{ path: '/contact' }}>
+                Discuss a security audit
               </Button>
-              <Button size="lg" variant="secondary">
-                Download Audit Checklist
-              </Button>
+        <SeoAnswers />
+
             </div>
           </div>
         </section>

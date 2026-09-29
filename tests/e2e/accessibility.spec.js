@@ -2,7 +2,8 @@ import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/test';
 
 const routes = [
-  '/', '/about', '/domains', '/services', '/services-hub', '/learn', '/build', '/grow', '/secure',
+  '/', '/about', '/domains', '/services', '/services-hub', '/services-hub/learn', '/services-hub/build',
+  '/services-hub/grow', '/services-hub/secure', '/learn', '/build', '/grow', '/secure',
   '/courses', '/portfolio', '/blog', '/careers', '/contact', '/privacy', '/terms', '/security',
   '/faq', '/support', '/success-stories', '/case-studies', '/research', '/publications',
   '/open-source', '/achievements', '/cybersecurity', '/cybersecurity/penetration-testing',

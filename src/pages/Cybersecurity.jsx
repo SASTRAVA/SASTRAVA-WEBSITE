@@ -1,3 +1,4 @@
+import { SeoAnswers } from '../components/seo/SeoAnswers';
 /**
  * Cybersecurity Hub Page
  * Enterprise security solutions and services
@@ -66,15 +67,7 @@ const CybersecurityHub = () => {
       color: '#1ECDB0'
     },
   ];
-
-  const stats = [
-    { metric: 'Systems Secured', value: '500+', description: 'Enterprises protected' },
-    { metric: 'Threats Detected', value: '50K+', description: 'Annually prevented' },
-    { metric: 'Uptime Maintained', value: '99.7%', description: 'Average security uptime' },
-    { metric: 'Team Expertise', value: '50+', description: 'Certified professionals' },
-  ];
-
-  const containerVariants = {
+  const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -97,31 +90,6 @@ const CybersecurityHub = () => {
           subtitle="Enterprise-grade security protecting your infrastructure"
           description="Zero-trust architecture, real-time threat detection, and compliance management for organizations of all sizes"
         />
-
-        {/* Statistics */}
-        <section className="py-16 bg-navy-900">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
-            >
-              {stats.map((stat, idx) => (
-                <motion.div
-                  key={idx}
-                  variants={itemVariants}
-                  className="bg-gradient-to-br from-navy-800 to-navy-900 rounded-lg border border-gold/20 p-6 text-center"
-                >
-                  <p className="text-3xl font-bold text-gold mb-2">{stat.value}</p>
-                  <p className="font-semibold text-white text-sm mb-1">{stat.metric}</p>
-                  <p className="text-xs text-gray-400">{stat.description}</p>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </section>
 
         {/* Services Grid */}
         <section className="py-20 bg-gradient-to-b from-navy-950 to-navy-900">
@@ -230,12 +198,11 @@ const CybersecurityHub = () => {
               Get a comprehensive security assessment and custom remediation plan
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" variant="primary">
-                Schedule Security Assessment
+              <Button size="lg" variant="primary" action="navigate" actionConfig={{ path: '/contact' }}>
+                Discuss a security assessment
               </Button>
-              <Button size="lg" variant="secondary">
-                Download Security Whitepaper
-              </Button>
+        <SeoAnswers />
+
             </div>
           </div>
         </section>

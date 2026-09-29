@@ -1,3 +1,4 @@
+import { SeoAnswers } from '../components/seo/SeoAnswers';
 /**
  * Digital Marketing Division Hub Page
  * Growth and revenue-driving marketing solutions
@@ -65,15 +66,7 @@ const DigitalMarketingHub = () => {
       color: '#1ECDB0'
     },
   ];
-
-  const stats = [
-    { metric: 'Businesses Grown', value: '300+', description: 'Revenue increased' },
-    { metric: 'Avg Growth Rate', value: '156%', description: 'ROI in 6 months' },
-    { metric: 'Leads Generated', value: '1M+', description: 'Annually for clients' },
-    { metric: 'Team Size', value: '80+', description: 'Marketing specialists' },
-  ];
-
-  const services_breakdown = [
+  const services_breakdown = [
     {
       category: 'Search & Discovery',
       items: ['SEO Strategy', 'Paid Search (SEM)', 'Local SEO', 'Technical Optimization']
@@ -115,31 +108,6 @@ const DigitalMarketingHub = () => {
           subtitle="Growth-driven marketing strategies"
           description="End-to-end digital marketing solutions that drive traffic, generate leads, and increase revenue"
         />
-
-        {/* Statistics */}
-        <section className="py-16 bg-navy-900">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
-            >
-              {stats.map((stat, idx) => (
-                <motion.div
-                  key={idx}
-                  variants={itemVariants}
-                  className="bg-gradient-to-br from-navy-800 to-navy-900 rounded-lg border border-gold/20 p-6 text-center hover:border-gold/40 transition-all"
-                >
-                  <p className="text-3xl font-bold text-gold mb-2">{stat.value}</p>
-                  <p className="font-semibold text-white text-sm mb-1">{stat.metric}</p>
-                  <p className="text-xs text-gray-400">{stat.description}</p>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </section>
 
         {/* Core Services */}
         <section className="py-20 bg-gradient-to-b from-navy-950 to-navy-900">
@@ -260,12 +228,11 @@ const DigitalMarketingHub = () => {
               Let's create a marketing strategy that drives real results for your business
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" variant="primary">
-                Schedule Marketing Consultation
+              <Button size="lg" variant="primary" action="navigate" actionConfig={{ path: '/contact' }}>
+                Discuss a marketing plan
               </Button>
-              <Button size="lg" variant="secondary">
-                Download Marketing Audit Template
-              </Button>
+        <SeoAnswers />
+
             </div>
           </div>
         </section>

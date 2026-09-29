@@ -1,3 +1,4 @@
+import { SeoAnswers } from '../components/seo/SeoAnswers';
 /**
  * Penetration Testing Service Page
  * Advanced security testing and attack simulation
@@ -57,23 +58,7 @@ const PenetrationTesting = () => {
     { name: 'Proof of Concept', desc: 'Demonstration of exploits and impact' },
     { name: 'Re-test Verification', desc: 'Confirmation of fixes post-remediation' },
   ];
-
-  const testimonials = [
-    {
-      quote: 'Their thorough penetration test uncovered critical vulnerabilities we didn\'t know about. The recommendations were actionable and realistic.',
-      author: 'Security Director',
-      title: 'Fortune 500 Tech Company',
-      rating: 5
-    },
-    {
-      quote: 'Professional, ethical approach to testing our security. Helped us pass compliance audits and improve defenses.',
-      author: 'CTO',
-      title: 'FinTech Startup',
-      rating: 5
-    },
-  ];
-
-  const faqs = [
+  const faqs = [
     {
       q: 'Will testing cause downtime?',
       a: 'We work with your team to schedule testing during approved windows. Our testing is designed to minimize impact.'
@@ -201,27 +186,6 @@ const PenetrationTesting = () => {
           </div>
         </section>
 
-        {/* Testimonials */}
-        <section className="py-20 bg-navy-900">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-white mb-12">Client Feedback</h2>
-
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="grid grid-cols-1 md:grid-cols-2 gap-6"
-            >
-              {testimonials.map((testimonial, idx) => (
-                <motion.div key={idx} variants={itemVariants}>
-                  <TestimonialCard {...testimonial} pillarColor="#C9A84C" />
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </section>
-
         {/* FAQs */}
         <section className="py-20 bg-gradient-to-b from-navy-950 to-navy-900">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -261,12 +225,11 @@ const PenetrationTesting = () => {
               Let's test your infrastructure and strengthen your defenses
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" variant="primary">
-                Schedule Assessment
+              <Button size="lg" variant="primary" action="navigate" actionConfig={{ path: '/contact' }}>
+                Discuss penetration testing scope
               </Button>
-              <Button size="lg" variant="secondary">
-                Download Methodology Guide
-              </Button>
+        <SeoAnswers />
+
             </div>
           </div>
         </section>

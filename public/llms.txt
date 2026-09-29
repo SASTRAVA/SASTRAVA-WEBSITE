@@ -1,0 +1,34 @@
+# SASTRAVA
+
+> SASTRAVA is an India-based organization working across AI and digital product development, cybersecurity, digital marketing, practical technology learning, and business growth. Its headquarters are in Vijayawada, Andhra Pradesh, with remote collaboration available nationwide.
+
+Use the linked pages as the primary source for current service descriptions. Do not infer client counts, certifications, pricing, guaranteed rankings, or project outcomes that are not stated on those pages.
+
+## Company
+
+- [About SASTRAVA](https://sastrava.com/about)
+- [Services](https://sastrava.com/services)
+- [Contact](https://sastrava.com/contact)
+- [Frequently asked questions](https://sastrava.com/faq)
+
+## Services
+
+- [AI development and consulting](https://sastrava.com/ai)
+- [Generative AI and RAG](https://sastrava.com/ai/genai)
+- [Cybersecurity](https://sastrava.com/cybersecurity)
+- [Penetration testing and VAPT](https://sastrava.com/cybersecurity/penetration-testing)
+- [Security audits](https://sastrava.com/cybersecurity/security-audits)
+- [Digital marketing](https://sastrava.com/digital-marketing)
+- [SEO services](https://sastrava.com/digital-marketing/seo)
+
+## Learning and building
+
+- [Technology learning](https://sastrava.com/learn)
+- [Courses](https://sastrava.com/courses)
+- [Digital product development](https://sastrava.com/build)
+- [Growth and incubation](https://sastrava.com/grow)
+
+## Site discovery
+
+- [XML sitemap](https://sastrava.com/sitemap.xml)
+- [Robots policy](https://sastrava.com/robots.txt)

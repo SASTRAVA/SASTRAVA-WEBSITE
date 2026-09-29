@@ -3,16 +3,21 @@ import { existsSync, readFileSync } from 'node:fs';
 const requiredFiles = [
   'vercel.json',
   'public/robots.txt',
+  'public/llms.txt',
   'public/sitemap.xml',
   'public/.well-known/security.txt',
   'public/404.html',
   'public/images/sastrava-mark.webp',
+  'scripts/generate-social-card.mjs',
   'public/logo.png',
   'public/favicon.png',
   'api/contact.js',
+  'src/config/seoRoutes.js',
+  'scripts/generate-seo-pages.mjs',
 ];
 const publicRoutes = [
-  '/', '/about', '/domains', '/services', '/services-hub', '/learn', '/build', '/grow', '/secure',
+  '/', '/about', '/domains', '/services', '/services-hub', '/services-hub/learn', '/services-hub/build',
+  '/services-hub/grow', '/services-hub/secure', '/learn', '/build', '/grow', '/secure',
   '/courses', '/portfolio', '/blog', '/careers', '/contact', '/privacy', '/terms', '/security',
   '/faq', '/support', '/success-stories', '/case-studies', '/research', '/publications',
   '/open-source', '/achievements', '/cybersecurity', '/cybersecurity/penetration-testing',
@@ -28,10 +33,17 @@ for (const file of requiredFiles) {
 }
 
 const vercel = JSON.parse(readFileSync('vercel.json', 'utf8'));
-const rewritten = new Set((vercel.rewrites ?? []).map(({ source }) => source));
+const rewritten = new Map((vercel.rewrites ?? []).map(({ source, destination }) => [source, destination]));
 for (const route of publicRoutes.filter((route) => route !== '/')) {
-  if (!rewritten.has(route)) fail(`Vercel rewrite missing for ${route}`);
+  const destination = rewritten.get(route);
+  if (!destination) fail(`Vercel rewrite missing for ${route}`);
+  else if (destination !== `${route}/index.html`) fail(`Vercel route ${route} does not serve its route-specific HTML metadata`);
 }
+if (rewritten.get('/login/:role') !== '/login/index.html') fail('login role route must use the noindex login metadata page');
+for (const pillar of ['learn', 'build', 'grow', 'secure']) {
+  if (rewritten.get(`/services-hub/${pillar}`) !== `/services-hub/${pillar}/index.html`) fail(`service hub route is missing page-specific metadata for ${pillar}`);
+}
+if (rewritten.get('/services-hub/:pillar') !== '/services-hub/index.html') fail('unknown service hub pillar route must use the service hub metadata page');
 
 const sitemap = readFileSync('public/sitemap.xml', 'utf8');
 const sitemapRoutes = new Set([...sitemap.matchAll(/<loc>https:\/\/sastrava\.com(\/[^<]*)?<\/loc>/g)].map(([, route = '/']) => route));
@@ -44,6 +56,12 @@ for (const route of sitemapRoutes) {
 
 const robots = readFileSync('public/robots.txt', 'utf8');
 if (!robots.includes('Sitemap: https://sastrava.com/sitemap.xml')) fail('robots.txt does not declare sitemap');
+const seoSource = readFileSync('src/config/seoRoutes.js', 'utf8');
+if (seoSource.includes("name=\"keywords\"")) fail('SEO route config must not rely on the ignored meta keywords tag');
+if (!seoSource.includes("['What is the difference between SEO, AEO, and GEO?'")) fail('SEO page is missing answer-first AEO/GEO guidance');
+for (const route of publicRoutes) {
+  if (!seoSource.includes(`'${route}':`)) fail(`SEO metadata missing for ${route}`);
+}
 
 const contact = readFileSync('api/contact.js', 'utf8');
 for (const unsafePattern of ['localStorage', 'api.ipify.org']) {
