@@ -242,6 +242,22 @@ export const SERVICES_CATALOG = {
       timeframe: '4-8 weeks',
       startingPrice: '₹45,000',
       technologies: ['Docker', 'Kubernetes', 'Jenkins', 'AWS', 'Azure']
+    },
+    BUSINESS_PROCESS_AUTOMATION: {
+      id: 'business-process-automation',
+      name: 'Business Process Automation & AI Workflows',
+      description: 'Plan and connect practical automations across business teams and tools',
+      icon: 'Settings',
+      category: 'Automation',
+      deliverables: [
+        'Process discovery and automation opportunity mapping',
+        'Workflow automation for operations, finance, sales, marketing, and support',
+        'CRM, forms, email, reporting, and business-tool integrations',
+        'Scoped AI-assisted workflows with human review',
+        'Access controls, monitoring, documentation, and handover'
+      ],
+      timeframe: 'Scoped per project',
+      technologies: ['Workflow platforms', 'APIs', 'CRM integrations', 'AI tools']
     }
   },
   GROW: {
@@ -368,19 +384,19 @@ export const SERVICES_CATALOG = {
     },
     SECURITY_AUDITS: {
       id: 'security-audits',
-      name: 'Security Audits & Compliance',
-      description: 'Ensure compliance with security standards',
+      name: 'Security Audits, Testing & Remediation',
+      description: 'Assess in-scope systems, prioritize vulnerabilities, and verify fixes',
       icon: 'Lock',
-      category: 'Compliance',
+      category: 'Security Testing',
       services: [
-        'Security policy review',
-        'Compliance assessment (ISO, SOC2)',
-        'Security infrastructure audit',
-        'Risk assessment',
-        'Remediation planning'
+        'Web application, API, cloud, and infrastructure security reviews',
+        'Vulnerability assessments and authorized, scoped penetration testing',
+        'Risk-based findings with evidence and remediation guidance',
+        'Patch planning and implementation support for approved changes',
+        'Post-remediation verification and reporting'
       ],
       pricing: '₹30,000 - ₹1,00,000',
-      standards: ['ISO 27001', 'SOC 2', 'GDPR', 'HIPAA', 'PCI-DSS']
+      deliverables: ['Findings report', 'Prioritized remediation plan', 'Retest summary']
     },
     INCIDENT_RESPONSE: {
       id: 'incident-response',
