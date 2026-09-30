@@ -1,11 +1,11 @@
 const organizationName = 'SASTRAVA';
-const defaultDescription = 'SASTRAVA helps organizations with AI and digital product development, cybersecurity, digital marketing, practical technology learning, and business growth.';
+const defaultDescription = 'SASTRAVA is a business consultant, innovator, and incubator helping organizations with business strategy, startup growth, AI and digital products, cybersecurity, and digital marketing in India.';
 
 export const seoRoutes = {
   '/': {
-    title: 'AI, Cybersecurity & Digital Marketing Services | SASTRAVA',
+    title: 'Business Consultant | SASTRAVA',
     description: defaultDescription,
-    keywords: ['AI solutions for business', 'cybersecurity services India', 'digital marketing services India', 'technology training India'],
+    keywords: ['business consultant India', 'business consulting services', 'business innovator', 'startup incubator India', 'AI solutions for business', 'cybersecurity services India', 'digital marketing services India'],
   },
   '/about': { title: 'About SASTRAVA | Technology, Learning & Growth', description: 'Learn about SASTRAVA, our work across technology, learning, cybersecurity, and business growth, and how to start a conversation.' },
   '/domains': { title: 'Industries & Technology Domains | SASTRAVA', description: 'Explore the technology domains and business challenges SASTRAVA supports through learning, digital product development, AI, and security.' },
@@ -13,11 +13,11 @@ export const seoRoutes = {
   '/services-hub': { title: 'Explore SASTRAVA Services | AI, Build, Grow & Secure', description: 'Find SASTRAVA services for learning new technology, building digital products, growing a business, or improving security.' },
   '/services-hub/learn': { title: 'Technology Learning & Training Services | SASTRAVA', description: 'Explore SASTRAVA practical technology courses, skills training, and learning support across software, AI, data, and cybersecurity.' },
   '/services-hub/build': { title: 'Software & Digital Product Services | SASTRAVA', description: 'Explore SASTRAVA software development and digital product services for turning product goals into useful technology.' },
-  '/services-hub/grow': { title: 'Business Growth & Incubation Services | SASTRAVA', description: 'Explore SASTRAVA business growth, go-to-market, and incubation support for founders and organizations.' },
+  '/services-hub/grow': { title: 'Business Consulting, Innovation & Incubation | SASTRAVA', description: 'Explore SASTRAVA business consulting, innovation, growth strategy, go-to-market, and startup incubation support for founders and organizations.' },
   '/services-hub/secure': { title: 'Cybersecurity & Security Services | SASTRAVA', description: 'Explore SASTRAVA cybersecurity services, including security guidance, vulnerability testing, and audit support.' },
   '/learn': { title: 'Technology Courses & Practical Training | SASTRAVA', description: 'Explore practical technology learning and training in software development, AI, data, and cybersecurity with SASTRAVA.' },
   '/build': { title: 'Software & Digital Product Development | SASTRAVA', description: 'Explore software and digital product development support from SASTRAVA, from shaping a product idea to building useful technology.' },
-  '/grow': { title: 'Business Growth & Incubation Support | SASTRAVA', description: 'Explore business growth, go-to-market, and incubation support from SASTRAVA for founders and organizations.' },
+  '/grow': { title: 'Business Consulting, Innovation & Incubation | SASTRAVA', description: 'Explore business consulting, innovation, growth strategy, go-to-market, and startup incubation support from SASTRAVA for founders and organizations.' },
   '/secure': { title: 'Cybersecurity & Application Security | SASTRAVA', description: 'Explore cybersecurity guidance, security testing, and audit support for applications and organizations.' },
   '/courses': { title: 'Technology Courses & Learning Programs | SASTRAVA', description: 'Browse SASTRAVA courses and practical learning programs across software, AI, data, and cybersecurity.' },
   '/portfolio': { title: 'Projects & Team Portfolio | SASTRAVA', description: 'Explore selected projects and team portfolios that show SASTRAVA capabilities across technology and learning.' },
@@ -91,9 +91,9 @@ export const seoRoutes = {
     ],
   },
   '/digital-marketing': {
-    title: 'Digital Marketing Services in India | SASTRAVA',
-    description: 'Explore SASTRAVA digital marketing services, including SEO, content strategy, social media, paid search, and conversion improvement.',
-    keywords: ['digital marketing services India', 'SEO and content marketing', 'social media marketing services', 'digital marketing strategy for business'],
+    title: 'Digital Marketing Consultant & Services in India | SASTRAVA',
+    description: 'Explore organic digital marketing, SEO, content and social media alongside paid search, Google Ads, paid social, and campaign measurement with SASTRAVA.',
+    keywords: ['digital marketing consultant India', 'digital marketing services India', 'organic digital marketing', 'SEO and content marketing', 'AEO and GEO', 'Google Ads management', 'PPC and paid search', 'paid social campaigns', 'remarketing', 'performance marketing', 'social media marketing services'],
     serviceType: 'Digital marketing services',
     faqs: [
       ['What does a digital marketing plan include?', 'A plan can combine search optimization, useful content, social media, paid campaigns, and conversion measurement based on the audience and business goal.'],

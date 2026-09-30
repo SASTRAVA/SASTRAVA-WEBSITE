@@ -106,7 +106,7 @@ const DigitalMarketingHub = () => {
         <PageHero
           title="Digital Marketing"
           subtitle="Growth-driven marketing strategies"
-          description="End-to-end digital marketing solutions that drive traffic, generate leads, and increase revenue"
+          description="Organic growth through SEO, content, and social media, combined with paid search, Google Ads, paid social, and measurable campaigns."
         />
 
         {/* Core Services */}
@@ -158,6 +158,7 @@ const DigitalMarketingHub = () => {
         <section className="py-20 bg-navy-900">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl font-bold text-white mb-12">Complete Service Portfolio</h2>
+            <p className="-mt-8 mb-10 max-w-4xl leading-relaxed text-gray-300">As a digital marketing consultant, SASTRAVA can plan organic discovery through SEO, local search, useful content, and social communities, alongside paid digital marketing such as PPC search ads, Google Ads, paid social, and remarketing. Channel mix and measurement should match your audience, goals, and budget.</p>
 
             <motion.div
               variants={containerVariants}

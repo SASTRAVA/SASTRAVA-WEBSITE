@@ -6,19 +6,21 @@ These are intent-led seed terms, not measured search volumes or ranking promises
 
 | Landing page | Primary search intent | Seed terms to validate | Priority |
 | --- | --- | --- | --- |
-| `/` | Brand and broad service discovery | SASTRAVA; AI solutions for business; cybersecurity services India; digital marketing services India | High |
+| `/` | Brand and broad business consulting discovery | SASTRAVA; business consultant India; business consulting services; business innovator; startup incubator India; AI solutions for business; cybersecurity services India; digital marketing services India | High |
+| `/grow` and `/services-hub/grow` | Business consulting, innovation, and incubation | business consultant; business growth consultant; business strategy consulting; innovation consultant; startup incubator; startup incubation services; go-to-market support | High |
 | `/ai` | Commercial AI consulting and implementation | AI development services India; AI consulting for businesses; machine learning solutions; business process AI automation | High |
 | `/ai/genai` | Generative AI project research and vendor comparison | generative AI development India; RAG development services; LLM integration services; AI chatbot development | High |
 | `/cybersecurity` | Cybersecurity provider discovery | cybersecurity services India; VAPT services India; application security testing; security audit services | High |
 | `/cybersecurity/penetration-testing` | Purchase and scope VAPT / penetration testing | VAPT services India; penetration testing services; web application penetration testing; API security testing | High |
 | `/cybersecurity/security-audits` | Security audit scope and provider discovery | cybersecurity audit services; information security audit; security controls assessment; security audit India | Medium |
-| `/digital-marketing` | Digital growth services | digital marketing services India; SEO and content marketing; social media marketing services; digital marketing strategy for business | High |
-| `/digital-marketing/seo` | SEO provider and implementation research | SEO services India; technical SEO services; keyword research and content strategy; local SEO Vijayawada; answer engine optimization; generative engine optimization | High |
+| `/digital-marketing` | Organic and paid digital growth services | digital marketing consultant India; digital marketing services India; organic digital marketing; performance marketing; PPC and paid search; Google Ads management; paid social campaigns; remarketing; social media marketing | High |
+| `/digital-marketing/seo` | Organic discovery, answer engines, and implementation research | SEO services India; technical SEO services; keyword research and content strategy; local SEO Vijayawada; answer engine optimization (AEO); generative engine optimization (GEO) | High |
 | `/contact` | Local / branded contact intent | SASTRAVA Vijayawada; technology services Vijayawada; SASTRAVA contact | Medium |
 
 ## Page and content rules
 
 - Give each page one primary intent and support it with natural variants in the title, first-screen copy, headings, links, and useful answers. Do not repeat keyword lists in visible copy or add a `meta keywords` tag.
+- Treat “inorganic” marketing as paid acquisition: PPC/search ads, paid social, and remarketing. Pair paid tests with organic SEO, local search, useful content, social publishing, and conversion measurement; validate actual campaign terms and costs in the advertising platform before launch.
 - Keep answer sections factual, concise, and visible on the corresponding service page. Expand them from real customer questions and link each answer to a relevant service or contact page.
 - Publish case studies, biographies, certifications, pricing, delivery timelines, and customer results only after the responsible person verifies the details and approves publication.
 - SASTRAVA lists its headquarters in Vijayawada and remote collaboration nationwide. Do not create city doorway pages or imply additional offices; use city-specific pages only where real local service and evidence exist.

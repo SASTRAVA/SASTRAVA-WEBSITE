@@ -37,6 +37,11 @@ test('SEO service pages publish visible answer-first questions and matching FAQ 
   }
 });
 
+test('homepage browser tab title identifies SASTRAVA as a business consultant', async ({ page }) => {
+  await page.goto('/', { waitUntil: 'networkidle' });
+  await expect(page).toHaveTitle('Business Consultant | SASTRAVA');
+});
+
 test('SEO, AEO, and GEO answer is visible on the SEO page', async ({ request }) => {
   const response = await request.get(staticDocument('/digital-marketing/seo'));
   const html = await response.text();
