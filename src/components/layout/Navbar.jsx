@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
-import { Button } from '../ui/Button';
 import { Logo } from '../ui/Logo';
 
 export const Navbar = () => {
@@ -107,12 +106,6 @@ export const Navbar = () => {
             ))}
           </div>
 
-          <div className="hidden md:flex -translate-y-2 items-center gap-3">
-            <Button variant="primary" size="sm" action="navigate" actionConfig={{ path: '/login' }}>
-              Login
-            </Button>
-          </div>
-
           <motion.button
             className="md:hidden text-gold-DEFAULT hover:text-gold-light transition-colors p-2 min-h-12 min-w-12 flex items-center justify-center rounded-lg"
             onClick={() => setIsOpen(!isOpen)}
@@ -151,11 +144,6 @@ export const Navbar = () => {
                   </NavLink>
                 </motion.div>
               ))}
-              <div className="px-4 pt-2">
-                <Button variant="primary" size="md" className="w-full" action="navigate" actionConfig={{ path: '/login' }}>
-                  Login
-                </Button>
-              </div>
             </motion.div>
           )}
         </AnimatePresence>
