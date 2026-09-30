@@ -8,7 +8,7 @@ import { motion } from 'framer-motion';
 import { Navbar } from '../components/layout/Navbar';
 import { Footer } from '../components/layout/Footer';
 import { PageHero } from '../components/sections/PageHero';
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, GitBranch } from 'lucide-react';
 
 const OpenSource = () => {
   const projects = [
