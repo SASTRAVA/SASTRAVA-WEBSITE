@@ -5,11 +5,14 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 import { ECOSYSTEM_PILLARS } from '../../config/businessModel';
 import { getBusinessIcon } from '../ui/businessIconMap';
 import { contrastTextColor } from '../../utils/contrastText';
 
 export const ServicesOverviewSection = () => {
+  const navigate = useNavigate();
   const [activePillar, setActivePillar] = useState('LEARN');
   const currentPillar = ECOSYSTEM_PILLARS[activePillar];
 
@@ -70,7 +73,9 @@ export const ServicesOverviewSection = () => {
             return (
               <motion.button
                 key={pillar.id}
+                type="button"
                 onClick={() => setActivePillar(pillar.name.toUpperCase())}
+                aria-pressed={isActive}
                 className={`
                   px-6 py-3 rounded-lg font-semibold transition-all duration-300
                   flex items-center gap-2
@@ -104,19 +109,18 @@ export const ServicesOverviewSection = () => {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
             {currentPillar.services.map((service, index) => (
-              <motion.div
+              <motion.article
                 key={service}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: index * 0.1 }}
                 className={`
-                  p-6 rounded-xl border-2 cursor-pointer transition-all duration-300
+                  p-6 rounded-xl border-2 transition-all duration-300
                   hover:shadow-xl hover:-translate-y-1
                   bg-white dark:bg-gray-800
                 `}
                 style={{
                   borderColor: currentPillar.color.primary + '40',
-                  ':hover': { borderColor: currentPillar.color.primary }
                 }}
               >
                 <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
@@ -132,13 +136,15 @@ export const ServicesOverviewSection = () => {
                   Professional-grade service with personalized support
                 </p>
                 <button
-                  className="text-sm font-semibold flex items-center gap-2 transition-all hover:gap-3"
+                  type="button"
+                  onClick={() => navigate(`/services-hub/${currentPillar.id}`)}
+                  className="min-h-11 text-sm font-semibold flex items-center gap-2 transition-all hover:gap-3"
                   style={{ color: currentPillar.color.primary }}
                 >
                   Learn More
-                  <Icons.ArrowRight size={16} />
+                  <ArrowRight size={16} aria-hidden="true" />
                 </button>
-              </motion.div>
+              </motion.article>
             ))}
           </motion.div>
         </AnimatePresence>
@@ -155,6 +161,8 @@ export const ServicesOverviewSection = () => {
             Don't see what you're looking for?
           </motion.p>
           <motion.button
+            type="button"
+            onClick={() => navigate('/contact')}
             variants={itemVariants}
             className="px-8 py-4 rounded-lg font-bold text-white transition-all"
             style={{ backgroundColor: currentPillar.color.primary }}

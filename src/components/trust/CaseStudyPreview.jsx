@@ -33,8 +33,7 @@ export const CaseStudyPreview = ({
       whileInView="visible"
       viewport={{ once: true }}
       whileHover={{ y: -8 }}
-      onClick={onClick}
-      className="cursor-pointer h-full"
+      className="h-full"
     >
       <div className="h-full bg-gradient-to-br from-navy-800 to-navy-900 rounded-lg border border-gold/20 p-6 flex flex-col hover:border-gold/40 transition-all group">
         {/* Industry Badge */}
@@ -68,10 +67,10 @@ export const CaseStudyPreview = ({
         </div>
 
         {/* CTA */}
-        <div className="flex items-center gap-2 text-gold group-hover:gap-3 transition-all pt-4 border-t border-navy-700">
+        <button type="button" onClick={onClick} disabled={!onClick} aria-disabled={!onClick} className="min-h-11 flex w-full items-center gap-2 text-left text-gold group-hover:gap-3 transition-all pt-4 border-t border-navy-700 disabled:cursor-default disabled:opacity-70">
           <span className="text-sm font-medium">View Case Study</span>
-          <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-        </div>
+          <ArrowRight size={16} aria-hidden="true" className="group-hover:translate-x-1 transition-transform" />
+        </button>
       </div>
     </motion.div>
   );

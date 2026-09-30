@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle, AlertCircle, Loader2, X } from 'lucide-react';
 import { Button } from '../ui/Button';
@@ -28,6 +28,27 @@ export const LeadForm = ({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null); // 'success', 'error', null
   const [successMessage, setSuccessMessage] = useState('');
+  const closeButtonRef = useRef(null);
+  const isSubmittingRef = useRef(false);
+  const onCloseRef = useRef(onClose);
+
+  useEffect(() => {
+    isSubmittingRef.current = isSubmitting;
+  }, [isSubmitting]);
+
+  useEffect(() => {
+    onCloseRef.current = onClose;
+  }, [onClose]);
+
+  useEffect(() => {
+    if (!showModal) return undefined;
+    closeButtonRef.current?.focus();
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape' && !isSubmittingRef.current) onCloseRef.current?.();
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [showModal]);
 
   const requiredFields = fields
     .filter(field => field.required)
@@ -122,7 +143,7 @@ export const LeadForm = ({
       {/* Header */}
       <div className="mb-6">
         <h3 className="text-2xl md:text-3xl font-bold text-offwhite mb-2">
-          {title}
+          <span id="lead-form-title">{title}</span>
         </h3>
         {subtitle && (
           <p className="text-offwhite/70 text-sm">{subtitle}</p>
@@ -270,7 +291,9 @@ export const LeadForm = ({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4"
-            onClick={onClose}
+            onClick={(event) => {
+              if (event.target === event.currentTarget && !isSubmitting) onClose?.();
+            }}
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
@@ -279,11 +302,17 @@ export const LeadForm = ({
               transition={{ duration: 0.3 }}
               className="bg-navy-900 rounded-2xl border border-gold-DEFAULT/20 p-6 md:p-8 max-w-md w-full max-h-[90vh] overflow-y-auto shadow-2xl"
               onClick={e => e.stopPropagation()}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="lead-form-title"
             >
               {/* Close Button */}
               <button
-                onClick={onClose}
-                className="absolute top-4 right-4 p-1 hover:bg-gold-DEFAULT/10 rounded-lg transition-colors"
+                ref={closeButtonRef}
+                type="button"
+                onClick={() => !isSubmitting && onClose?.()}
+                aria-label="Close form"
+                className="absolute top-4 right-4 flex min-h-11 min-w-11 items-center justify-center hover:bg-gold-DEFAULT/10 rounded-lg transition-colors"
               >
                 <X className="w-5 h-5 text-offwhite/70" />
               </button>

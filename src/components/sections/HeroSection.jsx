@@ -173,6 +173,8 @@ export const HeroSection = () => {
             <Button 
               variant="primary" 
               size="lg" 
+              action="navigate"
+              actionConfig={{ path: '/courses' }}
               className="min-w-64 font-bold text-lg shadow-2xl"
               style={{
                 boxShadow: '0 0 32px rgba(201, 168, 76, 0.25), 0 16px 32px rgba(0, 0, 0, 0.25)',
@@ -198,6 +200,8 @@ export const HeroSection = () => {
             <Button 
               variant="secondary" 
               size="lg"
+              action="navigate"
+              actionConfig={{ path: '/contact' }}
               className="min-w-64 font-semibold text-lg
                 bg-white/6 backdrop-blur-xl
                 border-2 border-peacock-light/30

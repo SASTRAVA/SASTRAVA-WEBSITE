@@ -81,7 +81,7 @@ export const CTASection = () => {
             viewport={{ once: true }}
             className="flex flex-col sm:flex-row gap-6 items-center justify-center relative z-10"
           >
-            <Button variant="secondary" size="lg">
+            <Button variant="secondary" size="lg" action="navigate" actionConfig={{ path: '/contact' }}>
               Get an Experience
             </Button>
           </motion.div>

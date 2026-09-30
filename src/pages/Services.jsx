@@ -303,6 +303,8 @@ export const Services = () => {
                 <Button
                   variant="primary"
                   size="lg"
+                  action="navigate"
+                  actionConfig={{ path: '/contact' }}
                   className="inline-flex items-center gap-2 group"
                 >
                   Let's Build Together

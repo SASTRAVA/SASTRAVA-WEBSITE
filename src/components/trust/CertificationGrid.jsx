@@ -59,7 +59,7 @@ export const CertificationGrid = ({
             key={idx}
             variants={itemVariants}
             whileHover={{ scale: 1.05 }}
-            className="bg-gradient-to-br from-navy-800 to-navy-900 rounded-lg border border-gold/20 p-4 hover:border-gold/40 transition-all group cursor-pointer"
+            className="bg-gradient-to-br from-navy-800 to-navy-900 rounded-lg border border-gold/20 p-4"
           >
             <div className="flex items-center gap-2 mb-2">
               <Award className="w-5 h-5 text-gold group-hover:text-peacock transition-colors" />

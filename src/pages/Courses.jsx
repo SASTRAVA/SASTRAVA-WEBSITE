@@ -4,14 +4,15 @@
 // Stack: React 18 + Framer Motion + Tailwind + PageHero
 // ============================================================
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { X, Clock, BarChart2, BookOpen, ChevronRight, CheckCircle } from "lucide-react";
 import { Navbar } from "../components/layout/Navbar";
 import { Footer } from "../components/layout/Footer";
 import { PageHero } from "../components/sections/PageHero";
-import { AUTH_ROLES, isAuthenticated } from "../services/authService";
+import { submitLead } from "../services/leadService";
+import { LEAD_TYPES } from "../services/leadTypes";
 
 // ─── Brand Tokens ─────────────────────────────────────────────
 const C = {
@@ -179,6 +180,31 @@ function EnrollmentModal({ course, onClose }) {
   });
   const [errors, setErrors]   = useState({});
   const [shaking, setShaking] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
+  const closeButtonRef = useRef(null);
+  const isSubmittingRef = useRef(false);
+
+  useEffect(() => {
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    closeButtonRef.current?.focus();
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, []);
+
+  useEffect(() => {
+    isSubmittingRef.current = isSubmitting;
+  }, [isSubmitting]);
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape" && !isSubmittingRef.current) onClose();
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [onClose]);
 
   const validate = () => {
     const e = {};
@@ -190,7 +216,7 @@ function EnrollmentModal({ course, onClose }) {
     return e;
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const e = validate();
     if (Object.keys(e).length) {
       setErrors(e);
@@ -198,8 +224,24 @@ function EnrollmentModal({ course, onClose }) {
       setTimeout(() => setShaking(false), 500);
       return;
     }
-    // TODO: emailjs.send("SERVICE_ID", "TEMPLATE_enrollment", { ...form, course: course.title }, "PUBLIC_KEY")
-    setStep(2);
+    const [firstName, ...lastNameParts] = form.name.trim().split(/\s+/);
+    setIsSubmitting(true);
+    setSubmitError("");
+    try {
+      const result = await submitLead({
+        firstName,
+        lastName: lastNameParts.join(" ") || "Not provided",
+        email: form.email.trim(),
+        phone: form.phone.trim(),
+        message: [`Course enrollment request: ${course.title}`, `Current status: ${form.status}`, form.source && `Referral source: ${form.source}`, form.message.trim()].filter(Boolean).join("\n"),
+      }, LEAD_TYPES.CONTACT_INQUIRY, { sourcePage: "/courses", sourceButton: "Course enrollment request" });
+      if (result.success) setStep(2);
+      else setSubmitError(result.message || "We could not send your request. Please try again.");
+    } catch {
+      setSubmitError("We could not send your request. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const inputStyle = (field) => ({
@@ -232,7 +274,9 @@ function EnrollmentModal({ course, onClose }) {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        onClick={onClose}
+        onClick={(event) => {
+          if (event.target === event.currentTarget && !isSubmitting) onClose();
+        }}
         style={{
           position: "fixed", inset: 0, zIndex: 1000,
           background: "rgba(10,31,51,0.85)",
@@ -249,6 +293,9 @@ function EnrollmentModal({ course, onClose }) {
           exit={{ scale: 0.9, opacity: 0, y: 30 }}
           transition={{ type: "spring", damping: 20 }}
           onClick={(e) => e.stopPropagation()}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="course-enrollment-title"
           style={{
             background: C.surface2,
             border: `1px solid rgba(201,168,76,0.3)`,
@@ -260,10 +307,10 @@ function EnrollmentModal({ course, onClose }) {
           }}
         >
           {/* Close */}
-          <button onClick={onClose} style={{
+          <button ref={closeButtonRef} type="button" onClick={() => !isSubmitting && onClose()} disabled={isSubmitting} aria-label="Close enrollment request" style={{
             position: "absolute", top: 20, right: 20,
             background: "rgba(255,255,255,0.06)", border: "none",
-            borderRadius: "50%", width: 36, height: 36,
+            borderRadius: "50%", width: 44, height: 44,
             display: "flex", alignItems: "center", justifyContent: "center",
             cursor: "pointer", color: C.offwhite,
           }}>
@@ -289,7 +336,7 @@ function EnrollmentModal({ course, onClose }) {
                   fontFamily: "'Syne', sans-serif",
                   fontSize: 22, fontWeight: 800,
                   color: C.offwhite, margin: 0,
-                }}>
+                }} id="course-enrollment-title">
                   {course.title}
                 </h2>
                 <p style={{
@@ -311,8 +358,13 @@ function EnrollmentModal({ course, onClose }) {
               {/* Form Fields */}
               <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
                 <div>
-                  <label style={labelStyle}>Full Name *</label>
+                  <label htmlFor="enrollment-name" style={labelStyle}>Full Name *</label>
                   <input
+                    id="enrollment-name"
+                    name="name"
+                    autoComplete="name"
+                    aria-invalid={Boolean(errors.name)}
+                    aria-describedby={errors.name ? "enrollment-name-error" : undefined}
                     style={inputStyle("name")}
                     placeholder="Your full name"
                     value={form.name}
@@ -320,12 +372,17 @@ function EnrollmentModal({ course, onClose }) {
                     onFocus={(e) => e.target.style.borderColor = C.gold}
                     onBlur={(e)  => e.target.style.borderColor = errors.name ? "#F87171" : "rgba(201,168,76,0.2)"}
                   />
-                  {errors.name && <p style={{ color:"#F87171", fontSize:12, marginTop:4 }}>{errors.name}</p>}
+                  {errors.name && <p id="enrollment-name-error" role="alert" style={{ color:"#F87171", fontSize:12, marginTop:4 }}>{errors.name}</p>}
                 </div>
 
                 <div>
-                  <label style={labelStyle}>Email Address *</label>
+                  <label htmlFor="enrollment-email" style={labelStyle}>Email Address *</label>
                   <input
+                    id="enrollment-email"
+                    name="email"
+                    autoComplete="email"
+                    aria-invalid={Boolean(errors.email)}
+                    aria-describedby={errors.email ? "enrollment-email-error" : undefined}
                     style={inputStyle("email")}
                     type="email"
                     placeholder="you@email.com"
@@ -334,12 +391,17 @@ function EnrollmentModal({ course, onClose }) {
                     onFocus={(e) => e.target.style.borderColor = C.gold}
                     onBlur={(e)  => e.target.style.borderColor = errors.email ? "#F87171" : "rgba(201,168,76,0.2)"}
                   />
-                  {errors.email && <p style={{ color:"#F87171", fontSize:12, marginTop:4 }}>{errors.email}</p>}
+                  {errors.email && <p id="enrollment-email-error" role="alert" style={{ color:"#F87171", fontSize:12, marginTop:4 }}>{errors.email}</p>}
                 </div>
 
                 <div>
-                  <label style={labelStyle}>Phone Number *</label>
+                  <label htmlFor="enrollment-phone" style={labelStyle}>Phone Number *</label>
                   <input
+                    id="enrollment-phone"
+                    name="phone"
+                    autoComplete="tel"
+                    aria-invalid={Boolean(errors.phone)}
+                    aria-describedby={errors.phone ? "enrollment-phone-error" : undefined}
                     style={inputStyle("phone")}
                     type="tel"
                     placeholder="+91 XXXXX XXXXX"
@@ -348,12 +410,16 @@ function EnrollmentModal({ course, onClose }) {
                     onFocus={(e) => e.target.style.borderColor = C.gold}
                     onBlur={(e)  => e.target.style.borderColor = errors.phone ? "#F87171" : "rgba(201,168,76,0.2)"}
                   />
-                  {errors.phone && <p style={{ color:"#F87171", fontSize:12, marginTop:4 }}>{errors.phone}</p>}
+                  {errors.phone && <p id="enrollment-phone-error" role="alert" style={{ color:"#F87171", fontSize:12, marginTop:4 }}>{errors.phone}</p>}
                 </div>
 
                 <div>
-                  <label style={labelStyle}>Current Status *</label>
+                  <label htmlFor="enrollment-status" style={labelStyle}>Current Status *</label>
                   <select
+                    id="enrollment-status"
+                    name="status"
+                    aria-invalid={Boolean(errors.status)}
+                    aria-describedby={errors.status ? "enrollment-status-error" : undefined}
                     style={{ ...inputStyle("status"), cursor: "pointer" }}
                     value={form.status}
                     onChange={(e) => setForm({ ...form, status: e.target.value })}
@@ -366,12 +432,14 @@ function EnrollmentModal({ course, onClose }) {
                     <option value="entrepreneur">Entrepreneur</option>
                     <option value="other">Other</option>
                   </select>
-                  {errors.status && <p style={{ color:"#F87171", fontSize:12, marginTop:4 }}>{errors.status}</p>}
+                  {errors.status && <p id="enrollment-status-error" role="alert" style={{ color:"#F87171", fontSize:12, marginTop:4 }}>{errors.status}</p>}
                 </div>
 
                 <div>
-                  <label style={labelStyle}>How did you hear about us?</label>
+                  <label htmlFor="enrollment-source" style={labelStyle}>How did you hear about us?</label>
                   <select
+                    id="enrollment-source"
+                    name="source"
                     style={{ ...inputStyle("source"), cursor: "pointer" }}
                     value={form.source}
                     onChange={(e) => setForm({ ...form, source: e.target.value })}
@@ -386,8 +454,10 @@ function EnrollmentModal({ course, onClose }) {
                 </div>
 
                 <div>
-                  <label style={labelStyle}>Any Questions? (Optional)</label>
+                  <label htmlFor="enrollment-message" style={labelStyle}>Any Questions? (Optional)</label>
                   <textarea
+                    id="enrollment-message"
+                    name="message"
                     style={{ ...inputStyle("message"), minHeight: 90, resize: "vertical" }}
                     placeholder="Anything you'd like to ask before enrolling..."
                     value={form.message}
@@ -400,9 +470,12 @@ function EnrollmentModal({ course, onClose }) {
 
               {/* Submit */}
               <motion.button
+                type="button"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.97 }}
                 onClick={handleSubmit}
+                disabled={isSubmitting}
+                aria-busy={isSubmitting}
                 style={{
                   marginTop: 24, width: "100%",
                   background: `linear-gradient(135deg, ${C.gold}, ${C.goldLight})`,
@@ -410,18 +483,20 @@ function EnrollmentModal({ course, onClose }) {
                   padding: "16px",
                   fontFamily: "'Syne', sans-serif",
                   fontWeight: 700, fontSize: 16,
-                  color: C.navy, cursor: "pointer",
+                  color: C.navy, cursor: isSubmitting ? "wait" : "pointer",
+                  opacity: isSubmitting ? 0.7 : 1,
                   letterSpacing: "0.02em",
                 }}
               >
-                Submit Enrollment Request →
+                {isSubmitting ? "Submitting…" : "Submit Enrollment Request →"}
               </motion.button>
+              {submitError && <p role="alert" style={{ color: "#FCA5A5", textAlign: "center", marginTop: 12, fontSize: 13 }}>{submitError}</p>}
               <p style={{
                 textAlign: "center", marginTop: 12,
                 color: C.muted, fontSize: 12,
                 fontFamily: "'DM Sans', sans-serif",
               }}>
-                Our team will reach out within 24 hours to confirm.
+                We’ll review your request and contact you using the details provided.
               </p>
             </>
           ) : (
@@ -444,8 +519,8 @@ function EnrollmentModal({ course, onClose }) {
                 fontFamily: "'Syne', sans-serif",
                 fontSize: 26, fontWeight: 800,
                 color: C.offwhite, marginBottom: 12,
-              }}>
-                You're In!
+              }} id="course-enrollment-title">
+                Request received
               </h2>
               <p style={{
                 fontFamily: "'DM Sans', sans-serif",
@@ -454,9 +529,10 @@ function EnrollmentModal({ course, onClose }) {
               }}>
                 Thanks <strong style={{ color: C.gold }}>{form.name}</strong>! Your enrollment
                 request for <strong style={{ color: C.offwhite }}>{course.title}</strong> has been
-                received. We'll contact you at <strong style={{ color: C.tealLight }}>{form.email}</strong> within 24 hours.
+                sent. We’ll contact you at <strong style={{ color: C.tealLight }}>{form.email}</strong> after reviewing it.
               </p>
               <motion.button
+                type="button"
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 onClick={onClose}
@@ -501,11 +577,10 @@ function CourseCard({ course, index, onEnroll }) {
         flexDirection: "column",
         position: "relative",
         overflow: "hidden",
-        cursor: "pointer",
+        cursor: "default",
         transition: "all 0.3s ease-out",
         willChange: "transform, box-shadow",
       }}
-      onClick={() => onEnroll(course)}
       onMouseEnter={(e) => {
         e.currentTarget.style.boxShadow = `0 0 35px rgba(20, 184, 166, 0.3), inset 0 0 18px rgba(20, 184, 166, 0.06)`;
         e.currentTarget.style.borderColor = "rgba(20, 184, 166, 0.4)";
@@ -598,7 +673,7 @@ function CourseCard({ course, index, onEnroll }) {
           <span style={{
             fontSize: 11,
             color: C.muted,
-            fontFamily: "'DM Sans'",
+            fontFamily: "'DM Sans', sans-serif",
           }}>
             ({course.students})
           </span>
@@ -687,19 +762,19 @@ function CourseCard({ course, index, onEnroll }) {
       >
         <div style={{ display: "flex", alignItems: "center", gap: 6, flex: 1 }}>
           <Clock size={14} color="#14B8A6" />
-          <span style={{ fontFamily: "'DM Sans'", fontSize: 13, color: C.offwhite }}>
+          <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: C.offwhite }}>
             {course.duration}
           </span>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 6, flex: 1 }}>
           <BookOpen size={14} color="#14B8A6" />
-          <span style={{ fontFamily: "'DM Sans'", fontSize: 13, color: C.offwhite }}>
+          <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: C.offwhite }}>
             {course.modules} Modules
           </span>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 6, flex: 1 }}>
           <BarChart2 size={14} color="#14B8A6" />
-          <span style={{ fontFamily: "'DM Sans'", fontSize: 13, color: C.offwhite }}>
+          <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: C.offwhite }}>
             {course.level}
           </span>
         </div>
@@ -808,12 +883,10 @@ function CourseCard({ course, index, onEnroll }) {
 
         {/* Premium Enroll Button - Enhanced */}
         <motion.button
+          type="button"
           whileHover={{ scale: 1.05, y: -3 }}
           whileTap={{ scale: 0.96 }}
-          onClick={(e) => {
-            e.stopPropagation();
-            onEnroll(course);
-          }}
+          onClick={() => onEnroll(course)}
           style={{
             background: "linear-gradient(135deg, #E6C200, #FFF3B0)",
             border: "1px solid rgba(255, 243, 176, 0.3)",
@@ -838,7 +911,7 @@ function CourseCard({ course, index, onEnroll }) {
             e.currentTarget.style.boxShadow = "0 0 24px rgba(201, 168, 76, 0.25)";
           }}
         >
-          Start Learning <ChevronRight size={15} />
+          Request Enrollment <ChevronRight size={15} />
         </motion.button>
       </div>
     </motion.div>
@@ -847,14 +920,9 @@ function CourseCard({ course, index, onEnroll }) {
 
 // ─── Main Courses Page ─────────────────────────────────────────
 export default function Courses() {
-  const navigate = useNavigate();
   const [activeFilter, setActiveFilter] = useState("All");
   const [activeLevel,  setActiveLevel]  = useState("All Levels");
-  const [enrollCourse, setEnrollCourse] = useState(() => {
-    const requestedCourse = new URLSearchParams(window.location.search).get('enroll');
-    if (!requestedCourse || !isAuthenticated(AUTH_ROLES.STUDENT)) return null;
-    return COURSES.find((item) => item.id === requestedCourse) || null;
-  });
+  const [enrollCourse, setEnrollCourse] = useState(null);
 
   const filtered = COURSES.filter((c) => {
     const catMatch   = activeFilter === "All" || c.category === activeFilter;
@@ -863,11 +931,6 @@ export default function Courses() {
   });
 
   const handleStartLearning = (course) => {
-    if (!isAuthenticated(AUTH_ROLES.STUDENT)) {
-      const returnTo = `/courses?enroll=${encodeURIComponent(course.id)}`;
-      navigate(`/login/student?returnTo=${encodeURIComponent(returnTo)}&course=${encodeURIComponent(course.title)}`);
-      return;
-    }
     setEnrollCourse(course);
   };
 
@@ -903,6 +966,8 @@ export default function Courses() {
             {FILTERS.map((f) => (
               <button
                 key={f}
+                type="button"
+                aria-pressed={activeFilter === f}
                 onClick={() => setActiveFilter(f)}
                 style={{
                   background: activeFilter === f
@@ -933,6 +998,8 @@ export default function Courses() {
             {LEVELS.map((l) => (
               <button
                 key={l}
+                type="button"
+                aria-pressed={activeLevel === l}
                 onClick={() => setActiveLevel(l)}
                 style={{
                   background: activeLevel === l

@@ -9,88 +9,9 @@ import { Navbar } from '../components/layout/Navbar';
 import { Footer } from '../components/layout/Footer';
 import { PageHero } from '../components/sections/PageHero';
 import { Button } from '../components/ui/Button';
-import { Calendar, ExternalLink } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 
 const Publications = () => {
-  const publications = [
-    {
-      title: 'How SASTRAVA is Training the Next Generation of Cybersecurity Experts',
-      publication: 'TechCrunch India',
-      date: 'March 15, 2024',
-      link: '#',
-      image: 'TechCrunch'
-    },
-    {
-      title: 'From Startup to Unicorn: SASTRAVA\'s Journey in EdTech',
-      publication: 'Entrepreneur Magazine',
-      date: 'March 10, 2024',
-      link: '#',
-      image: 'Entrepreneur'
-    },
-    {
-      title: 'AI Revolution: How Companies Are Upskilling Workforce',
-      publication: 'India Today',
-      date: 'March 5, 2024',
-      link: '#',
-      image: 'India Today'
-    },
-    {
-      title: 'SASTRAVA Launches India\'s First AI-First Education Platform',
-      publication: 'The Hindu Business Line',
-      date: 'Feb 28, 2024',
-      link: '#',
-      image: 'Hindu'
-    },
-    {
-      title: '₹50 Crore Funding: SASTRAVA Accelerates Growth',
-      publication: 'YourStory',
-      date: 'Feb 20, 2024',
-      link: '#',
-      image: 'YourStory'
-    },
-    {
-      title: 'Enterprise Security: Why Companies Trust SASTRAVA',
-      publication: 'CIO Magazine',
-      date: 'Feb 15, 2024',
-      link: '#',
-      image: 'CIO'
-    },
-    {
-      title: '10,000+ Students: SASTRAVA Celebrates Milestone',
-      publication: 'Hindu Tech',
-      date: 'Feb 10, 2024',
-      link: '#',
-      image: 'Hindu'
-    },
-    {
-      title: 'Making Education Accessible: SASTRAVA\'s Scholarship Program',
-      publication: 'The Wire',
-      date: 'Feb 5, 2024',
-      link: '#',
-      image: 'Wire'
-    },
-    {
-      title: 'Government Recognizes SASTRAVA as Authorized Training Center',
-      publication: 'Press Release',
-      date: 'Jan 30, 2024',
-      link: '#',
-      image: 'NASSCOM'
-    },
-  ];
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1 }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
-  };
-
   return (
     <>
       <Navbar />
@@ -99,7 +20,7 @@ const Publications = () => {
         <PageHero
           title="Publications & Press"
           subtitle="Media coverage and press releases"
-          description="See what industry leaders and media outlets are saying about SASTRAVA"
+          description="Browse SASTRAVA media resources or contact the team for interviews and press enquiries."
         />
 
         {/* Press Releases */}
@@ -107,44 +28,13 @@ const Publications = () => {
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl font-bold text-white mb-12">Media Coverage</h2>
 
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="space-y-4"
-            >
-              {publications.map((pub, idx) => (
-                <motion.div
-                  key={idx}
-                  variants={itemVariants}
-                  whileHover={{ x: 8 }}
-                  className="bg-gradient-to-r from-navy-800 to-navy-900 rounded-lg border border-gold/20 p-6 hover:border-gold/40 transition-all cursor-pointer group"
-                  onClick={() => window.open(pub.link, '_blank')}
-                >
-                  <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                    <div className="flex-1">
-                      <h3 className="text-lg font-bold text-white group-hover:text-gold transition-colors mb-2">
-                        {pub.title}
-                      </h3>
-                      <div className="flex flex-wrap items-center gap-4 text-sm">
-                        <div className="flex items-center gap-2">
-                          <div className="w-8 h-8 rounded-full bg-gold/20 flex items-center justify-center text-gold font-bold text-xs">
-                            {pub.image.charAt(0)}
-                          </div>
-                          <span className="font-semibold text-gold">{pub.publication}</span>
-                        </div>
-                        <div className="flex items-center gap-1 text-gray-400">
-                          <Calendar size={14} />
-                          <span>{pub.date}</span>
-                        </div>
-                      </div>
-                    </div>
-                    <ExternalLink className="text-gold group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
+            <div className="rounded-2xl border border-gold/20 bg-navy-900 p-8 text-center">
+              <p className="text-lg font-semibold text-white">No linked media coverage is available yet.</p>
+              <p className="mt-2 text-gray-300">When published coverage is added, each item will link directly to its source.</p>
+              <a href="mailto:neeraj@sastrava.com?subject=Press%20inquiry" className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-lg px-4 font-semibold text-gold-light hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-light">
+                Contact SASTRAVA for media enquiries <ExternalLink size={14} aria-hidden="true" />
+              </a>
+            </div>
           </div>
         </section>
 
@@ -159,8 +49,8 @@ const Publications = () => {
                 className="bg-gradient-to-br from-navy-800 to-navy-900 rounded-lg border border-gold/20 p-8 text-center hover:border-gold/40 transition-all"
               >
                 <h3 className="text-xl font-bold text-white mb-3">Company Logo</h3>
-                <p className="text-gray-400 mb-6">High-resolution brand assets</p>
-                <Button size="sm" variant="secondary">Download</Button>
+                <p className="text-gray-400 mb-6">Download the current SASTRAVA logo</p>
+                <Button size="sm" variant="secondary" action="download" actionConfig={{ url: '/logo.png', filename: 'sastrava-logo.png' }}>Download logo</Button>
               </motion.div>
 
               <motion.div
@@ -168,17 +58,17 @@ const Publications = () => {
                 className="bg-gradient-to-br from-navy-800 to-navy-900 rounded-lg border border-gold/20 p-8 text-center hover:border-gold/40 transition-all"
               >
                 <h3 className="text-xl font-bold text-white mb-3">Company Overview</h3>
-                <p className="text-gray-400 mb-6">Executive summary and background</p>
-                <Button size="sm" variant="secondary">Download</Button>
+                <p className="text-gray-400 mb-6">Read about SASTRAVA and its work</p>
+                <Button size="sm" variant="secondary" action="navigate" actionConfig={{ path: '/about' }}>Read overview</Button>
               </motion.div>
 
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 className="bg-gradient-to-br from-navy-800 to-navy-900 rounded-lg border border-gold/20 p-8 text-center hover:border-gold/40 transition-all"
               >
-                <h3 className="text-xl font-bold text-white mb-3">Executive Bios</h3>
-                <p className="text-gray-400 mb-6">Leadership team information</p>
-                <Button size="sm" variant="secondary">Download</Button>
+                <h3 className="text-xl font-bold text-white mb-3">Team Profiles</h3>
+                <p className="text-gray-400 mb-6">Meet the people behind SASTRAVA</p>
+                <Button size="sm" variant="secondary" action="navigate" actionConfig={{ path: '/portfolio' }}>View profiles</Button>
               </motion.div>
             </div>
 
@@ -188,12 +78,12 @@ const Publications = () => {
                 We'd love to share our story and insights with your audience. Contact our PR team for interviews, quotes, or collaboration opportunities.
               </p>
               <div className="flex gap-4">
-                <a href="mailto:press@sastrava.com" className="text-gold hover:text-gold/80 font-semibold flex items-center gap-2">
-                  press@sastrava.com
+                <a href="mailto:neeraj@sastrava.com?subject=Press%20inquiry" className="text-gold hover:text-gold/80 font-semibold flex items-center gap-2">
+                  neeraj@sastrava.com
                   <ExternalLink size={14} />
                 </a>
-                <a href="tel:+919876543210" className="text-gold hover:text-gold/80 font-semibold flex items-center gap-2">
-                  +91 98765 43210
+                <a href="tel:+917981576083" className="text-gold hover:text-gold/80 font-semibold flex items-center gap-2">
+                  +91 7981 576083
                   <ExternalLink size={14} />
                 </a>
               </div>

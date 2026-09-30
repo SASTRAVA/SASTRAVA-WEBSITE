@@ -18,12 +18,11 @@ export const ServiceCard = ({
   const Icon = getBusinessIcon(service.icon);
 
   return (
-    <motion.div
+    <motion.article
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1 }}
-      onClick={onClick}
-      className="group cursor-pointer h-full"
+      className="group h-full"
     >
       <div 
         className="
@@ -35,7 +34,6 @@ export const ServiceCard = ({
         "
         style={{
           borderColor: pillarColor + '30',
-          ':hover': { borderColor: pillarColor }
         }}
       >
         {/* Icon Container */}
@@ -79,12 +77,12 @@ export const ServiceCard = ({
         )}
 
         {/* Learn More Arrow */}
-        <div className="flex items-center text-sm font-semibold" style={{ color: pillarColor }}>
+        <button type="button" onClick={onClick} disabled={!onClick} className="min-h-11 inline-flex items-center text-sm font-semibold disabled:cursor-default" style={{ color: pillarColor }}>
           Learn More
           <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
-        </div>
+        </button>
       </div>
-    </motion.div>
+    </motion.article>
   );
 };
 

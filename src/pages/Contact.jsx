@@ -139,6 +139,8 @@ export const Contact = () => {
                   {offices.map(office => (
                     <motion.button
                       key={office.id}
+                      type="button"
+                      aria-pressed={selectedLocation === office.id}
                       onClick={() => setSelectedLocation(office.id)}
                       whileHover={{ scale: 1.02 }}
                       className={`w-full text-left p-3 rounded-lg border transition-all duration-300 ${

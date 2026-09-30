@@ -8,8 +8,10 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { PillarCard } from '../services/PillarCard';
 import { ECOSYSTEM_PILLARS } from '../../config/businessModel';
+import { useNavigate } from 'react-router-dom';
 
 export const PillarsSection = () => {
+  const navigate = useNavigate();
   const pillars = Object.values(ECOSYSTEM_PILLARS);
 
   const containerVariants = {
@@ -68,6 +70,7 @@ export const PillarsSection = () => {
                 pillar={pillar}
                 size="md"
                 interactive={true}
+                onClick={() => navigate(`/services-hub/${pillar.id}`)}
                 featured={index === 0}
               />
             </motion.div>

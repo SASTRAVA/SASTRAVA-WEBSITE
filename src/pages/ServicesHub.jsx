@@ -208,19 +208,15 @@ export const ServicesHub = () => {
 
                     {/* Services Grid */}
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                      {Array(3).fill(null).map((_, i) => (
-                        <ServiceCard
-                          key={i}
-                          service={{
-                            name: `${category.name} Service ${i + 1}`,
-                            description: 'Professional service with expert support',
-                            icon: category.icon
-                          }}
-                          pillarColor={currentPillar.color.primary}
-                          index={i}
-                          onClick={() => navigate(`/services/${selectedPillar.toLowerCase()}/${category.id}`)}
-                        />
-                      ))}
+                      <ServiceCard
+                        service={{
+                          name: category.name,
+                          description: `Explore SASTRAVA ${category.name.toLowerCase()} services and programs.`,
+                          icon: category.icon
+                        }}
+                        pillarColor={currentPillar.color.primary}
+                        onClick={() => navigate(`/${selectedPillar.toLowerCase()}`)}
+                      />
                     </div>
                   </motion.div>
                 ))}
@@ -245,7 +241,7 @@ export const ServicesHub = () => {
                     <motion.div
                       key={index}
                       variants={itemVariants}
-                      className="p-8 rounded-xl border-2 cursor-pointer hover:shadow-xl transition-all"
+                      className="p-8 rounded-xl border-2 hover:shadow-xl transition-all"
                       style={{
                         borderColor: currentPillar.color.primary + '40',
                         backgroundColor: currentPillar.color.primary + '05'

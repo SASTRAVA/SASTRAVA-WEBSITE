@@ -116,6 +116,8 @@ const Achievements = () => {
                 return (
                   <motion.button
                     key={tab.id}
+                    type="button"
+                    aria-pressed={activeTab === tab.id}
                     onClick={() => setActiveTab(tab.id)}
                     className={`flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all ${
                       activeTab === tab.id

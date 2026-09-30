@@ -1,6 +1,9 @@
 @import "tailwindcss";
 
 @theme {
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Syne", ui-sans-serif, sans-serif;
+  --font-mono: "Space Mono", ui-monospace, monospace;
   --color-navy-950: #0B0F1A;
   --color-navy-900: #0D0F1D;
   --color-navy-800: #0F1225;
@@ -22,6 +25,8 @@
 
   body {
     @apply bg-navy-950 text-offwhite font-sans;
+    font-family: var(--font-sans);
+    font-optical-sizing: auto;
   }
 
   .skip-to-content {
@@ -168,11 +173,11 @@
   }
 
   .font-display {
-    font-family: 'Syne', sans-serif;
+    font-family: var(--font-display);
   }
 
   .font-mono {
-    font-family: 'Space Mono', monospace;
+    font-family: var(--font-mono);
   }
 
   .text-5xl {

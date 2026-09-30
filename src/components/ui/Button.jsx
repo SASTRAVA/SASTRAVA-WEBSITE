@@ -9,6 +9,7 @@ export const Button = ({
   size = 'md',
   className = '',
   onClick,
+  type = 'button',
   disabled = false,
   loading = false,
   // New action props
@@ -33,6 +34,8 @@ export const Button = ({
           const element = document.getElementById(actionConfig.sectionId);
           if (element) {
             element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          } else {
+            console.warn(`Button scroll target not found: ${actionConfig.sectionId}`);
           }
           break;
 
@@ -50,7 +53,16 @@ export const Button = ({
           break;
 
         case 'email':
-          window.location.href = `mailto:${actionConfig.email}`;
+          // eslint-disable-next-line no-case-declarations -- Scoped to this case branch.
+          const emailAddress = actionConfig.email;
+          if (typeof emailAddress === 'string' && emailAddress.includes('@')) {
+            const emailParams = new URLSearchParams();
+            if (actionConfig.subject) emailParams.set('subject', actionConfig.subject);
+            if (actionConfig.body) emailParams.set('body', actionConfig.body);
+            window.location.href = `mailto:${emailAddress}${emailParams.size ? `?${emailParams.toString()}` : ''}`;
+          } else {
+            console.warn('Email button action requires actionConfig.email.');
+          }
           break;
 
         case 'phone':
@@ -60,21 +72,38 @@ export const Button = ({
         case 'whatsapp':
           // eslint-disable-next-line no-case-declarations -- Scoped to this case branch.
           const message = encodeURIComponent(actionConfig.message || 'Hi, I\'m interested in SASTRAVA\'s services.');
-          window.open(`https://wa.me/${actionConfig.phone}?text=${message}`, '_blank');
+          // eslint-disable-next-line no-case-declarations -- Scoped to this case branch.
+          const phone = String(actionConfig.phone || '').replace(/\D/g, '');
+          if (phone) window.open(`https://wa.me/${phone}?text=${message}`, '_blank', 'noopener,noreferrer');
+          else console.warn('WhatsApp button requires actionConfig.phone.');
           break;
 
         case 'external':
-          window.open(actionConfig.url, actionConfig.newWindow !== false ? '_blank' : '_self');
+        case 'externalLink':
+        case 'external-link':
+          // eslint-disable-next-line no-case-declarations -- Scoped to this case branch.
+          const externalUrl = actionConfig.url;
+          if (typeof externalUrl !== 'string' || !/^(https:\/\/|mailto:|tel:)/i.test(externalUrl)) {
+            console.warn('External button action requires a valid https, mailto, or tel URL.');
+          } else if (actionConfig.newWindow === false) {
+            window.location.href = externalUrl;
+          } else {
+            window.open(externalUrl, '_blank', 'noopener,noreferrer');
+          }
           break;
 
         case 'download':
-          // eslint-disable-next-line no-case-declarations -- Scoped to this case branch.
-          const link = document.createElement('a');
-          link.href = actionConfig.url;
-          link.download = actionConfig.filename || 'download';
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
+          if (typeof actionConfig.url === 'string' && actionConfig.url) {
+            const link = document.createElement('a');
+            link.href = actionConfig.url;
+            link.download = actionConfig.filename || 'download';
+            link.rel = 'noopener noreferrer';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+          } else {
+            console.warn('Download button requires actionConfig.url.');
+          }
           break;
 
         default:
@@ -140,6 +169,8 @@ export const Button = ({
 
   return (
     <motion.button
+      type={type}
+      aria-busy={loading || undefined}
       whileHover={!loading && !disabled ? { scale: 1.04, y: -2 } : {}}
       whileTap={!loading && !disabled ? { scale: 0.97 } : {}}
       transition={{ duration: 0.25, ease: 'easeOut' }}

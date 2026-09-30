@@ -6,16 +6,14 @@ import { SeoAnswers } from '../components/seo/SeoAnswers';
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { Navbar } from '../components/layout/Navbar';
 import { Footer } from '../components/layout/Footer';
 import { PageHero } from '../components/sections/PageHero';
 import { Button } from '../components/ui/Button';
 import { Brain, Zap, TrendingUp, Users, Database, Code } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
 
 const AIHub = () => {
-  const navigate = useNavigate();
-
   const services = [
     {
       icon: Brain,
@@ -30,7 +28,7 @@ const AIHub = () => {
       title: 'Machine Learning',
       subtitle: 'Predictive Intelligence',
       description: 'Custom ML models, recommendation engines, and predictive analytics',
-      path: '/ai/mlops',
+      path: '/contact',
       color: '#1ECDB0'
     },
     {
@@ -38,7 +36,7 @@ const AIHub = () => {
       title: 'LLM Integration',
       subtitle: 'ChatBots & Assistants',
       description: 'Intelligent chatbots, customer service automation, and AI assistants',
-      path: '/ai/chatbots',
+      path: '/contact',
       color: '#C9A84C'
     },
     {
@@ -46,7 +44,7 @@ const AIHub = () => {
       title: 'Automation',
       subtitle: 'Process Intelligence',
       description: 'RPA, workflow automation, and intelligent process automation',
-      path: '/ai/automation',
+      path: '/contact',
       color: '#1ECDB0'
     },
     {
@@ -54,7 +52,7 @@ const AIHub = () => {
       title: 'NLP Solutions',
       subtitle: 'Language Understanding',
       description: 'Text analysis, sentiment analysis, and document intelligence',
-      path: '/ai/nlp',
+      path: '/contact',
       color: '#C9A84C'
     },
     {
@@ -62,7 +60,7 @@ const AIHub = () => {
       title: 'AI Consulting',
       subtitle: 'Strategy & Implementation',
       description: 'AI roadmap planning, vendor evaluation, and implementation guidance',
-      path: '/ai/ai-consulting',
+      path: '/contact',
       color: '#1ECDB0'
     },
   ];
@@ -122,9 +120,9 @@ const AIHub = () => {
                     key={idx}
                     variants={itemVariants}
                     whileHover={{ y: -5 }}
-                    onClick={() => navigate(service.path)}
-                    className="bg-gradient-to-br from-navy-800 to-navy-900 rounded-lg border border-peacock/20 p-6 hover:border-peacock/40 transition-all cursor-pointer group"
                   >
+                    <Link to={service.path} className="group block h-full rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-light focus-visible:ring-offset-2 focus-visible:ring-offset-navy-950">
+                    <div className="h-full bg-gradient-to-br from-navy-800 to-navy-900 rounded-lg border border-peacock/20 p-6 hover:border-peacock/40 transition-all">
                     <div
                       className="w-12 h-12 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform"
                       style={{ backgroundColor: `${service.color}20` }}
@@ -137,8 +135,10 @@ const AIHub = () => {
                     <p className="text-sm font-semibold text-peacock mb-2">{service.subtitle}</p>
                     <p className="text-sm text-gray-400 mb-4">{service.description}</p>
                     <div className="text-peacock text-sm font-medium group-hover:gap-2 transition-all flex items-center gap-1">
-                      Learn More →
+                      {service.path === '/contact' ? 'Discuss this service →' : 'Learn More →'}
                     </div>
+                    </div>
+                    </Link>
                   </motion.div>
                 );
               })}

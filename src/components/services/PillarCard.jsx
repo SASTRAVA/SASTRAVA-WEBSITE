@@ -36,12 +36,11 @@ export const PillarCard = ({
   };
 
   return (
-    <motion.div
+    <motion.article
       variants={containerVariants}
       initial="rest"
       whileHover="hover"
-      onClick={onClick}
-      className={`cursor-pointer h-full ${interactive ? 'hover:shadow-2xl' : ''}`}
+      className={`h-full ${interactive ? 'hover:shadow-2xl' : ''}`}
     >
       <Card 
         className={`
@@ -99,7 +98,11 @@ export const PillarCard = ({
 
         {/* CTA */}
         <motion.button
-          className="w-full py-3 rounded-lg font-semibold transition-all"
+          type="button"
+          onClick={onClick}
+          disabled={!interactive || !onClick}
+          aria-pressed={onClick ? featured : undefined}
+          className="w-full min-h-11 py-3 rounded-lg font-semibold transition-all disabled:cursor-default disabled:opacity-80"
           style={{
             backgroundColor: pillar.color.primary,
             color: contrastTextColor(pillar.color.primary)
@@ -120,7 +123,7 @@ export const PillarCard = ({
           </div>
         )}
       </Card>
-    </motion.div>
+    </motion.article>
   );
 };
 

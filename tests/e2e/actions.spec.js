@@ -71,6 +71,61 @@ test('contact form exposes a safe delivery failure', async ({ page }) => {
   await expect(page.getByRole('link', { name: 'Email neeraj@sastrava.com', exact: true })).toHaveAttribute('href', 'mailto:neeraj@sastrava.com');
 });
 
+test('course enrollment sends a request and confirms only after the API succeeds', async ({ page }) => {
+  let submittedPayload;
+  await page.route('**/api/contact', async (route) => {
+    submittedPayload = route.request().postDataJSON();
+    await route.fulfill({ status: 202, contentType: 'application/json', body: JSON.stringify({ ok: true, message: 'Request received.' }) });
+  });
+  await page.goto('/courses');
+  await page.getByRole('button', { name: /request enrollment/i }).first().click();
+  const dialog = page.getByRole('dialog');
+  await expect(dialog).toBeVisible();
+  await dialog.getByLabel(/full name/i).fill('Test Learner');
+  await dialog.getByLabel(/email address/i).fill('learner@example.com');
+  await dialog.getByLabel(/phone number/i).fill('+91 98765 43210');
+  await dialog.getByLabel(/current status/i).selectOption('student');
+  await dialog.getByRole('button', { name: /submit enrollment request/i }).click();
+  await expect(dialog.getByRole('heading', { name: /request received/i })).toBeVisible();
+  expect(submittedPayload).toMatchObject({ firstName: 'Test', lastName: 'Learner', email: 'learner@example.com', phone: '+91 98765 43210' });
+  expect(submittedPayload.message).toContain('Cybersecurity Essentials');
+});
+
+test('course enrollment keeps the form open and reports API errors', async ({ page }) => {
+  await page.route('**/api/contact', async (route) => route.fulfill({ status: 503, contentType: 'application/json', body: JSON.stringify({ error: 'The contact service is not configured. Please email neeraj@sastrava.com.' }) }));
+  await page.goto('/courses');
+  await page.getByRole('button', { name: /request enrollment/i }).first().click();
+  const dialog = page.getByRole('dialog');
+  await dialog.getByLabel(/full name/i).fill('Test Learner');
+  await dialog.getByLabel(/email address/i).fill('learner@example.com');
+  await dialog.getByLabel(/phone number/i).fill('+91 98765 43210');
+  await dialog.getByLabel(/current status/i).selectOption('student');
+  await dialog.getByRole('button', { name: /submit enrollment request/i }).click();
+  await expect(dialog.getByRole('alert')).toContainText(/contact service is not configured/i);
+  await expect(dialog.getByRole('heading', { name: /cybersecurity essentials/i })).toBeVisible();
+});
+
+test('research summary opens and closes from a keyboard-accessible control', async ({ page }) => {
+  await page.goto('/research');
+  const readButton = page.getByRole('button', { name: /read summary/i }).first();
+  await readButton.focus();
+  await page.keyboard.press('Enter');
+  const dialog = page.getByRole('dialog');
+  await expect(dialog).toBeVisible();
+  await dialog.getByRole('button', { name: /close research summary/i }).click();
+  await expect(dialog).toHaveCount(0);
+});
+
+test('case study preview opens details and its consultation action works', async ({ page }) => {
+  await page.goto('/case-studies');
+  await page.getByRole('button', { name: /view case study/i }).first().click();
+  const dialog = page.getByRole('dialog');
+  await expect(dialog).toBeVisible();
+  await expect(dialog.getByRole('heading', { level: 2 })).toBeVisible();
+  await dialog.getByRole('button', { name: /discuss a similar project/i }).click();
+  await expect(page).toHaveURL(/\/contact$/);
+});
+
 test('home content and calls to action fit narrow mobile viewports', async ({ page, isMobile }) => {
   test.skip(!isMobile, 'Narrow viewport check runs in the mobile project.');
 

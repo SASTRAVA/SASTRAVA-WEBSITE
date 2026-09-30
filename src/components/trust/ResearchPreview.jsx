@@ -72,20 +72,24 @@ export const ResearchPreview = ({
         {/* Actions */}
         <div className="flex gap-2 pt-2">
           <button
+            type="button"
             onClick={onClick}
-            className="flex-1 flex items-center justify-center gap-1 text-sm font-medium text-white hover:text-peacock transition-colors"
+            disabled={!onClick}
+            aria-disabled={!onClick}
+            className="min-h-11 flex-1 flex items-center justify-center gap-1 rounded px-2 text-sm font-medium text-white hover:text-peacock transition-colors"
           >
             <ArrowRight size={14} />
-            Read
+            Read summary
           </button>
           {downloadLink && (
-            <button
-              onClick={() => window.open(downloadLink, '_blank')}
-              className="flex-1 flex items-center justify-center gap-1 text-sm font-medium text-peacock hover:text-peacock/80 transition-colors border border-peacock/30 rounded hover:border-peacock/60"
+            <a
+              href={downloadLink}
+              download
+              className="min-h-11 flex-1 flex items-center justify-center gap-1 text-sm font-medium text-peacock hover:text-peacock/80 transition-colors border border-peacock/30 rounded hover:border-peacock/60"
             >
               <Download size={14} />
               Download
-            </button>
+            </a>
           )}
         </div>
       </div>

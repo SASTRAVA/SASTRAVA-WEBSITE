@@ -3,7 +3,7 @@
  * Showcase major project successes and implementations
  */
 
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Navbar } from '../components/layout/Navbar';
 import { Footer } from '../components/layout/Footer';
@@ -14,6 +14,23 @@ import { Code, TrendingUp, Lock, Zap } from 'lucide-react';
 
 const CaseStudies = () => {
   const [selectedPillar, setSelectedPillar] = useState('all');
+  const [selectedCaseStudy, setSelectedCaseStudy] = useState(null);
+  const closeCaseStudyRef = useRef(null);
+
+  useEffect(() => {
+    if (!selectedCaseStudy) return undefined;
+    const previousOverflow = document.body.style.overflow;
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') setSelectedCaseStudy(null);
+    };
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', handleKeyDown);
+    closeCaseStudyRef.current?.focus();
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [selectedCaseStudy]);
 
   const pillars = [
     { id: 'all', name: 'All Projects', icon: Code },
@@ -212,6 +229,8 @@ const CaseStudies = () => {
                 return (
                   <motion.button
                     key={pillar.id}
+                    type="button"
+                    aria-pressed={selectedPillar === pillar.id}
                     onClick={() => setSelectedPillar(pillar.id)}
                     className={`flex items-center gap-2 px-5 py-2 rounded-lg font-semibold transition-all text-sm md:text-base ${
                       selectedPillar === pillar.id
@@ -247,10 +266,6 @@ const CaseStudies = () => {
                   <motion.div
                     key={caseStudy.id}
                     variants={itemVariants}
-                    onClick={() => {
-                      // In a real app, this would navigate to detail page
-                      console.log('View case study:', caseStudy.id);
-                    }}
                   >
                     <CaseStudyPreview
                       title={caseStudy.title}
@@ -261,6 +276,7 @@ const CaseStudies = () => {
                       resultMetric={caseStudy.resultMetric}
                       pillarColor={pillars.find(p => p.id === caseStudy.pillar)?.color || '#C9A84C'}
                       index={idx}
+                      onClick={() => setSelectedCaseStudy(caseStudy)}
                     />
                   </motion.div>
                 ))}
@@ -268,6 +284,33 @@ const CaseStudies = () => {
             </AnimatePresence>
           </div>
         </section>
+        {selectedCaseStudy && (
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="case-study-dialog-title"
+            className="fixed inset-0 z-[100] flex items-center justify-center overflow-y-auto bg-black/75 p-4 backdrop-blur-sm"
+            onClick={(event) => { if (event.target === event.currentTarget) setSelectedCaseStudy(null); }}
+          >
+            <section className="my-auto max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-2xl border border-gold/30 bg-navy-900 p-6 shadow-2xl md:p-9">
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <p className="text-sm font-semibold uppercase tracking-wide text-gold">{selectedCaseStudy.industry} · {selectedCaseStudy.client}</p>
+                  <h2 id="case-study-dialog-title" className="mt-2 text-2xl font-bold text-white md:text-3xl">{selectedCaseStudy.title}</h2>
+                </div>
+                <button ref={closeCaseStudyRef} type="button" onClick={() => setSelectedCaseStudy(null)} aria-label="Close case study" className="min-h-11 min-w-11 rounded-lg border border-white/20 text-2xl text-white hover:border-gold hover:text-gold">×</button>
+              </div>
+              <div className="mt-7 grid gap-6 sm:grid-cols-2">
+                <div><h3 className="font-semibold text-gold">Challenge</h3><p className="mt-2 leading-relaxed text-offwhite/80">{selectedCaseStudy.challenge}</p></div>
+                <div><h3 className="font-semibold text-gold">Solution</h3><p className="mt-2 leading-relaxed text-offwhite/80">{selectedCaseStudy.solution}</p></div>
+              </div>
+              <div className="mt-6"><h3 className="font-semibold text-gold">Technology</h3><ul className="mt-2 flex flex-wrap gap-2">{selectedCaseStudy.technology.map((technology) => <li key={technology} className="rounded-full border border-white/15 px-3 py-1 text-sm text-offwhite/80">{technology}</li>)}</ul></div>
+              <div className="mt-6"><h3 className="font-semibold text-gold">Reported outcomes</h3><ul className="mt-2 list-inside list-disc space-y-1 text-offwhite/80">{selectedCaseStudy.results.map((result) => <li key={result}>{result}</li>)}</ul></div>
+              {selectedCaseStudy.testimonial && <blockquote className="mt-7 border-l-2 border-gold pl-4 text-offwhite/75">“{selectedCaseStudy.testimonial}”<footer className="mt-2 text-sm text-offwhite/60">{selectedCaseStudy.testimonialAuthor}</footer></blockquote>}
+              <Button className="mt-8" action="navigate" actionConfig={{ path: '/contact' }}>Discuss a similar project</Button>
+            </section>
+          </div>
+        )}
 
         {/* CTA */}
         <section className="py-20 bg-gradient-to-r from-gold/10 to-peacock/10 border-y border-gold/20">
@@ -278,7 +321,7 @@ const CaseStudies = () => {
             <p className="text-lg text-gray-300 mb-8">
               Let's create your success story
             </p>
-            <Button size="lg" variant="primary">
+            <Button size="lg" variant="primary" action="navigate" actionConfig={{ path: '/contact' }}>
               Schedule Consultation
             </Button>
           </div>

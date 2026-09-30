@@ -3,7 +3,7 @@
  * Research papers, whitepapers, and technical publications
  */
 
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Navbar } from '../components/layout/Navbar';
 import { Footer } from '../components/layout/Footer';
@@ -14,6 +14,23 @@ import { FileText, Filter } from 'lucide-react';
 
 const Research = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const [selectedPaper, setSelectedPaper] = useState(null);
+  const closePaperRef = useRef(null);
+
+  useEffect(() => {
+    if (!selectedPaper) return undefined;
+    const previousOverflow = document.body.style.overflow;
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') setSelectedPaper(null);
+    };
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', handleKeyDown);
+    closePaperRef.current?.focus();
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [selectedPaper]);
 
   const categories = ['all', 'AI', 'Cybersecurity', 'DevOps', 'Architecture', 'Data Science'];
 
@@ -27,7 +44,6 @@ const Research = () => {
       category: 'AI',
       readTime: 12,
       downloads: 1245,
-      url: '/research/llm-fine-tuning'
     },
     {
       id: 'zero-trust-architecture',
@@ -38,7 +54,6 @@ const Research = () => {
       category: 'Cybersecurity',
       readTime: 18,
       downloads: 892,
-      url: '/research/zero-trust'
     },
     {
       id: 'kubernetes-scale',
@@ -49,7 +64,6 @@ const Research = () => {
       category: 'DevOps',
       readTime: 15,
       downloads: 743,
-      url: '/research/k8s-scale'
     },
     {
       id: 'microservices-patterns',
@@ -60,7 +74,6 @@ const Research = () => {
       category: 'Architecture',
       readTime: 20,
       downloads: 1156,
-      url: '/research/microservices'
     },
     {
       id: 'ai-ethics-bias',
@@ -71,7 +84,6 @@ const Research = () => {
       category: 'AI',
       readTime: 14,
       downloads: 987,
-      url: '/research/ai-bias'
     },
     {
       id: 'cloud-cost-optimization',
@@ -82,7 +94,6 @@ const Research = () => {
       category: 'DevOps',
       readTime: 11,
       downloads: 1432,
-      url: '/research/cloud-cost'
     },
     {
       id: 'advanced-data-pipelines',
@@ -93,7 +104,6 @@ const Research = () => {
       category: 'Data Science',
       readTime: 16,
       downloads: 654,
-      url: '/research/data-pipelines'
     },
     {
       id: 'api-security',
@@ -104,7 +114,6 @@ const Research = () => {
       category: 'Cybersecurity',
       readTime: 13,
       downloads: 823,
-      url: '/research/api-security'
     },
     {
       id: 'genai-enterprise',
@@ -115,7 +124,6 @@ const Research = () => {
       category: 'AI',
       readTime: 17,
       downloads: 1654,
-      url: '/research/genai-enterprise'
     },
   ];
 
@@ -156,6 +164,8 @@ const Research = () => {
                 {categories.map(category => (
                   <motion.button
                     key={category}
+                    type="button"
+                    aria-pressed={selectedCategory === category}
                     onClick={() => setSelectedCategory(category)}
                     className={`px-4 py-2 rounded-lg font-semibold transition-all text-sm ${
                       selectedCategory === category
@@ -188,7 +198,7 @@ const Research = () => {
                   <ResearchPreview
                     {...paper}
                     index={idx}
-                    onClick={() => window.open(paper.url, '_blank')}
+                    onClick={() => setSelectedPaper(paper)}
                   />
                 </motion.div>
               ))}
@@ -202,6 +212,30 @@ const Research = () => {
           </div>
         </section>
 
+        {selectedPaper && (
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="research-summary-title"
+            className="fixed inset-0 z-[100] flex items-center justify-center overflow-y-auto bg-black/75 p-4 backdrop-blur-sm"
+            onClick={(event) => { if (event.target === event.currentTarget) setSelectedPaper(null); }}
+          >
+            <section className="my-auto max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-2xl border border-peacock/40 bg-navy-900 p-6 shadow-2xl md:p-9">
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <p className="text-sm font-semibold uppercase tracking-wide text-peacock">{selectedPaper.category} · {selectedPaper.date}</p>
+                  <h2 id="research-summary-title" className="mt-2 text-2xl font-bold text-white md:text-3xl">{selectedPaper.title}</h2>
+                </div>
+                <button ref={closePaperRef} type="button" onClick={() => setSelectedPaper(null)} aria-label="Close research summary" className="min-h-11 min-w-11 rounded-lg border border-white/20 text-2xl text-white hover:border-peacock hover:text-peacock">×</button>
+              </div>
+              <h3 className="mt-7 font-semibold text-peacock">Summary</h3>
+              <p className="mt-2 leading-relaxed text-offwhite/80">{selectedPaper.description}</p>
+              <p className="mt-5 text-sm text-offwhite/60">By {selectedPaper.author} · {selectedPaper.readTime} min read</p>
+              <Button className="mt-7" action="email" actionConfig={{ email: 'neeraj@sastrava.com', subject: `Research inquiry: ${selectedPaper.title}`, body: `Hello SASTRAVA,\n\nI would like to learn more about “${selectedPaper.title}”.` }}>Ask about this research</Button>
+            </section>
+          </div>
+        )}
+
         {/* Subscribe Section */}
         <section className="py-16 bg-gradient-to-r from-peacock/10 to-gold/10 border-y border-peacock/20">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -209,16 +243,9 @@ const Research = () => {
               Stay Updated with Latest Research
             </h2>
             <p className="text-gray-300 mb-6">
-              Subscribe to receive new papers, whitepapers, and technical insights directly to your inbox
+              We currently handle research update requests by email.
             </p>
-            <div className="flex gap-3 max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder="your@email.com"
-                className="flex-1 px-4 py-3 rounded-lg bg-navy-800 border border-peacock/20 text-white placeholder-gray-500 focus:outline-none focus:border-peacock/40"
-              />
-              <Button variant="primary">Subscribe</Button>
-            </div>
+            <Button variant="primary" action="email" actionConfig={{ email: 'neeraj@sastrava.com', subject: 'Research updates request', body: 'Hello SASTRAVA,\n\nPlease contact me about future research updates.' }}>Request updates by email</Button>
           </div>
         </section>
       </main>
