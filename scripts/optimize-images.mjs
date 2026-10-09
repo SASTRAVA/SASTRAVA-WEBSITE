@@ -1,4 +1,4 @@
-import { mkdir, stat } from 'node:fs/promises';
+import { mkdir, readFile, stat, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import sharp from 'sharp';
 
@@ -6,8 +6,10 @@ const input = 'src/assets/sastrava/sastrava-mark-source.png';
 const webpOutput = 'public/images/sastrava-mark.webp';
 const schemaOutput = 'public/logo.png';
 const faviconOutput = 'public/favicon.png';
+const icoOutput = 'public/favicon.ico';
 const faviconSizes = [
   [faviconOutput, 128],
+  ['public/favicon-16x16.png', 16],
   ['public/favicon-32x32.png', 32],
   ['public/favicon-48x48.png', 48],
   ['public/apple-touch-icon.png', 180],
@@ -88,6 +90,35 @@ await Promise.all([
       .toFile(output);
   }),
 ]);
+
+const icoSources = [
+  ['public/favicon-16x16.png', 16],
+  ['public/favicon-32x32.png', 32],
+  ['public/favicon-48x48.png', 48],
+  [faviconOutput, 128],
+];
+const icoImages = await Promise.all(icoSources.map(async ([file]) => readFile(file)));
+const icoDirectoryLength = 6 + (icoImages.length * 16);
+const icoHeader = Buffer.alloc(icoDirectoryLength);
+icoHeader.writeUInt16LE(0, 0);
+icoHeader.writeUInt16LE(1, 2);
+icoHeader.writeUInt16LE(icoImages.length, 4);
+
+let imageOffset = icoDirectoryLength;
+icoImages.forEach((image, index) => {
+  const entryOffset = 6 + (index * 16);
+  const size = icoSources[index][1];
+  icoHeader.writeUInt8(size === 256 ? 0 : size, entryOffset);
+  icoHeader.writeUInt8(size === 256 ? 0 : size, entryOffset + 1);
+  icoHeader.writeUInt8(0, entryOffset + 2);
+  icoHeader.writeUInt8(0, entryOffset + 3);
+  icoHeader.writeUInt16LE(1, entryOffset + 4);
+  icoHeader.writeUInt16LE(32, entryOffset + 6);
+  icoHeader.writeUInt32LE(image.length, entryOffset + 8);
+  icoHeader.writeUInt32LE(imageOffset, entryOffset + 12);
+  imageOffset += image.length;
+});
+await writeFile(icoOutput, Buffer.concat([icoHeader, ...icoImages]));
 
 const [before, after] = await Promise.all([stat(input), stat(webpOutput)]);
 const saved = Math.round((1 - after.size / before.size) * 100);

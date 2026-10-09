@@ -10,7 +10,9 @@ const requiredFiles = [
   'public/images/sastrava-mark.webp',
   'scripts/generate-social-card.mjs',
   'public/logo.png',
+  'public/favicon.ico',
   'public/favicon.png',
+  'public/favicon-16x16.png',
   'public/favicon-32x32.png',
   'public/favicon-48x48.png',
   'public/apple-touch-icon.png',
@@ -40,6 +42,8 @@ for (const file of requiredFiles) {
 
 const htmlHead = readFileSync('index.html', 'utf8');
 for (const asset of [
+  '/favicon.ico',
+  '/favicon-16x16.png',
   '/favicon-32x32.png',
   '/favicon-48x48.png',
   '/favicon.png',
@@ -51,6 +55,10 @@ for (const asset of [
 const webManifest = JSON.parse(readFileSync('public/site.webmanifest', 'utf8'));
 for (const icon of ['/android-chrome-192x192.png', '/android-chrome-512x512.png']) {
   if (!webManifest.icons?.some(({ src }) => src === icon)) fail(`web manifest missing ${icon}`);
+}
+const faviconIco = readFileSync('public/favicon.ico');
+if (faviconIco.readUInt16LE(0) !== 0 || faviconIco.readUInt16LE(2) !== 1 || faviconIco.readUInt16LE(4) < 1) {
+  fail('public/favicon.ico is not a valid Windows icon container');
 }
 
 const vercel = JSON.parse(readFileSync('vercel.json', 'utf8'));

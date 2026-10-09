@@ -46,6 +46,8 @@ test('homepage publishes the SASTRAVA favicon and platform icon set', async ({ r
   const homeResponse = await request.get('/');
   const homeHtml = await homeResponse.text();
   for (const href of [
+    '/favicon.ico',
+    '/favicon-16x16.png',
     '/favicon-32x32.png',
     '/favicon-48x48.png',
     '/favicon.png',
@@ -55,7 +57,13 @@ test('homepage publishes the SASTRAVA favicon and platform icon set', async ({ r
     expect(homeHtml).toContain(`href="${href}"`);
   }
 
+  const icoResponse = await request.get('/favicon.ico');
+  expect(icoResponse.status(), 'legacy favicon URL should be served').toBe(200);
+  const icoBytes = await icoResponse.body();
+  expect([...icoBytes.subarray(0, 6)]).toEqual([0, 0, 1, 0, 4, 0]);
+
   for (const path of [
+    '/favicon-16x16.png',
     '/favicon-32x32.png',
     '/favicon-48x48.png',
     '/favicon.png',
