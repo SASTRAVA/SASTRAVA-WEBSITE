@@ -178,3 +178,20 @@ test('services hub primary and featured CTAs lead to contact', async ({ page }) 
   await page.getByRole('button', { name: /enroll now/i }).first().click();
   await expect(page).toHaveURL(/\/contact$/);
 });
+
+test('services page separates offerings into icon-led groups with working category links', async ({ page }) => {
+  await page.goto('/services');
+
+  await expect(page.getByRole('heading', { name: /decide where to go/i })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /make useful ideas work in the real world/i })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /build confidence into the systems and skills/i })).toBeVisible();
+  await expect(page.locator('#service-offerings article')).toHaveCount(7);
+
+  const categoryNavigation = page.getByRole('navigation', { name: 'Service categories' });
+  await categoryNavigation.getByRole('link', { name: 'Protect & enable' }).click();
+  await expect(page).toHaveURL(/\/services#security-learning$/);
+  await expect(page.getByRole('heading', { name: /build confidence into the systems and skills/i })).toBeVisible();
+
+  await page.getByRole('link', { name: 'Explore digital learning services' }).click();
+  await expect(page).toHaveURL(/\/learn$/);
+});
