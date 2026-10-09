@@ -27,6 +27,12 @@ export const ServicesHub = () => {
 
   const currentPillar = ECOSYSTEM_PILLARS[selectedPillar];
   const currentHierarchy = SERVICE_HIERARCHY[selectedPillar.toLowerCase()];
+  const pillarHeroTitles = {
+    LEARN: 'Technology Learning & Training',
+    BUILD: 'Software & Digital Product Development',
+    GROW: 'Business Consulting & Growth',
+    SECURE: 'Cybersecurity Services',
+  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -54,8 +60,8 @@ export const ServicesHub = () => {
       <main>
         {/* Page Hero */}
         <PageHero
-          title="Service Ecosystem"
-          subtitle="Everything you need to learn, build, grow, and secure"
+          title={urlPillar ? pillarHeroTitles[selectedPillar] : 'Learn, Build, Grow & Secure'}
+          subtitle={urlPillar ? currentPillar.tagline : 'Explore the SASTRAVA service ecosystem'}
           backgroundImage="gradient"
         />
 

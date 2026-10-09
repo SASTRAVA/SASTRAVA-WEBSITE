@@ -233,7 +233,7 @@ const SuccessStories = () => {
         </section>
 
         {/* Timeline */}
-        <section className="py-20 bg-gradient-to-b from-navy-950 to-navy-900">
+        <section className="overflow-x-clip py-20 bg-gradient-to-b from-navy-950 to-navy-900">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <AchievementTimeline
               achievements={achievements}

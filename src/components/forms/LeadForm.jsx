@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { CheckCircle, AlertCircle, Loader2, X } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { FormInput, FormTextarea } from '../ui/FormInput';
@@ -192,7 +193,22 @@ export const LeadForm = ({
 
       {/* Form (only show if not successfully submitted) */}
       {submitStatus !== 'success' && (
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form noValidate onSubmit={handleSubmit} className="space-y-4">
+          {leadType === LEAD_TYPES.CONTACT_INQUIRY && (
+            <div className="sr-only" aria-hidden="true">
+              <label htmlFor="contact-website">Leave this field blank</label>
+              <input
+                id="contact-website"
+                name="website"
+                type="text"
+                autoComplete="off"
+                tabIndex={-1}
+                value={formData.website || ''}
+                onChange={handleChange}
+              />
+            </div>
+          )}
+
           {/* Render form fields */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {fields.map((field, idx) => (
@@ -223,6 +239,8 @@ export const LeadForm = ({
                     <select
                       name={field.name}
                       value={formData[field.name] || ''}
+                      required={field.required}
+                      aria-required={field.required || undefined}
                       onChange={handleChange}
                       onBlur={handleBlur}
                       className="w-full px-4 py-2.5 rounded-lg bg-navy-900 border border-gold-DEFAULT/20 text-offwhite placeholder-offwhite/40 focus:outline-none focus:border-gold-DEFAULT focus:ring-2 focus:ring-gold-DEFAULT/30 transition-all duration-200"
@@ -273,8 +291,10 @@ export const LeadForm = ({
           </motion.div>
 
           {/* Privacy Note */}
-          <p className="text-xs text-offwhite/50 text-center">
-            We respect your privacy. Your information will never be shared.
+          <p className="text-xs text-offwhite/70 text-center">
+            We use your details to respond to this request. Read our{' '}
+            <Link to="/privacy" className="underline underline-offset-2 hover:text-gold-light">Privacy Policy</Link>{' '}
+            for information about how we handle personal data.
           </p>
         </form>
       )}

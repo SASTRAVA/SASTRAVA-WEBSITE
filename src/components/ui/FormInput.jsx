@@ -53,6 +53,8 @@ export const FormInput = ({
           onBlur={() => setIsFocused(false)}
           disabled={disabled}
           placeholder={placeholder}
+          required={required}
+          aria-required={required || undefined}
           aria-invalid={Boolean(error)}
           aria-describedby={error ? `${name}-error` : undefined}
           className={`
@@ -190,6 +192,8 @@ export const FormTextarea = ({
           onBlur={() => setIsFocused(false)}
           disabled={disabled}
           placeholder={placeholder}
+          required={required}
+          aria-required={required || undefined}
           aria-invalid={Boolean(error)}
           aria-describedby={error ? `${name}-error` : undefined}
           rows={rows}

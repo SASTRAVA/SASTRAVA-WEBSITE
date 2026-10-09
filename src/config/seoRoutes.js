@@ -1,5 +1,5 @@
 const organizationName = 'SASTRAVA';
-const defaultDescription = 'SASTRAVA is a business consultant, innovator, and incubator helping organizations with business strategy, startup growth, AI and digital products, cybersecurity, and digital marketing in India.';
+const defaultDescription = 'SASTRAVA is a business consultant, innovator, and startup incubator for organizations building with AI, cybersecurity, software, and digital marketing.';
 
 export const seoRoutes = {
   '/': {
@@ -102,7 +102,7 @@ export const seoRoutes = {
     ],
   },
   '/digital-marketing/seo': {
-    title: 'SEO Services in India | Technical, Content & Local SEO | SASTRAVA',
+    title: 'SEO Services in India | Technical & Local SEO | SASTRAVA',
     description: 'Explore technical SEO, keyword research, on-page optimization, content strategy, and local search support from SASTRAVA.',
     keywords: ['SEO services India', 'technical SEO services', 'keyword research and content strategy', 'local SEO Vijayawada'],
     serviceType: 'Search engine optimization services',

@@ -69,7 +69,7 @@ export const Footer = () => {
                   href={href}
                   target={href.startsWith('http') ? '_blank' : undefined}
                   rel={href.startsWith('http') ? 'noreferrer' : undefined}
-                  className="w-10 h-10 rounded-lg bg-gold-DEFAULT/10 border border-gold-DEFAULT/30 flex items-center justify-center text-gold-DEFAULT hover:bg-gradient-gold hover:text-navy-950 transition-all duration-300"
+                  className="w-12 h-12 rounded-lg bg-gold-DEFAULT/10 border border-gold-DEFAULT/30 flex items-center justify-center text-gold-DEFAULT hover:bg-gradient-gold hover:text-navy-950 transition-all duration-300"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
                   aria-label={label}
@@ -94,7 +94,7 @@ export const Footer = () => {
                   <li key={`${section.title}-${link.name}`}>
                     <Link
                       to={link.href}
-                      className="text-offwhite/70 text-sm hover:text-gold-light transition-colors duration-300"
+                      className="inline-flex min-h-12 min-w-12 items-center text-offwhite/70 text-sm hover:text-gold-light transition-colors duration-300"
                     >
                       {link.name}
                     </Link>
@@ -118,13 +118,13 @@ export const Footer = () => {
             © {currentYear} SASTRAVA. All rights reserved.
           </p>
           <div className="flex gap-6 text-sm">
-            <Link to="/privacy" className="text-offwhite/70 hover:text-gold-light transition-colors">
+            <Link to="/privacy" className="inline-flex min-h-12 min-w-12 items-center text-offwhite/70 hover:text-gold-light transition-colors">
               Privacy Policy
             </Link>
-            <Link to="/terms" className="text-offwhite/70 hover:text-gold-light transition-colors">
+            <Link to="/terms" className="inline-flex min-h-12 min-w-12 items-center text-offwhite/70 hover:text-gold-light transition-colors">
               Terms of Service
             </Link>
-            <Link to="/security" className="text-offwhite/70 hover:text-gold-light transition-colors">
+            <Link to="/security" className="inline-flex min-h-12 min-w-12 items-center text-offwhite/70 hover:text-gold-light transition-colors">
               Security
             </Link>
           </div>
