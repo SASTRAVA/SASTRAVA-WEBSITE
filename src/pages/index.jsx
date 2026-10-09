@@ -4,7 +4,6 @@ import { Footer } from '../components/layout/Footer';
 import { PageHero } from '../components/sections/PageHero';
 import { motion } from 'framer-motion';
 import AboutPage from './About';
-import Courses from './Courses';
 import { Contact as ContactPage } from './Contact';
 import { Services as ServicesPage } from './Services';
 import { Portfolio as PortfolioPage } from './Portfolio';
@@ -65,7 +64,6 @@ export const Domains = () => (
 
 export const Services = ServicesPage;
 
-export { Courses };
 
 export const Portfolio = PortfolioPage;
 

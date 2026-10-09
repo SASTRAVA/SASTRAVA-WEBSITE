@@ -174,7 +174,7 @@ export const HeroSection = () => {
               variant="primary" 
               size="lg" 
               action="navigate"
-              actionConfig={{ path: '/courses' }}
+              actionConfig={{ path: '/learn' }}
               className="min-w-64 font-bold text-lg shadow-2xl"
               style={{
                 boxShadow: '0 0 32px rgba(201, 168, 76, 0.25), 0 16px 32px rgba(0, 0, 0, 0.25)',

@@ -1,5 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
 
+const testPort = process.env.PLAYWRIGHT_PORT || '4173';
+
 export default defineConfig({
   testDir: './tests/e2e',
   timeout: 30_000,
@@ -8,7 +10,7 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   reporter: [['list'], ['html', { open: 'never' }]],
   use: {
-    baseURL: 'http://127.0.0.1:4173',
+    baseURL: `http://127.0.0.1:${testPort}`,
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
   },
@@ -17,8 +19,8 @@ export default defineConfig({
     { name: 'mobile', use: { ...devices['Pixel 7'] } },
   ],
   webServer: {
-    command: 'npm run build && npm run preview -- --host 127.0.0.1 --port 4173',
-    url: 'http://127.0.0.1:4173',
+    command: `npm run build && npm run preview -- --host 127.0.0.1 --port ${testPort}`,
+    url: `http://127.0.0.1:${testPort}`,
     reuseExistingServer: false,
     timeout: 120_000,
   },

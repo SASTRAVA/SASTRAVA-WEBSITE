@@ -184,9 +184,9 @@ export const CTA_CONFIG = {
   },
   
   VIEW_COURSES: {
-    label: 'View Courses',
+    label: 'Explore Learning Services',
     action: 'navigate',
-    path: '/courses',
+    path: '/learn',
     variant: 'secondary',
   },
   

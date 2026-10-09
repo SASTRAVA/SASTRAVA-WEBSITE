@@ -18,7 +18,7 @@ const requiredFiles = [
 const publicRoutes = [
   '/', '/about', '/domains', '/services', '/services-hub', '/services-hub/learn', '/services-hub/build',
   '/services-hub/grow', '/services-hub/secure', '/learn', '/build', '/grow', '/secure',
-  '/courses', '/portfolio', '/blog', '/careers', '/contact', '/privacy', '/terms', '/security',
+  '/portfolio', '/blog', '/careers', '/contact', '/privacy', '/terms', '/security',
   '/faq', '/support', '/success-stories', '/case-studies', '/research', '/publications',
   '/open-source', '/achievements', '/cybersecurity', '/cybersecurity/penetration-testing',
   '/cybersecurity/security-audits', '/ai', '/ai/genai', '/digital-marketing', '/digital-marketing/seo',
@@ -40,6 +40,7 @@ for (const route of publicRoutes.filter((route) => route !== '/')) {
   else if (destination !== `${route}/index.html`) fail(`Vercel route ${route} does not serve its route-specific HTML metadata`);
 }
 if (rewritten.get('/login/:role') !== '/login/index.html') fail('login role route must use the noindex login metadata page');
+if (rewritten.get('/courses') !== '/courses/index.html') fail('hidden courses route must serve its noindex metadata before client redirect');
 for (const pillar of ['learn', 'build', 'grow', 'secure']) {
   if (rewritten.get(`/services-hub/${pillar}`) !== `/services-hub/${pillar}/index.html`) fail(`service hub route is missing page-specific metadata for ${pillar}`);
 }
@@ -53,6 +54,7 @@ for (const route of publicRoutes) {
 for (const route of sitemapRoutes) {
   if (!publicRoutes.includes(route)) fail(`sitemap contains non-public or unknown route ${route}`);
 }
+if (sitemapRoutes.has('/courses')) fail('sitemap must not advertise the hidden courses page');
 
 const robots = readFileSync('public/robots.txt', 'utf8');
 if (!robots.includes('Sitemap: https://sastrava.com/sitemap.xml')) fail('robots.txt does not declare sitemap');
@@ -62,6 +64,7 @@ if (!seoSource.includes("['What is the difference between SEO, AEO, and GEO?'"))
 for (const route of publicRoutes) {
   if (!seoSource.includes(`'${route}':`)) fail(`SEO metadata missing for ${route}`);
 }
+if (!/\/courses':\s*\{[^}]*noindex:\s*true/.test(seoSource)) fail('hidden courses route must publish noindex metadata');
 
 const contact = readFileSync('api/contact.js', 'utf8');
 for (const unsafePattern of ['localStorage', 'api.ipify.org']) {

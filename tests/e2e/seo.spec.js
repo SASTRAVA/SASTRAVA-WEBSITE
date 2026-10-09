@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test';
 const publicRoutes = [
   '/', '/about', '/domains', '/services', '/services-hub', '/services-hub/learn', '/services-hub/build',
   '/services-hub/grow', '/services-hub/secure', '/learn', '/build', '/grow', '/secure',
-  '/courses', '/portfolio', '/blog', '/careers', '/contact', '/privacy', '/terms', '/security',
+  '/portfolio', '/blog', '/careers', '/contact', '/privacy', '/terms', '/security',
   '/faq', '/support', '/success-stories', '/case-studies', '/research', '/publications',
   '/open-source', '/achievements', '/cybersecurity', '/cybersecurity/penetration-testing',
   '/cybersecurity/security-audits', '/ai', '/ai/genai', '/digital-marketing', '/digital-marketing/seo',
@@ -58,6 +58,14 @@ test('private account routes receive noindex before JavaScript', async ({ reques
     expect(response.status()).toBe(200);
     expect(await response.text()).toContain('<meta name="robots" content="noindex, nofollow" />');
   }
+});
+
+test('hidden courses page is noindex and redirects visitors to learning services', async ({ request, page }) => {
+  const response = await request.get(staticDocument('/courses'));
+  expect(response.status()).toBe(200);
+  expect(await response.text()).toContain('<meta name="robots" content="noindex, nofollow" />');
+  await page.goto('/courses', { waitUntil: 'networkidle' });
+  await expect(page).toHaveURL(/\/learn$/);
 });
 
 test('service conversion button opens the contact page', async ({ page }) => {

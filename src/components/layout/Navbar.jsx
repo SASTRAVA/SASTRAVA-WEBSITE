@@ -29,7 +29,6 @@ export const Navbar = () => {
     { name: 'Home', href: '/' },
     { name: 'About', href: '/about' },
     { name: 'Services', href: '/services' },
-    { name: 'Courses', href: '/courses' },
     { name: 'Portfolio', href: '/portfolio' },
     { name: 'Contact', href: '/contact' },
   ];
@@ -72,14 +71,14 @@ export const Navbar = () => {
       transition={{ duration: 0.5 }}
       aria-label="Primary"
     >
-      <div className="max-w-7xl mx-auto px-6 py-5">
+      <div className="mx-auto max-w-7xl px-5 py-2.5 md:px-6 md:py-3">
         <div className="flex justify-between items-center">
           <Link
             to="/"
             className="flex items-center gap-3 transition-transform"
             onClick={() => setIsOpen(false)}
           >
-            <Logo size="xl" />
+            <Logo size="sm" />
             <span
               className="text-xl font-bold text-gold-light font-display hidden sm:inline"
               style={{

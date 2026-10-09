@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 
 test('primary CTA navigates to the contact journey', async ({ page }) => {
   await page.goto('/');
-  await page.getByRole('link', { name: /start with your challenge/i }).click();
+  await page.getByRole('link', { name: /talk through your next move/i }).click();
   await expect(page).toHaveURL(/\/contact$/);
   await expect(page.getByRole('heading', { name: /get in touch/i }).first()).toBeVisible();
 });
@@ -71,38 +71,11 @@ test('contact form exposes a safe delivery failure', async ({ page }) => {
   await expect(page.getByRole('link', { name: 'Email neeraj@sastrava.com', exact: true })).toHaveAttribute('href', 'mailto:neeraj@sastrava.com');
 });
 
-test('course enrollment sends a request and confirms only after the API succeeds', async ({ page }) => {
-  let submittedPayload;
-  await page.route('**/api/contact', async (route) => {
-    submittedPayload = route.request().postDataJSON();
-    await route.fulfill({ status: 202, contentType: 'application/json', body: JSON.stringify({ ok: true, message: 'Request received.' }) });
-  });
+test('courses stay out of navigation and the retired URL redirects to learning services', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.getByRole('navigation', { name: 'Primary' }).getByRole('link', { name: 'Courses', exact: true })).toHaveCount(0);
   await page.goto('/courses');
-  await page.getByRole('button', { name: /request enrollment/i }).first().click();
-  const dialog = page.getByRole('dialog');
-  await expect(dialog).toBeVisible();
-  await dialog.getByLabel(/full name/i).fill('Test Learner');
-  await dialog.getByLabel(/email address/i).fill('learner@example.com');
-  await dialog.getByLabel(/phone number/i).fill('+91 98765 43210');
-  await dialog.getByLabel(/current status/i).selectOption('student');
-  await dialog.getByRole('button', { name: /submit enrollment request/i }).click();
-  await expect(dialog.getByRole('heading', { name: /request received/i })).toBeVisible();
-  expect(submittedPayload).toMatchObject({ firstName: 'Test', lastName: 'Learner', email: 'learner@example.com', phone: '+91 98765 43210' });
-  expect(submittedPayload.message).toContain('Cybersecurity Essentials');
-});
-
-test('course enrollment keeps the form open and reports API errors', async ({ page }) => {
-  await page.route('**/api/contact', async (route) => route.fulfill({ status: 503, contentType: 'application/json', body: JSON.stringify({ error: 'The contact service is not configured. Please email neeraj@sastrava.com.' }) }));
-  await page.goto('/courses');
-  await page.getByRole('button', { name: /request enrollment/i }).first().click();
-  const dialog = page.getByRole('dialog');
-  await dialog.getByLabel(/full name/i).fill('Test Learner');
-  await dialog.getByLabel(/email address/i).fill('learner@example.com');
-  await dialog.getByLabel(/phone number/i).fill('+91 98765 43210');
-  await dialog.getByLabel(/current status/i).selectOption('student');
-  await dialog.getByRole('button', { name: /submit enrollment request/i }).click();
-  await expect(dialog.getByRole('alert')).toContainText(/contact service is not configured/i);
-  await expect(dialog.getByRole('heading', { name: /cybersecurity essentials/i })).toBeVisible();
+  await expect(page).toHaveURL(/\/learn$/);
 });
 
 test('research summary opens and closes from a keyboard-accessible control', async ({ page }) => {

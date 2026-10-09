@@ -24,7 +24,6 @@ Use the linked pages as the primary source for current service descriptions. Do 
 ## Learning and building
 
 - [Technology learning](https://sastrava.com/learn)
-- [Courses](https://sastrava.com/courses)
 - [Digital product development](https://sastrava.com/build)
 - [Growth and incubation](https://sastrava.com/grow)
 

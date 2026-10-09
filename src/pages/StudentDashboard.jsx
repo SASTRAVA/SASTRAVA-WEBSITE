@@ -36,7 +36,7 @@ export const StudentDashboard = () => {
               <BookOpen className="mb-5 h-8 w-8 text-peacock-light" />
               <h2 className="text-xl font-bold text-offwhite">My learning</h2>
               <p className="mt-2 text-sm leading-6 text-offwhite/60">Start a course from the catalog. Your enrolled courses will be connected here as the learning backend is enabled.</p>
-              <Link to="/courses" className="mt-6 inline-flex rounded-xl bg-peacock-light px-5 py-3 text-sm font-bold text-navy-950 hover:bg-peacock-green transition-colors">Browse courses</Link>
+              <Link to="/learn" className="mt-6 inline-flex rounded-xl bg-peacock-light px-5 py-3 text-sm font-bold text-navy-950 hover:bg-peacock-green transition-colors">Explore learning services</Link>
             </section>
             <section className="glass-gold gloss rounded-2xl border border-gold-DEFAULT/25 p-7">
               <ShieldCheck className="mb-5 h-8 w-8 text-gold-light" />

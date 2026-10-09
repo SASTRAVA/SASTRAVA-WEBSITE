@@ -19,7 +19,7 @@ const faqs = [
   },
   {
     q: 'Do you offer courses and training?',
-    a: 'Yes. Learning programs are part of the SASTRAVA ecosystem. Browse Courses for current tracks, or ask us about institutional and team learning needs.',
+    a: 'Yes. Learning and training are part of the SASTRAVA ecosystem. Explore our learning services or ask us about institutional and team learning needs.',
   },
   {
     q: 'Where are you based?',

@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 export const Logo = ({ size = 'sm', className = '' }) => {
   const sizeMap = {
-    sm: { width: 62, height: 78 },
+    sm: { width: 56, height: 56 },
     md: { width: 82, height: 102 },
     xl: { width: 98, height: 122 },
     lg: { width: 116, height: 144 },

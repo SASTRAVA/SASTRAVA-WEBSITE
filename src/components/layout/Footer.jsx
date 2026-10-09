@@ -25,7 +25,7 @@ export const Footer = () => {
     {
       title: 'Learning',
       links: [
-        { name: 'Courses', href: '/courses' },
+        { name: 'Learning Services', href: '/learn' },
         { name: 'Portfolio', href: '/portfolio' },
         { name: 'Blog', href: '/blog' },
       ],

@@ -1,4 +1,4 @@
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { lazy, Suspense, useEffect } from 'react';
 import { AnimatePresence, motion as Motion } from 'framer-motion';
 import { Home } from './pages/Home';
@@ -15,7 +15,6 @@ const Build = lazy(() => import('./pages/Build'));
 const Grow = lazy(() => import('./pages/Grow'));
 const Secure = lazy(() => import('./pages/Secure'));
 const Domains = lazy(() => import('./pages/index').then(m => ({ default: m.Domains })));
-const Courses = lazy(() => import('./pages/Courses'));
 const Portfolio = lazy(() => import('./pages/Portfolio'));
 const Blog = lazy(() => import('./pages/index').then(m => ({ default: m.Blog })));
 const Careers = lazy(() => import('./pages/index').then(m => ({ default: m.Careers })));
@@ -99,7 +98,7 @@ function AppRoutes() {
         <Route path="/build" element={<PageWrapper><Build /></PageWrapper>} />
         <Route path="/grow" element={<PageWrapper><Grow /></PageWrapper>} />
         <Route path="/secure" element={<PageWrapper><Secure /></PageWrapper>} />
-        <Route path="/courses" element={<PageWrapper><Courses /></PageWrapper>} />
+        <Route path="/courses" element={<Navigate to="/learn" replace />} />
         <Route path="/portfolio" element={<PageWrapper><Portfolio /></PageWrapper>} />
         <Route path="/blog" element={<PageWrapper><Blog /></PageWrapper>} />
         <Route path="/careers" element={<PageWrapper><Careers /></PageWrapper>} />

@@ -252,7 +252,7 @@ const SuccessStories = () => {
               Join thousands of successful learners and professionals who transformed their careers
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" variant="primary" action="navigate" actionConfig={{ path: '/courses' }}>
+              <Button size="lg" variant="primary" action="navigate" actionConfig={{ path: '/learn' }}>
                 Explore Learning Paths
               </Button>
               <Button size="lg" variant="secondary" action="navigate" actionConfig={{ path: '/contact' }}>

@@ -1,11 +1,11 @@
 const organizationName = 'SASTRAVA';
-const defaultDescription = 'SASTRAVA is a business consultant, innovator, and startup incubator for organizations building with AI, cybersecurity, software, and digital marketing.';
+const defaultDescription = 'SASTRAVA is a business consultant and startup incubator in Vijayawada, India, working across AI, automation, software, cybersecurity, and digital marketing.';
 
 export const seoRoutes = {
   '/': {
     title: 'Business Consultant | SASTRAVA',
     description: defaultDescription,
-    keywords: ['business consultant India', 'business consulting services', 'business innovator', 'startup incubator India', 'AI solutions for business', 'cybersecurity services India', 'digital marketing services India'],
+    keywords: ['business consultant Vijayawada', 'business consulting India', 'business innovator', 'startup incubator India', 'AI and business automation', 'software development India', 'cybersecurity audit and testing', 'SEO and digital marketing'],
   },
   '/about': { title: 'About SASTRAVA | Technology, Learning & Growth', description: 'Learn about SASTRAVA, our work across technology, learning, cybersecurity, and business growth, and how to start a conversation.' },
   '/domains': { title: 'Industries & Technology Domains | SASTRAVA', description: 'Explore the technology domains and business challenges SASTRAVA supports through learning, digital product development, AI, and security.' },
@@ -19,7 +19,7 @@ export const seoRoutes = {
   '/build': { title: 'Software & Digital Product Development | SASTRAVA', description: 'Explore software and digital product development support from SASTRAVA, from shaping a product idea to building useful technology.' },
   '/grow': { title: 'Business Consulting, Innovation & Incubation | SASTRAVA', description: 'Explore business consulting, innovation, growth strategy, go-to-market, and startup incubation support from SASTRAVA for founders and organizations.' },
   '/secure': { title: 'Cybersecurity & Application Security | SASTRAVA', description: 'Explore cybersecurity guidance, security testing, and audit support for applications and organizations.' },
-  '/courses': { title: 'Technology Courses & Learning Programs | SASTRAVA', description: 'Browse SASTRAVA courses and practical learning programs across software, AI, data, and cybersecurity.' },
+  '/courses': { title: 'Courses Temporarily Unavailable | SASTRAVA', description: 'SASTRAVA is updating its course catalog. Explore learning and training services or contact the team.', noindex: true },
   '/portfolio': { title: 'Projects & Team Portfolio | SASTRAVA', description: 'Explore selected projects and team portfolios that show SASTRAVA capabilities across technology and learning.' },
   '/blog': { title: 'Technology & Business Insights | SASTRAVA', description: 'Read SASTRAVA insights on AI, cybersecurity, software development, digital marketing, and technology learning.' },
   '/careers': { title: 'Careers & Opportunities | SASTRAVA', description: 'Explore career and collaboration opportunities with SASTRAVA across technology, learning, and business.' },
@@ -150,6 +150,17 @@ export const buildStructuredData = (pathname) => {
       addressCountry: 'IN',
     },
     areaServed: { '@type': 'Country', name: 'India' },
+    knowsAbout: [
+      'Business consulting',
+      'Innovation strategy',
+      'Startup incubation',
+      'Artificial intelligence',
+      'Business process automation',
+      'Software and digital product development',
+      'Cybersecurity assessment and security audits',
+      'Search engine optimization',
+      'Digital marketing',
+    ],
     sameAs: [
       'https://www.linkedin.com/in/sastrava-aa3097429/',
       'https://x.com/SASTRAVA_',
