@@ -7,6 +7,31 @@ test('primary CTA navigates to the contact journey', async ({ page }) => {
   await expect(page.getByRole('heading', { name: /get in touch/i }).first()).toBeVisible();
 });
 
+test('home omits the team section and primary navigation reaches all core pages', async ({ page, isMobile }) => {
+  await page.goto('/');
+  await expect(page.getByRole('heading', { name: /people behind the work/i })).toHaveCount(0);
+
+  const destinations = [
+    ['About', /about sastrava/i],
+    ['Services', /practical services for your next step/i],
+    ['Portfolio', /business consulting/i],
+    ['Contact', /get in touch/i],
+  ];
+
+  for (const [label, heading] of destinations) {
+    if (isMobile) {
+      const toggle = page.getByRole('button', { name: /toggle navigation menu/i });
+      if (await toggle.getAttribute('aria-expanded') !== 'true') await toggle.click();
+    }
+    await page.getByRole('navigation', { name: 'Primary' }).getByRole('link', { name: label, exact: true }).click();
+    await expect(page.getByRole('heading', { name: heading }).first()).toBeVisible();
+  }
+
+  await page.goto('/portfolio');
+  await expect(page.getByRole('heading', { name: /people behind the work/i })).toBeVisible();
+  await expect(page.getByRole('link', { name: /view siri perumalla portfolio/i })).toBeVisible();
+});
+
 test('route navigation resets the viewport to the top', async ({ page, isMobile }) => {
   await page.goto('/');
   await page.evaluate(() => window.scrollTo(0, 1200));

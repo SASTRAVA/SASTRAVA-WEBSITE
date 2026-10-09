@@ -11,7 +11,7 @@ import {
   SearchCheck,
   ShieldCheck,
   Sprout,
-  UsersRound,
+  MessageCircle,
 } from 'lucide-react';
 import { Navbar } from '../components/layout/Navbar';
 import { Footer } from '../components/layout/Footer';
@@ -72,12 +72,6 @@ const capabilities = [
     Icon: Sprout,
     tone: 'teal',
   },
-];
-
-const team = [
-  { name: 'Siri Perumalla', role: 'Chief Operating Officer', image: '/images/team/siri-perumalla.png', profile: '/portfolios/05_P_Prasanna_Siri.html' },
-  { name: 'Neeraj Kumar', role: 'Chief Executive Officer', image: '/images/team/neeraj-kumar.png', profile: '/portfolios/06_S_Neeraj_Kumar.html' },
-  { name: 'Jaya Surya Krishna', role: 'Digital Marketing Head', image: '/images/team/jaya-surya.png', profile: '/portfolios/02_K_Jaya_Surya_Krishna.html' },
 ];
 
 const reveal = {
@@ -189,37 +183,10 @@ export const Home = () => (
         </div>
       </section>
 
-      <section className="bg-navy-900 py-20 md:py-28">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
-            <motion.div {...reveal}>
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-peacock-light">People behind the work</p>
-              <h2 className="mt-4 font-display text-4xl font-bold leading-tight text-offwhite md:text-5xl">Built by people who work across disciplines.</h2>
-              <p className="mt-5 leading-relaxed text-offwhite/65">Meet the SASTRAVA team and explore the experience each person brings to the work.</p>
-              <Link to="/portfolio" className="mt-6 inline-flex min-h-12 items-center gap-2 font-semibold text-gold-light hover:text-peacock-light">Meet the team <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
-            </motion.div>
-            <div className="grid gap-4 sm:grid-cols-3">
-              {team.map(({ name, role, image, profile }, index) => (
-                <motion.a key={name} {...reveal} transition={{ ...reveal.transition, delay: index * 0.08 }} href={profile} className="group overflow-hidden rounded-2xl border border-white/10 bg-navy-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-light">
-                  <div className="relative aspect-[4/4.4] overflow-hidden bg-[#081c29]">
-                    <img src={image} alt={name} width="152" height="202" loading="lazy" decoding="async" className="h-full w-full object-contain object-top transition-transform duration-500 group-hover:scale-[1.04]" />
-                    <span className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-navy-950/80 to-transparent" />
-                  </div>
-                  <div className="p-4">
-                    <h3 className="font-semibold text-offwhite">{name}</h3>
-                    <p className="mt-1 text-xs leading-relaxed text-offwhite/55">{role}</p>
-                  </div>
-                </motion.a>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
       <section className="relative overflow-hidden bg-navy-950 py-20 md:py-24">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_110%,rgba(20,184,166,0.13),transparent_48%)]" />
         <motion.div {...reveal} className="relative mx-auto max-w-5xl px-6 text-center">
-          <span className="mx-auto grid h-12 w-12 place-items-center rounded-2xl border border-peacock-light/25 bg-peacock-light/10 text-peacock-light"><UsersRound className="h-5 w-5" aria-hidden="true" /></span>
+          <span className="mx-auto grid h-12 w-12 place-items-center rounded-2xl border border-peacock-light/25 bg-peacock-light/10 text-peacock-light"><MessageCircle className="h-5 w-5" aria-hidden="true" /></span>
           <p className="mt-5 text-xs font-semibold uppercase tracking-[0.22em] text-gold-light">Start with a conversation</p>
           <h2 className="mt-4 font-display text-4xl font-bold text-offwhite md:text-5xl">What are you working toward?</h2>
           <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-offwhite/65">Tell us what is changing, what is getting in the way, or what you want to create. We’ll help you find a useful next step.</p>

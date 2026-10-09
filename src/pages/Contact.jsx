@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, Mail, Phone, Clock, Globe } from 'lucide-react';
 import { Navbar } from '../components/layout/Navbar';
@@ -9,27 +9,6 @@ import { CONTACT_FORM_CONFIG, LEAD_TYPES } from '../services/leadTypes';
 
 
 export const Contact = () => {
-  const [selectedLocation, setSelectedLocation] = useState('headquarters');
-
-  // Office locations with Indian cities
-  const offices = [
-    {
-      id: 'headquarters',
-      city: 'Vijayawada',
-      name: 'Headquarters',
-      address: 'Vijayawada, Andhra Pradesh',
-      street: 'India · Remote collaboration available nationwide',
-      phone: '+91 7981 576083',
-      email: 'siri@sastrava.com',
-      secondaryEmail: 'neeraj@sastrava.com',
-      hours: 'Mon - Sat: 9:30 AM - 5:30 PM IST',
-      whatsapp: '917981576083',
-      highlight: true,
-    },
-  ];
-
-  const selectedOffice = offices.find(o => o.id === selectedLocation);
-
   const contactMethods = [
     {
       icon: Mail,
@@ -56,12 +35,6 @@ export const Contact = () => {
       label: 'WhatsApp',
       value: 'Message us anytime',
       action: 'whatsapp',
-    },
-    {
-      icon: Clock,
-      label: 'Business Hours',
-      value: 'Mon-Sat: 9:30 AM - 5:30 PM IST',
-      action: 'hours',
     },
   ];
 
@@ -96,16 +69,13 @@ export const Contact = () => {
               <div className="space-y-4">
                 {contactMethods.map((method, idx) => {
                   const Icon = method.icon;
-                  const isInteractive = method.action !== 'hours';
                   const href =
                     method.action === 'email'
                       ? method.href
                       : method.action === 'phone'
                       ? 'tel:+917981576083'
-                      : method.action === 'whatsapp'
-                      ? 'https://wa.me/917981576083?text=Hi%20SASTRAVA,%20I%20am%20interested%20in%20your%20services'
-                      : undefined;
-                  const Wrapper = isInteractive ? motion.a : motion.div;
+                      : 'https://wa.me/917981576083?text=Hi%20SASTRAVA,%20I%20am%20interested%20in%20your%20services';
+                  const Wrapper = motion.a;
                   return (
                     <Wrapper
                       key={method.label}
@@ -116,7 +86,7 @@ export const Contact = () => {
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.3, delay: idx * 0.1 }}
                       viewport={{ once: true }}
-                      className="group p-4 rounded-lg bg-navy-900 border border-gold-DEFAULT/10 hover:border-gold-DEFAULT/30 transition-all duration-300 block"
+                      className="group block min-h-16 rounded-lg bg-navy-900 border border-gold-DEFAULT/10 p-4 transition-all duration-300 hover:border-gold-DEFAULT/30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-light"
                     >
                       <div className="flex items-start gap-4">
                         <Icon className="w-6 h-6 text-gold-DEFAULT mt-1 group-hover:text-gold-light transition-colors" />
@@ -132,69 +102,13 @@ export const Contact = () => {
                 })}
               </div>
 
-              {/* Office Selector */}
-              <div className="pt-6 border-t border-gold-DEFAULT/10">
-                <h3 className="text-lg font-semibold text-offwhite mb-4">Our Offices</h3>
-                <div className="space-y-2">
-                  {offices.map(office => (
-                    <motion.button
-                      key={office.id}
-                      type="button"
-                      aria-pressed={selectedLocation === office.id}
-                      onClick={() => setSelectedLocation(office.id)}
-                      whileHover={{ scale: 1.02 }}
-                      className={`w-full text-left p-3 rounded-lg border transition-all duration-300 ${
-                        selectedLocation === office.id
-                          ? 'bg-gold-DEFAULT/20 border-gold-DEFAULT/50 text-gold-light'
-                          : 'bg-navy-900 border-gold-DEFAULT/10 text-offwhite hover:border-gold-DEFAULT/30'
-                      }`}
-                    >
-                      <p className="font-semibold">{office.city}</p>
-                      <p className="text-xs opacity-70">{office.name}</p>
-                    </motion.button>
-                  ))}
+              <div className="rounded-lg border border-gold-DEFAULT/10 bg-navy-900 p-5">
+                <h3 className="text-lg font-semibold text-offwhite">Location & availability</h3>
+                <div className="mt-4 space-y-3 text-sm leading-relaxed text-offwhite/75">
+                  <p className="flex items-start gap-3"><MapPin className="mt-0.5 h-4 w-4 flex-shrink-0 text-gold-light" aria-hidden="true" />Vijayawada, Andhra Pradesh, India. Remote collaboration available nationwide.</p>
+                  <p className="flex items-start gap-3"><Clock className="mt-0.5 h-4 w-4 flex-shrink-0 text-gold-light" aria-hidden="true" />Monday–Saturday, 9:30 AM–5:30 PM IST.</p>
                 </div>
               </div>
-
-              {/* Selected Office Details */}
-              {selectedOffice && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="pt-6 border-t border-gold-DEFAULT/10"
-                >
-                  <h3 className="text-lg font-semibold text-offwhite mb-3">{selectedOffice.name}</h3>
-                  <div className="space-y-3 text-sm text-offwhite/70">
-                    <div className="flex items-start gap-3">
-                      <MapPin className="w-4 h-4 text-gold-DEFAULT mt-0.5 flex-shrink-0" />
-                      <div>
-                        <p>{selectedOffice.address}</p>
-                        <p>{selectedOffice.street}</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <Phone className="w-4 h-4 text-gold-DEFAULT flex-shrink-0" />
-                      <a href={`tel:${selectedOffice.phone}`} className="hover:text-gold-light transition-colors">
-                        {selectedOffice.phone}
-                      </a>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <Mail className="w-4 h-4 text-gold-DEFAULT flex-shrink-0" />
-                      <a href={`mailto:${selectedOffice.email}`} className="hover:text-gold-light transition-colors">
-                        {selectedOffice.email}
-                      </a>
-                      <span className="text-offwhite/40"> · </span>
-                      <a href={`mailto:${selectedOffice.secondaryEmail}`} className="hover:text-gold-light transition-colors">
-                        {selectedOffice.secondaryEmail}
-                      </a>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <Clock className="w-4 h-4 text-gold-DEFAULT flex-shrink-0" />
-                      <p>{selectedOffice.hours}</p>
-                    </div>
-                  </div>
-                </motion.div>
-              )}
             </motion.div>
 
             {/* RIGHT COLUMN: CONTACT FORM */}

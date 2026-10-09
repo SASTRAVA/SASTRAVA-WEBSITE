@@ -2,39 +2,39 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Navbar } from '../components/layout/Navbar';
 import { Footer } from '../components/layout/Footer';
-import { Brain, Lightbulb, Lock, Code, BookOpen, TrendingUp, Users, Award, Target } from 'lucide-react';
+import { Brain, Lock, Code, BookOpen, TrendingUp, Target, BriefcaseBusiness, ShieldCheck } from 'lucide-react';
 
 // Static data arrays - moved outside components for memoization
 const PORTFOLIO_DOMAINS = [
   {
-    icon: Brain,
-    title: 'Artificial Intelligence & Machine Learning',
-    description: 'Master cutting-edge AI/ML techniques to solve complex real-world problems and drive innovation.'
+    icon: BriefcaseBusiness,
+    title: 'Business Consulting & Incubation',
+    description: 'Clarify business priorities, assess ideas, and shape practical plans for growth and delivery.'
   },
   {
-    icon: Lightbulb,
-    title: 'Generative AI',
-    description: 'Explore the future of AI with generative models, prompt engineering, and creative AI applications.'
+    icon: Brain,
+    title: 'AI & Workflow Automation',
+    description: 'Identify appropriate uses for AI and connect workflows around existing tools and review needs.'
   },
   {
     icon: Lock,
-    title: 'Cybersecurity',
-    description: 'Learn to secure systems, networks, and applications against evolving threats and vulnerabilities.'
+    title: 'Cybersecurity & Remediation',
+    description: 'Review systems within an authorized scope, prioritize security findings, and plan fixes and retesting.'
   },
   {
     icon: Code,
-    title: 'Front-End Development',
-    description: 'Build modern, responsive, and interactive web interfaces using the latest technologies and frameworks.'
+    title: 'Software & Digital Products',
+    description: 'Design and develop websites, applications, and internal tools around user and business needs.'
+  },
+  {
+    icon: TrendingUp,
+    title: 'Digital Marketing & Search',
+    description: 'Plan organic and paid activity, useful content, and measurement around the audience and offer.'
   },
   {
     icon: BookOpen,
-    title: 'Career Path Guidance',
-    description: 'Personalized mentorship and guidance to chart your ideal career trajectory in tech and beyond.'
-  },
-  {
-    icon: Target,
-    title: 'Structured Learning Paths',
-    description: 'Comprehensive curriculum designed to bridge academics and industry expectations seamlessly.'
+    title: 'Technical Learning',
+    description: 'Support learners and institutions with practical workshops, mentoring, and project guidance.'
   },
 ];
 
@@ -48,28 +48,28 @@ const TEAM_CAROUSEL = [
 
 const PORTFOLIO_STATS = [
   {
-    icon: Users,
-    number: '700–900+',
-    label: 'Students Trained',
-    description: 'Across multiple domains and institutions'
-  },
-  {
-    icon: Award,
-    number: '5+',
-    label: 'Domains Covered',
-    description: 'Comprehensive skill development areas'
-  },
-  {
-    icon: TrendingUp,
-    number: 'Multiple',
-    label: 'Institutions',
-    description: 'Serving educational centers across Vijayawada'
-  },
-  {
     icon: Target,
-    number: 'Oct 2024',
-    label: 'Active Since',
-    description: 'Continuous growth and expansion'
+    number: 'Strategy',
+    label: 'Business Consulting',
+    description: 'Planning and incubation shaped around the brief'
+  },
+  {
+    icon: Code,
+    number: 'Build',
+    label: 'Software & Products',
+    description: 'Digital products, integrations, and improvements'
+  },
+  {
+    icon: Brain,
+    number: 'Automate',
+    label: 'AI & Workflows',
+    description: 'Useful automation with human review where needed'
+  },
+  {
+    icon: ShieldCheck,
+    number: 'Protect & Grow',
+    label: 'Security & Visibility',
+    description: 'Security reviews and digital marketing support'
   },
 ];
 
@@ -108,7 +108,7 @@ const PortfolioHero = () => {
             className="inline-block mb-8"
           >
             <span className="inline-block px-4 py-2 rounded-full text-sm font-semibold uppercase tracking-wide bg-gold-DEFAULT/10 text-gold-light border border-gold-DEFAULT/30">
-              ✨ Since October 2024
+              Strategy · Innovation · Delivery
             </span>
           </motion.div>
 
@@ -129,11 +129,10 @@ const PortfolioHero = () => {
             transition={{ delay: 0.3, duration: 0.8 }}
             className="text-5xl md:text-7xl font-bold text-offwhite mb-6 leading-tight"
           >
-            Empowering Students Through{' '}
+            Business Consulting,{' '}
             <span className="bg-gradient-to-r from-gold-DEFAULT via-gold-mid to-gold-light bg-clip-text text-transparent">
-              Industry-Level
-            </span>{' '}
-            Training
+              Innovation
+            </span>{' '} & Incubation
           </motion.h1>
 
           {/* Subtitle */}
@@ -143,7 +142,7 @@ const PortfolioHero = () => {
             transition={{ delay: 0.5, duration: 0.8 }}
             className="text-lg md:text-xl text-slate-300 mb-8 max-w-3xl mx-auto leading-relaxed"
           >
-            A training organization based near Vijayawada, dedicated to bridging the gap between undergraduate education and real-world industry demands since October 2024.
+            Explore SASTRAVA’s work across strategy, incubation, AI and automation, software, cybersecurity, digital marketing, and technical learning.
           </motion.p>
 
           {/* Stats Preview */}
@@ -154,16 +153,16 @@ const PortfolioHero = () => {
             className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-10"
           >
             <div className="glass-gold gloss rounded-lg p-4 border border-gold-DEFAULT/20">
-              <div className="text-2xl md:text-3xl font-bold text-gold-light">700–900+</div>
-              <div className="text-xs md:text-sm text-slate-300">Students Trained</div>
+              <div className="text-xl md:text-2xl font-bold text-gold-light">Consult</div>
+              <div className="text-xs md:text-sm text-slate-300">Strategy & incubation</div>
             </div>
             <div className="glass-gold gloss rounded-lg p-4 border border-gold-DEFAULT/20">
-              <div className="text-2xl md:text-3xl font-bold text-gold-light">5+</div>
-              <div className="text-xs md:text-sm text-slate-300">Domains</div>
+              <div className="text-xl md:text-2xl font-bold text-gold-light">Build</div>
+              <div className="text-xs md:text-sm text-slate-300">Products & automation</div>
             </div>
             <div className="glass-gold gloss rounded-lg p-4 border border-gold-DEFAULT/20">
-              <div className="text-2xl md:text-3xl font-bold text-gold-light">∞</div>
-              <div className="text-xs md:text-sm text-slate-300">Opportunities</div>
+              <div className="text-xl md:text-2xl font-bold text-gold-light">Grow</div>
+              <div className="text-xs md:text-sm text-slate-300">Security & visibility</div>
             </div>
           </motion.div>
         </motion.div>
@@ -255,13 +254,13 @@ const DomainsSection = () => {
             transition={{ duration: 0.4 }}
             viewport={{ once: true }}
           >
-            Our Expertise
+            Our Capabilities
           </motion.span>
           <h2 className="text-4xl md:text-5xl font-bold text-offwhite mb-6">
-            Domains We Cover
+            Areas of Work
           </h2>
           <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-            Comprehensive training across multiple domains to equip students with industry-ready skills and knowledge.
+            Representative areas where SASTRAVA supports founders, businesses, institutions, and learners.
           </p>
         </motion.div>
 
@@ -312,44 +311,43 @@ const TeamCarouselSection = () => {
           className="text-center mb-16"
         >
           <span className="inline-block mb-4 px-4 py-2 rounded-full text-sm font-semibold uppercase tracking-wide bg-gold-DEFAULT/10 text-gold-light border border-gold-DEFAULT/30">
-            Our Team
+            The SASTRAVA Team
           </span>
           <h2 className="text-4xl md:text-5xl font-bold text-offwhite mb-6">
-            Meet the people behind SASTRAVA
+            People behind the work
           </h2>
+          <p className="mx-auto max-w-2xl text-lg leading-relaxed text-slate-300">Meet the team and explore each person’s professional experience and areas of focus.</p>
         </motion.div>
 
-        <style>{`
-          @keyframes team-scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-          }
-        `}</style>
-
-        <div className="overflow-hidden relative rounded-3xl border border-gold-DEFAULT/20 bg-navy-900/60 p-4">
-          <div className="flex gap-6 w-max animate-[team-scroll_28s_linear_infinite]">
-            {[...TEAM_CAROUSEL, ...TEAM_CAROUSEL].map((member, idx) => (
-              <motion.div
-                key={`${member.name}-${idx}`}
-                whileHover={{ y: -8 }}
-                className="w-[260px] shrink-0 overflow-hidden rounded-2xl border border-gold-DEFAULT/20 bg-navy-900/80 shadow-glow-gold"
-              >
-                <a href={member.profile} aria-label={`View ${member.name} portfolio`} className="block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-light"><img
-                  src={member.image}
-                  alt={member.name}
-                  width={member.width}
-                  height={member.height}
-                  loading="lazy"
-                  decoding="async"
-                  className="h-72 w-full bg-navy-950/70 object-contain object-center"
-                /></a>
-                <div className="p-5">
-                  <h3 className="text-xl font-bold text-offwhite">{member.name}</h3>
-                  <p className="text-gold-light mt-2">{member.designation}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+          {TEAM_CAROUSEL.map((member, idx) => (
+            <motion.a
+              key={member.profile}
+              href={member.profile}
+              aria-label={`View ${member.name} portfolio`}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.35, delay: idx * 0.05 }}
+              whileHover={{ y: -4 }}
+              className="group overflow-hidden rounded-2xl border border-gold-DEFAULT/20 bg-navy-900/80 shadow-glow-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-light"
+            >
+              <img
+                src={member.image}
+                alt={`${member.name}, ${member.designation}`}
+                width={member.width}
+                height={member.height}
+                loading="lazy"
+                decoding="async"
+                className="h-64 w-full bg-navy-950/70 object-contain object-center transition-transform duration-300 group-hover:scale-[1.02]"
+              />
+              <div className="p-5">
+                <h3 className="text-lg font-bold text-offwhite">{member.name}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-gold-light">{member.designation}</p>
+                <span className="mt-4 inline-block text-sm font-semibold text-peacock-light">View profile <span aria-hidden="true">↗</span></span>
+              </div>
+            </motion.a>
+          ))}
         </div>
       </div>
     </section>
@@ -379,10 +377,10 @@ const ImpactSection = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-offwhite mb-4">
-            Our <span className="bg-gradient-to-r from-gold-DEFAULT to-gold-light bg-clip-text text-transparent">Impact</span>
+            Areas of <span className="bg-gradient-to-r from-gold-DEFAULT to-gold-light bg-clip-text text-transparent">Practice</span>
           </h2>
           <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-            Transforming the educational landscape through measurable results and real-world skill development.
+            A snapshot of the capabilities SASTRAVA brings together for each engagement.
           </p>
         </motion.div>
 
@@ -523,7 +521,7 @@ const MissionSection = () => {
               viewport={{ once: true }}
               className="text-lg md:text-xl text-slate-200 leading-relaxed mb-8"
             >
-              We bridge the gap between undergraduate education and industry expectations by creating a structured, hands-on, real-world learning environment for students across Vijayawada.
+              We help founders, businesses, and institutions make clearer decisions and move practical work forward through strategy, technology, security, and digital growth.
             </motion.p>
 
             <motion.p
@@ -533,7 +531,7 @@ const MissionSection = () => {
               viewport={{ once: true }}
               className="text-base md:text-lg text-slate-300 leading-relaxed max-w-3xl mx-auto"
             >
-              Every student deserves access to quality, industry-aligned education that prepares them for real-world success. That's why we've orchestrated a perfect environment for industry-level skill development at the undergraduate level — transforming educational pathways and unlocking unlimited potential.
+              Each engagement starts with understanding the need, agreeing a realistic scope, and making the next step clear. Our technical learning work continues alongside this broader focus.
             </motion.p>
           </div>
         </motion.div>

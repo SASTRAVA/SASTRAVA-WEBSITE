@@ -3,43 +3,40 @@ import { Navbar } from '../components/layout/Navbar';
 import { Footer } from '../components/layout/Footer';
 import { PageHero } from '../components/sections/PageHero';
 import { motion } from 'framer-motion';
-import { Target, Star, Rocket, GraduationCap, Palette, Code2, FlaskConical, CheckCircle2 } from 'lucide-react';
+import { Target, Star, Rocket, BriefcaseBusiness, Bot, ShieldCheck, Megaphone, CheckCircle2 } from 'lucide-react';
 
 const About = () => {
   const segments = [
     {
-      title: 'Mentoring',
-      description: 'Dedicated mentors and trainers focused on practical learning, technical excellence, and student empowerment.',
-      icon: GraduationCap,
+      title: 'Business Consulting & Incubation',
+      description: 'Practical strategy and early-stage support to help founders and organizations clarify priorities and next steps.',
+      icon: BriefcaseBusiness,
     },
     {
-      title: 'Content & Media Team',
-      description: 'Creative professionals responsible for educational content, branding, communication, and digital learning experiences.',
-      icon: Palette,
+      title: 'AI, Automation & Software',
+      description: 'Digital products and connected workflows shaped around user needs, existing tools, and agreed outcomes.',
+      icon: Bot,
     },
     {
-      title: 'Developers',
-      description: 'Engineers and innovators building scalable solutions, AI-driven systems, and technology-focused products.',
-      icon: Code2,
+      title: 'Security Review & Remediation',
+      description: 'Scoped security reviews, prioritized findings, and practical patching support with verification.',
+      icon: ShieldCheck,
     },
     {
-      title: 'Research Division',
-      description: 'A focused segment dedicated to experimentation, emerging technologies, and developing future-oriented educational methodologies.',
-      icon: FlaskConical,
+      title: 'Digital Growth & Learning',
+      description: 'Search, content, campaigns, and practical learning programs aligned with each audience and brief.',
+      icon: Megaphone,
     },
   ];
 
   const ecosystemItems = [
-    'Technical Workshops',
-    'STEM Training Programs',
-    'Internship Initiatives',
-    'Industry-Oriented Learning Modules',
-    'Small to Large Scale Automations',
-    'Digital Marketing Use Cases',
-    'Content & Media Use Cases',
-    'Research & Development Activities',
-    'Product and Idea Proposals for Emerging Businesses',
-    'Real-Time AI & Technology Solutions',
+    'Business strategy and startup incubation support',
+    'AI solutions, software products, and workflow automation',
+    'Security audits, testing, patching, and retesting',
+    'SEO, content, organic visibility, and paid campaigns',
+    'Digital content and media production',
+    'Practical technical learning, workshops, and mentoring',
+    'Research and product discovery for emerging needs',
   ];
 
   return (
@@ -48,7 +45,7 @@ const About = () => {
       <PageHero
         title="About SASTRAVA"
         subtitle="Who We Are"
-        description="Redefining education through innovation, practical learning, and transformative impact."
+        description="SASTRAVA works across business consulting, startup incubation, technology, security, digital growth, and practical learning."
       />
 
       {/* MAIN CONTENT SECTIONS */}
@@ -82,19 +79,19 @@ const About = () => {
               </h2>
               <div className="space-y-4 text-offwhite/80 leading-relaxed font-light">
                 <p>
-                  We began with a simple belief — education should not merely inform; it should transform.
+                  SASTRAVA helps businesses, founders, and institutions move from complex challenges to clear, workable next steps.
                 </p>
                 <p>
-                  What started as an independent effort to guide students through the evolving worlds of Cybersecurity and AI/ML gradually became a mission to redefine how modern learning is experienced.
+                  Our work began with technical guidance in cybersecurity and AI. That foundation in practical learning now sits alongside consulting, software and AI development, automation, security reviews, and digital marketing.
                 </p>
                 <p>
-                  For nearly two years, we worked closely with students through freelancing mentorship, technical guidance, and domain-oriented teaching. During this journey, we observed a recurring gap — students possessed curiosity, yet lacked structured direction, industry awareness, and practical exposure. That realization became the foundation of our vision.
+                  We saw the value of pairing useful knowledge with clear direction and real application. We bring that same practical approach to organizations evaluating a new idea, improving a process, building a product, or strengthening digital security.
                 </p>
                 <p>
-                  From mentoring aspiring learners to designing focused curricula and developing industry-oriented final-year AI projects, every step shaped the roots of our organization. Today, we are building more than a training platform — we are creating a sophisticated learning ecosystem where innovation, research, development, and education coexist with purpose.
+                  Today, our services span business strategy and incubation, AI and workflow automation, software and digital products, authorized security testing and remediation, digital marketing, and technical learning. We scope each engagement around its audience, constraints, and goals.
                 </p>
                 <p className="text-lg font-semibold text-gold-light pt-4">
-                  Our journey is driven by one ambition: to help learners rise beyond conventional limitations and reach the pinnacle of their potential.
+                  Our aim is to make the next decision clearer and the next step more achievable.
                 </p>
               </div>
             </div>
@@ -131,7 +128,7 @@ const About = () => {
                 Our Motto
               </h3>
               <p className="text-xl text-offwhite/80 font-semibold italic">
-                "Reaching the Pinnacles of Teaching, Innovation, and Development."
+                “Clarity to plan. Capability to build. Confidence to grow.”
               </p>
             </div>
           </motion.div>
@@ -170,7 +167,7 @@ const About = () => {
               </h3>
 
               <p className="text-offwhite/75 leading-relaxed relative z-10 font-light">
-                To reform traditional educational practices by creating practical, industry-oriented, and innovation-driven learning systems that bridge the gap between knowledge and real-world application.
+                Help businesses, founders, and institutions turn complex challenges into well-scoped strategy and useful outcomes through consulting, technology, security, digital growth, and learning.
               </p>
             </motion.div>
 
@@ -206,7 +203,7 @@ const About = () => {
               </h3>
 
               <p className="text-offwhite/75 leading-relaxed relative z-10 font-light">
-                To revolutionize modern education through well-structured methodologies, advanced learning procedures, and technology-driven ecosystems that empower the next generation of learners and creators.
+                Build an ecosystem where organizations can develop ideas responsibly, apply technology with purpose, and grow with practical expertise.
               </p>
             </motion.div>
           </div>
@@ -235,13 +232,13 @@ const About = () => {
               </h2>
               <div className="space-y-4 text-offwhite/80 leading-relaxed font-light">
                 <p>
-                  Our foundation was built through direct interaction with students and real-world problem solving. We started by independently teaching Cybersecurity and AI/ML concepts, helping learners understand emerging domains and career pathways. Over time, this expanded into curriculum development, specialized training structures, mentorship programs, and AI-based final-year project development across multiple objectives and applications.
+                  SASTRAVA’s roots are in practical teaching and technical guidance in cybersecurity and AI/ML. That work grew into curriculum and project support, then broadened to include consulting, technology delivery, security, automation, and growth services.
                 </p>
                 <p>
-                  These experiences shaped our understanding of what students truly need — clarity, practical exposure, mentorship, and a system that evolves with technology.
+                  Those beginnings shaped how we work: understand the context, explain trade-offs, and focus on solutions people can use and maintain.
                 </p>
                 <p className="text-lg font-semibold text-peacock-light pt-4">
-                  Today, we continue to grow with the same purpose that started it all: building a future-ready educational ecosystem that inspires learning, innovation, and transformation.
+                  We continue to support learners while helping organizations plan, build, secure, and grow their digital work.
                 </p>
               </div>
             </div>
@@ -325,7 +322,7 @@ const About = () => {
                 </span>
               </h2>
               <p className="text-lg text-offwhite/80 leading-relaxed font-light mb-8">
-                We actively build sustainable growth and industry exposure through:
+                Depending on the brief, our work may include:
               </p>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -370,27 +367,27 @@ const About = () => {
               </h2>
               <div className="space-y-6 text-lg text-offwhite/80 leading-relaxed font-light">
                 <p>
-                  We believe education should evolve with the world around it.
+                  Good work starts with a clear problem, a realistic plan, and respect for the people affected by the solution.
                 </p>
                 <ul className="space-y-3 ml-6">
                   <li className="flex items-start">
                     <span className="text-gold-light mr-4 mt-1">•</span>
-                    <span>Not limited to classrooms.</span>
+                    <span>Advice grounded in the client’s context and constraints.</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-gold-light mr-4 mt-1">•</span>
-                    <span>Not restricted to theory.</span>
+                    <span>Technology designed for practical use and responsible operation.</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-gold-light mr-4 mt-1">•</span>
-                    <span>Not disconnected from reality.</span>
+                    <span>Security, accessibility, and maintainability considered from the start.</span>
                   </li>
                 </ul>
                 <p className="pt-4">
-                  Our goal is to create an ecosystem where students do not simply learn technology — they learn how to build with it, innovate through it, and lead because of it.
+                  We work with founders, businesses, and institutions to turn ideas and challenges into clear decisions, useful services, and measurable next steps.
                 </p>
                 <p className="text-xl font-semibold text-gold-light pt-4">
-                  Because the future belongs to those who are prepared to create it.
+                  Practical work. Clear communication. Progress you can evaluate.
                 </p>
               </div>
             </div>

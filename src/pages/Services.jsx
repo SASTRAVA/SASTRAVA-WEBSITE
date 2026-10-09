@@ -10,9 +10,9 @@ import { CheckCircle, ArrowRight } from 'lucide-react';
 const SERVICE_SEGMENTS = [
   {
     tag: 'Content & Media',
-    heading: "We don't just make content. We build the voice your brand speaks in.",
-    tagline: 'Full-spectrum digital content — created, managed, and delivered.',
-    body: "From the first script line to the final rendered frame, Sastrava's content team handles every layer of your brand's digital presence. We produce with intent — nothing goes out unless it earns its place.",
+    heading: 'Create useful content with a clear purpose.',
+    tagline: 'Planning and production shaped around your audience and channels.',
+    body: 'We help plan and produce digital content that explains your offer and supports your communication goals. Scope can include creative direction, production, editing, and a practical publishing plan.',
     capabilities: [
       'Video production, shooting, and post-editing',
       'Scriptwriting for ads, reels, and brand films',
@@ -20,21 +20,19 @@ const SERVICE_SEGMENTS = [
       'End-to-end content calendar management',
       'Content strategy across all digital platforms',
     ],
-    serves: ['For clients', 'For Sastrava'],
   },
   {
     tag: 'Software Development',
-    heading: 'EDR delivery. No lag. No excuses. Fully vibe-coded results.',
-    tagline: 'From idea to deployment — built fast, built right.',
-    body: "Our developers don't wait to be handed a brief and disappear. They engage, develop, and release — simultaneously meeting client deadlines and pushing Sastrava's own product roadmap forward. Speed is the standard, not the exception.",
+    heading: 'Digital products shaped around real user needs.',
+    tagline: 'From discovery and prototyping to build, launch, and improvement.',
+    body: 'We design, build, integrate, and maintain websites, applications, and internal tools around an agreed scope. We keep decisions, timelines, and handover clear so your team understands what is being delivered and how to operate it.',
     capabilities: [
-      'Website building and ongoing maintenance',
-      'Bug fixes, patch releases, and backend support',
-      'Small and Large Scale Automations',
-      'New tool development and internal automation',
-      'App and product building — end to end',
+      'Website and application design and development',
+      'Backend and API development',
+      'Workflow and system integrations',
+      'Maintenance and scoped product improvements',
+      'Deployment planning and technical handover',
     ],
-    serves: ['For clients', 'For Sastrava'],
   },
   {
     tag: 'Automation & AI Workflows',
@@ -48,7 +46,6 @@ const SERVICE_SEGMENTS = [
       'AI-assisted research, content, and internal workflows',
       'Human review, access controls, monitoring, and handover',
     ],
-    serves: ['For clients', 'For Sastrava'],
   },
   {
     tag: 'Security Audits, Testing & Patching',
@@ -62,35 +59,32 @@ const SERVICE_SEGMENTS = [
       'Security fixes, dependency updates, and patch support',
       'Post-remediation retesting and executive-ready reporting',
     ],
-    serves: ['For clients', 'For Sastrava'],
   },
   {
     tag: 'Digital Marketing',
     heading: 'Reach that moves. Growth that compounds.',
-    tagline: 'Organic authority. Paid precision. Real results.',
-    body: "Sastrava's marketing team doesn't run campaigns — they engineer growth systems. Every method, organic or inorganic, is selected against a clear business policy and a defined outcome. We don't measure vanity. We measure movement.",
+    tagline: 'Organic visibility, paid campaigns, and clear measurement.',
+    body: 'We shape digital marketing around your audience, offer, budget, and business goals. Depending on the brief, work can combine organic search and content with paid campaigns, clear measurement, and regular review.',
     capabilities: [
       'AEO, GEO, and SEO-driven visibility strategies',
       'Paid campaigns across search and social',
       'Brand positioning and audience targeting',
-      'Performance tracking and analytics reporting',
-      'Full-funnel strategy — from awareness to conversion',
+      'Campaign measurement and regular reporting',
+      'Content and conversion planning across the customer journey',
     ],
-    serves: ['For clients', 'For Sastrava'],
   },
   {
     tag: 'Digital Learning',
-    heading: "Not a coaching centre. A full academic partnership built for the real world.",
-    tagline: 'Semester-integrated. Industry-aligned. Outcome-driven.',
-    body: 'We embed directly into academic institutions — not alongside them. Our STEM programmes are engineered to match what industries actually demand, delivered across full semesters with live internship exposure and flexible workshops that work around institutional schedules.',
+    heading: 'Practical technology learning for people and institutions.',
+    tagline: 'Workshops and learning support shaped around the learners and context.',
+    body: 'We provide technical learning, workshops, mentoring, and project guidance in areas such as software, AI, and cybersecurity. Programs are scoped with the institution or learner to fit the goals, schedule, and level of experience.',
     capabilities: [
-      'Semester-long integrated STEM curriculum delivery',
-      'Live project internships with real industry exposure',
-      'Flexible workshops for students and institutions',
-      'Institution-aligned teaching that goes beyond theory',
-      'Job-ready talent at scale — measurable outcomes',
+      'Technical workshops and learning sessions',
+      'Mentoring and project guidance',
+      'Programs for learners, institutions, and teams',
+      'Curriculum planning around learning goals',
+      'Flexible formats and delivery schedules',
     ],
-    serves: ['Institutions', 'Students', 'Corporates'],
   },
 ];
 
@@ -192,9 +186,9 @@ export const Services = () => {
       <main>
         {/* Page Hero */}
         <PageHero
-          title="Everything your brand needs. One team. Zero compromise."
+          title="Practical services for your next step."
           subtitle="Our Services"
-          description="Sastrava operates at the intersection of technology, creativity, and education. We don't hand off work across agencies — every capability you need lives under one roof, moves at one speed, and answers to one goal: yours."
+          description="SASTRAVA combines business consulting and incubation with software, AI and automation, security reviews, digital marketing, content, and practical learning. We agree the scope and work with you toward the outcome that matters."
         />
 
         {/* Services Grid Section */}
@@ -290,7 +284,7 @@ export const Services = () => {
                 viewport={{ once: true }}
                 className="text-h2 text-offwhite mb-6 relative z-10"
               >
-                Every team.{' '}
+                A clear brief.{' '}
                 <motion.span
                   className="text-transparent bg-gradient-gold bg-clip-text font-display"
                   animate={{
@@ -305,7 +299,7 @@ export const Services = () => {
                     backgroundSize: '200% 200%',
                   }}
                 >
-                  One direction.
+                  A coordinated plan.
                 </motion.span>
               </motion.h2>
 
@@ -317,7 +311,7 @@ export const Services = () => {
                 viewport={{ once: true }}
                 className="text-slate-300 text-lg leading-relaxed mb-10 relative z-10 max-w-2xl mx-auto"
               >
-                Whether you're a startup that needs to launch fast, a brand that needs to grow, an institution that wants better graduates, or a business that needs a digital presence — Sastrava runs all of it without handoffs, delays, or version confusion.
+                Tell us what you are trying to improve or create. We will clarify the requirements, recommend a practical scope, and outline the next step before work begins.
               </motion.p>
 
               {/* CTA Button */}
