@@ -35,6 +35,7 @@ export function RouteMeta() {
     upsertMeta('property', 'og:site_name', 'SASTRAVA');
     upsertMeta('property', 'og:locale', 'en_IN');
     upsertMeta('name', 'twitter:card', 'summary_large_image');
+    upsertMeta('name', 'twitter:site', '@SASTRAVA_');
     upsertMeta('name', 'twitter:title', entry.title);
     upsertMeta('name', 'twitter:description', entry.description);
     upsertMeta('name', 'twitter:image', image);

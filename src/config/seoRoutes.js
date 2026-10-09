@@ -1,5 +1,5 @@
 const organizationName = 'SASTRAVA';
-const defaultDescription = 'SASTRAVA is a business consultant and startup incubator in Vijayawada, India, working across AI, automation, software, cybersecurity, and digital marketing.';
+const defaultDescription = 'SASTRAVA is a business consultant, innovator, and startup incubator in Vijayawada, helping teams plan growth and build through technology, security, and learning.';
 
 export const seoRoutes = {
   '/': {
@@ -141,7 +141,7 @@ export const buildStructuredData = (pathname) => {
     url: 'https://sastrava.com/',
     logo: 'https://sastrava.com/logo.png',
     description: defaultDescription,
-    email: 'siri@sastrava.com',
+    email: 'neeraj@sastrava.com',
     telephone: '+91 7981 576083',
     address: {
       '@type': 'PostalAddress',
@@ -160,6 +160,8 @@ export const buildStructuredData = (pathname) => {
       'Cybersecurity assessment and security audits',
       'Search engine optimization',
       'Digital marketing',
+      'Digital learning and technology training',
+      'Content and media production',
     ],
     sameAs: [
       'https://www.linkedin.com/in/sastrava-aa3097429/',

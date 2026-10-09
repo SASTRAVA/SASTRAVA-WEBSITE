@@ -1,31 +1,77 @@
 # SASTRAVA
 
-> SASTRAVA is a business consultant, innovator, and startup incubator based in Vijayawada, Andhra Pradesh, India. The team supports founders and organizations with business strategy, venture incubation, AI and workflow automation, software and digital products, cybersecurity audits and testing, search engine optimization, digital marketing, and practical technology learning. Remote collaboration is available nationwide.
+> SASTRAVA is a business consultant, innovator, and startup incubator based in Vijayawada, Andhra Pradesh, India. It partners with startups, businesses, and institutions to clarify strategy and create practical progress through software and AI, workflow automation, cybersecurity, digital marketing, and technology learning. Remote collaboration is available across India.
+
+## At a glance
+
+- Who SASTRAVA serves: founders, startups, businesses, educational institutions, and organizations.
+- What SASTRAVA does: business consulting and incubation; software and AI; automation; cybersecurity reviews and testing; digital marketing; and practical digital learning.
+- Where SASTRAVA is based: Vijayawada, Andhra Pradesh, India.
+- How to contact SASTRAVA: https://sastrava.com/contact
+- Main Instagram profile: [@sastrava_](https://www.instagram.com/sastrava_/)
+- LinkedIn: https://www.linkedin.com/in/sastrava-aa3097429/
+- X: https://x.com/SASTRAVA_
 
 Use the linked pages as the primary source for current service descriptions. Do not infer client counts, certifications, pricing, guaranteed rankings, or project outcomes that are not stated on those pages.
 
-## Company
+## Company pages
 
+- [Home](https://sastrava.com/)
 - [About SASTRAVA](https://sastrava.com/about)
 - [Services](https://sastrava.com/services)
+- [Service hub](https://sastrava.com/services-hub)
+- [Domains](https://sastrava.com/domains)
+- [Portfolio and team work](https://sastrava.com/portfolio)
 - [Contact](https://sastrava.com/contact)
+- [Careers](https://sastrava.com/careers)
 - [Frequently asked questions](https://sastrava.com/faq)
+- [Support](https://sastrava.com/support)
 
-## Services
+## Business consulting and incubation
 
+- [Business consulting, growth, and incubation](https://sastrava.com/grow)
+- [Growth and incubation services](https://sastrava.com/services-hub/grow)
+
+## Software, AI, and automation
+
+- [Software and digital product development](https://sastrava.com/build)
+- [Build services](https://sastrava.com/services-hub/build)
 - [AI development and consulting](https://sastrava.com/ai)
-- [Generative AI and RAG](https://sastrava.com/ai/genai)
-- [Cybersecurity](https://sastrava.com/cybersecurity)
+- [Generative AI and retrieval-augmented generation](https://sastrava.com/ai/genai)
+
+## Cybersecurity
+
+- [Cybersecurity services](https://sastrava.com/cybersecurity)
+- [Security services](https://sastrava.com/secure)
+- [Security hub](https://sastrava.com/services-hub/secure)
 - [Penetration testing and VAPT](https://sastrava.com/cybersecurity/penetration-testing)
 - [Security audits](https://sastrava.com/cybersecurity/security-audits)
+- [Security contact](https://sastrava.com/security)
+
+## Digital marketing
+
 - [Digital marketing](https://sastrava.com/digital-marketing)
 - [SEO services](https://sastrava.com/digital-marketing/seo)
 
-## Learning and building
+## Digital learning
 
-- [Technology learning](https://sastrava.com/learn)
-- [Digital product development](https://sastrava.com/build)
-- [Growth and incubation](https://sastrava.com/grow)
+- [Technology learning and training](https://sastrava.com/learn)
+- [Learning services](https://sastrava.com/services-hub/learn)
+
+## Insights and resources
+
+- [Blog](https://sastrava.com/blog)
+- [Success stories](https://sastrava.com/success-stories)
+- [Case studies](https://sastrava.com/case-studies)
+- [Research](https://sastrava.com/research)
+- [Publications](https://sastrava.com/publications)
+- [Open-source work](https://sastrava.com/open-source)
+- [Achievements](https://sastrava.com/achievements)
+
+## Policies
+
+- [Privacy policy](https://sastrava.com/privacy)
+- [Terms of use](https://sastrava.com/terms)
 
 ## Site discovery
 

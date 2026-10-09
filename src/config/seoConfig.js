@@ -22,7 +22,7 @@ export const SEO_CONFIG = {
     favicon: '/favicon.png?v=20261009',
     language: 'en-IN',
     locale: 'en_IN',
-    contactEmail: 'siri@sastrava.com',
+    contactEmail: 'neeraj@sastrava.com',
   },
   PAGES: pages,
   ROBOTS: {
