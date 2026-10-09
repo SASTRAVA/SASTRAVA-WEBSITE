@@ -42,6 +42,41 @@ test('homepage browser tab title identifies SASTRAVA as a business consultant', 
   await expect(page).toHaveTitle('Business Consultant | SASTRAVA');
 });
 
+test('homepage publishes the SASTRAVA favicon and platform icon set', async ({ request }) => {
+  const homeResponse = await request.get('/');
+  const homeHtml = await homeResponse.text();
+  for (const href of [
+    '/favicon-32x32.png',
+    '/favicon-48x48.png',
+    '/favicon.png',
+    '/apple-touch-icon.png',
+    '/site.webmanifest',
+  ]) {
+    expect(homeHtml).toContain(`href="${href}"`);
+  }
+
+  for (const path of [
+    '/favicon-32x32.png',
+    '/favicon-48x48.png',
+    '/favicon.png',
+    '/apple-touch-icon.png',
+    '/android-chrome-192x192.png',
+    '/android-chrome-512x512.png',
+  ]) {
+    const response = await request.get(path);
+    expect(response.status(), `${path} should be served`).toBe(200);
+    expect(response.headers()['content-type']).toContain('image/png');
+  }
+
+  const manifestResponse = await request.get('/site.webmanifest');
+  const manifest = await manifestResponse.json();
+  expect(manifest.name).toBe('SASTRAVA');
+  expect(manifest.icons.map(({ src }) => src)).toEqual([
+    '/android-chrome-192x192.png',
+    '/android-chrome-512x512.png',
+  ]);
+});
+
 test('SEO, AEO, and GEO answer is visible on the SEO page', async ({ request }) => {
   const response = await request.get(staticDocument('/digital-marketing/seo'));
   const html = await response.text();

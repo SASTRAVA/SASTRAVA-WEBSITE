@@ -6,6 +6,14 @@ const input = 'src/assets/sastrava/sastrava-mark-source.png';
 const webpOutput = 'public/images/sastrava-mark.webp';
 const schemaOutput = 'public/logo.png';
 const faviconOutput = 'public/favicon.png';
+const faviconSizes = [
+  [faviconOutput, 128],
+  ['public/favicon-32x32.png', 32],
+  ['public/favicon-48x48.png', 48],
+  ['public/apple-touch-icon.png', 180],
+  ['public/android-chrome-192x192.png', 192],
+  ['public/android-chrome-512x512.png', 512],
+];
 
 await mkdir(path.dirname(webpOutput), { recursive: true });
 
@@ -60,13 +68,25 @@ const mark = sharp(cutoutBuffer);
 await Promise.all([
   mark.clone().resize({ width: 464, withoutEnlargement: true }).webp({ quality: 84, effort: 6, smartSubsample: true }).toFile(webpOutput),
   mark.clone().resize(512, 512, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } }).png().toFile(schemaOutput),
-  mark.clone().resize(112, 112, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } }).extend({
-    top: 8,
-    bottom: 8,
-    left: 8,
-    right: 8,
-    background: { r: 0, g: 0, b: 0, alpha: 0 },
-  }).png().toFile(faviconOutput),
+  ...faviconSizes.map(([output, size]) => {
+    const innerSize = Math.round(size * 0.86);
+    const inset = Math.floor((size - innerSize) / 2);
+    const trailingInset = size - innerSize - inset;
+    return mark.clone()
+      .resize(innerSize, innerSize, {
+        fit: 'contain',
+        background: { r: 11, g: 15, b: 26, alpha: 1 },
+      })
+      .extend({
+        top: inset,
+        bottom: trailingInset,
+        left: inset,
+        right: trailingInset,
+        background: { r: 11, g: 15, b: 26, alpha: 1 },
+      })
+      .png()
+      .toFile(output);
+  }),
 ]);
 
 const [before, after] = await Promise.all([stat(input), stat(webpOutput)]);

@@ -11,6 +11,12 @@ const requiredFiles = [
   'scripts/generate-social-card.mjs',
   'public/logo.png',
   'public/favicon.png',
+  'public/favicon-32x32.png',
+  'public/favicon-48x48.png',
+  'public/apple-touch-icon.png',
+  'public/android-chrome-192x192.png',
+  'public/android-chrome-512x512.png',
+  'public/site.webmanifest',
   'api/contact.js',
   'src/config/seoRoutes.js',
   'scripts/generate-seo-pages.mjs',
@@ -30,6 +36,21 @@ const fail = (message) => {
 
 for (const file of requiredFiles) {
   if (!existsSync(file)) fail(`missing ${file}`);
+}
+
+const htmlHead = readFileSync('index.html', 'utf8');
+for (const asset of [
+  '/favicon-32x32.png',
+  '/favicon-48x48.png',
+  '/favicon.png',
+  '/apple-touch-icon.png',
+  '/site.webmanifest',
+]) {
+  if (!htmlHead.includes(`href="${asset}"`)) fail(`home page head does not reference ${asset}`);
+}
+const webManifest = JSON.parse(readFileSync('public/site.webmanifest', 'utf8'));
+for (const icon of ['/android-chrome-192x192.png', '/android-chrome-512x512.png']) {
+  if (!webManifest.icons?.some(({ src }) => src === icon)) fail(`web manifest missing ${icon}`);
 }
 
 const vercel = JSON.parse(readFileSync('vercel.json', 'utf8'));
