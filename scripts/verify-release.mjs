@@ -10,6 +10,7 @@ const requiredFiles = [
   'public/images/sastrava-mark.webp',
   'scripts/generate-social-card.mjs',
   'public/logo.png',
+  'public/favicon.svg',
   'public/favicon.ico',
   'public/favicon.png',
   'public/favicon-16x16.png',
@@ -42,18 +43,19 @@ for (const file of requiredFiles) {
 
 const htmlHead = readFileSync('index.html', 'utf8');
 for (const asset of [
-  '/favicon.ico',
-  '/favicon-16x16.png',
-  '/favicon-32x32.png',
-  '/favicon-48x48.png',
-  '/favicon.png',
-  '/apple-touch-icon.png',
+  '/favicon.svg?v=20261009',
+  '/favicon.ico?v=20261009',
+  '/favicon-16x16.png?v=20261009',
+  '/favicon-32x32.png?v=20261009',
+  '/favicon-48x48.png?v=20261009',
+  '/favicon.png?v=20261009',
+  '/apple-touch-icon.png?v=20261009',
   '/site.webmanifest',
 ]) {
   if (!htmlHead.includes(`href="${asset}"`)) fail(`home page head does not reference ${asset}`);
 }
 const webManifest = JSON.parse(readFileSync('public/site.webmanifest', 'utf8'));
-for (const icon of ['/android-chrome-192x192.png', '/android-chrome-512x512.png']) {
+for (const icon of ['/android-chrome-192x192.png?v=20261009', '/android-chrome-512x512.png?v=20261009']) {
   if (!webManifest.icons?.some(({ src }) => src === icon)) fail(`web manifest missing ${icon}`);
 }
 const faviconIco = readFileSync('public/favicon.ico');

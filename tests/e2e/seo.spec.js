@@ -46,16 +46,22 @@ test('homepage publishes the SASTRAVA favicon and platform icon set', async ({ r
   const homeResponse = await request.get('/');
   const homeHtml = await homeResponse.text();
   for (const href of [
-    '/favicon.ico',
-    '/favicon-16x16.png',
-    '/favicon-32x32.png',
-    '/favicon-48x48.png',
-    '/favicon.png',
-    '/apple-touch-icon.png',
+    '/favicon.svg?v=20261009',
+    '/favicon.ico?v=20261009',
+    '/favicon-16x16.png?v=20261009',
+    '/favicon-32x32.png?v=20261009',
+    '/favicon-48x48.png?v=20261009',
+    '/favicon.png?v=20261009',
+    '/apple-touch-icon.png?v=20261009',
     '/site.webmanifest',
   ]) {
     expect(homeHtml).toContain(`href="${href}"`);
   }
+
+  const svgResponse = await request.get('/favicon.svg?v=20261009');
+  expect(svgResponse.status(), 'SVG favicon should be served').toBe(200);
+  expect(svgResponse.headers()['content-type']).toContain('image/svg+xml');
+  expect(await svgResponse.text()).toContain('href="/logo.png"');
 
   const icoResponse = await request.get('/favicon.ico');
   expect(icoResponse.status(), 'legacy favicon URL should be served').toBe(200);
@@ -80,8 +86,8 @@ test('homepage publishes the SASTRAVA favicon and platform icon set', async ({ r
   const manifest = await manifestResponse.json();
   expect(manifest.name).toBe('SASTRAVA');
   expect(manifest.icons.map(({ src }) => src)).toEqual([
-    '/android-chrome-192x192.png',
-    '/android-chrome-512x512.png',
+    '/android-chrome-192x192.png?v=20261009',
+    '/android-chrome-512x512.png?v=20261009',
   ]);
 });
 

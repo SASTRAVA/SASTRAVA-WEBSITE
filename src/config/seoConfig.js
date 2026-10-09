@@ -19,7 +19,7 @@ export const SEO_CONFIG = {
     siteUrl: 'https://sastrava.com',
     logoUrl: 'https://sastrava.com/logo.png',
     socialImage: 'https://sastrava.com/images/sastrava-social-card.png',
-    favicon: '/favicon.png',
+    favicon: '/favicon.png?v=20261009',
     language: 'en-IN',
     locale: 'en_IN',
     contactEmail: 'siri@sastrava.com',
