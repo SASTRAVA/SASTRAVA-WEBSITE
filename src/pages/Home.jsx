@@ -8,9 +8,9 @@ import {
   Bot,
   BriefcaseBusiness,
   Code2,
+  GraduationCap,
   SearchCheck,
   ShieldCheck,
-  Sprout,
   MessageCircle,
 } from 'lucide-react';
 import { Navbar } from '../components/layout/Navbar';
@@ -20,7 +20,7 @@ import innovationCycle from '../assets/sastrava/neon-innovation-cycle.webp';
 const capabilities = [
   {
     number: '01',
-    title: 'Business consulting',
+    title: 'Business consulting & incubation',
     description: 'Find the real constraint, set priorities, and turn a growth goal into a practical plan.',
     href: '/grow',
     label: 'Explore business consulting',
@@ -65,11 +65,11 @@ const capabilities = [
   },
   {
     number: '06',
-    title: 'Venture incubation',
-    description: 'Move an early idea toward validation, a stronger offer, and a considered go-to-market plan.',
-    href: '/grow',
-    label: 'Explore startup incubation',
-    Icon: Sprout,
+    title: 'Digital learning',
+    description: 'Build practical technology skills through workshops, mentoring, and project guidance in software, AI, and cybersecurity.',
+    href: '/learn',
+    label: 'Explore digital learning services',
+    Icon: GraduationCap,
     tone: 'teal',
   },
 ];
@@ -137,7 +137,7 @@ export const Home = () => (
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-peacock-light">What we do</p>
               <h2 className="mt-4 max-w-2xl font-display text-4xl font-bold leading-tight text-offwhite md:text-5xl">The right expertise, connected to the work.</h2>
             </div>
-            <p className="max-w-xl leading-relaxed text-offwhite/65 md:justify-self-end">A focused team across business consulting, digital products, automation, cybersecurity, and marketing—brought together around the outcome you need.</p>
+            <p className="max-w-xl leading-relaxed text-offwhite/65 md:justify-self-end">A focused team across business consulting, digital learning, digital products, automation, cybersecurity, and marketing—brought together around the outcome you need.</p>
           </motion.div>
 
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">

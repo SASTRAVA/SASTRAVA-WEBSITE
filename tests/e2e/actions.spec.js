@@ -7,6 +7,13 @@ test('primary CTA navigates to the contact journey', async ({ page }) => {
   await expect(page.getByRole('heading', { name: /get in touch/i }).first()).toBeVisible();
 });
 
+test('home digital learning capability opens learning services', async ({ page }) => {
+  await page.goto('/');
+  await page.getByRole('link', { name: 'Explore digital learning services' }).click();
+  await expect(page).toHaveURL(/\/learn$/);
+  await expect(page.getByRole('heading', { name: /learn: master in-demand skills/i })).toBeVisible();
+});
+
 test('home omits the team section and primary navigation reaches all core pages', async ({ page, isMobile }) => {
   await page.goto('/');
   await expect(page.getByRole('heading', { name: /people behind the work/i })).toHaveCount(0);
