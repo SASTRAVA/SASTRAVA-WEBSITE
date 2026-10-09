@@ -195,3 +195,20 @@ test('services page separates offerings into icon-led groups with working catego
   await page.getByRole('link', { name: 'Explore digital learning services' }).click();
   await expect(page).toHaveURL(/\/learn$/);
 });
+
+test('about page groups its story, purpose, work, and approach into clear sections', async ({ page }) => {
+  await page.goto('/about');
+
+  await expect(page.getByRole('heading', { name: /practical thinking, shaped around real needs/i })).toBeVisible();
+  await expect(page.locator('#our-purpose article')).toHaveCount(3);
+  await expect(page.locator('#our-work article')).toHaveCount(5);
+  await expect(page.locator('#our-approach article')).toHaveCount(3);
+
+  const sectionNavigation = page.getByRole('navigation', { name: 'About page sections' });
+  await sectionNavigation.getByRole('link', { name: 'Our work' }).click();
+  await expect(page).toHaveURL(/\/about#our-work$/);
+  await expect(page.getByRole('heading', { name: /a connected set of capabilities/i })).toBeVisible();
+
+  await page.getByRole('link', { name: /contact sastrava/i }).click();
+  await expect(page).toHaveURL(/\/contact$/);
+});

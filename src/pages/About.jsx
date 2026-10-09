@@ -1,403 +1,283 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import {
+  ArrowRight,
+  Bot,
+  BriefcaseBusiness,
+  CheckCircle2,
+  Compass,
+  GraduationCap,
+  Lightbulb,
+  Megaphone,
+  Rocket,
+  ShieldCheck,
+  Star,
+  Target,
+  Workflow,
+} from 'lucide-react';
 import { Navbar } from '../components/layout/Navbar';
 import { Footer } from '../components/layout/Footer';
 import { PageHero } from '../components/sections/PageHero';
-import { motion } from 'framer-motion';
-import { Target, Star, Rocket, BriefcaseBusiness, Bot, ShieldCheck, Megaphone, CheckCircle2 } from 'lucide-react';
 
-const About = () => {
-  const segments = [
-    {
-      title: 'Business Consulting & Incubation',
-      description: 'Practical strategy and early-stage support to help founders and organizations clarify priorities and next steps.',
-      icon: BriefcaseBusiness,
-    },
-    {
-      title: 'AI, Automation & Software',
-      description: 'Digital products and connected workflows shaped around user needs, existing tools, and agreed outcomes.',
-      icon: Bot,
-    },
-    {
-      title: 'Security Review & Remediation',
-      description: 'Scoped security reviews, prioritized findings, and practical patching support with verification.',
-      icon: ShieldCheck,
-    },
-    {
-      title: 'Digital Growth & Learning',
-      description: 'Search, content, campaigns, and practical learning programs aligned with each audience and brief.',
-      icon: Megaphone,
-    },
-  ];
+const ABOUT_SECTIONS = [
+  { id: 'our-story', label: 'Our story' },
+  { id: 'our-purpose', label: 'Our purpose' },
+  { id: 'our-work', label: 'Our work' },
+  { id: 'our-approach', label: 'Our approach' },
+];
 
-  const ecosystemItems = [
-    'Business strategy and startup incubation support',
-    'AI solutions, software products, and workflow automation',
-    'Security audits, testing, patching, and retesting',
-    'SEO, content, organic visibility, and paid campaigns',
-    'Digital content and media production',
-    'Practical technical learning, workshops, and mentoring',
-    'Research and product discovery for emerging needs',
-  ];
+const PURPOSE_CARDS = [
+  {
+    title: 'Our mission',
+    description: 'Help businesses, founders, and institutions turn complex challenges into well-scoped strategy and useful outcomes through consulting, technology, security, digital growth, and learning.',
+    Icon: Target,
+    tone: 'gold',
+  },
+  {
+    title: 'Our vision',
+    description: 'Build an ecosystem where organizations can develop ideas responsibly, apply technology with purpose, and grow with practical expertise.',
+    Icon: Rocket,
+    tone: 'teal',
+  },
+  {
+    title: 'Our motto',
+    description: 'Clarity to plan. Capability to build. Confidence to grow.',
+    Icon: Star,
+    tone: 'gold',
+  },
+];
 
-  return (
-    <>
-      <Navbar />
+const WORK_AREAS = [
+  {
+    title: 'Business consulting & incubation',
+    description: 'Clarify priorities, explore a business idea, and shape a considered path toward market.',
+    Icon: BriefcaseBusiness,
+    tone: 'gold',
+  },
+  {
+    title: 'Software, AI & automation',
+    description: 'Design digital products and connect workflows around user needs, existing tools, and agreed outcomes.',
+    Icon: Bot,
+    tone: 'teal',
+  },
+  {
+    title: 'Security review & remediation',
+    description: 'Review systems within an authorized scope, prioritize findings, support patching, and verify fixes.',
+    Icon: ShieldCheck,
+    tone: 'gold',
+  },
+  {
+    title: 'Digital growth, content & media',
+    description: 'Bring search, campaigns, useful content, and measurement together around the audience and goal.',
+    Icon: Megaphone,
+    tone: 'teal',
+  },
+  {
+    title: 'Digital learning',
+    description: 'Support learners and teams with practical workshops, mentoring, and project guidance.',
+    Icon: GraduationCap,
+    tone: 'gold',
+  },
+];
+
+const APPROACH_STEPS = [
+  {
+    number: '01',
+    title: 'Listen',
+    description: 'Understand the people, process, context, and opportunity behind the brief.',
+    Icon: Compass,
+  },
+  {
+    number: '02',
+    title: 'Shape',
+    description: 'Agree priorities, scope, and a practical route forward before work begins.',
+    Icon: Lightbulb,
+  },
+  {
+    number: '03',
+    title: 'Deliver',
+    description: 'Build, learn, and refine with the people who will use or maintain the result.',
+    Icon: Workflow,
+  },
+];
+
+const iconTone = (tone) => tone === 'gold'
+  ? 'border-gold-DEFAULT/25 bg-gold-DEFAULT/10 text-gold-light'
+  : 'border-peacock-light/25 bg-peacock-light/10 text-peacock-light';
+
+const About = () => (
+  <>
+    <Navbar />
+    <main id="main-content">
       <PageHero
         title="About SASTRAVA"
         subtitle="Who We Are"
-        description="SASTRAVA works across business consulting, startup incubation, technology, security, digital growth, and practical learning."
+        description="We bring together business consulting, startup incubation, technology, security, digital growth, and practical learning to help turn challenges into useful next steps."
       />
 
-      {/* MAIN CONTENT SECTIONS */}
-      <section className="relative py-20 md:py-28 bg-navy-950">
-        {/* BACKGROUND ACCENTS */}
-        <div className="absolute top-20 right-0 w-96 h-96 bg-peacock-green/6 rounded-full filter blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-80 h-80 bg-gold-DEFAULT/5 rounded-full filter blur-3xl pointer-events-none" />
+      <section className="relative overflow-hidden bg-navy-950 py-16 md:py-24">
+        <div className="pointer-events-none absolute -right-20 top-40 h-96 w-96 rounded-full bg-peacock-light/10 blur-3xl" />
+        <div className="pointer-events-none absolute -left-20 bottom-20 h-80 w-80 rounded-full bg-gold-DEFAULT/5 blur-3xl" />
 
-        <div className="relative max-w-6xl mx-auto px-6 z-10">
-          {/* ABOUT US STORY */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
-            viewport={{ once: true }}
-            className="relative glass-peacock gloss p-10 md:p-12 rounded-2xl 
-              border border-peacock-light/30 backdrop-blur-sm md:backdrop-blur-glass
-              mb-20 will-change-transform"
-            style={{
-              boxShadow: '0 0 24px rgba(20, 184, 166, 0.1), inset 0 0 15px rgba(255, 255, 255, 0.03)',
-            }}
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-peacock-light/0 via-peacock-light/3 to-peacock-light/0 
-              opacity-0 hover:opacity-100 transition-opacity duration-500 rounded-2xl pointer-events-none" />
-            
-            <div className="relative z-10">
-              <h2 className="text-3xl md:text-4xl font-bold text-offwhite mb-6">
-                <span className="text-transparent bg-gradient-to-r from-gold-mid via-gold-light to-gold-mid bg-clip-text">
-                  About SASTRAVA
-                </span>
-              </h2>
-              <div className="space-y-4 text-offwhite/80 leading-relaxed font-light">
-                <p>
-                  SASTRAVA helps businesses, founders, and institutions move from complex challenges to clear, workable next steps.
-                </p>
-                <p>
-                  Our work began with technical guidance in cybersecurity and AI. That foundation in practical learning now sits alongside consulting, software and AI development, automation, security reviews, and digital marketing.
-                </p>
-                <p>
-                  We saw the value of pairing useful knowledge with clear direction and real application. We bring that same practical approach to organizations evaluating a new idea, improving a process, building a product, or strengthening digital security.
-                </p>
-                <p>
-                  Today, our services span business strategy and incubation, AI and workflow automation, software and digital products, authorized security testing and remediation, digital marketing, and technical learning. We scope each engagement around its audience, constraints, and goals.
-                </p>
-                <p className="text-lg font-semibold text-gold-light pt-4">
-                  Our aim is to make the next decision clearer and the next step more achievable.
-                </p>
-              </div>
-            </div>
-          </motion.div>
+        <div className="relative mx-auto max-w-7xl px-6">
+          <nav aria-label="About page sections" className="mb-16 flex flex-wrap gap-3 border-b border-white/10 pb-8">
+            {ABOUT_SECTIONS.map(({ id, label }) => (
+              <a key={id} href={`#${id}`} className="inline-flex min-h-11 items-center rounded-full border border-peacock-light/20 bg-peacock-light/5 px-4 text-sm font-semibold text-offwhite/80 transition-colors hover:border-peacock-light/45 hover:text-peacock-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-light">
+                {label}
+              </a>
+            ))}
+          </nav>
 
-          {/* MOTTO SECTION */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
-            viewport={{ once: true }}
-            className="group relative glass-gold gloss p-10 md:p-12 rounded-2xl 
-              border border-gold-DEFAULT/25 backdrop-blur-sm md:backdrop-blur-glass
-              mb-20 hover:border-gold-light/40
-              transition-all duration-300 will-change-transform"
-            whileHover={{ y: -6 }}
-            style={{
-              boxShadow: '0 0 20px rgba(201, 168, 76, 0.15), inset 0 0 12px rgba(201, 168, 76, 0.04)',
-            }}
-          >
-            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-gold-DEFAULT/0 via-gold-DEFAULT/3 to-transparent 
-              opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-            
-            <div className="relative z-10 text-center">
+          <section id="our-story" aria-labelledby="our-story-title" className="scroll-mt-28">
+            <div className="grid gap-8 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
               <motion.div
-                className="mb-6 flex justify-center"
-                animate={{ scale: 1 }}
-                whileHover={{ scale: 1.15 }}
-                transition={{ duration: 0.3, ease: 'easeOut' }}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.45 }}
+                viewport={{ once: true, margin: '-60px' }}
+                className="lg:sticky lg:top-28"
               >
-                <Star className="w-12 h-12 text-gold-light" strokeWidth={1.75} />
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-peacock-light">Our story & roots</p>
+                <h2 id="our-story-title" className="mt-4 font-display text-3xl font-bold leading-tight text-offwhite md:text-4xl">Practical thinking, shaped around real needs.</h2>
+                <p className="mt-5 max-w-xl text-base leading-relaxed text-offwhite/65">The work began with technical guidance in cybersecurity and AI. That foundation in practical learning now informs how we help organizations plan, build, secure, and grow.</p>
               </motion.div>
-              <h3 className="text-2xl md:text-3xl font-bold text-offwhite mb-4">
-                Our Motto
-              </h3>
-              <p className="text-xl text-offwhite/80 font-semibold italic">
-                “Clarity to plan. Capability to build. Confidence to grow.”
-              </p>
-            </div>
-          </motion.div>
 
-          {/* MISSION & VISION SECTION */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
-            {/* MISSION */}
+              <motion.div
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.45, delay: 0.08 }}
+                viewport={{ once: true, margin: '-60px' }}
+                className="relative overflow-hidden rounded-2xl border border-peacock-light/25 bg-peacock-light/[0.045] p-7 shadow-elevation md:p-10"
+              >
+                <div className="pointer-events-none absolute -right-10 -top-10 h-44 w-44 rounded-full bg-peacock-light/10 blur-3xl" />
+                <div className="relative space-y-5 text-base leading-relaxed text-offwhite/75">
+                  <p>SASTRAVA helps businesses, founders, and institutions move from complex challenges to clear, workable next steps.</p>
+                  <p>Early work in cybersecurity and AI/ML included technical guidance, curriculum, and project support. As needs grew, the work broadened into consulting, software and AI development, automation, security reviews, digital marketing, content, and learning.</p>
+                  <p>We bring a practical approach to each engagement: understand the context, explain the trade-offs, agree a realistic scope, and focus on solutions people can use and maintain.</p>
+                  <p className="border-l-2 border-gold-light pl-4 font-semibold text-gold-light">Our aim is to make the next decision clearer and the next step more achievable.</p>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          <section id="our-purpose" aria-labelledby="our-purpose-title" className="mt-20 scroll-mt-28 md:mt-24">
             <motion.div
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0, ease: 'easeOut' }}
-              viewport={{ once: true }}
-              className="group relative glass-gold gloss p-8 rounded-2xl 
-                border border-gold-DEFAULT/25 backdrop-blur-sm md:backdrop-blur-glass
-                hover:border-gold-light/40
-                transition-all duration-300 will-change-transform"
-              whileHover={{ y: -6, scale: 1.015 }}
-              style={{
-                boxShadow: '0 0 20px rgba(201, 168, 76, 0.15), inset 0 0 12px rgba(201, 168, 76, 0.04)',
-              }}
+              transition={{ duration: 0.4 }}
+              viewport={{ once: true, margin: '-60px' }}
+              className="mb-8 max-w-3xl"
             >
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-gold-DEFAULT/0 via-gold-DEFAULT/3 to-transparent 
-                opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-              
-              <motion.div
-                className="mb-6 relative z-10"
-                animate={{ scale: 1 }}
-                whileHover={{ scale: 1.15, rotate: 8 }}
-                transition={{ duration: 0.3, ease: 'easeOut' }}
-              >
-                <Target className="w-12 h-12 text-gold-light" strokeWidth={1.75} />
-              </motion.div>
-
-              <h3 className="text-2xl font-bold text-offwhite mb-4 relative z-10">
-                Our Mission
-              </h3>
-
-              <p className="text-offwhite/75 leading-relaxed relative z-10 font-light">
-                Help businesses, founders, and institutions turn complex challenges into well-scoped strategy and useful outcomes through consulting, technology, security, digital growth, and learning.
-              </p>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-light">Purpose & ambition</p>
+              <h2 id="our-purpose-title" className="mt-3 font-display text-3xl font-bold leading-tight text-offwhite md:text-4xl">What guides the work.</h2>
             </motion.div>
 
-            {/* VISION */}
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
-              viewport={{ once: true }}
-              className="group relative glass-peacock gloss p-8 rounded-2xl 
-                border border-peacock-light/30 backdrop-blur-sm md:backdrop-blur-glass
-                hover:border-peacock-light/40
-                transition-all duration-300 will-change-transform"
-              whileHover={{ y: -6, scale: 1.015 }}
-              style={{
-                boxShadow: '0 0 20px rgba(20, 184, 166, 0.1), inset 0 0 12px rgba(20, 184, 166, 0.04)',
-              }}
-            >
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-peacock-light/0 via-peacock-light/3 to-transparent 
-                opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-              
-              <motion.div
-                className="mb-6 relative z-10"
-                animate={{ scale: 1 }}
-                whileHover={{ scale: 1.15, rotate: 8 }}
-                transition={{ duration: 0.3, ease: 'easeOut' }}
-              >
-                <Rocket className="w-12 h-12 text-peacock-light" strokeWidth={1.75} />
-              </motion.div>
-
-              <h3 className="text-2xl font-bold text-offwhite mb-4 relative z-10">
-                Our Vision
-              </h3>
-
-              <p className="text-offwhite/75 leading-relaxed relative z-10 font-light">
-                Build an ecosystem where organizations can develop ideas responsibly, apply technology with purpose, and grow with practical expertise.
-              </p>
-            </motion.div>
-          </div>
-
-          {/* OUR ROOTS SECTION */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
-            viewport={{ once: true }}
-            className="relative glass-peacock gloss p-10 md:p-12 rounded-2xl 
-              border border-peacock-light/30 backdrop-blur-sm md:backdrop-blur-glass
-              mb-20 will-change-transform"
-            style={{
-              boxShadow: '0 0 24px rgba(20, 184, 166, 0.1), inset 0 0 15px rgba(255, 255, 255, 0.03)',
-            }}
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-peacock-light/0 via-peacock-light/3 to-peacock-light/0 
-              opacity-0 hover:opacity-100 transition-opacity duration-500 rounded-2xl pointer-events-none" />
-            
-            <div className="relative z-10">
-              <h2 className="text-3xl md:text-4xl font-bold text-offwhite mb-6">
-                <span className="text-transparent bg-gradient-to-r from-peacock-light via-peacock-green to-peacock-light bg-clip-text">
-                  Our Roots
-                </span>
-              </h2>
-              <div className="space-y-4 text-offwhite/80 leading-relaxed font-light">
-                <p>
-                  SASTRAVA’s roots are in practical teaching and technical guidance in cybersecurity and AI/ML. That work grew into curriculum and project support, then broadened to include consulting, technology delivery, security, automation, and growth services.
-                </p>
-                <p>
-                  Those beginnings shaped how we work: understand the context, explain trade-offs, and focus on solutions people can use and maintain.
-                </p>
-                <p className="text-lg font-semibold text-peacock-light pt-4">
-                  We continue to support learners while helping organizations plan, build, secure, and grow their digital work.
-                </p>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* OUR SEGMENTS SECTION */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: 'easeOut' }}
-            viewport={{ once: true }}
-            className="mb-20"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-offwhite mb-12 text-center">
-              <span className="text-transparent bg-gradient-to-r from-gold-mid via-gold-light to-gold-mid bg-clip-text">
-                Our Segments
-              </span>
-            </h2>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {segments.map((segment, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, y: 40 }}
+            <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+              {PURPOSE_CARDS.map(({ title, description, Icon, tone }, index) => (
+                <motion.article
+                  key={title}
+                  initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: idx * 0.1, ease: 'easeOut' }}
-                  viewport={{ once: true }}
-                  className="group relative glass-gold gloss p-8 rounded-2xl 
-                    border border-gold-DEFAULT/25 backdrop-blur-sm md:backdrop-blur-glass
-                    hover:border-gold-light/40
-                    transition-all duration-300 will-change-transform"
-                  whileHover={{ y: -6, scale: 1.015 }}
-                  style={{
-                    boxShadow: '0 0 20px rgba(201, 168, 76, 0.15), inset 0 0 12px rgba(201, 168, 76, 0.04)',
-                  }}
+                  transition={{ duration: 0.4, delay: (index % 3) * 0.06 }}
+                  viewport={{ once: true, margin: '-60px' }}
+                  className="group relative overflow-hidden rounded-2xl border border-gold-DEFAULT/15 bg-navy-900/70 p-6 shadow-elevation transition-all duration-300 hover:-translate-y-1 hover:border-peacock-light/30 md:p-7"
                 >
-                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-gold-DEFAULT/0 via-gold-DEFAULT/3 to-transparent 
-                    opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-                  
-                  <motion.div
-                    className="mb-6 relative z-10"
-                    animate={{ scale: 1 }}
-                    whileHover={{ scale: 1.15, rotate: 8 }}
-                    transition={{ duration: 0.3, ease: 'easeOut' }}
-                  >
-                    <segment.icon className="w-12 h-12 text-gold-light" strokeWidth={1.75} />
-                  </motion.div>
-
-                  <h3 className="text-xl font-bold text-offwhite mb-4 relative z-10">
-                    {segment.title}
-                  </h3>
-
-                  <p className="text-offwhite/75 leading-relaxed relative z-10 font-light">
-                    {segment.description}
-                  </p>
-                </motion.div>
+                  <span className={`grid h-12 w-12 place-items-center rounded-xl border ${iconTone(tone)}`}><Icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" /></span>
+                  <h3 className="mt-6 font-display text-xl font-semibold text-offwhite transition-colors group-hover:text-gold-light md:text-2xl">{title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-offwhite/70">{description}</p>
+                </motion.article>
               ))}
             </div>
-          </motion.div>
+          </section>
 
-          {/* OUR ECOSYSTEM SECTION */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
-            viewport={{ once: true }}
-            className="relative glass-peacock gloss p-10 md:p-12 rounded-2xl 
-              border border-peacock-light/30 backdrop-blur-sm md:backdrop-blur-glass
-              mb-20 will-change-transform"
-            style={{
-              boxShadow: '0 0 24px rgba(20, 184, 166, 0.1), inset 0 0 15px rgba(255, 255, 255, 0.03)',
-            }}
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-peacock-light/0 via-peacock-light/3 to-peacock-light/0 
-              opacity-0 hover:opacity-100 transition-opacity duration-500 rounded-2xl pointer-events-none" />
-            
-            <div className="relative z-10">
-              <h2 className="text-3xl md:text-4xl font-bold text-offwhite mb-8">
-                <span className="text-transparent bg-gradient-to-r from-peacock-light via-peacock-green to-peacock-light bg-clip-text">
-                  Our Ecosystem
-                </span>
-              </h2>
-              <p className="text-lg text-offwhite/80 leading-relaxed font-light mb-8">
-                Depending on the brief, our work may include:
-              </p>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {ecosystemItems.map((item, idx) => (
-                  <motion.div
-                    key={idx}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: idx * 0.05, ease: 'easeOut' }}
-                    viewport={{ once: true }}
-                    className="flex items-center space-x-4 p-4 rounded-lg bg-peacock-light/5 border border-peacock-light/20 hover:border-peacock-light/40 transition-all duration-300"
-                  >
-                    <CheckCircle2 className="w-6 h-6 text-peacock-light flex-shrink-0" strokeWidth={1.75} />
-                    <p className="text-offwhite/80 font-light">{item}</p>
-                  </motion.div>
-                ))}
+          <section id="our-work" aria-labelledby="our-work-title" className="mt-20 scroll-mt-28 md:mt-24">
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+              viewport={{ once: true, margin: '-60px' }}
+              className="mb-8 grid gap-4 md:grid-cols-[minmax(0,1fr)_minmax(16rem,0.65fr)] md:items-end"
+            >
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-peacock-light">Areas of work</p>
+                <h2 id="our-work-title" className="mt-3 font-display text-3xl font-bold leading-tight text-offwhite md:text-4xl">A connected set of capabilities.</h2>
               </div>
-            </div>
-          </motion.div>
+              <p className="max-w-xl text-sm leading-relaxed text-offwhite/60 md:justify-self-end">The right combination depends on the challenge, audience, and goals. Work is scoped with the people who will use or support the outcome.</p>
+            </motion.div>
 
-          {/* WHAT WE BELIEVE SECTION */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
-            viewport={{ once: true }}
-            className="relative glass-gold gloss p-10 md:p-12 rounded-2xl 
-              border border-gold-DEFAULT/25 backdrop-blur-sm md:backdrop-blur-glass
-              will-change-transform"
-            style={{
-              boxShadow: '0 0 24px rgba(201, 168, 76, 0.15), inset 0 0 15px rgba(201, 168, 76, 0.04)',
-            }}
-          >
-            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-gold-DEFAULT/0 via-gold-DEFAULT/3 to-transparent 
-              opacity-0 hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-            
-            <div className="relative z-10">
-              <h2 className="text-3xl md:text-4xl font-bold text-offwhite mb-8 text-center">
-                <span className="text-transparent bg-gradient-to-r from-gold-mid via-gold-light to-gold-mid bg-clip-text">
-                  What We Believe
-                </span>
-              </h2>
-              <div className="space-y-6 text-lg text-offwhite/80 leading-relaxed font-light">
-                <p>
-                  Good work starts with a clear problem, a realistic plan, and respect for the people affected by the solution.
-                </p>
-                <ul className="space-y-3 ml-6">
-                  <li className="flex items-start">
-                    <span className="text-gold-light mr-4 mt-1">•</span>
-                    <span>Advice grounded in the client’s context and constraints.</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-gold-light mr-4 mt-1">•</span>
-                    <span>Technology designed for practical use and responsible operation.</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-gold-light mr-4 mt-1">•</span>
-                    <span>Security, accessibility, and maintainability considered from the start.</span>
-                  </li>
-                </ul>
-                <p className="pt-4">
-                  We work with founders, businesses, and institutions to turn ideas and challenges into clear decisions, useful services, and measurable next steps.
-                </p>
-                <p className="text-xl font-semibold text-gold-light pt-4">
-                  Practical work. Clear communication. Progress you can evaluate.
-                </p>
-              </div>
+            <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+              {WORK_AREAS.map(({ title, description, Icon, tone }, index) => (
+                <motion.article
+                  key={title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: (index % 3) * 0.06 }}
+                  viewport={{ once: true, margin: '-60px' }}
+                  className="group relative flex min-h-56 flex-col overflow-hidden rounded-2xl border border-white/10 bg-navy-900/65 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-peacock-light/30 hover:shadow-glow-gold md:p-7"
+                >
+                  <div className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full bg-gold-DEFAULT/5 blur-3xl transition-colors group-hover:bg-peacock-light/10" />
+                  <span className={`relative grid h-12 w-12 place-items-center rounded-xl border ${iconTone(tone)}`}><Icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" /></span>
+                  <h3 className="relative mt-6 font-display text-xl font-semibold leading-snug text-offwhite transition-colors group-hover:text-gold-light">{title}</h3>
+                  <p className="relative mt-3 flex-1 text-sm leading-relaxed text-offwhite/65">{description}</p>
+                </motion.article>
+              ))}
             </div>
-          </motion.div>
+          </section>
+
+          <section id="our-approach" aria-labelledby="our-approach-title" className="mt-20 scroll-mt-28 md:mt-24">
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+              viewport={{ once: true, margin: '-60px' }}
+              className="mb-8 max-w-3xl"
+            >
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-light">How we work</p>
+              <h2 id="our-approach-title" className="mt-3 font-display text-3xl font-bold leading-tight text-offwhite md:text-4xl">Listen carefully. Make the next step clear.</h2>
+            </motion.div>
+
+            <div className="grid gap-4 md:grid-cols-3">
+              {APPROACH_STEPS.map(({ number, title, description, Icon }, index) => (
+                <motion.article
+                  key={number}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: index * 0.06 }}
+                  viewport={{ once: true, margin: '-60px' }}
+                  className="rounded-2xl border border-white/10 bg-white/[0.025] p-6 md:p-7"
+                >
+                  <div className="flex items-center justify-between gap-4">
+                    <span className="grid h-11 w-11 place-items-center rounded-xl border border-peacock-light/20 bg-peacock-light/10 text-peacock-light"><Icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" /></span>
+                    <span className="font-display text-xs tracking-[0.2em] text-gold-light">{number}</span>
+                  </div>
+                  <h3 className="mt-6 text-xl font-semibold text-offwhite">{title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-offwhite/65">{description}</p>
+                </motion.article>
+              ))}
+            </div>
+          </section>
+
+          <motion.section
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45 }}
+            viewport={{ once: true, margin: '-60px' }}
+            className="relative mt-20 overflow-hidden rounded-3xl border border-gold-DEFAULT/25 bg-gradient-to-br from-gold-DEFAULT/10 via-navy-900/80 to-peacock-light/10 p-8 text-center md:mt-24 md:p-12"
+          >
+            <span className="mx-auto grid h-12 w-12 place-items-center rounded-2xl border border-gold-DEFAULT/25 bg-gold-DEFAULT/10 text-gold-light"><CheckCircle2 className="h-5 w-5" aria-hidden="true" /></span>
+            <p className="mt-5 text-xs font-semibold uppercase tracking-[0.2em] text-gold-light">Start with a conversation</p>
+            <h2 className="mt-3 font-display text-3xl font-bold text-offwhite md:text-4xl">Have a challenge or idea to work through?</h2>
+            <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-offwhite/65">Tell us what you are trying to change or create. We can help clarify a practical next step.</p>
+            <Link to="/contact" className="mt-7 inline-flex min-h-12 items-center gap-2 rounded-xl bg-[#E6C200] px-5 font-bold text-navy-950 transition-colors hover:bg-[#FFF3B0] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-light">
+              Contact SASTRAVA <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+          </motion.section>
         </div>
       </section>
-
-      <Footer />
-    </>
-  );
-};
+    </main>
+    <Footer />
+  </>
+);
 
 export default About;
