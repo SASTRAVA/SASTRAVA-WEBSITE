@@ -1,5 +1,5 @@
 const organizationName = 'SASTRAVA';
-const defaultDescription = 'SASTRAVA is a business consultant, innovator, and startup incubator in Vijayawada, helping teams plan growth and build through technology, security, and learning.';
+const defaultDescription = 'SASTRAVA helps businesses grow through consulting, startup incubation, software, AI automation, cybersecurity, digital marketing, and practical learning.';
 
 export const seoRoutes = {
   '/': {

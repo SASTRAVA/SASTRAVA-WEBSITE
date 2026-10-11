@@ -16,63 +16,9 @@ import {
 import { Navbar } from '../components/layout/Navbar';
 import { Footer } from '../components/layout/Footer';
 import innovationCycle from '../assets/sastrava/neon-innovation-cycle.webp';
+import { homeCapabilities } from '../config/homeCapabilities.js';
 
-const capabilities = [
-  {
-    number: '01',
-    title: 'Business consulting & incubation',
-    description: 'Find the real constraint, set priorities, and turn a growth goal into a practical plan.',
-    href: '/grow',
-    label: 'Explore business consulting',
-    Icon: BriefcaseBusiness,
-    tone: 'gold',
-  },
-  {
-    number: '02',
-    title: 'AI & automation',
-    description: 'Use AI and workflow automation to reduce repetitive work and make useful services easier to deliver.',
-    href: '/ai',
-    label: 'Explore AI and automation',
-    Icon: Bot,
-    tone: 'teal',
-  },
-  {
-    number: '03',
-    title: 'Software & digital products',
-    description: 'Shape and build websites, applications, and digital tools around a clear user need.',
-    href: '/build',
-    label: 'Explore software development',
-    Icon: Code2,
-    tone: 'teal',
-  },
-  {
-    number: '04',
-    title: 'Security audits & testing',
-    description: 'Review applications and controls, identify security gaps, and prioritize practical fixes.',
-    href: '/cybersecurity/security-audits',
-    label: 'Explore security audit services',
-    Icon: ShieldCheck,
-    tone: 'gold',
-  },
-  {
-    number: '05',
-    title: 'SEO & digital marketing',
-    description: 'Improve how people find, understand, and act on your business across search and campaigns.',
-    href: '/digital-marketing',
-    label: 'Explore digital marketing',
-    Icon: SearchCheck,
-    tone: 'gold',
-  },
-  {
-    number: '06',
-    title: 'Digital learning',
-    description: 'Build practical technology skills through workshops, mentoring, and project guidance in software, AI, and cybersecurity.',
-    href: '/learn',
-    label: 'Explore digital learning services',
-    Icon: GraduationCap,
-    tone: 'teal',
-  },
-];
+const iconByName = { BriefcaseBusiness, Bot, Code2, GraduationCap, SearchCheck, ShieldCheck };
 
 const reveal = {
   initial: { opacity: 0, y: 22 },
@@ -141,7 +87,9 @@ export const Home = () => (
           </motion.div>
 
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-            {capabilities.map(({ number, title, description, href, label, Icon, tone }, index) => (
+            {homeCapabilities.map(({ number, title, description, href, label, icon, tone }, index) => {
+              const Icon = iconByName[icon];
+              return (
               <motion.article key={title} {...reveal} transition={{ ...reveal.transition, delay: (index % 3) * 0.06 }} className="group relative flex min-h-[260px] flex-col overflow-hidden rounded-2xl border border-white/10 bg-navy-950/75 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-peacock-light/35 hover:shadow-[0_18px_45px_rgba(0,0,0,0.24)] md:p-7">
                 <div className="mb-8 flex items-start justify-between">
                   <span className={`grid h-12 w-12 place-items-center rounded-xl border ${tone === 'gold' ? 'border-gold-DEFAULT/20 bg-gold-DEFAULT/10 text-gold-light' : 'border-peacock-light/20 bg-peacock-light/10 text-peacock-light'}`}><Icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" /></span>
@@ -153,7 +101,8 @@ export const Home = () => (
                   Explore service <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
                 </Link>
               </motion.article>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
