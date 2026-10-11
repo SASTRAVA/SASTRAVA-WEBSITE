@@ -20,6 +20,7 @@ const requiredFiles = [
   'public/android-chrome-192x192.png',
   'public/android-chrome-512x512.png',
   'public/site.webmanifest',
+  'public/googlef0da80dfb3341284.html',
   'api/contact.js',
   'src/config/seoRoutes.js',
   'scripts/generate-seo-pages.mjs',

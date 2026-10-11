@@ -37,6 +37,12 @@ test('SEO service pages publish visible answer-first questions and matching FAQ 
   }
 });
 
+test('Google Search Console ownership file is served from the site root', async ({ request }) => {
+  const response = await request.get('/googlef0da80dfb3341284.html');
+  expect(response.status()).toBe(200);
+  expect((await response.text()).trim()).toBe('google-site-verification: googlef0da80dfb3341284.html');
+});
+
 test('homepage browser tab title identifies SASTRAVA as a business consultant', async ({ page }) => {
   await page.goto('/', { waitUntil: 'networkidle' });
   await expect(page).toHaveTitle(/Business Consultant \| SASTRAVA/);
