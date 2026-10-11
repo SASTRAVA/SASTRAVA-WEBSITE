@@ -3,7 +3,7 @@ const defaultDescription = 'SASTRAVA helps businesses grow through consulting, s
 
 export const seoRoutes = {
   '/': {
-    title: 'Business Consultant | SASTRAVA',
+    title: 'Business Consultant | SASTRAVA: Software, AI & Growth',
     description: defaultDescription,
     keywords: ['business consultant Tadepalli', 'business consulting India', 'business innovator', 'startup incubator India', 'AI and business automation', 'software development India', 'cybersecurity audit and testing', 'SEO and digital marketing'],
   },

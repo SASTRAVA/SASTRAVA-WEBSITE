@@ -2,16 +2,21 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { buildStructuredData, seoRoutes } from '../src/config/seoRoutes.js';
 import { homeCapabilities } from '../src/config/homeCapabilities.js';
+import { googleMapsListingName, googleMapsListingUrl } from '../src/config/businessProfile.js';
 
 const outputDirectory = resolve('dist');
 const template = await readFile(resolve(outputDirectory, 'index.html'), 'utf8');
 const escapeHtml = (value) => value.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#39;');
+const googleMapsHref = googleMapsListingUrl.replaceAll('&', '&amp;');
 const crawlableLinks = [
-  ['/about', 'About'], ['/services', 'Services'], ['/portfolio', 'Portfolio'], ['/contact', 'Contact'],
-  ['/services-hub', 'Explore all services'], ['/blog', 'Insights'],
+  ['/', 'Home'], ['/about', 'About'], ['/services', 'Services'], ['/portfolio', 'Portfolio'], ['/contact', 'Contact'],
+  ['/services-hub', 'All service areas'], ['/blog', 'Insights'],
 ];
 const linkList = (items) => items.map(([href, label]) => `<li><a href="${href}">${escapeHtml(label)}</a></li>`).join('');
-const homeSections = `<section><h2>Business, technology, and growth services</h2><p>Work with SASTRAVA on business consulting, startup incubation, digital products, AI automation, cybersecurity, digital marketing, and digital learning.</p><ul>${homeCapabilities.map(({ title, description, href }) => `<li><h3>${escapeHtml(title)}</h3><p>${escapeHtml(description)}</p><a href="${href}">Explore ${escapeHtml(title.toLowerCase())}</a></li>`).join('')}</ul></section><section><h2>How we work</h2><p>We listen to understand the challenge, shape an agreed scope and practical plan, then deliver and refine with the people who will use the result.</p><p><a href="/services">Explore our services</a> · <a href="/contact">Talk with SASTRAVA</a></p></section>`;
+const staticHeader = `<header class="static-header"><a class="static-brand" href="/" aria-label="SASTRAVA home">SASTRAVA</a><nav aria-label="Main navigation"><ul>${linkList(crawlableLinks)}</ul></nav></header>`;
+const staticFooter = `<footer class="static-footer"><p>SASTRAVA · Business consulting, innovation, and incubation · Tadepalli, Andhra Pradesh, India</p><nav aria-label="Footer navigation"><ul>${linkList([['/about', 'About SASTRAVA'], ['/services', 'Services'], ['/portfolio', 'Portfolio'], ['/contact', 'Contact'], ['/privacy', 'Privacy'], ['/terms', 'Terms']])}</ul></nav><p><a href="${googleMapsHref}" aria-label="Find ${escapeHtml(googleMapsListingName)} on Google Maps">Find SASTRAVA on Google Maps</a></p></footer>`;
+const homeBody = `<main><section class="static-hero"><p class="static-eyebrow">Strategy · Innovation · Delivery</p><h1>Business consulting, software &amp; digital growth for growing teams</h1><p class="static-lede">SASTRAVA is a business consultant, innovator, and startup incubator based in Tadepalli, Andhra Pradesh. We help founders and organizations clarify strategy and move forward with useful technology, stronger security, measurable marketing, and practical learning.</p><p class="static-location">Serving teams across India · <a href="${googleMapsHref}" aria-label="Find ${escapeHtml(googleMapsListingName)} on Google Maps">Find us on Google Maps</a></p><div class="static-actions"><a class="static-primary" href="/contact">Talk through your next move</a><a class="static-secondary" href="/services">Explore services</a></div></section><section class="static-section" id="capabilities"><p class="static-eyebrow">What we do</p><h2>Connected expertise for your next step</h2><p>Choose a service area or combine capabilities around the outcome you need.</p><div class="static-grid">${homeCapabilities.map(({ number, title, description, href }) => `<article class="static-card"><p class="static-number">${escapeHtml(number)}</p><h3>${escapeHtml(title)}</h3><p>${escapeHtml(description)}</p><a href="${href}">Explore ${escapeHtml(title.toLowerCase())}</a></article>`).join('')}</div></section><section class="static-section"><p class="static-eyebrow">How we work</p><h2>Listen, shape, deliver</h2><div class="static-grid static-steps"><article class="static-card"><h3>Listen</h3><p>Understand the people, process, challenge, and opportunity behind the brief.</p></article><article class="static-card"><h3>Shape</h3><p>Agree priorities, scope, and a practical route forward before work begins.</p></article><article class="static-card"><h3>Deliver</h3><p>Build, learn, and refine with the people who will use or maintain the result.</p></article></div><p class="static-cta"><a href="/about">Learn about SASTRAVA</a> · <a href="/portfolio">View capabilities and portfolios</a> · <a href="/contact">Contact our team</a></p></section></main>`;
+const standardBody = (route, entry) => `<main class="static-standard"><p class="static-eyebrow">SASTRAVA · ${route === '/contact' ? 'Tadepalli, Andhra Pradesh' : 'Consulting · Technology · Growth'}</p><h1>${escapeHtml(entry.title)}</h1><p class="static-lede">${escapeHtml(entry.description)}</p>${entry.faqs?.length ? `<section class="static-faq"><h2>Common questions</h2><dl>${entry.faqs.map(([question, answer]) => `<div><dt>${escapeHtml(question)}</dt><dd>${escapeHtml(answer)}</dd></div>`).join('')}</dl></section>` : ''}<section class="static-section"><h2>Explore SASTRAVA</h2><ul class="static-link-list">${linkList([['/services', 'Explore services'], ['/about', 'About SASTRAVA'], ['/portfolio', 'Work and portfolios'], ['/contact', 'Contact SASTRAVA']])}</ul></section></main>`;
 
 for (const [route, entry] of Object.entries(seoRoutes)) {
   const canonical = `https://sastrava.com${route === '/' ? '/' : route}`;
@@ -19,7 +24,7 @@ for (const [route, entry] of Object.entries(seoRoutes)) {
   const title = escapeHtml(entry.title);
   const robots = entry.noindex ? '<meta name="robots" content="noindex, nofollow" />' : '';
   const schema = `<script id="sastrava-json-ld" type="application/ld+json">${JSON.stringify(buildStructuredData(route)).replaceAll('<', '\\u003c')}</script>`;
-  const fallback = entry.noindex ? '' : `<noscript><nav aria-label="Main navigation"><a href="/">SASTRAVA home</a><ul>${linkList(crawlableLinks)}</ul></nav><main><h1>${escapeHtml(entry.title)}</h1><p>${description}</p>${route === '/' ? homeSections : ''}${entry.faqs?.length ? `<section><h2>Common questions</h2><dl>${entry.faqs.map(([question, answer]) => `<div><dt>${escapeHtml(question)}</dt><dd>${escapeHtml(answer)}</dd></div>`).join('')}</dl></section>` : ''}</main><footer><p>SASTRAVA — consulting, innovation, and incubation.</p><nav aria-label="Footer navigation"><ul>${linkList([['/about', 'About SASTRAVA'], ['/services', 'Services'], ['/portfolio', 'Portfolio'], ['/contact', 'Contact'], ['/privacy', 'Privacy'], ['/terms', 'Terms']])}</ul></nav></footer></noscript>`;
+  const staticPage = entry.noindex ? '' : `<div class="static-site-fallback">${staticHeader}${route === '/' ? homeBody : standardBody(route, entry)}${staticFooter}</div>`;
   const html = template
     .replace(/<title>[\s\S]*?<\/title>/i, `<title>${title}</title>`)
     .replace(/<meta name="description" content="[^"]*"\s*\/>/i, `<meta name="description" content="${description}" />`)
@@ -28,8 +33,18 @@ for (const [route, entry] of Object.entries(seoRoutes)) {
     .replace(/<link rel="canonical" href="[^"]*"\s*\/>/i, `<link rel="canonical" href="${canonical}" />`)
     .replace(/<meta property="og:url" content="[^"]*"\s*\/>/i, `<meta property="og:url" content="${canonical}" />`)
     .replace('<!--SEO_JSON_LD-->', `${robots}\n    ${schema}`)
-    .replace('<div id="root"></div>', `<div id="root"></div>${fallback}`)
+    .replace('<div id="root"></div>', `<div id="root">${staticPage}</div>`)
     .replace('</head>', `    <meta name="twitter:title" content="${escapeHtml(entry.title)}" />\n    <meta name="twitter:description" content="${description}" />\n  </head>`);
+
+  if (!entry.noindex && !html.includes('<div id="root"><div class="static-site-fallback">')) {
+    throw new Error(`Generated page is missing crawlable body content: ${route}`);
+  }
+  if (!entry.noindex && !html.includes('<nav aria-label="Main navigation">')) {
+    throw new Error(`Generated page is missing crawlable navigation links: ${route}`);
+  }
+  if (route === '/' && homeCapabilities.some(({ title, href }) => !html.includes(`<h3>${escapeHtml(title)}</h3>`) || !html.includes(`href="${href}"`))) {
+    throw new Error('Generated homepage is missing a linked service capability.');
+  }
 
   const pageDirectory = route === '/' ? outputDirectory : resolve(outputDirectory, route.slice(1));
   await mkdir(pageDirectory, { recursive: true });
