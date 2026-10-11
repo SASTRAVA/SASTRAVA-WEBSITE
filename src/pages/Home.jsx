@@ -40,22 +40,22 @@ export const Home = () => (
             <p className="mb-6 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.22em] text-gold-light">
               <span className="h-px w-8 bg-gold-light" /> Strategy · Innovation · Delivery
             </p>
-            <h1 className="max-w-3xl font-display text-5xl font-bold leading-[1.04] text-offwhite sm:text-6xl lg:text-[4.4rem]">
+            <h1 className="max-w-3xl font-display text-4xl font-bold leading-[1.08] text-offwhite sm:text-6xl lg:text-[4.4rem]">
               Make your next move a <span className="bg-[linear-gradient(135deg,#C9A84C_0%,#E6C200_35%,#FFF3B0_58%,#C9A84C_100%)] bg-clip-text text-transparent">meaningful one.</span>
             </h1>
             <p className="mt-7 max-w-2xl text-lg leading-relaxed text-offwhite/75 md:text-xl">
               SASTRAVA is a business consultant, innovator, and startup incubator helping founders and organizations turn complex challenges into clear plans, useful technology, and sustainable growth.
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <Link to="/contact" className="inline-flex min-h-14 items-center justify-center gap-2 rounded-xl bg-[#E6C200] px-6 font-bold text-navy-950 shadow-glow-gold transition-colors hover:-translate-y-0.5 hover:bg-[#FFF3B0] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-light">
+              <Link to="/contact" className="inline-flex min-h-14 w-full items-center justify-center gap-2 rounded-xl bg-[#E6C200] px-4 text-center font-bold text-navy-950 shadow-glow-gold transition-colors hover:-translate-y-0.5 hover:bg-[#FFF3B0] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-light sm:w-auto sm:px-6">
                 Talk through your next move <ArrowRight className="h-5 w-5" aria-hidden="true" />
               </Link>
-              <a href="#capabilities" className="inline-flex min-h-14 items-center justify-center gap-2 rounded-xl border border-peacock-light/30 bg-white/[0.03] px-6 font-semibold text-offwhite transition-colors hover:border-peacock-light/70 hover:bg-peacock-light/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-peacock-light">
+              <a href="#capabilities" className="inline-flex min-h-14 w-full items-center justify-center gap-2 rounded-xl border border-peacock-light/30 bg-white/[0.03] px-4 text-center font-semibold text-offwhite transition-colors hover:border-peacock-light/70 hover:bg-peacock-light/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-peacock-light sm:w-auto sm:px-6">
                 See how we can help <ArrowDownRight className="h-5 w-5" aria-hidden="true" />
               </a>
             </div>
             <div className="mt-10 flex flex-wrap gap-x-7 gap-y-3 border-t border-white/10 pt-6 text-sm text-offwhite/65">
-              <a href={googleMapsListingUrl} target="_blank" rel="noopener noreferrer" className="underline decoration-peacock-light/50 underline-offset-4 transition-colors hover:text-peacock-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-peacock-light">Based in Tadepalli, Andhra Pradesh, India · Find us on Google Maps</a>
+              <a href={googleMapsListingUrl} target="_blank" rel="noopener noreferrer" className="max-w-full break-words underline decoration-peacock-light/50 underline-offset-4 transition-colors hover:text-peacock-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-peacock-light">Based in Tadepalli, Andhra Pradesh, India · Find us on Google Maps</a>
               <span>Working with teams nationwide</span>
             </div>
           </div>

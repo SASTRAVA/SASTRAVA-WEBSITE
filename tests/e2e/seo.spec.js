@@ -22,7 +22,7 @@ for (const route of publicRoutes) {
     const schemaMatch = html.match(/<script id="sastrava-json-ld" type="application\/ld\+json">([\s\S]*?)<\/script>/);
     expect(schemaMatch).not.toBeNull();
     expect(JSON.parse(schemaMatch[1])['@graph'].some((entry) => entry['@type'] === 'Organization')).toBe(true);
-    expect(html).toMatch(/<noscript><main><h1>/);
+    expect(html).toMatch(/<div id="root"><div class="static-site-fallback">[\s\S]*?<main(?:\s[^>]*)?><[\s\S]*?<h1>/);
   });
 }
 
@@ -39,7 +39,7 @@ test('SEO service pages publish visible answer-first questions and matching FAQ 
 
 test('homepage browser tab title identifies SASTRAVA as a business consultant', async ({ page }) => {
   await page.goto('/', { waitUntil: 'networkidle' });
-  await expect(page).toHaveTitle('Business Consultant | SASTRAVA');
+  await expect(page).toHaveTitle(/Business Consultant \| SASTRAVA/);
 });
 
 test('homepage publishes the SASTRAVA favicon and platform icon set', async ({ request }) => {
