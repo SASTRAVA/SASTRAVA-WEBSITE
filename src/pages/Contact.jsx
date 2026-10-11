@@ -105,7 +105,7 @@ export const Contact = () => {
               <div className="rounded-lg border border-gold-DEFAULT/10 bg-navy-900 p-5">
                 <h3 className="text-lg font-semibold text-offwhite">Location & availability</h3>
                 <div className="mt-4 space-y-3 text-sm leading-relaxed text-offwhite/75">
-                  <p className="flex items-start gap-3"><MapPin className="mt-0.5 h-4 w-4 flex-shrink-0 text-gold-light" aria-hidden="true" />Vijayawada, Andhra Pradesh, India. Remote collaboration available nationwide.</p>
+                  <p className="flex items-start gap-3"><MapPin className="mt-0.5 h-4 w-4 flex-shrink-0 text-gold-light" aria-hidden="true" />Tadepalli, Andhra Pradesh, India. Remote collaboration available nationwide.</p>
                   <p className="flex items-start gap-3"><Clock className="mt-0.5 h-4 w-4 flex-shrink-0 text-gold-light" aria-hidden="true" />Monday–Saturday, 9:30 AM–5:30 PM IST.</p>
                 </div>
               </div>

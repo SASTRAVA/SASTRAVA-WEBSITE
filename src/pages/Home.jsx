@@ -54,7 +54,7 @@ export const Home = () => (
               </a>
             </div>
             <div className="mt-10 flex flex-wrap gap-x-7 gap-y-3 border-t border-white/10 pt-6 text-sm text-offwhite/65">
-              <span>Based in Vijayawada, India</span>
+              <span>Based in Tadepalli, Andhra Pradesh, India</span>
               <span>Working with teams nationwide</span>
             </div>
           </div>

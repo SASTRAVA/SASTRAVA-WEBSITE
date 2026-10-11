@@ -5,7 +5,7 @@ export const seoRoutes = {
   '/': {
     title: 'Business Consultant | SASTRAVA',
     description: defaultDescription,
-    keywords: ['business consultant Vijayawada', 'business consulting India', 'business innovator', 'startup incubator India', 'AI and business automation', 'software development India', 'cybersecurity audit and testing', 'SEO and digital marketing'],
+    keywords: ['business consultant Tadepalli', 'business consulting India', 'business innovator', 'startup incubator India', 'AI and business automation', 'software development India', 'cybersecurity audit and testing', 'SEO and digital marketing'],
   },
   '/about': { title: 'About SASTRAVA | Business Consulting & Innovation', description: 'Learn how SASTRAVA supports founders, businesses, and institutions through consulting, incubation, technology, security, digital growth, and practical learning.' },
   '/domains': { title: 'Industries & Technology Domains | SASTRAVA', description: 'Explore the technology domains and business challenges SASTRAVA supports through learning, digital product development, AI, and security.' },
@@ -23,7 +23,7 @@ export const seoRoutes = {
   '/portfolio': { title: 'SASTRAVA Capabilities & Team Portfolio', description: 'Explore SASTRAVA capabilities across consulting, incubation, software, automation, security, digital marketing, and technical learning, plus team portfolios.' },
   '/blog': { title: 'Technology & Business Insights | SASTRAVA', description: 'Read SASTRAVA insights on AI, cybersecurity, software development, digital marketing, and technology learning.' },
   '/careers': { title: 'Careers & Opportunities | SASTRAVA', description: 'Explore career and collaboration opportunities with SASTRAVA across technology, learning, and business.' },
-  '/contact': { title: 'Contact SASTRAVA | Business Consulting & Technology', description: 'Contact SASTRAVA in Vijayawada, Andhra Pradesh, to discuss consulting, incubation, software, automation, security, digital marketing, or technical learning.' },
+  '/contact': { title: 'Contact SASTRAVA | Business Consulting & Technology', description: 'Contact SASTRAVA in Tadepalli, Andhra Pradesh, to discuss consulting, incubation, software, automation, security, digital marketing, or technical learning.' },
   '/privacy': { title: 'Privacy Policy | SASTRAVA', description: 'Read how SASTRAVA handles personal information and privacy on this website.' },
   '/terms': { title: 'Terms of Use | SASTRAVA', description: 'Read the terms that apply when using the SASTRAVA website and its services.' },
   '/security': { title: 'Report a Security Concern | SASTRAVA', description: 'Find how to contact SASTRAVA about a security concern involving this website.' },
@@ -104,7 +104,7 @@ export const seoRoutes = {
   '/digital-marketing/seo': {
     title: 'SEO Services in India | Technical & Local SEO | SASTRAVA',
     description: 'Explore technical SEO, keyword research, on-page optimization, content strategy, and local search support from SASTRAVA.',
-    keywords: ['SEO services India', 'technical SEO services', 'keyword research and content strategy', 'local SEO Vijayawada'],
+    keywords: ['SEO services India', 'technical SEO services', 'keyword research and content strategy', 'local SEO Tadepalli'],
     serviceType: 'Search engine optimization services',
     faqs: [
       ['How long before we see SEO results?', 'Typically 3-6 months to see meaningful improvements. Competitive keywords may take 6-12 months. We focus on sustainable growth.'],
@@ -145,7 +145,7 @@ export const buildStructuredData = (pathname) => {
     telephone: '+91 7981 576083',
     address: {
       '@type': 'PostalAddress',
-      addressLocality: 'Vijayawada',
+      addressLocality: 'Tadepalli',
       addressRegion: 'Andhra Pradesh',
       addressCountry: 'IN',
     },

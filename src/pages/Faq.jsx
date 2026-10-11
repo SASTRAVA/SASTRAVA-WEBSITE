@@ -23,7 +23,7 @@ const faqs = [
   },
   {
     q: 'Where are you based?',
-    a: 'Our headquarters is in Vijayawada, Andhra Pradesh, India. We also work remotely with partners across regions.',
+    a: 'Our headquarters is in Tadepalli, Andhra Pradesh, India. We also work remotely with partners across regions.',
   },
 ];
 

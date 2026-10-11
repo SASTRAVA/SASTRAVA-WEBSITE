@@ -14,8 +14,8 @@ These are intent-led seed terms, not measured search volumes or ranking promises
 | `/cybersecurity/penetration-testing` | Purchase and scope VAPT / penetration testing | VAPT services India; penetration testing services; web application penetration testing; API security testing | High |
 | `/cybersecurity/security-audits` | Security audit scope and provider discovery | cybersecurity audit services; information security audit; security controls assessment; security audit India | Medium |
 | `/digital-marketing` | Organic and paid digital growth services | digital marketing consultant India; digital marketing services India; organic digital marketing; performance marketing; PPC and paid search; Google Ads management; paid social campaigns; remarketing; social media marketing | High |
-| `/digital-marketing/seo` | Organic discovery, answer engines, and implementation research | SEO services India; technical SEO services; keyword research and content strategy; local SEO Vijayawada; answer engine optimization (AEO); generative engine optimization (GEO) | High |
-| `/contact` | Local / branded contact intent | SASTRAVA Vijayawada; technology services Vijayawada; SASTRAVA contact | Medium |
+| `/digital-marketing/seo` | Organic discovery, answer engines, and implementation research | SEO services India; technical SEO services; keyword research and content strategy; local SEO Tadepalli; answer engine optimization (AEO); generative engine optimization (GEO) | High |
+| `/contact` | Local / branded contact intent | SASTRAVA Tadepalli; technology services Tadepalli; SASTRAVA contact | Medium |
 
 ## Page and content rules
 
@@ -23,7 +23,7 @@ These are intent-led seed terms, not measured search volumes or ranking promises
 - Treat “inorganic” marketing as paid acquisition: PPC/search ads, paid social, and remarketing. Pair paid tests with organic SEO, local search, useful content, social publishing, and conversion measurement; validate actual campaign terms and costs in the advertising platform before launch.
 - Keep answer sections factual, concise, and visible on the corresponding service page. Expand them from real customer questions and link each answer to a relevant service or contact page.
 - Publish case studies, biographies, certifications, pricing, delivery timelines, and customer results only after the responsible person verifies the details and approves publication.
-- SASTRAVA lists its headquarters in Vijayawada and remote collaboration nationwide. Do not create city doorway pages or imply additional offices; use city-specific pages only where real local service and evidence exist.
+- SASTRAVA lists its headquarters in Tadepalli, Andhra Pradesh, and remote collaboration nationwide. Do not create city doorway pages or imply additional offices; use city-specific pages only where real local service and evidence exist.
 - Track impressions, clicks, queries, index coverage, and landing-page conversions in Search Console. Review each cluster monthly and change priorities using actual queries and qualified inquiries.
 
 ## Search result observations
