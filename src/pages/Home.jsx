@@ -17,6 +17,7 @@ import { Navbar } from '../components/layout/Navbar';
 import { Footer } from '../components/layout/Footer';
 import innovationCycle from '../assets/sastrava/neon-innovation-cycle.webp';
 import { homeCapabilities } from '../config/homeCapabilities.js';
+import { googleMapsListingUrl } from '../config/businessProfile.js';
 
 const iconByName = { BriefcaseBusiness, Bot, Code2, GraduationCap, SearchCheck, ShieldCheck };
 
@@ -54,7 +55,7 @@ export const Home = () => (
               </a>
             </div>
             <div className="mt-10 flex flex-wrap gap-x-7 gap-y-3 border-t border-white/10 pt-6 text-sm text-offwhite/65">
-              <span>Based in Tadepalli, Andhra Pradesh, India</span>
+              <a href={googleMapsListingUrl} target="_blank" rel="noopener noreferrer" className="underline decoration-peacock-light/50 underline-offset-4 transition-colors hover:text-peacock-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-peacock-light">Based in Tadepalli, Andhra Pradesh, India · Find us on Google Maps</a>
               <span>Working with teams nationwide</span>
             </div>
           </div>
