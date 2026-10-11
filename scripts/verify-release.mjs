@@ -22,6 +22,8 @@ const requiredFiles = [
   'public/site.webmanifest',
   'public/googlef0da80dfb3341284.html',
   'api/contact.js',
+  '.env.example',
+  'src/components/AnalyticsConsent.jsx',
   'src/config/seoRoutes.js',
   'scripts/generate-seo-pages.mjs',
 ];

@@ -4,6 +4,7 @@ import { AnimatePresence, motion as Motion } from 'framer-motion';
 import { Home } from './pages/Home';
 import { NotFound } from './pages/NotFound';
 import { RouteMeta } from './components/RouteMeta';
+import { AnalyticsConsent } from './components/AnalyticsConsent';
 import { ErrorBoundary } from './components/ErrorBoundary';
 
 // Lazy load non-critical pages to reduce initial bundle size
@@ -148,6 +149,7 @@ function App() {
     <ErrorBoundary>
       <ScrollToTop />
       <RouteMeta />
+      <AnalyticsConsent />
       <AnimatePresence mode="wait">
         <AppRoutes key={location.pathname} />
       </AnimatePresence>

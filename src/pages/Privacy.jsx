@@ -17,6 +17,10 @@ const sections = [
     body: 'We share information only with service providers that help us operate the website or communication tools, or when required by law. Any provider we use is expected to protect your data appropriately.',
   },
   {
+    title: 'Optional analytics',
+    body: 'If Google Analytics is configured for this website, it is loaded only after you choose to allow optional analytics. If you reject, the analytics tag is not loaded. You can change your choice by clearing this site’s stored analytics preference in your browser settings.',
+  },
+  {
     title: 'Retention',
     body: 'We keep inquiry records only as long as needed to handle your request and maintain ordinary business records, unless a longer period is required by law.',
   },
@@ -41,7 +45,7 @@ export const Privacy = () => (
       />
       <section className="relative py-16 md:py-24 bg-navy-950">
         <div className="relative mx-auto max-w-3xl space-y-8 px-6">
-          <p className="text-sm text-offwhite/60">Last updated: September 1, 2026</p>
+          <p className="text-sm text-offwhite/60">Last updated: October 12, 2026</p>
           {sections.map((section) => (
             <article key={section.title} className="rounded-2xl border border-white/10 bg-navy-900/50 p-6 md:p-8">
               <h2 className="font-display text-xl font-bold text-offwhite">{section.title}</h2>

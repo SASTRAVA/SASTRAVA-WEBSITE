@@ -24,7 +24,7 @@ export function RouteMeta() {
     const image = `${origin}/images/sastrava-social-card.png`;
     document.title = entry.title;
     upsertMeta('name', 'description', entry.description);
-    upsertMeta('property', 'og:title', entry.title);
+    upsertMeta('property', 'og:title', entry.ogTitle ?? entry.title);
     upsertMeta('property', 'og:description', entry.description);
     upsertMeta('property', 'og:type', 'website');
     upsertMeta('property', 'og:url', canonical);

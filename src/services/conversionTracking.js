@@ -47,38 +47,23 @@ export const CONVERSION_EVENTS = {
  */
 export const trackEvent = (eventName, eventData = {}) => {
   try {
-    // Google Analytics
     if (typeof window !== 'undefined' && window.gtag) {
       window.gtag('event', eventName, eventData);
     }
-
-    // Google Tag Manager
-    if (typeof window !== 'undefined' && window.dataLayer) {
-      window.dataLayer.push({
-        event: eventName,
-        ...eventData
-      });
-    }
-
-    // Send to backend for conversion tracking
-    sendConversionToBackend(eventName, eventData);
-
-    console.log(`[Analytics] Event tracked: ${eventName}`, eventData);
   } catch (error) {
-    console.error('[Analytics] Error tracking event:', error);
+    console.warn('[Analytics] Could not record event:', error);
   }
 };
 
 /**
  * Track form submission
  */
-export const trackFormSubmission = (formType, formData = {}) => {
+export const trackFormSubmission = (formType) => {
   trackEvent(CONVERSION_EVENTS.FORM_SUBMITTED, {
     form_type: formType,
     form_name: formType,
     value: 0,
-    currency: 'INR',
-    ...formData
+    currency: 'INR'
   });
 };
 
@@ -121,9 +106,10 @@ export const trackCourseEnrollment = (courseId, courseName, price) => {
 /**
  * Track phone call
  */
-export const trackPhoneCall = (phoneNumber) => {
+export const trackPhoneCall = () => {
   trackEvent(CONVERSION_EVENTS.PHONE_CALL, {
-    phone_number: phoneNumber
+    // Track the action without sending the phone number to analytics.
+    contact_method: 'phone'
   });
 };
 
@@ -188,37 +174,6 @@ export const trackPayment = (paymentId, amount, paymentMethod, orderData = {}) =
     shipping: 0,
     ...orderData
   });
-};
-
-/**
- * Send conversion to backend
- */
-const sendConversionToBackend = async (eventName, eventData) => {
-  try {
-    // This would connect to your backend API
-    // For now, just logging
-    if (typeof window !== 'undefined') {
-      const response = await fetch('/api/analytics/track', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          event: eventName,
-          data: eventData,
-          timestamp: new Date().toISOString(),
-          url: window.location.href,
-          userAgent: window.navigator.userAgent
-        })
-      });
-
-      if (!response.ok) {
-        console.warn('[Analytics] Backend tracking failed:', response.statusText);
-      }
-    }
-  } catch (error) {
-    console.warn('[Analytics] Could not send to backend:', error);
-  }
 };
 
 /**

@@ -1,10 +1,13 @@
-import { randomUUID } from 'node:crypto';
+import { createHash, randomUUID } from 'node:crypto';
 import pg from 'pg';
 
 const { Pool } = pg;
 const MAX_BODY_BYTES = 20_000;
 const MAX_MESSAGE_LENGTH = 5_000;
+const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
+const RATE_LIMIT_MAX_SUBMISSIONS = 8;
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const submissionWindows = new Map();
 let databasePool;
 
 function json(response, status, body) {
@@ -15,6 +18,33 @@ function json(response, status, body) {
 
 function clean(value, maxLength = 200) {
   return typeof value === 'string' ? value.trim().slice(0, maxLength) : '';
+}
+
+function rateLimitKey(request, email) {
+  const directIp = request.headers['x-real-ip'];
+  const forwardedFor = request.headers['x-forwarded-for'];
+  const ip = clean(typeof directIp === 'string' ? directIp : '', 100)
+    || (typeof forwardedFor === 'string' ? forwardedFor.split(',').at(-1)?.trim() : '')
+    || email;
+  return createHash('sha256').update(ip.toLowerCase()).digest('hex');
+}
+
+function getRateLimitRetryAfter(key, now = Date.now()) {
+  const recent = (submissionWindows.get(key) || []).filter((timestamp) => now - timestamp < RATE_LIMIT_WINDOW_MS);
+  if (recent.length >= RATE_LIMIT_MAX_SUBMISSIONS) {
+    submissionWindows.set(key, recent);
+    return Math.max(1, Math.ceil((recent[0] + RATE_LIMIT_WINDOW_MS - now) / 1000));
+  }
+
+  recent.push(now);
+  submissionWindows.set(key, recent);
+  if (submissionWindows.size > 5_000) {
+    for (const [storedKey, timestamps] of submissionWindows) {
+      if (timestamps.every((timestamp) => now - timestamp >= RATE_LIMIT_WINDOW_MS)) submissionWindows.delete(storedKey);
+      if (submissionWindows.size <= 4_000) break;
+    }
+  }
+  return 0;
 }
 
 function getDatabasePool() {
@@ -106,6 +136,12 @@ export default async function contact(request, response) {
   };
   if (!lead.firstName || !lead.lastName || !emailPattern.test(lead.email) || !lead.message) {
     return json(response, 400, { error: 'Please provide your name, a valid email address, and a message.' });
+  }
+
+  const retryAfter = getRateLimitRetryAfter(rateLimitKey(request, lead.email));
+  if (retryAfter) {
+    response.setHeader('Retry-After', String(retryAfter));
+    return json(response, 429, { error: 'Too many messages were sent from this connection. Please try again later.' });
   }
 
   const pool = getDatabasePool();

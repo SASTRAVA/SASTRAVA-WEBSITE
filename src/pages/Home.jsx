@@ -41,10 +41,10 @@ export const Home = () => (
               <span className="h-px w-8 bg-gold-light" /> Strategy · Innovation · Delivery
             </p>
             <h1 className="max-w-3xl font-display text-4xl font-bold leading-[1.08] text-offwhite sm:text-6xl lg:text-[4.4rem]">
-              Make your next move a <span className="bg-[linear-gradient(135deg,#C9A84C_0%,#E6C200_35%,#FFF3B0_58%,#C9A84C_100%)] bg-clip-text text-transparent">meaningful one.</span>
+              Turn complex challenges into <span className="bg-[linear-gradient(135deg,#C9A84C_0%,#E6C200_35%,#FFF3B0_58%,#C9A84C_100%)] bg-clip-text text-transparent">clear, lasting growth.</span>
             </h1>
             <p className="mt-7 max-w-2xl text-lg leading-relaxed text-offwhite/75 md:text-xl">
-              SASTRAVA is a business consultant, innovator, and startup incubator helping founders and organizations turn complex challenges into clear plans, useful technology, and sustainable growth.
+              SASTRAVA is a business consulting, innovation, and startup incubation partner helping founders and organizations turn complex challenges into clear plans, useful technology, and sustainable growth.
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <Link to="/contact" className="inline-flex min-h-14 w-full items-center justify-center gap-2 rounded-xl bg-[#E6C200] px-4 text-center font-bold text-navy-950 shadow-glow-gold transition-colors hover:-translate-y-0.5 hover:bg-[#FFF3B0] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-light sm:w-auto sm:px-6">
