@@ -45,20 +45,21 @@ test('homepage browser tab title identifies SASTRAVA as a business consultant', 
 test('homepage publishes the SASTRAVA favicon and platform icon set', async ({ request }) => {
   const homeResponse = await request.get('/');
   const homeHtml = await homeResponse.text();
+  expect(homeHtml.indexOf('href="/favicon.ico?v=20261012"')).toBeLessThan(homeHtml.indexOf('href="/favicon.svg?v=20261012"'));
   for (const href of [
-    '/favicon.svg?v=20261009',
-    '/favicon.ico?v=20261009',
-    '/favicon-16x16.png?v=20261009',
-    '/favicon-32x32.png?v=20261009',
-    '/favicon-48x48.png?v=20261009',
-    '/favicon.png?v=20261009',
-    '/apple-touch-icon.png?v=20261009',
+    '/favicon.ico?v=20261012',
+    '/favicon.png?v=20261012',
+    '/favicon-48x48.png?v=20261012',
+    '/favicon-32x32.png?v=20261012',
+    '/favicon-16x16.png?v=20261012',
+    '/apple-touch-icon.png?v=20261012',
+    '/favicon.svg?v=20261012',
     '/site.webmanifest',
   ]) {
     expect(homeHtml).toContain(`href="${href}"`);
   }
 
-  const svgResponse = await request.get('/favicon.svg?v=20261009');
+  const svgResponse = await request.get('/favicon.svg?v=20261012');
   expect(svgResponse.status(), 'SVG favicon should be served').toBe(200);
   expect(svgResponse.headers()['content-type']).toContain('image/svg+xml');
   expect(await svgResponse.text()).toContain('href="/logo.png"');
@@ -86,8 +87,8 @@ test('homepage publishes the SASTRAVA favicon and platform icon set', async ({ r
   const manifest = await manifestResponse.json();
   expect(manifest.name).toBe('SASTRAVA');
   expect(manifest.icons.map(({ src }) => src)).toEqual([
-    '/android-chrome-192x192.png?v=20261009',
-    '/android-chrome-512x512.png?v=20261009',
+    '/android-chrome-192x192.png?v=20261012',
+    '/android-chrome-512x512.png?v=20261012',
   ]);
 });
 
