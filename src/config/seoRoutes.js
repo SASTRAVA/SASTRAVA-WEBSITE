@@ -92,11 +92,13 @@ export const seoRoutes = {
   },
   '/digital-marketing': {
     title: 'Digital Marketing Consultant & Services in India | SASTRAVA',
-    description: 'Explore organic digital marketing, SEO, content and social media alongside paid search, Google Ads, paid social, and campaign measurement with SASTRAVA.',
-    keywords: ['digital marketing consultant India', 'digital marketing services India', 'organic digital marketing', 'SEO and content marketing', 'AEO and GEO', 'Google Ads management', 'PPC and paid search', 'paid social campaigns', 'remarketing', 'performance marketing', 'social media marketing services'],
+    description: 'SASTRAVA combines brand strategy and performance marketing with SEO, paid ads, content, conversion optimization, analytics, and lifecycle campaigns.',
+    keywords: ['digital marketing consultant India', 'digital marketing services India', 'brand marketing strategy', 'brand positioning services', 'performance marketing', 'paid media management', 'SEO and content marketing', 'AEO and GEO', 'Google Ads management', 'PPC and paid search', 'paid social campaigns', 'remarketing', 'conversion rate optimization', 'marketing analytics', 'lifecycle marketing'],
     serviceType: 'Digital marketing services',
     faqs: [
-      ['What does a digital marketing plan include?', 'A plan can combine search optimization, useful content, social media, paid campaigns, and conversion measurement based on the audience and business goal.'],
+      ['What is the difference between brand marketing and performance marketing?', 'Brand marketing builds recognition, preference, and trust over time through clear positioning and consistent experiences. Performance marketing uses trackable campaigns and conversion goals to generate measurable actions. Many growth plans use both.'],
+      ['What can performance marketing include?', 'Depending on the audience and goal, it can include paid search, Google Ads, paid social, retargeting, landing page experiments, and conversion reporting.'],
+      ['How can a business scale digital marketing?', 'Start with clear goals and measurement, test a focused channel and message, improve the customer journey, and expand investment in steps when agreed quality and efficiency signals support it. Results depend on the offer, market, budget, and execution.'],
       ['Which digital marketing channel should a business start with?', 'Choose channels based on how customers discover and evaluate the offer, available budget and skills, and the time horizon for results.'],
       ['How should digital marketing performance be measured?', 'Measure outcomes tied to the goal, such as qualified inquiries or sales, alongside channel metrics that help explain how those outcomes were reached.'],
     ],

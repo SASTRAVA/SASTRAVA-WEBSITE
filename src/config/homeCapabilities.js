@@ -38,7 +38,7 @@ export const homeCapabilities = [
   {
     number: '05',
     title: 'SEO & digital marketing',
-    description: 'Improve how people find, understand, and act on your business across search and campaigns.',
+    description: 'Build a distinctive brand and grow demand through SEO, paid campaigns, useful content, and measurable conversion improvements.',
     href: '/digital-marketing',
     label: 'Explore digital marketing',
     icon: 'SearchCheck',
