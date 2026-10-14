@@ -6,6 +6,7 @@ import { Button } from '../ui/Button';
 import { FormInput, FormTextarea } from '../ui/FormInput';
 import { submitLead, validateFormData } from '../../services/leadService';
 import { LEAD_TYPES } from '../../services/leadTypes';
+import { trackEvent } from '../../services/conversionTracking';
 
 /**
  * Reusable Lead Form Component
@@ -102,6 +103,9 @@ export const LeadForm = ({
         setSubmitStatus('success');
         setSuccessMessage(result.message);
         setFormData({});
+        // GA4 is only initialized after the visitor accepts optional analytics.
+        // Never send submitted form values or other personal data as event params.
+        trackEvent('generate_lead', { form_type: leadType });
 
         // Call success callback
         if (onSuccess) {

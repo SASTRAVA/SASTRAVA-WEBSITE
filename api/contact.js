@@ -153,7 +153,14 @@ export default async function contact(request, response) {
        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
       [lead.id, lead.firstName, lead.lastName, lead.email, lead.phone || null, lead.company || null, lead.message, lead.sourcePage || null, lead.submittedAt],
     );
-    return json(response, 202, { ok: true, message: 'Thank you. We will be in touch shortly.' });
+    try {
+      await sendEmailFallback(lead);
+    } catch (notificationError) {
+      // The lead is safely stored; notification failure must not make the form
+      // report failure and encourage duplicate submissions.
+      console.error('Contact email notification failed', { message: notificationError instanceof Error ? notificationError.message : 'Unknown error' });
+    }
+    return json(response, 201, { ok: true, message: 'Thank you. We will be in touch shortly.' });
   } catch (error) {
     console.error('Contact storage failed', { message: error instanceof Error ? error.message : 'Unknown error' });
     return deliverUnavailableLead(response, lead);
