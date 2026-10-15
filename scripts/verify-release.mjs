@@ -12,6 +12,7 @@ const requiredFiles = [
   'public/logo.png',
   'public/favicon.svg',
   'public/favicon.ico',
+  'public/sastrava-favicon.png',
   'public/favicon.png',
   'public/favicon-16x16.png',
   'public/favicon-32x32.png',
@@ -45,6 +46,7 @@ for (const file of requiredFiles) {
 
 const htmlHead = readFileSync('index.html', 'utf8');
 for (const asset of [
+  '/sastrava-favicon.png',
   '/favicon.ico?v=20261012',
   '/favicon.png?v=20261012',
   '/favicon-48x48.png?v=20261012',
@@ -126,7 +128,7 @@ const portfolioFiles = [
   '05_P_Prasanna_Siri.html',
   '06_S_Neeraj_Kumar.html',
 ];
-const portfolioPage = readFileSync('src/pages/Portfolio.jsx', 'utf8');
+const portfolioProfiles = readFileSync('src/config/teamProfiles.js', 'utf8');
 if (!existsSync('public/portfolios/sastrava-portfolio.css')) fail('missing shared portfolio stylesheet');
 for (const portfolioFile of portfolioFiles) {
   if (!existsSync(`public/portfolios/${portfolioFile}`)) fail(`missing public portfolio ${portfolioFile}`);
@@ -134,7 +136,7 @@ for (const portfolioFile of portfolioFiles) {
   const portfolioScript = portfolioFile.replace(/\.html$/, '.js');
   if (!existsSync(`public/portfolios/${portfolioScript}`)) fail(`missing external portfolio script ${portfolioScript}`);
   if (/<script>([\s\S]*?)<\/script>/.test(portfolioHtml)) fail(`inline portfolio script remains in ${portfolioFile}`);
-  if (!portfolioPage.includes(`/portfolios/${portfolioFile}`)) fail(`team profile link missing for ${portfolioFile}`);
+  if (!portfolioProfiles.includes(`/portfolios/${portfolioFile}`)) fail(`team profile link missing for ${portfolioFile}`);
 }
 
 for (const optimizedAsset of [

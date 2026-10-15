@@ -54,6 +54,7 @@ test('homepage publishes the SASTRAVA favicon and platform icon set', async ({ r
   const homeHtml = await homeResponse.text();
   expect(homeHtml.indexOf('href="/favicon.ico?v=20261012"')).toBeLessThan(homeHtml.indexOf('href="/favicon.svg?v=20261012"'));
   for (const href of [
+    '/sastrava-favicon.png',
     '/favicon.ico?v=20261012',
     '/favicon.png?v=20261012',
     '/favicon-48x48.png?v=20261012',
