@@ -56,11 +56,11 @@ export const Footer = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-2xl font-bold text-transparent bg-gradient-gold bg-clip-text mb-3">
+            <p className="text-2xl font-bold text-transparent bg-gradient-gold bg-clip-text mb-3">
               SASTRAVA
-            </h3>
+            </p>
             <p className="text-offwhite/70 text-sm leading-relaxed mb-6">
-              Business consulting, innovation, and incubation for organizations ready to turn complex challenges into meaningful progress.
+              Business consulting, innovation, and incubation from Tadepalli, Andhra Pradesh, supporting organizations across Vijayawada, Guntur, Amaravati, and India.
             </p>
             <div className="flex gap-4">
               {socialLinks.map(({ icon: Graphic, href, label }) => (
@@ -88,7 +88,7 @@ export const Footer = () => {
               transition={{ duration: 0.6, delay: (idx + 1) * 0.1 }}
               viewport={{ once: true }}
             >
-              <h4 className="text-gold-light font-semibold mb-4">{section.title}</h4>
+              <p className="text-gold-light font-semibold mb-4">{section.title}</p>
               <ul className="space-y-3">
                 {section.links.map((link) => (
                   <li key={`${section.title}-${link.name}`}>

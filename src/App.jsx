@@ -10,7 +10,6 @@ import { ErrorBoundary } from './components/ErrorBoundary';
 // Lazy load non-critical pages to reduce initial bundle size
 const About = lazy(() => import('./pages/About'));
 const Services = lazy(() => import('./pages/Services'));
-const ServicesHub = lazy(() => import('./pages/ServicesHub'));
 const Learn = lazy(() => import('./pages/Learn'));
 const Build = lazy(() => import('./pages/Build'));
 const Grow = lazy(() => import('./pages/Grow'));
@@ -93,8 +92,11 @@ function AppRoutes() {
         <Route path="/about" element={<PageWrapper><About /></PageWrapper>} />
         <Route path="/domains" element={<PageWrapper><Domains /></PageWrapper>} />
         <Route path="/services" element={<PageWrapper><Services /></PageWrapper>} />
-        <Route path="/services-hub" element={<PageWrapper><ServicesHub /></PageWrapper>} />
-        <Route path="/services-hub/:pillar" element={<PageWrapper><ServicesHub /></PageWrapper>} />
+        <Route path="/services-hub" element={<Navigate to="/services" replace />} />
+        <Route path="/services-hub/learn" element={<Navigate to="/learn" replace />} />
+        <Route path="/services-hub/build" element={<Navigate to="/build" replace />} />
+        <Route path="/services-hub/grow" element={<Navigate to="/grow" replace />} />
+        <Route path="/services-hub/secure" element={<Navigate to="/secure" replace />} />
         <Route path="/learn" element={<PageWrapper><Learn /></PageWrapper>} />
         <Route path="/build" element={<PageWrapper><Build /></PageWrapper>} />
         <Route path="/grow" element={<PageWrapper><Grow /></PageWrapper>} />

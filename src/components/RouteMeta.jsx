@@ -41,7 +41,7 @@ export function RouteMeta() {
     upsertMeta('name', 'twitter:image', image);
 
     if (entry.noindex) upsertMeta('name', 'robots', 'noindex, nofollow');
-    else document.head.querySelector('meta[name="robots"]')?.remove();
+    else upsertMeta('name', 'robots', 'index, follow, max-image-preview:large, max-snippet:-1');
 
     let canonicalElement = document.head.querySelector('link[rel="canonical"]');
     if (!canonicalElement) {

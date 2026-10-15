@@ -1,8 +1,7 @@
 import { expect, test } from '@playwright/test';
 
 const routes = [
-  '/', '/about', '/domains', '/services', '/services-hub', '/services-hub/learn', '/services-hub/build',
-  '/services-hub/grow', '/services-hub/secure', '/learn', '/build', '/grow', '/secure',
+  '/', '/about', '/domains', '/services', '/learn', '/build', '/grow', '/secure',
   '/courses', '/portfolio', '/blog', '/careers', '/contact', '/privacy', '/terms', '/security',
   '/faq', '/support', '/login', '/success-stories', '/case-studies', '/research', '/publications',
   '/open-source', '/achievements', '/cybersecurity', '/cybersecurity/penetration-testing',
@@ -20,6 +19,20 @@ for (const route of routes) {
     expect(errors.filter((message) => !message.includes('favicon'))).toEqual([]);
   });
 }
+
+test('legacy service hub routes redirect to canonical pages', async ({ page }) => {
+  const redirects = [
+    ['/services-hub', '/services'],
+    ['/services-hub/learn', '/learn'],
+    ['/services-hub/build', '/build'],
+    ['/services-hub/grow', '/grow'],
+    ['/services-hub/secure', '/secure'],
+  ];
+  for (const [legacyPath, canonicalPath] of redirects) {
+    await page.goto(legacyPath, { waitUntil: 'networkidle' });
+    await expect(page).toHaveURL(new RegExp(`${canonicalPath.replaceAll('/', '\\/')}\\/?$`));
+  }
+});
 
 test('every internal link target resolves to an application page', async ({ page, request }) => {
   await page.goto('/', { waitUntil: 'networkidle' });

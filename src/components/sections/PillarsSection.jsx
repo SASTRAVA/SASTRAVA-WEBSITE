@@ -70,7 +70,7 @@ export const PillarsSection = () => {
                 pillar={pillar}
                 size="md"
                 interactive={true}
-                onClick={() => navigate(`/services-hub/${pillar.id}`)}
+                onClick={() => navigate(pillar.id === 'learn' ? '/learn' : pillar.id === 'build' ? '/build' : pillar.id === 'grow' ? '/grow' : '/secure')}
                 featured={index === 0}
               />
             </motion.div>

@@ -41,7 +41,7 @@ export const Home = () => (
               <span className="h-px w-8 bg-gold-light" /> Strategy · Innovation · Delivery
             </p>
             <h1 className="max-w-3xl font-display text-4xl font-bold leading-[1.08] text-offwhite sm:text-6xl lg:text-[4.4rem]">
-              Turn complex challenges into <span className="bg-[linear-gradient(135deg,#C9A84C_0%,#E6C200_35%,#FFF3B0_58%,#C9A84C_100%)] bg-clip-text text-transparent">clear, lasting growth.</span>
+              Business consulting and digital growth for <span className="bg-[linear-gradient(135deg,#C9A84C_0%,#E6C200_35%,#FFF3B0_58%,#C9A84C_100%)] bg-clip-text text-transparent">what comes next.</span>
             </h1>
             <p className="mt-7 max-w-2xl text-lg leading-relaxed text-offwhite/75 md:text-xl">
               SASTRAVA is a business consulting, innovation, and startup incubation partner helping founders and organizations turn complex challenges into clear plans, useful technology, and sustainable growth.
@@ -82,7 +82,7 @@ export const Home = () => (
           <motion.div {...reveal} className="mb-12 grid gap-6 md:grid-cols-[1fr_0.7fr] md:items-end">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-peacock-light">What we do</p>
-              <h2 className="mt-4 max-w-2xl font-display text-4xl font-bold leading-tight text-offwhite md:text-5xl">The right expertise, connected to the work.</h2>
+              <h2 className="mt-4 max-w-2xl font-display text-4xl font-bold leading-tight text-offwhite md:text-5xl">Business consulting, digital learning and technology for growth.</h2>
             </div>
             <p className="max-w-xl leading-relaxed text-offwhite/65 md:justify-self-end">A focused team across business consulting, digital learning, digital products, automation, cybersecurity, and marketing—brought together around the outcome you need.</p>
           </motion.div>
@@ -99,7 +99,7 @@ export const Home = () => (
                 <h3 className="font-display text-xl font-semibold text-offwhite md:text-2xl">{title}</h3>
                 <p className="mt-3 flex-1 text-sm leading-relaxed text-offwhite/65">{description}</p>
                 <Link to={href} aria-label={label} className="mt-6 inline-flex min-h-11 items-center gap-2 self-start text-sm font-semibold text-gold-light transition-colors hover:text-peacock-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-light">
-                  Explore service <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
+              {label} <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
                 </Link>
               </motion.article>
               );

@@ -1,8 +1,7 @@
 import { expect, test } from '@playwright/test';
 
 const publicRoutes = [
-  '/', '/about', '/domains', '/services', '/services-hub', '/services-hub/learn', '/services-hub/build',
-  '/services-hub/grow', '/services-hub/secure', '/learn', '/build', '/grow', '/secure',
+  '/', '/about', '/domains', '/services', '/learn', '/build', '/grow', '/secure',
   '/portfolio', '/blog', '/careers', '/contact', '/privacy', '/terms', '/security',
   '/faq', '/support', '/success-stories', '/case-studies', '/research', '/publications',
   '/open-source', '/achievements', '/cybersecurity', '/cybersecurity/penetration-testing',
@@ -21,13 +20,15 @@ for (const route of publicRoutes) {
     expect(html).toContain('https://sastrava.com/images/sastrava-social-card.png');
     const schemaMatch = html.match(/<script id="sastrava-json-ld" type="application\/ld\+json">([\s\S]*?)<\/script>/);
     expect(schemaMatch).not.toBeNull();
-    expect(JSON.parse(schemaMatch[1])['@graph'].some((entry) => entry['@type'] === 'Organization')).toBe(true);
+    expect(JSON.parse(schemaMatch[1])['@graph'].some((entry) => Array.isArray(entry['@type'])
+      ? entry['@type'].includes('Organization')
+      : entry['@type'] === 'Organization')).toBe(true);
     expect(html).toMatch(/<div id="root"><div class="static-site-fallback">[\s\S]*?<main(?:\s[^>]*)?><[\s\S]*?<h1>/);
   });
 }
 
 test('SEO service pages publish visible answer-first questions and matching FAQ schema', async ({ request }) => {
-  for (const route of ['/ai', '/ai/genai', '/cybersecurity', '/cybersecurity/penetration-testing', '/cybersecurity/security-audits', '/digital-marketing']) {
+  for (const route of ['/faq', '/ai', '/ai/genai', '/cybersecurity', '/cybersecurity/penetration-testing', '/cybersecurity/security-audits', '/digital-marketing']) {
     const response = await request.get(staticDocument(route));
     const html = await response.text();
     expect(html).toContain('Common questions');

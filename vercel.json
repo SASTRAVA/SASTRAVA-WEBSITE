@@ -1,14 +1,15 @@
 {
+  "redirects": [
+    { "source": "/services-hub", "destination": "/services", "permanent": true },
+    { "source": "/services-hub/learn", "destination": "/learn", "permanent": true },
+    { "source": "/services-hub/build", "destination": "/build", "permanent": true },
+    { "source": "/services-hub/grow", "destination": "/grow", "permanent": true },
+    { "source": "/services-hub/secure", "destination": "/secure", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/about", "destination": "/about/index.html" },
     { "source": "/domains", "destination": "/domains/index.html" },
     { "source": "/services", "destination": "/services/index.html" },
-    { "source": "/services-hub", "destination": "/services-hub/index.html" },
-    { "source": "/services-hub/learn", "destination": "/services-hub/learn/index.html" },
-    { "source": "/services-hub/build", "destination": "/services-hub/build/index.html" },
-    { "source": "/services-hub/grow", "destination": "/services-hub/grow/index.html" },
-    { "source": "/services-hub/secure", "destination": "/services-hub/secure/index.html" },
-    { "source": "/services-hub/:pillar", "destination": "/services-hub/index.html" },
     { "source": "/learn", "destination": "/learn/index.html" },
     { "source": "/build", "destination": "/build/index.html" },
     { "source": "/grow", "destination": "/grow/index.html" },

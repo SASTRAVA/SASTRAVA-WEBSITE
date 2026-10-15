@@ -163,7 +163,7 @@ const ServiceCard = ({ service, index }) => {
       </div>
 
       <Link to={href} aria-label={linkLabel} className="relative mt-auto inline-flex min-h-12 items-center gap-2 pt-6 text-sm font-semibold text-gold-light transition-colors hover:text-peacock-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-light">
-        Explore service <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
+        {linkLabel} <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
       </Link>
     </motion.article>
   );

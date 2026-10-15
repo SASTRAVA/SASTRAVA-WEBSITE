@@ -7,7 +7,7 @@ These are intent-led seed terms, not measured search volumes or ranking promises
 | Landing page | Primary search intent | Seed terms to validate | Priority |
 | --- | --- | --- | --- |
 | `/` | Brand and broad business consulting discovery | SASTRAVA; business consultant India; business consulting services; business innovator; startup incubator India; AI solutions for business; cybersecurity services India; digital marketing services India | High |
-| `/grow` and `/services-hub/grow` | Business consulting, innovation, and incubation | business consultant; business growth consultant; business strategy consulting; innovation consultant; startup incubator; startup incubation services; go-to-market support | High |
+| `/grow` | Business consulting, innovation, and incubation | business consultant; business growth consultant; business strategy consulting; innovation consultant; startup incubator; startup incubation services; go-to-market support | High |
 | `/ai` | Commercial AI consulting and implementation | AI development services India; AI consulting for businesses; machine learning solutions; business process AI automation | High |
 | `/ai/genai` | Generative AI project research and vendor comparison | generative AI development India; RAG development services; LLM integration services; AI chatbot development | High |
 | `/cybersecurity` | Cybersecurity provider discovery | cybersecurity services India; VAPT services India; application security testing; security audit services | High |

@@ -170,11 +170,11 @@ test('pillar CTAs always lead to the contact journey', async ({ page }) => {
 });
 
 test('services hub primary and featured CTAs lead to contact', async ({ page }) => {
-  await page.goto('/services-hub');
+  await page.goto('/services');
   await page.getByRole('button', { name: /^explore learning paths$/i }).nth(1).click();
   await expect(page).toHaveURL(/\/contact$/);
 
-  await page.goto('/services-hub');
+  await page.goto('/services');
   await page.getByRole('button', { name: /enroll now/i }).first().click();
   await expect(page).toHaveURL(/\/contact$/);
 });

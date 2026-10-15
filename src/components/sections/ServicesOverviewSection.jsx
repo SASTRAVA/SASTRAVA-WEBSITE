@@ -137,7 +137,7 @@ export const ServicesOverviewSection = () => {
                 </p>
                 <button
                   type="button"
-                  onClick={() => navigate(`/services-hub/${currentPillar.id}`)}
+                  onClick={() => navigate(currentPillar.id === 'learn' ? '/learn' : currentPillar.id === 'build' ? '/build' : currentPillar.id === 'grow' ? '/grow' : '/secure')}
                   className="min-h-11 text-sm font-semibold flex items-center gap-2 transition-all hover:gap-3"
                   style={{ color: currentPillar.color.primary }}
                 >

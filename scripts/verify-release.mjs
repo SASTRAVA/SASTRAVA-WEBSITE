@@ -28,8 +28,7 @@ const requiredFiles = [
   'scripts/generate-seo-pages.mjs',
 ];
 const publicRoutes = [
-  '/', '/about', '/domains', '/services', '/services-hub', '/services-hub/learn', '/services-hub/build',
-  '/services-hub/grow', '/services-hub/secure', '/learn', '/build', '/grow', '/secure',
+  '/', '/about', '/domains', '/services', '/learn', '/build', '/grow', '/secure',
   '/portfolio', '/blog', '/careers', '/contact', '/privacy', '/terms', '/security',
   '/faq', '/support', '/success-stories', '/case-studies', '/research', '/publications',
   '/open-source', '/achievements', '/cybersecurity', '/cybersecurity/penetration-testing',
@@ -75,12 +74,22 @@ for (const route of publicRoutes.filter((route) => route !== '/')) {
 }
 if (rewritten.get('/login/:role') !== '/login/index.html') fail('login role route must use the noindex login metadata page');
 if (rewritten.get('/courses') !== '/courses/index.html') fail('hidden courses route must serve its noindex metadata before client redirect');
-for (const pillar of ['learn', 'build', 'grow', 'secure']) {
-  if (rewritten.get(`/services-hub/${pillar}`) !== `/services-hub/${pillar}/index.html`) fail(`service hub route is missing page-specific metadata for ${pillar}`);
+const redirects = new Map((vercel.redirects ?? []).map(({ source, destination }) => [source, destination]));
+for (const [source, destination] of Object.entries({
+  '/services-hub': '/services',
+  '/services-hub/learn': '/learn',
+  '/services-hub/build': '/build',
+  '/services-hub/grow': '/grow',
+  '/services-hub/secure': '/secure',
+})) {
+  if (redirects.get(source) !== destination) fail(`legacy route ${source} must redirect to ${destination}`);
 }
-if (rewritten.get('/services-hub/:pillar') !== '/services-hub/index.html') fail('unknown service hub pillar route must use the service hub metadata page');
 
 const sitemap = readFileSync('public/sitemap.xml', 'utf8');
+if (!sitemap.includes('xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"')) fail('sitemap namespace is invalid');
+if ([...sitemap.matchAll(/<url>([\s\S]*?)<\/url>/g)].some(([, entry]) => !/<lastmod>\d{4}-\d{2}-\d{2}<\/lastmod>/.test(entry))) {
+  fail('every sitemap URL must include an ISO lastmod date');
+}
 const sitemapRoutes = new Set([...sitemap.matchAll(/<loc>https:\/\/sastrava\.com(\/[^<]*)?<\/loc>/g)].map(([, route = '/']) => route));
 for (const route of publicRoutes) {
   if (!sitemapRoutes.has(route)) fail(`sitemap missing ${route}`);
@@ -89,6 +98,7 @@ for (const route of sitemapRoutes) {
   if (!publicRoutes.includes(route)) fail(`sitemap contains non-public or unknown route ${route}`);
 }
 if (sitemapRoutes.has('/courses')) fail('sitemap must not advertise the hidden courses page');
+if ([...sitemapRoutes].some((route) => route.startsWith('/services-hub'))) fail('sitemap must not advertise legacy service hub URLs');
 
 const robots = readFileSync('public/robots.txt', 'utf8');
 if (!robots.includes('Sitemap: https://sastrava.com/sitemap.xml')) fail('robots.txt does not declare sitemap');
