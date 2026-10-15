@@ -19,11 +19,13 @@ import {
 import { Navbar } from '../components/layout/Navbar';
 import { Footer } from '../components/layout/Footer';
 import { PageHero } from '../components/sections/PageHero';
+import { teamProfiles } from '../config/teamProfiles.js';
 
 const ABOUT_SECTIONS = [
   { id: 'our-story', label: 'Our story' },
   { id: 'our-purpose', label: 'Our purpose' },
   { id: 'our-work', label: 'Our work' },
+  { id: 'our-team', label: 'Our team' },
   { id: 'our-approach', label: 'Our approach' },
 ];
 
@@ -254,6 +256,22 @@ const About = () => (
                   <h3 className="mt-6 text-xl font-semibold text-offwhite">{title}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-offwhite/65">{description}</p>
                 </motion.article>
+              ))}
+            </div>
+          </section>
+
+          <section id="our-team" aria-labelledby="our-team-title" className="mt-20 scroll-mt-28 md:mt-24">
+            <div className="mb-8 max-w-3xl">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-peacock-light">The people behind the work</p>
+              <h2 id="our-team-title" className="mt-3 font-display text-3xl font-bold leading-tight text-offwhite md:text-4xl">Meet the SASTRAVA team.</h2>
+              <p className="mt-4 text-sm leading-relaxed text-offwhite/65">Explore each team member’s role and professional portfolio.</p>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+              {teamProfiles.map((member) => (
+                <a key={member.profile} href={member.profile} aria-label={`View ${member.name}'s portfolio`} className="group overflow-hidden rounded-2xl border border-white/10 bg-navy-900/70 transition-colors hover:border-peacock-light/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-light">
+                  <img src={member.image} alt={`${member.name}, ${member.designation}`} width={member.width} height={member.height} loading="lazy" decoding="async" className="h-56 w-full bg-navy-950/70 object-contain" />
+                  <div className="p-4"><h3 className="font-semibold text-offwhite group-hover:text-gold-light">{member.name}</h3><p className="mt-1 text-sm text-offwhite/65">{member.designation}</p></div>
+                </a>
               ))}
             </div>
           </section>

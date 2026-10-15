@@ -177,20 +177,20 @@ const AIHub = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {[
                 {
-                  title: 'Proven Expertise',
-                  description: 'AI specialists with experience deploying 200+ models in production'
+                  title: 'Start with the use case',
+                  description: 'Clarify the workflow, users, data, and risks before choosing an AI or automation approach.'
                 },
                 {
                   title: 'End-to-End Solutions',
                   description: 'From strategy and development to deployment and optimization'
                 },
                 {
-                  title: 'Enterprise Ready',
-                  description: 'Secure, scalable, and compliant with enterprise requirements'
+                  title: 'Plan for responsible use',
+                  description: 'Consider privacy, security, human review, and fallback behavior as part of the agreed scope.'
                 },
                 {
-                  title: 'Measurable ROI',
-                  description: '35% average improvement in key business metrics within 6 months'
+                  title: 'Evaluate with clear measures',
+                  description: 'Define acceptance criteria before a pilot and use the results to decide whether to continue or expand.'
                 },
               ].map((item, idx) => (
                 <motion.div

@@ -21,7 +21,8 @@ export function RouteMeta() {
     const route = normalizeSeoPath(pathname);
     const entry = getSeoEntry(route);
     const canonical = `${origin}${route === '/' ? '/' : route}`;
-    const image = `${origin}/images/sastrava-social-card.png`;
+    const image = `${origin}${entry.ogImage ?? '/images/sastrava-social-card.png'}`;
+    const imageAlt = entry.ogImageAlt ?? 'SASTRAVA business consulting, technology, and digital growth';
     document.title = entry.title;
     upsertMeta('name', 'description', entry.description);
     upsertMeta('property', 'og:title', entry.ogTitle ?? entry.title);
@@ -31,7 +32,7 @@ export function RouteMeta() {
     upsertMeta('property', 'og:image', image);
     upsertMeta('property', 'og:image:width', '1200');
     upsertMeta('property', 'og:image:height', '630');
-    upsertMeta('property', 'og:image:alt', 'SASTRAVA — AI, cybersecurity, and digital growth');
+    upsertMeta('property', 'og:image:alt', imageAlt);
     upsertMeta('property', 'og:site_name', 'SASTRAVA');
     upsertMeta('property', 'og:locale', 'en_IN');
     upsertMeta('name', 'twitter:card', 'summary_large_image');
@@ -39,6 +40,7 @@ export function RouteMeta() {
     upsertMeta('name', 'twitter:title', entry.title);
     upsertMeta('name', 'twitter:description', entry.description);
     upsertMeta('name', 'twitter:image', image);
+    upsertMeta('name', 'twitter:image:alt', imageAlt);
 
     if (entry.noindex) upsertMeta('name', 'robots', 'noindex, nofollow');
     else upsertMeta('name', 'robots', 'index, follow, max-image-preview:large, max-snippet:-1');

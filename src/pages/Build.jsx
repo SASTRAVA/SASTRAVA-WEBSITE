@@ -8,16 +8,14 @@ import { motion } from 'framer-motion';
 import { Navbar } from '../components/layout/Navbar';
 import { Footer } from '../components/layout/Footer';
 import { PageHero } from '../components/sections/PageHero';
-import { PillarCard } from '../components/services/PillarCard';
-import { StatCounter } from '../components/trust/StatCounter';
-import { ECOSYSTEM_PILLARS, PILLAR_STATISTICS } from '../config/businessModel';
+import { ECOSYSTEM_PILLARS } from '../config/businessModel';
 import * as Icons from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { contrastTextColor } from '../utils/contrastText';
+import { SeoAnswers } from '../components/seo/SeoAnswers';
 
 export const BuildPillar = () => {
   const pillar = ECOSYSTEM_PILLARS.BUILD;
-  const stats = PILLAR_STATISTICS.BUILD;
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -72,47 +70,10 @@ export const BuildPillar = () => {
               </motion.p>
             </motion.div>
 
-            {/* Statistics */}
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-16 pb-16 border-b border-gray-200 dark:border-gray-700"
-            >
-              <motion.div variants={itemVariants}>
-                <StatCounter
-                  value={stats.projects}
-                  label="Projects Completed"
-                  icon={Icons.Code}
-                  color={pillar.color.primary}
-                />
-              </motion.div>
-              <motion.div variants={itemVariants}>
-                <StatCounter
-                  value={stats.clients}
-                  label="Clients Served"
-                  icon={Icons.Users}
-                  color={pillar.color.primary}
-                />
-              </motion.div>
-              <motion.div variants={itemVariants}>
-                <StatCounter
-                  value={stats.success}
-                  label="Project Success Rate"
-                  icon={Icons.Briefcase}
-                  color={pillar.color.primary}
-                />
-              </motion.div>
-              <motion.div variants={itemVariants}>
-                <StatCounter
-                  value={stats.uptime}
-                  label="Service Uptime"
-                  icon={Icons.Zap}
-                  color={pillar.color.primary}
-                />
-              </motion.div>
-            </motion.div>
+            <div className="mb-16 rounded-2xl border border-gold/20 bg-gray-50 p-6 dark:bg-gray-800 md:p-8">
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white">A scope shaped around your goals</h3>
+              <p className="mt-3 max-w-3xl leading-relaxed text-gray-600 dark:text-gray-300">We agree the audience, priorities, deliverables, and review measures before work begins. The right approach depends on your context and the requirements of the engagement.</p>
+            </div>
 
             {/* Services */}
             <motion.div
@@ -192,6 +153,7 @@ export const BuildPillar = () => {
             </Button>
           </div>
         </section>
+        <SeoAnswers />
       </main>
       <Footer />
     </>

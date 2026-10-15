@@ -94,7 +94,7 @@ const SecurityAudits = () => {
       <Navbar />
       <main>
         <PageHero
-          title="Security Audits"
+          title="Cybersecurity audits and remediation"
           subtitle="Comprehensive Security Assessment"
           description="Evaluate your security posture against industry standards and identify improvement areas"
         />

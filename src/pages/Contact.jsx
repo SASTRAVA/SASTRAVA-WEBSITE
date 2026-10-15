@@ -6,7 +6,7 @@ import { Footer } from '../components/layout/Footer';
 import { PageHero } from '../components/sections/PageHero';
 import { LeadForm } from '../components/forms/LeadForm';
 import { CONTACT_FORM_CONFIG, LEAD_TYPES } from '../services/leadTypes';
-import { googleMapsListingName, googleMapsListingUrl } from '../config/businessProfile.js';
+import { googleMapsListingAddress, googleMapsListingName, googleMapsListingUrl } from '../config/businessProfile.js';
 
 
 export const Contact = () => {
@@ -44,7 +44,7 @@ export const Contact = () => {
       <Navbar />
       <main id="main-content">
       <PageHero
-        title="Get in Touch"
+        title="Contact SASTRAVA in Tadepalli"
         subtitle="Contact SASTRAVA"
         description="We're here to help you succeed. Reach out to us via email, phone, WhatsApp, or start a conversation about your challenge."
       />
@@ -106,7 +106,7 @@ export const Contact = () => {
               <div className="rounded-lg border border-gold-DEFAULT/10 bg-navy-900 p-5">
                 <h3 className="text-lg font-semibold text-offwhite">Location & availability</h3>
                 <div className="mt-4 space-y-3 text-sm leading-relaxed text-offwhite/75">
-                  <p className="flex items-start gap-3"><MapPin className="mt-0.5 h-4 w-4 flex-shrink-0 text-gold-light" aria-hidden="true" />Tadepalli, Andhra Pradesh, India. Remote collaboration available nationwide.</p>
+                  <p className="flex items-start gap-3"><MapPin className="mt-0.5 h-4 w-4 flex-shrink-0 text-gold-light" aria-hidden="true" />{googleMapsListingAddress}. Remote collaboration available nationwide.</p>
                   <p className="flex items-start gap-3"><Clock className="mt-0.5 h-4 w-4 flex-shrink-0 text-gold-light" aria-hidden="true" />Monday–Saturday, 9:30 AM–5:30 PM IST.</p>
                   <a href={googleMapsListingUrl} target="_blank" rel="noopener noreferrer" aria-label={`Find ${googleMapsListingName} on Google Maps`} className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-peacock-light/30 px-4 py-2 font-semibold text-peacock-light transition-colors hover:border-peacock-light/60 hover:bg-peacock-light/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-peacock-light">
                     <MapPin className="h-4 w-4" aria-hidden="true" /> Find us on Google Maps

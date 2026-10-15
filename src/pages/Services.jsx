@@ -176,7 +176,7 @@ export const Services = () => {
       <main>
         {/* Page Hero */}
         <PageHero
-          title="Practical services for your next step."
+          title="Business, marketing and technology services."
           subtitle="Our Services"
           description="SASTRAVA combines business consulting and incubation with software, AI and automation, security reviews, digital marketing, content, and practical learning. We agree the scope and work with you toward the outcome that matters."
         />

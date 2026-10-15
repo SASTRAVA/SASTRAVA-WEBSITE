@@ -59,7 +59,7 @@ const CybersecurityHub = () => {
     {
       icon: TrendingUp,
       title: 'Incident Response',
-      subtitle: '24/7 Breach Response',
+      subtitle: 'Authorized security assessment and remediation support',
       description: 'Rapid incident detection, containment, and post-breach forensics',
       path: '/contact',
       color: '#1ECDB0'
@@ -144,23 +144,23 @@ const CybersecurityHub = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {[
                 {
-                  title: 'Expert Team',
-                  description: '50+ certified security professionals with 15+ years average experience',
+                  title: 'Clearly scoped work',
+                  description: 'Testing begins after written authorization, asset boundaries, and handling of sensitive findings are agreed.',
                   icon: Users
                 },
                 {
-                  title: '24/7 Monitoring',
-                  description: 'Real-time threat detection and response across your infrastructure',
+                  title: 'Prioritized findings',
+                  description: 'Reports explain observed issues, their context, and practical remediation priorities.',
                   icon: AlertCircle
                 },
                 {
-                  title: 'Compliance Ready',
-                  description: 'Full compliance with ISO 27001, SOC 2, GDPR, PCI-DSS standards',
+                  title: 'Control review',
+                  description: 'Controls can be reviewed against criteria selected and agreed for the engagement.',
                   icon: CheckCircle
                 },
                 {
-                  title: 'Proven Track Record',
-                  description: '500+ enterprises secured, zero breaches in 18 months',
+                  title: 'Retest agreed fixes',
+                  description: 'Follow-up testing can check whether specific findings were addressed within the agreed scope.',
                   icon: Shield
                 },
               ].map((item, idx) => {

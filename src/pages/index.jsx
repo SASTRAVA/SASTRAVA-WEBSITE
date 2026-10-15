@@ -67,14 +67,6 @@ export const Services = ServicesPage;
 
 export const Portfolio = PortfolioPage;
 
-export const Blog = () => (
-  <PlaceholderPage 
-    title="Insights & Updates" 
-    subtitle="Latest Articles"
-    description="Notes on consulting, innovation, growth systems, learning, and the work of building what moves organizations forward. Full articles are coming soon." 
-  />
-);
-
 export const Careers = () => (
   <PlaceholderPage 
     title="Join Our Team" 

@@ -8,16 +8,14 @@ import { motion } from 'framer-motion';
 import { Navbar } from '../components/layout/Navbar';
 import { Footer } from '../components/layout/Footer';
 import { PageHero } from '../components/sections/PageHero';
-import { PillarCard } from '../components/services/PillarCard';
-import { StatCounter } from '../components/trust/StatCounter';
-import { ECOSYSTEM_PILLARS, PILLAR_STATISTICS } from '../config/businessModel';
+import { ECOSYSTEM_PILLARS } from '../config/businessModel';
 import * as Icons from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { contrastTextColor } from '../utils/contrastText';
+import { SeoAnswers } from '../components/seo/SeoAnswers';
 
 export const SecurePillar = () => {
   const pillar = ECOSYSTEM_PILLARS.SECURE;
-  const stats = PILLAR_STATISTICS.SECURE;
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -72,47 +70,10 @@ export const SecurePillar = () => {
               </motion.p>
             </motion.div>
 
-            {/* Statistics */}
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-16 pb-16 border-b border-gray-200 dark:border-gray-700"
-            >
-              <motion.div variants={itemVariants}>
-                <StatCounter
-                  value={stats.audits}
-                  label="Audits Completed"
-                  icon={Icons.Lock}
-                  color={pillar.color.primary}
-                />
-              </motion.div>
-              <motion.div variants={itemVariants}>
-                <StatCounter
-                  value={stats.threats_prevented}
-                  label="Threats Prevented"
-                  icon={Icons.Shield}
-                  color={pillar.color.primary}
-                />
-              </motion.div>
-              <motion.div variants={itemVariants}>
-                <StatCounter
-                  value={stats.uptime}
-                  label="Uptime Guarantee"
-                  icon={Icons.CheckCircle}
-                  color={pillar.color.primary}
-                />
-              </motion.div>
-              <motion.div variants={itemVariants}>
-                <StatCounter
-                  value={stats.compliance}
-                  label="Certifications"
-                  icon={Icons.Award}
-                  color={pillar.color.primary}
-                />
-              </motion.div>
-            </motion.div>
+            <div className="mb-16 rounded-2xl border border-gold/20 bg-gray-50 p-6 dark:bg-gray-800 md:p-8">
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white">A scope shaped around your goals</h3>
+              <p className="mt-3 max-w-3xl leading-relaxed text-gray-600 dark:text-gray-300">We agree the audience, priorities, deliverables, and review measures before work begins. The right approach depends on your context and the requirements of the engagement.</p>
+            </div>
 
             {/* Services */}
             <motion.div
@@ -144,20 +105,20 @@ export const SecurePillar = () => {
                       {service}
                     </h4>
                     <p className="text-gray-600 dark:text-gray-400 mb-6">
-                      Enterprise-grade security solutions with 24/7 monitoring
+                      Scoped security assessment and remediation support shaped around your systems and requirements.
                     </p>
                     <ul className="space-y-2 mb-6">
                       <li className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
                         <Icons.CheckCircle size={16} style={{ color: pillar.color.primary }} />
-                        24/7 Monitoring
+                        Authorized, scoped reviews
                       </li>
                       <li className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
                         <Icons.CheckCircle size={16} style={{ color: pillar.color.primary }} />
-                        Incident Response
+                        Risk-ranked findings
                       </li>
                       <li className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
                         <Icons.CheckCircle size={16} style={{ color: pillar.color.primary }} />
-                        Compliance Assured
+                        Remediation and retesting options
                       </li>
                     </ul>
                     <Button
@@ -181,7 +142,7 @@ export const SecurePillar = () => {
               Secure Your Business Today
             </h3>
             <p className="text-lg text-offwhite/85 mb-8">
-              Don't wait for a breach. Get proactive security now
+              Discuss the systems, scope, and security questions you want reviewed.
             </p>
             <Button
               className="font-bold"
@@ -192,6 +153,7 @@ export const SecurePillar = () => {
             </Button>
           </div>
         </section>
+        <SeoAnswers />
       </main>
       <Footer />
     </>

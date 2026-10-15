@@ -16,7 +16,7 @@ const Grow = lazy(() => import('./pages/Grow'));
 const Secure = lazy(() => import('./pages/Secure'));
 const Domains = lazy(() => import('./pages/index').then(m => ({ default: m.Domains })));
 const Portfolio = lazy(() => import('./pages/Portfolio'));
-const Blog = lazy(() => import('./pages/index').then(m => ({ default: m.Blog })));
+const Blog = lazy(() => import('./pages/Blog'));
 const Careers = lazy(() => import('./pages/index').then(m => ({ default: m.Careers })));
 const Contact = lazy(() => import('./pages/Contact').then(m => ({ default: m.Contact })));
 const Privacy = lazy(() => import('./pages/Privacy'));

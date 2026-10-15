@@ -114,7 +114,7 @@ const DigitalMarketingHub = () => {
       <main>
         {/* Hero */}
         <PageHero
-          title="Digital Marketing"
+          title="Digital marketing and performance growth"
           subtitle="Growth-driven marketing strategies"
           description="Build brand preference and grow demand through performance marketing, SEO, content, paid campaigns, conversion improvements, and clear measurement."
         />
