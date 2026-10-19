@@ -9,9 +9,18 @@ function enableGoogleAnalytics(measurementId) {
 
   window.sastravaAnalyticsInitialized = true;
   window.dataLayer = window.dataLayer || [];
-  window.gtag = (...args) => window.dataLayer.push(args);
+  window.gtag = function gtag() {
+    // The Google tag queue expects the native Arguments object.
+    window.dataLayer.push(arguments);
+  };
+  window[`ga-disable-${measurementId}`] = false;
   window.gtag('js', new Date());
-  window.gtag('config', measurementId, { send_page_view: true });
+  window.gtag('config', measurementId, {
+    send_page_view: true,
+    page_path: `${window.location.pathname}${window.location.search}`,
+    page_location: window.location.href,
+    page_title: document.title,
+  });
 
   const script = document.createElement('script');
   script.async = true;
@@ -53,7 +62,12 @@ export function AnalyticsConsent() {
       return;
     }
     if (lastPageViewPath.current === pathname) return;
-    window.gtag('event', 'page_view', { page_path: pathname, page_title: document.title });
+    window.gtag('event', 'page_view', {
+      page_path: `${pathname}${window.location.search}`,
+      page_location: window.location.href,
+      page_title: document.title,
+      send_to: measurementId,
+    });
     lastPageViewPath.current = pathname;
   }, [consent, measurementId, pathname]);
 

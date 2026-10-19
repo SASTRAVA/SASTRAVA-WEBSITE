@@ -100,7 +100,7 @@ test('contact form exposes a safe delivery failure', async ({ page }) => {
   await page.getByLabel(/message/i).first().fill('Synthetic test message.');
   await page.getByRole('button', { name: /^submit$/i }).first().click();
   await expect(page.getByText(/contact service is not configured/i)).toBeVisible();
-  await expect(page.getByRole('link', { name: 'Email neeraj@sastrava.com', exact: true }).last()).toHaveAttribute('href', 'mailto:neeraj@sastrava.com');
+  await expect(page.getByRole('link', { name: 'Email neeraj@sastrava.com or siri@sastrava.com', exact: true }).last()).toHaveAttribute('href', 'mailto:neeraj@sastrava.com,siri@sastrava.com');
 });
 
 test('courses stay out of navigation and the retired URL redirects to learning services', async ({ page }) => {

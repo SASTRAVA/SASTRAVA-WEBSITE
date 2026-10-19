@@ -35,6 +35,12 @@ test('legacy service hub routes redirect to canonical pages', async ({ page }) =
   }
 });
 
+test('open source page does not list or link to the website repository', async ({ page }) => {
+  await page.goto('/open-source', { waitUntil: 'networkidle' });
+  await expect(page.getByRole('heading', { name: 'Selected projects coming soon' })).toBeVisible();
+  await expect(page.locator('a[href*="github.com/SASTRAVA/SASTRAVA-WEBSITE"]')).toHaveCount(0);
+});
+
 test('free planning tools provide working browser-based estimates and checklists', async ({ page }) => {
   await page.goto('/tools/seo-aeo-checker', { waitUntil: 'networkidle' });
   await page.getByRole('checkbox').first().check();
