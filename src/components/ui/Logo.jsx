@@ -20,7 +20,7 @@ export const Logo = ({ size = 'sm', className = '' }) => {
     >
       <img
         src="/images/sastrava-mark.webp"
-        alt="SASTRAVA — Learn, Build, Grow, Secure"
+        alt="SASTRAVA logo — Applied Knowledge & Transformation"
         width={width}
         height={height}
         className="relative z-10 object-contain"

@@ -39,18 +39,21 @@
     { "source": "/ai", "destination": "/ai/index.html" },
     { "source": "/ai/genai", "destination": "/ai/genai/index.html" },
     { "source": "/digital-marketing", "destination": "/digital-marketing/index.html" },
-    { "source": "/digital-marketing/seo", "destination": "/digital-marketing/seo/index.html" }
+    { "source": "/digital-marketing/seo", "destination": "/digital-marketing/seo/index.html" },
+    { "source": "/tools/seo-aeo-checker", "destination": "/tools/seo-aeo-checker/index.html" },
+    { "source": "/tools/ai-roi-calculator", "destination": "/tools/ai-roi-calculator/index.html" },
+    { "source": "/tools/security-checklist", "destination": "/tools/security-checklist/index.html" }
   ],
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "Content-Security-Policy", "value": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com; upgrade-insecure-requests; report-uri /api/csp-report" },
+        { "key": "Content-Security-Policy", "value": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com; upgrade-insecure-requests; report-uri /api/csp-report" },
         { "key": "Strict-Transport-Security", "value": "max-age=63072000" },
         { "key": "X-Content-Type-Options", "value": "nosniff" },
         { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
         { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=(), payment=(), usb=()" },
-        { "key": "X-Frame-Options", "value": "SAMEORIGIN" }
+        { "key": "X-Frame-Options", "value": "DENY" }
       ]
     }
   ]

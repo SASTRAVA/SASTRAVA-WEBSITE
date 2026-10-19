@@ -14,13 +14,6 @@ export const Contact = () => {
     {
       icon: Mail,
       label: 'Email',
-      value: 'siri@sastrava.com',
-      action: 'email',
-      href: 'mailto:siri@sastrava.com',
-    },
-    {
-      icon: Mail,
-      label: 'Leadership Email',
       value: 'neeraj@sastrava.com',
       action: 'email',
       href: 'mailto:neeraj@sastrava.com',
@@ -127,7 +120,7 @@ export const Contact = () => {
                 leadType={LEAD_TYPES.CONTACT_INQUIRY}
                 fields={CONTACT_FORM_CONFIG.fields}
                 title="Send us a Message"
-                subtitle="We typically respond within 24 hours"
+                subtitle="Tell us about your goals and we’ll follow up to discuss next steps."
                 metadata={{
                   sourcePage: '/contact',
                   sourceButton: 'Contact Form',

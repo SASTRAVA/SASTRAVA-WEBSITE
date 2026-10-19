@@ -70,7 +70,7 @@ export const CTASection = () => {
             viewport={{ once: true }}
             className="text-xl text-offwhite/70 max-w-2xl mx-auto mb-12 relative z-10"
           >
-            Join thousands of students who have successfully transitioned into tech roles and advanced their careers with our programs.
+            Tell us what you are trying to learn, build, secure, or grow. We will discuss a practical next step and a scope that fits your needs.
           </motion.p>
 
           {/* CTA Buttons */}

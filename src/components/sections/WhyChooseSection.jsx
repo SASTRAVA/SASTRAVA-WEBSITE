@@ -45,10 +45,10 @@ export const WhyChooseSection = () => {
             What Sets Us Apart
           </motion.p>
           <motion.h2 variants={itemVariants} className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-            Why 10,000+ Choose SASTRAVA
+            Why Work with SASTRAVA
           </motion.h2>
           <motion.p variants={itemVariants} className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            We combine expertise, innovation, and practical experience to deliver real results.
+            We shape practical work around clear objectives, evidence, and the people who will use the result.
           </motion.p>
         </motion.div>
 
@@ -71,31 +71,6 @@ export const WhyChooseSection = () => {
           ))}
         </motion.div>
 
-        {/* Additional Stats Section */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pt-16 border-t border-gray-200 dark:border-gray-700"
-        >
-          {[
-            { stat: '98%', label: 'Student Satisfaction', icon: '😊' },
-            { stat: '85%', label: 'Job Placement Rate', icon: '🎯' },
-            { stat: '50+', label: 'Expert Instructors', icon: '👨‍🎓' },
-            { stat: '500+', label: 'Live Projects', icon: '💻' }
-          ].map((item, index) => (
-            <motion.div
-              key={index}
-              variants={itemVariants}
-              className="text-center"
-            >
-              <p className="text-4xl font-black mb-2">{item.stat}</p>
-              <p className="text-gray-600 dark:text-gray-400 font-semibold mb-2">{item.label}</p>
-              <p className="text-3xl">{item.icon}</p>
-            </motion.div>
-          ))}
-        </motion.div>
       </div>
     </section>
   );

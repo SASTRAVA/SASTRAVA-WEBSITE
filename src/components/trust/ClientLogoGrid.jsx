@@ -8,22 +8,10 @@ import { motion } from 'framer-motion';
 
 export const ClientLogoGrid = ({
   clients = [],
-  title = 'Trusted by Leading Organizations',
+  title = 'Client references',
   columns = 4
 }) => {
-  // Default realistic client data
-  const defaultClients = [
-    { name: 'TechCorp India', sector: 'Technology' },
-    { name: 'FinanceHub Inc', sector: 'Financial Services' },
-    { name: 'HealthPlus Digital', sector: 'Healthcare' },
-    { name: 'EcommercePro', sector: 'E-commerce' },
-    { name: 'InsuranceNow', sector: 'Insurance' },
-    { name: 'RetailMax', sector: 'Retail' },
-    { name: 'LogisticsPro', sector: 'Logistics' },
-    { name: 'MediaStream', sector: 'Media & Entertainment' },
-  ];
-
-  const displayClients = clients.length > 0 ? clients : defaultClients;
+  const displayClients = clients;
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -48,7 +36,7 @@ export const ClientLogoGrid = ({
         </h3>
       )}
 
-      <motion.div
+      {displayClients.length > 0 ? <motion.div
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -77,7 +65,7 @@ export const ClientLogoGrid = ({
             </div>
           </motion.div>
         ))}
-      </motion.div>
+      </motion.div> : <p className="mx-auto max-w-2xl text-center text-sm leading-relaxed text-gray-400">Client names and logos will appear here only when a project reference is approved for publication.</p>}
     </div>
   );
 };

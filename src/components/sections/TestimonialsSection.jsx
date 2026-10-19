@@ -4,32 +4,7 @@ import { SectionLabel } from '../ui/SectionLabel';
 import { MessageCircle } from 'lucide-react';
 
 export const TestimonialsSection = () => {
-  const testimonials = [
-    {
-      quote: "SASTRAVA transformed my career. The hands-on projects and mentorship were invaluable. I landed my dream job at a top tech company within 3 months of completing the program.",
-      author: "Priya Sharma",
-      role: "Full-Stack Developer at Google",
-      avatar: "PS",
-    },
-    {
-      quote: "The curriculum is incredibly relevant and up-to-date. I learned more in 6 months here than in 4 years of traditional education. Highly recommended!",
-      author: "Arjun Patel",
-      role: "Data Scientist at Microsoft",
-      avatar: "AP",
-    },
-    {
-      quote: "What sets SASTRAVA apart is the community. The peer learning, the mentors, and the support system are world-class. I made lifelong connections here.",
-      author: "Sophia Chen",
-      role: "Product Manager at Meta",
-      avatar: "SC",
-    },
-    {
-      quote: "As someone coming from a non-tech background, I was nervous. But the program was perfectly structured to help beginners ramp up quickly.",
-      author: "Rahul Singh",
-      role: "Cloud Architect at AWS",
-      avatar: "RS",
-    },
-  ];
+  const testimonials = [];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -73,18 +48,18 @@ export const TestimonialsSection = () => {
         >
           <SectionLabel label="Success Stories" icon={MessageCircle} />
           <h2 className="text-h1 text-offwhite mb-6">
-            Hear from Our
+            A Clear, Practical
             <span className="block text-transparent bg-gradient-gold bg-clip-text">
-              Success Stories
+              Working Approach
             </span>
           </h2>
           <p className="text-lg text-offwhite/60 max-w-2xl mx-auto">
-            Our students have transformed their careers and are now working at leading tech companies worldwide.
+            Every engagement starts with understanding the goal, scope, constraints, and evidence of progress. We publish client feedback only with permission and attribution.
           </p>
         </motion.div>
 
         {/* Testimonials Grid */}
-        <motion.div
+        {testimonials.length > 0 ? <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -155,7 +130,7 @@ export const TestimonialsSection = () => {
               </div>
             </motion.div>
           ))}
-        </motion.div>
+        </motion.div> : <p className="mx-auto max-w-2xl rounded-2xl border border-peacock-light/20 bg-navy-900/60 p-6 text-center leading-relaxed text-offwhite/70">Client feedback will be shared here when the client has approved publication.</p>}
       </div>
     </section>
   );

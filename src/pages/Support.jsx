@@ -56,7 +56,7 @@ export const Support = () => (
           <div className="mt-10 rounded-2xl border border-peacock-light/25 bg-peacock-light/5 p-6 md:p-8">
             <h2 className="font-display text-xl font-bold text-offwhite">Prefer a structured form?</h2>
             <p className="mt-2 text-offwhite/75">
-              Use the website contact form and we typically respond within 24 hours.
+              Use the website contact form and include the relevant project or page details so we can direct your request.
             </p>
             <Link
               to="/contact"

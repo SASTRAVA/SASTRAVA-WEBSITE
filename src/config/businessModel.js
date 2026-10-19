@@ -8,8 +8,8 @@ export const ECOSYSTEM_PILLARS = {
   LEARN: {
     id: 'learn',
     name: 'Learn',
-    tagline: 'Master In-Demand Skills',
-    description: 'Comprehensive education, certifications, and skill development programs',
+    tagline: 'Build Practical Skills',
+    description: 'Practical learning, workshops, and skill development shaped around learner goals',
     color: {
       primary: '#C9A84C',      // Gold
       light: '#FFF3B0',        // Light Gold
@@ -26,12 +26,12 @@ export const ECOSYSTEM_PILLARS = {
       'Career Roadmaps',
       'Skill Assessment'
     ],
-    callout: 'Join 10,000+ learners transforming their careers',
+    callout: 'Explore practical learning and mentoring options',
     cta: 'Explore Learning Paths',
     featured: [
-      { name: 'Cybersecurity Essentials', price: '₹15,000' },
-      { name: 'AI/ML Fundamentals', price: '₹18,000' },
-      { name: 'Web Development Pro', price: '₹16,000' }
+      { name: 'Technical learning', description: 'Workshops, mentorship, and project guidance tailored to the learner and context.' },
+      { name: 'Skills development', description: 'A practical learning path aligned to current experience and intended goals.' },
+      { name: 'Institutional programs', description: 'Discuss a learning format and scope for a team or educational institution.' }
     ]
   },
 
@@ -55,19 +55,19 @@ export const ECOSYSTEM_PILLARS = {
       'Startup Incubation',
       'Open Source Projects'
     ],
-    callout: 'Enterprise-grade solutions built by industry experts',
+    callout: 'Plan a solution around your users and technical requirements',
     cta: 'Discuss Your Project',
     featured: [
-      { name: 'Full-Stack Development', from: '₹2,00,000' },
-      { name: 'AI Implementation', from: '₹3,50,000' },
-      { name: 'MVP Development', from: '₹1,50,000' }
+      { name: 'Software and digital products', description: 'Define user needs, technical approach, milestones, and deliverables together.' },
+      { name: 'AI and workflow automation', description: 'Identify suitable workflows, integrations, review points, and success measures.' },
+      { name: 'Startup and product advisory', description: 'Explore idea validation, MVP planning, and practical delivery support.' }
     ]
   },
 
   GROW: {
     id: 'grow',
     name: 'Grow',
-    tagline: 'Accelerate Your Growth Exponentially',
+    tagline: 'Make Growth More Measurable',
     description: 'Digital marketing, branding, and strategic growth services',
     color: {
       primary: '#FFF3B0',      // Light Gold
@@ -84,12 +84,12 @@ export const ECOSYSTEM_PILLARS = {
       'Social Media Management',
       'Growth Consulting'
     ],
-    callout: 'Average 3x growth in 6 months',
+    callout: 'Plan growth around clear goals and measurement',
     cta: 'Start Your Growth Journey',
     featured: [
-      { name: 'Complete Digital Marketing', from: '₹50,000/month' },
-      { name: 'SEO Excellence Package', from: '₹35,000/month' },
-      { name: 'Content Strategy', from: '₹40,000/month' }
+      { name: 'Search and digital visibility', description: 'Plan content, technical SEO, local signals, and measurement for your audience.' },
+      { name: 'Brand and performance marketing', description: 'Align positioning, creative, channel plans, and campaign measurement.' },
+      { name: 'Growth consulting', description: 'Prioritize experiments and execution based on business goals and capacity.' }
     ]
   },
 
@@ -97,7 +97,7 @@ export const ECOSYSTEM_PILLARS = {
     id: 'secure',
     name: 'Secure',
     tagline: 'Protect What Matters Most',
-    description: 'Enterprise-grade cybersecurity and compliance solutions',
+    description: 'Cybersecurity reviews, testing, remediation, and risk-management support',
     color: {
       primary: '#0F3D3E',      // Peacock Dark
       light: '#1a5a5c',
@@ -112,12 +112,12 @@ export const ECOSYSTEM_PILLARS = {
       'Security Consulting',
       'Incident Response & Recovery'
     ],
-    callout: 'Protect your business with certified security experts',
+    callout: 'Scope security reviews around your systems and risks',
     cta: 'Schedule Security Audit',
     featured: [
-      { name: 'Full Security Audit', from: '₹1,00,000' },
-      { name: 'Penetration Testing', from: '₹2,50,000' },
-      { name: 'Security Training', from: '₹30,000' }
+      { name: 'Security assessment', description: 'Agree the assets, authorization, methodology, and reporting scope before review.' },
+      { name: 'Remediation and patching', description: 'Prioritize findings, plan fixes, and verify agreed changes through retesting.' },
+      { name: 'Security readiness', description: 'Review selected control requirements and plan measurable follow-up actions.' }
     ]
   }
 };
@@ -154,32 +154,7 @@ export const getPillarColor = (pillarId, type = 'primary') => {
 /**
  * Statistics for Each Pillar
  */
-export const PILLAR_STATISTICS = {
-  LEARN: {
-    students: '10,000+',
-    courses: '50+',
-    certifications: '25+',
-    satisfaction: '98%'
-  },
-  BUILD: {
-    projects: '500+',
-    clients: '200+',
-    success: '95%',
-    uptime: '99.9%'
-  },
-  GROW: {
-    clients: '300+',
-    growth: '3x avg',
-    campaigns: '1000+',
-    roi: '400%+'
-  },
-  SECURE: {
-    audits: '150+',
-    threats_prevented: '10,000+',
-    uptime: '99.99%',
-    compliance: 'ISO 27001, SOC 2'
-  }
-};
+export const PILLAR_STATISTICS = {};
 
 /**
  * Why Choose SASTRAVA - Key Value Propositions
@@ -187,31 +162,31 @@ export const PILLAR_STATISTICS = {
 export const VALUE_PROPOSITIONS = [
   {
     id: 'industry-experts',
-    title: 'Industry Experts',
-    description: 'Learn from professionals with 15+ years experience in tech industry',
+    title: 'Practical Guidance',
+    description: 'Work through focused learning, implementation, or advisory sessions aligned to your goals',
     icon: 'Users',
-    stat: '50+ Expert Instructors'
+    stat: 'Goal-aligned support'
   },
   {
     id: 'hands-on-training',
     title: 'Hands-On Training',
-    description: 'Real projects, real problems, real-world solutions',
+    description: 'Shape practical deliverables around real project requirements and constraints',
     icon: 'Zap',
-    stat: '100+ Live Projects'
+    stat: 'Practical deliverables'
   },
   {
     id: 'career-focused',
-    title: 'Career Outcomes',
-    description: '85% students secure jobs within 3 months of completion',
+    title: 'Outcome-focused work',
+    description: 'Define success measures before the engagement and review progress against them',
     icon: 'Target',
-    stat: '8,500+ Placements'
+    stat: 'Clear success measures'
   },
   {
     id: 'innovation-driven',
     title: 'Innovation Hub',
     description: 'We stay ahead of industry trends and technology',
     icon: 'Lightbulb',
-    stat: '50+ Patents/Publications'
+    stat: 'Evidence-led practice'
   }
 ];
 
@@ -222,48 +197,48 @@ export const SERVICE_HIERARCHY = {
   learn: {
     displayName: 'Learning & Development',
     subcategories: [
-      { id: 'courses', name: 'Courses', icon: 'BookOpen', count: 12 },
-      { id: 'certifications', name: 'Certifications', icon: 'Award', count: 8 },
-      { id: 'workshops', name: 'Workshops', icon: 'Users', count: 15 },
-      { id: 'internships', name: 'Internships', icon: 'Briefcase', count: 20 },
-      { id: 'mentorship', name: 'Mentorship', icon: 'User', count: 30 },
-      { id: 'learning-paths', name: 'Learning Paths', icon: 'Map', count: 10 },
-      { id: 'assessments', name: 'Skill Assessment', icon: 'CheckCircle', count: 25 }
+      { id: 'courses', name: 'Courses', icon: 'BookOpen' },
+      { id: 'certifications', name: 'Certification preparation', icon: 'Award' },
+      { id: 'workshops', name: 'Workshops', icon: 'Users' },
+      { id: 'internships', name: 'Internship guidance', icon: 'Briefcase' },
+      { id: 'mentorship', name: 'Mentorship', icon: 'User' },
+      { id: 'learning-paths', name: 'Learning Paths', icon: 'Map' },
+      { id: 'assessments', name: 'Skill Assessment', icon: 'CheckCircle' }
     ]
   },
 
   build: {
     displayName: 'Building & Development',
     subcategories: [
-      { id: 'web-dev', name: 'Web Development', icon: 'Globe', count: 30 },
-      { id: 'mobile-dev', name: 'Mobile Development', icon: 'Smartphone', count: 20 },
-      { id: 'ai-ml', name: 'AI & Machine Learning', icon: 'Cpu', count: 15 },
-      { id: 'cloud', name: 'Cloud Solutions', icon: 'Cloud', count: 12 },
-      { id: 'devops', name: 'DevOps', icon: 'Settings', count: 10 },
-      { id: 'research', name: 'R&D Projects', icon: 'Microscope', count: 8 }
+      { id: 'web-dev', name: 'Web Development', icon: 'Globe' },
+      { id: 'mobile-dev', name: 'Mobile Development', icon: 'Smartphone' },
+      { id: 'ai-ml', name: 'AI & Machine Learning', icon: 'Cpu' },
+      { id: 'cloud', name: 'Cloud Solutions', icon: 'Cloud' },
+      { id: 'devops', name: 'DevOps', icon: 'Settings' },
+      { id: 'research', name: 'Research & Development', icon: 'Microscope' }
     ]
   },
 
   grow: {
     displayName: 'Growth & Marketing',
     subcategories: [
-      { id: 'digital-marketing', name: 'Digital Marketing', icon: 'Megaphone', count: 25 },
-      { id: 'seo', name: 'SEO & SEM', icon: 'Search', count: 20 },
-      { id: 'content', name: 'Content Creation', icon: 'PenTool', count: 30 },
-      { id: 'social', name: 'Social Media', icon: 'Share2', count: 25 },
-      { id: 'branding', name: 'Branding', icon: 'Palette', count: 15 },
-      { id: 'analytics', name: 'Analytics & Analytics', icon: 'BarChart2', count: 10 }
+      { id: 'digital-marketing', name: 'Digital Marketing', icon: 'Megaphone' },
+      { id: 'seo', name: 'SEO & SEM', icon: 'Search' },
+      { id: 'content', name: 'Content Creation', icon: 'PenTool' },
+      { id: 'social', name: 'Social Media', icon: 'Share2' },
+      { id: 'branding', name: 'Branding', icon: 'Palette' },
+      { id: 'analytics', name: 'Marketing Analytics', icon: 'BarChart2' }
     ]
   },
 
   secure: {
     displayName: 'Security & Compliance',
     subcategories: [
-      { id: 'audits', name: 'Security Audits', icon: 'CheckSquare', count: 12 },
-      { id: 'penetration', name: 'Penetration Testing', icon: 'Shield', count: 10 },
-      { id: 'compliance', name: 'Compliance', icon: 'Lock', count: 8 },
-      { id: 'consulting', name: 'Security Consulting', icon: 'AlertCircle', count: 15 },
-      { id: 'incident', name: 'Incident Response', icon: 'Zap', count: 5 }
+      { id: 'audits', name: 'Security Audits', icon: 'CheckSquare' },
+      { id: 'penetration', name: 'Penetration Testing', icon: 'Shield' },
+      { id: 'compliance', name: 'Compliance reviews', icon: 'Lock' },
+      { id: 'consulting', name: 'Security Consulting', icon: 'AlertCircle' },
+      { id: 'incident', name: 'Incident Response planning', icon: 'Zap' }
     ]
   }
 };
@@ -271,13 +246,4 @@ export const SERVICE_HIERARCHY = {
 /**
  * Business Metrics for Homepage
  */
-export const BUSINESS_METRICS = {
-  totalStudents: '10,000+',
-  totalProjects: '500+',
-  clientsServed: '300+',
-  expertTeam: '50+',
-  yearsExperience: '20+',
-  employmentRate: '85%',
-  courseCompletion: '92%',
-  clientSatisfaction: '4.9/5'
-};
+export const BUSINESS_METRICS = {};

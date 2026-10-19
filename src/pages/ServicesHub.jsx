@@ -207,7 +207,7 @@ export const ServicesHub = () => {
                           {category.name}
                         </h3>
                         <p className="text-gray-600 dark:text-gray-400">
-                          {category.count}+ offerings
+                          Explore this service area
                         </p>
                       </div>
                     </div>
@@ -229,7 +229,7 @@ export const ServicesHub = () => {
               </motion.div>
 
               {/* Featured Services */}
-              <motion.div
+              {currentPillar.featured.length > 0 && <motion.div
                 variants={containerVariants}
                 initial="hidden"
                 animate="visible"
@@ -257,8 +257,8 @@ export const ServicesHub = () => {
                       <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
                         {offering.name}
                       </h4>
-                      <p className="text-2xl font-black mb-4 text-gray-900">
-                        {offering.price}
+                      <p className="mb-6 leading-relaxed text-gray-600 dark:text-gray-300">
+                        {offering.description}
                       </p>
                       <Button
                         className="w-full"
@@ -268,12 +268,12 @@ export const ServicesHub = () => {
                         }}
                         action="openContact"
                       >
-                        Enroll Now
+                        Discuss scope
                       </Button>
                     </motion.div>
                   ))}
                 </motion.div>
-              </motion.div>
+              </motion.div>}
             </div>
           </motion.section>
         </AnimatePresence>

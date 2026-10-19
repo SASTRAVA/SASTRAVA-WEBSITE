@@ -8,23 +8,10 @@ import { motion } from 'framer-motion';
 
 export const PartnerLogoGrid = ({
   partners = [],
-  title = 'Technology & Integration Partners',
+  title = 'Partner relationships',
   columns = 5
 }) => {
-  const defaultPartners = [
-    { name: 'AWS', category: 'Cloud Infrastructure' },
-    { name: 'Microsoft Azure', category: 'Cloud Services' },
-    { name: 'Google Cloud', category: 'Data & AI' },
-    { name: 'Salesforce', category: 'CRM' },
-    { name: 'Stripe', category: 'Payments' },
-    { name: 'Slack', category: 'Collaboration' },
-    { name: 'MongoDB', category: 'Database' },
-    { name: 'GitHub', category: 'DevOps' },
-    { name: 'Docker', category: 'Containerization' },
-    { name: 'Kubernetes', category: 'Orchestration' },
-  ];
-
-  const displayPartners = partners.length > 0 ? partners : defaultPartners;
+  const displayPartners = partners;
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -49,7 +36,7 @@ export const PartnerLogoGrid = ({
         </h3>
       )}
 
-      <motion.div
+      {displayPartners.length > 0 ? <motion.div
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -76,7 +63,7 @@ export const PartnerLogoGrid = ({
             </div>
           </motion.div>
         ))}
-      </motion.div>
+      </motion.div> : <p className="mx-auto max-w-2xl text-center text-sm leading-relaxed text-gray-400">Formal partner relationships will be listed here when verified. Using a technology does not imply an endorsement or partnership.</p>}
     </div>
   );
 };

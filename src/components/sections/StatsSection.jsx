@@ -1,31 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { AnimatedCounter } from '../ui/AnimatedCounter';
 import { SectionLabel } from '../ui/SectionLabel';
 import { BarChart3 } from 'lucide-react';
 
 export const StatsSection = () => {
   const stats = [
-    {
-      end: 500,
-      suffix: '+',
-      label: 'Active Students',
-    },
-    {
-      end: 50,
-      suffix: '+',
-      label: 'Expert Courses',
-    },
-    {
-      end: 95,
-      suffix: '%',
-      label: 'Job Placement Rate',
-    },
-    {
-      end: 4.9,
-      suffix: '/5',
-      label: 'Average Rating',
-    },
+    { title: 'Learn', label: 'Practical technical learning and mentoring' },
+    { title: 'Build', label: 'Software, digital products, and automation' },
+    { title: 'Grow', label: 'Business consulting and digital marketing' },
+    { title: 'Secure', label: 'Security review and remediation support' },
   ];
 
   const containerVariants = {
@@ -62,11 +45,11 @@ export const StatsSection = () => {
           viewport={{ once: true }}
           className="text-center mb-20"
         >
-          <SectionLabel label="By The Numbers" icon={BarChart3} />
+          <SectionLabel label="How We Work" icon={BarChart3} />
           <h2 className="text-h1 text-offwhite">
-            Trusted by
+            Connected capabilities for
             <span className="block text-transparent bg-gradient-peacock bg-clip-text">
-              Thousands
+              practical progress
             </span>
           </h2>
         </motion.div>
@@ -105,11 +88,7 @@ export const StatsSection = () => {
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
                 viewport={{ once: true }}
               >
-                <AnimatedCounter
-                  end={stat.end}
-                  suffix={stat.suffix}
-                  delay={idx * 0.1}
-                />
+                <span className="text-3xl font-bold text-gold-light">{stat.title}</span>
               </motion.div>
               <p className="text-offwhite/70 text-sm mt-4 font-medium">{stat.label}</p>
 

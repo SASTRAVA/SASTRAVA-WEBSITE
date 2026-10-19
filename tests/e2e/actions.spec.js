@@ -4,14 +4,14 @@ test('primary CTA navigates to the contact journey', async ({ page }) => {
   await page.goto('/');
   await page.getByRole('link', { name: /talk through your next move/i }).click();
   await expect(page).toHaveURL(/\/contact$/);
-  await expect(page.getByRole('heading', { name: /get in touch/i }).first()).toBeVisible();
+  await expect(page.getByRole('heading', { name: /contact sastrava in tadepalli/i }).first()).toBeVisible();
 });
 
 test('home digital learning capability opens learning services', async ({ page }) => {
   await page.goto('/');
   await page.getByRole('link', { name: 'Explore digital learning services' }).click();
   await expect(page).toHaveURL(/\/learn$/);
-  await expect(page.getByRole('heading', { name: /learn: master in-demand skills/i })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /learn: build practical skills/i })).toBeVisible();
 });
 
 test('home omits the team section and primary navigation reaches all core pages', async ({ page, isMobile }) => {
@@ -20,9 +20,9 @@ test('home omits the team section and primary navigation reaches all core pages'
 
   const destinations = [
     ['About', /about sastrava/i],
-    ['Services', /practical services for your next step/i],
+    ['Services', /business, marketing and technology services/i],
     ['Portfolio', /business consulting/i],
-    ['Contact', /get in touch/i],
+    ['Contact', /contact sastrava in tadepalli/i],
   ];
 
   for (const [label, heading] of destinations) {
@@ -100,7 +100,7 @@ test('contact form exposes a safe delivery failure', async ({ page }) => {
   await page.getByLabel(/message/i).first().fill('Synthetic test message.');
   await page.getByRole('button', { name: /^submit$/i }).first().click();
   await expect(page.getByText(/contact service is not configured/i)).toBeVisible();
-  await expect(page.getByRole('link', { name: 'Email neeraj@sastrava.com', exact: true })).toHaveAttribute('href', 'mailto:neeraj@sastrava.com');
+  await expect(page.getByRole('link', { name: 'Email neeraj@sastrava.com', exact: true }).last()).toHaveAttribute('href', 'mailto:neeraj@sastrava.com');
 });
 
 test('courses stay out of navigation and the retired URL redirects to learning services', async ({ page }) => {
@@ -121,13 +121,10 @@ test('research summary opens and closes from a keyboard-accessible control', asy
   await expect(dialog).toHaveCount(0);
 });
 
-test('case study preview opens details and its consultation action works', async ({ page }) => {
+test('case studies explain evidence standards and offer a consultation path', async ({ page }) => {
   await page.goto('/case-studies');
-  await page.getByRole('button', { name: /view case study/i }).first().click();
-  const dialog = page.getByRole('dialog');
-  await expect(dialog).toBeVisible();
-  await expect(dialog.getByRole('heading', { level: 2 })).toBeVisible();
-  await dialog.getByRole('button', { name: /discuss a similar project/i }).click();
+  await expect(page.getByRole('heading', { name: /evidence before claims/i })).toBeVisible();
+  await page.getByRole('button', { name: /discuss a project/i }).click();
   await expect(page).toHaveURL(/\/contact$/);
 });
 
@@ -156,7 +153,7 @@ test('home content and calls to action fit narrow mobile viewports', async ({ pa
 });
 test('pillar CTAs always lead to the contact journey', async ({ page }) => {
   const ctas = [
-    ['/learn', /enroll now/i],
+    ['/learn', /discuss learning options/i],
     ['/build', /start project/i],
     ['/grow', /start growth plan/i],
     ['/secure', /get security audit/i],
@@ -169,13 +166,9 @@ test('pillar CTAs always lead to the contact journey', async ({ page }) => {
   }
 });
 
-test('services hub primary and featured CTAs lead to contact', async ({ page }) => {
+test('services page scope CTA leads to the contact journey', async ({ page }) => {
   await page.goto('/services');
-  await page.getByRole('button', { name: /^explore learning paths$/i }).nth(1).click();
-  await expect(page).toHaveURL(/\/contact$/);
-
-  await page.goto('/services');
-  await page.getByRole('button', { name: /enroll now/i }).first().click();
+  await page.getByRole('button', { name: /let's build together/i }).click();
   await expect(page).toHaveURL(/\/contact$/);
 });
 

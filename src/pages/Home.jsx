@@ -12,6 +12,9 @@ import {
   SearchCheck,
   ShieldCheck,
   MessageCircle,
+  Calculator,
+  ClipboardCheck,
+  Globe2,
 } from 'lucide-react';
 import { Navbar } from '../components/layout/Navbar';
 import { Footer } from '../components/layout/Footer';
@@ -41,10 +44,10 @@ export const Home = () => (
               <span className="h-px w-8 bg-gold-light" /> Strategy · Innovation · Delivery
             </p>
             <h1 className="max-w-3xl font-display text-4xl font-bold leading-[1.08] text-offwhite sm:text-6xl lg:text-[4.4rem]">
-              Business consulting and digital growth for <span className="bg-[linear-gradient(135deg,#C9A84C_0%,#E6C200_35%,#FFF3B0_58%,#C9A84C_100%)] bg-clip-text text-transparent">what comes next.</span>
+              Business consulting, AI &amp; digital growth in <span className="bg-[linear-gradient(135deg,#C9A84C_0%,#E6C200_35%,#FFF3B0_58%,#C9A84C_100%)] bg-clip-text text-transparent">Tadepalli and across India.</span>
             </h1>
             <p className="mt-7 max-w-2xl text-lg leading-relaxed text-offwhite/75 md:text-xl">
-              SASTRAVA is a business consulting, innovation, and startup incubation partner helping founders and organizations turn complex challenges into clear plans, useful technology, and sustainable growth.
+              SASTRAVA is a business consultant, innovator, and incubation partner based in Tadepalli, Guntur District, near Vijayawada and Amaravati. We help founders and organizations connect practical strategy with AI automation, software, security, digital marketing, and learning.
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <Link to="/contact" className="inline-flex min-h-14 w-full items-center justify-center gap-2 rounded-xl bg-[#E6C200] px-4 text-center font-bold text-navy-950 shadow-glow-gold transition-colors hover:-translate-y-0.5 hover:bg-[#FFF3B0] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-light sm:w-auto sm:px-6">
@@ -55,8 +58,8 @@ export const Home = () => (
               </a>
             </div>
             <div className="mt-10 flex flex-wrap gap-x-7 gap-y-3 border-t border-white/10 pt-6 text-sm text-offwhite/65">
-              <a href={googleMapsListingUrl} target="_blank" rel="noopener noreferrer" className="max-w-full break-words underline decoration-peacock-light/50 underline-offset-4 transition-colors hover:text-peacock-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-peacock-light">Based in Tadepalli, Andhra Pradesh, India · Find us on Google Maps</a>
-              <span>Working with teams nationwide</span>
+              <a href={googleMapsListingUrl} target="_blank" rel="noopener noreferrer" className="max-w-full break-words underline decoration-peacock-light/50 underline-offset-4 transition-colors hover:text-peacock-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-peacock-light">Tadepalli, Guntur District · Near Vijayawada &amp; Amaravati · Find us on Google Maps</a>
+              <span>Local collaboration and delivery across India</span>
             </div>
           </div>
 
@@ -128,6 +131,30 @@ export const Home = () => (
                 <h3 className="mt-6 text-xl font-semibold text-offwhite">{title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-offwhite/60">{text}</p>
               </motion.article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-navy-950 py-20 md:py-24" aria-labelledby="free-tools-heading">
+        <div className="mx-auto max-w-7xl px-6">
+          <motion.div {...reveal} className="mb-10 max-w-3xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-peacock-light">Free planning tools</p>
+            <h2 id="free-tools-heading" className="mt-4 font-display text-3xl font-bold text-offwhite md:text-4xl">Start with a clearer view of the opportunity.</h2>
+            <p className="mt-4 leading-relaxed text-offwhite/65">Try a quick self-check or estimate before you decide what to improve. These browser-based tools do not submit your answers to SASTRAVA.</p>
+          </motion.div>
+          <div className="grid gap-4 md:grid-cols-3">
+            {[
+              { href: '/tools/seo-aeo-checker', title: 'SEO, AEO & GEO readiness', text: 'Review crawlability, page clarity, local signals, and measurement.', Icon: Globe2 },
+              { href: '/tools/ai-roi-calculator', title: 'Automation ROI estimate', text: 'Model possible time returned from a recurring team workflow.', Icon: Calculator },
+              { href: '/tools/security-checklist', title: 'Website security checklist', text: 'Review foundational controls and identify areas to follow up.', Icon: ClipboardCheck },
+            ].map(({ href, title, text, Icon }) => (
+              <Link key={href} to={href} className="group flex min-h-48 flex-col rounded-2xl border border-white/10 bg-navy-900/75 p-6 transition-all duration-200 hover:-translate-y-1 hover:border-gold-DEFAULT/35 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-light">
+                <Icon className="h-6 w-6 text-gold-light" aria-hidden="true" />
+                <h3 className="mt-5 font-display text-xl font-semibold text-offwhite">{title}</h3>
+                <p className="mt-2 flex-1 text-sm leading-relaxed text-offwhite/65">{text}</p>
+                <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-peacock-light">Open tool <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" /></span>
+              </Link>
             ))}
           </div>
         </div>

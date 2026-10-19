@@ -10,16 +10,7 @@ export const AchievementTimeline = ({
   achievements = [],
   title = 'Our Journey'
 }) => {
-  const defaultAchievements = [
-    { year: 2019, title: 'Founded SASTRAVA', description: 'Launched with a vision to empower through technology education and innovation' },
-    { year: 2020, title: '1,000 Students', description: 'Reached 1,000 learners across India within first year' },
-    { year: 2021, title: 'Enterprise Clients', description: 'Started serving Fortune 500 companies with cybersecurity consulting' },
-    { year: 2022, title: 'ISO 27001 Certified', description: 'Achieved Information Security Management certification' },
-    { year: 2023, title: '10,000+ Students', description: 'Scaled to over 10,000 active learners and 500 enterprise projects' },
-    { year: 2024, title: 'AI Division Launched', description: 'Introduced dedicated AI, GenAI, and ML solutions division' },
-  ];
-
-  const displayAchievements = achievements.length > 0 ? achievements : defaultAchievements;
+  const displayAchievements = achievements;
 
   return (
     <div className="w-full">
@@ -29,7 +20,7 @@ export const AchievementTimeline = ({
         </h3>
       )}
 
-      <div className="max-w-3xl mx-auto">
+      {displayAchievements.length > 0 ? <div className="max-w-3xl mx-auto">
         {/* Timeline Line */}
         <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-gold via-peacock to-gold hidden md:block"></div>
 
@@ -76,7 +67,7 @@ export const AchievementTimeline = ({
             </motion.div>
           ))}
         </div>
-      </div>
+      </div> : <p className="mx-auto max-w-2xl text-center text-sm leading-relaxed text-gray-400">A dated milestone timeline will be added when the underlying records are approved for publication.</p>}
     </div>
   );
 };

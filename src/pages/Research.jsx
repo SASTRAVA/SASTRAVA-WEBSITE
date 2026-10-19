@@ -35,96 +35,10 @@ const Research = () => {
   const categories = ['all', 'AI', 'Cybersecurity', 'DevOps', 'Architecture', 'Data Science'];
 
   const researchPapers = [
-    {
-      id: 'llm-fine-tuning',
-      title: 'Fine-tuning Large Language Models for Enterprise Applications',
-      description: 'Comprehensive guide on optimizing LLMs for specific business domains with practical implementation strategies',
-      author: 'Dr. Rajesh Kumar',
-      date: 'Dec 2023',
-      category: 'AI',
-      readTime: 12,
-      downloads: 1245,
-    },
-    {
-      id: 'zero-trust-architecture',
-      title: 'Zero Trust Architecture Implementation in Multi-Cloud Environments',
-      description: 'Best practices for implementing Zero Trust security model across AWS, Azure, and Google Cloud',
-      author: 'Priya Sharma',
-      date: 'Nov 2023',
-      category: 'Cybersecurity',
-      readTime: 18,
-      downloads: 892,
-    },
-    {
-      id: 'kubernetes-scale',
-      title: 'Scaling Kubernetes to 10,000+ Nodes: Production Lessons',
-      description: 'Real-world experience and best practices for managing massive Kubernetes clusters in production',
-      author: 'Amit Patel',
-      date: 'Oct 2023',
-      category: 'DevOps',
-      readTime: 15,
-      downloads: 743,
-    },
-    {
-      id: 'microservices-patterns',
-      title: 'Advanced Microservices Patterns: From Theory to Enterprise Production',
-      description: 'Patterns and anti-patterns for building resilient microservice architectures at scale',
-      author: 'Neha Gupta',
-      date: 'Sep 2023',
-      category: 'Architecture',
-      readTime: 20,
-      downloads: 1156,
-    },
-    {
-      id: 'ai-ethics-bias',
-      title: 'Addressing Bias in AI Systems: A Practical Framework',
-      description: 'Methodology for identifying, measuring, and mitigating bias in machine learning models',
-      author: 'Dr. Vikram Singh',
-      date: 'Aug 2023',
-      category: 'AI',
-      readTime: 14,
-      downloads: 987,
-    },
-    {
-      id: 'cloud-cost-optimization',
-      title: 'Cloud Cost Optimization Strategies for SaaS Companies',
-      description: 'Comprehensive guide to reducing cloud infrastructure costs by 40-60% without sacrificing performance',
-      author: 'Anjali Mehta',
-      date: 'Jul 2023',
-      category: 'DevOps',
-      readTime: 11,
-      downloads: 1432,
-    },
-    {
-      id: 'advanced-data-pipelines',
-      title: 'Building Real-time Data Pipelines with Sub-second Latency',
-      description: 'Architecture and implementation guide for ultra-low latency data processing systems',
-      author: 'Karthik S',
-      date: 'Jun 2023',
-      category: 'Data Science',
-      readTime: 16,
-      downloads: 654,
-    },
-    {
-      id: 'api-security',
-      title: 'API Security in the Age of Microservices and GraphQL',
-      description: 'Security best practices and threat models for modern API architectures',
-      author: 'Maya Verma',
-      date: 'May 2023',
-      category: 'Cybersecurity',
-      readTime: 13,
-      downloads: 823,
-    },
-    {
-      id: 'genai-enterprise',
-      title: 'Deploying Generative AI in Enterprise: Governance and Compliance',
-      description: 'Framework for safely deploying GenAI solutions while maintaining compliance and governance',
-      author: 'Dr. Arun Kumar',
-      date: 'Apr 2023',
-      category: 'AI',
-      readTime: 17,
-      downloads: 1654,
-    },
+    { id: 'responsible-ai', title: 'Responsible AI adoption', description: 'A practical topic guide covering data suitability, human review, privacy, evaluation, and the limits of generative AI in business workflows.', category: 'AI' },
+    { id: 'security-baselines', title: 'Security review and remediation', description: 'An overview of scoping an authorized security review, prioritizing findings by risk, documenting fixes, and planning retesting.', category: 'Cybersecurity' },
+    { id: 'workflow-automation', title: 'Workflow automation planning', description: 'A guide to mapping repetitive work, checking integrations and failure paths, and measuring whether automation is useful before scaling it.', category: 'Architecture' },
+    { id: 'search-visibility', title: 'Search and answer visibility', description: 'A practical overview of crawlability, useful page structure, local signals, and clear answers for search and AI discovery systems.', category: 'Data Science' },
   ];
 
   const filteredPapers = selectedCategory === 'all'
@@ -152,7 +66,7 @@ const Research = () => {
         <PageHero
           title="Research Center"
           subtitle="Deep dive into emerging technologies and enterprise practices"
-          description="Access our collection of research papers, whitepapers, and technical publications"
+          description="Practical topic guides on AI adoption, software, security, automation, and digital discovery. These are learning resources, not peer-reviewed research claims."
         />
 
         {/* Filter */}
@@ -230,7 +144,7 @@ const Research = () => {
               </div>
               <h3 className="mt-7 font-semibold text-peacock">Summary</h3>
               <p className="mt-2 leading-relaxed text-offwhite/80">{selectedPaper.description}</p>
-              <p className="mt-5 text-sm text-offwhite/60">By {selectedPaper.author} · {selectedPaper.readTime} min read</p>
+              <p className="mt-5 text-sm text-offwhite/60">SASTRAVA topic guide · Contact us for scope-specific discussion.</p>
               <Button className="mt-7" action="email" actionConfig={{ email: 'neeraj@sastrava.com', subject: `Research inquiry: ${selectedPaper.title}`, body: `Hello SASTRAVA,\n\nI would like to learn more about “${selectedPaper.title}”.` }}>Ask about this research</Button>
             </section>
           </div>
@@ -240,12 +154,12 @@ const Research = () => {
         <section className="py-16 bg-gradient-to-r from-peacock/10 to-gold/10 border-y border-peacock/20">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-3xl font-bold text-white mb-4">
-              Stay Updated with Latest Research
+              Stay Updated with Practical Guides
             </h2>
             <p className="text-gray-300 mb-6">
               We currently handle research update requests by email.
             </p>
-            <Button variant="primary" action="email" actionConfig={{ email: 'neeraj@sastrava.com', subject: 'Research updates request', body: 'Hello SASTRAVA,\n\nPlease contact me about future research updates.' }}>Request updates by email</Button>
+            <Button variant="primary" action="email" actionConfig={{ email: 'neeraj@sastrava.com', subject: 'Practical guide updates request', body: 'Hello SASTRAVA,\n\nPlease contact me about future practical guides.' }}>Request updates by email</Button>
           </div>
         </section>
       </main>

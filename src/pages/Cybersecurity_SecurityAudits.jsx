@@ -64,7 +64,7 @@ const SecurityAudits = () => {
     },
     {
       q: 'What compliance standards do you cover?',
-      a: 'We audit against ISO 27001, SOC 2, PCI-DSS, HIPAA, GDPR, and industry-specific requirements.'
+      a: 'We can scope a review against the security controls or regulatory requirements your organization identifies. This does not imply certification or legal compliance advice.'
     },
     {
       q: 'Will you help implement remediation?',

@@ -56,6 +56,7 @@ const AI = lazy(() => import('./pages/AI'));
 const GenerativeAI = lazy(() => import('./pages/AI_GenerativeAI'));
 const DigitalMarketing = lazy(() => import('./pages/DigitalMarketing'));
 const SEO = lazy(() => import('./pages/DigitalMarketing_SEO'));
+const Tools = lazy(() => import('./pages/Tools'));
 
 /**
  * Page Wrapper Component
@@ -137,6 +138,9 @@ function AppRoutes() {
         {/* Digital Marketing Division Routes (Phase 2B.5) */}
         <Route path="/digital-marketing" element={<PageWrapper><DigitalMarketing /></PageWrapper>} />
         <Route path="/digital-marketing/seo" element={<PageWrapper><SEO /></PageWrapper>} />
+        <Route path="/tools/seo-aeo-checker" element={<PageWrapper><Tools /></PageWrapper>} />
+        <Route path="/tools/ai-roi-calculator" element={<PageWrapper><Tools /></PageWrapper>} />
+        <Route path="/tools/security-checklist" element={<PageWrapper><Tools /></PageWrapper>} />
         
         <Route path="*" element={<PageWrapper><NotFound /></PageWrapper>} />
       </Routes>

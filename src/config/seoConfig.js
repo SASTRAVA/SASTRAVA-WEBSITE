@@ -8,7 +8,7 @@ const pages = Object.fromEntries(Object.entries(seoRoutes).map(([path, config]) 
   ...config,
   path,
   canonical: `https://sastrava.com${path === '/' ? '/' : path}`,
-  ogImage: '/images/sastrava-social-card.png',
+  ogImage: config.ogImage ?? '/images/sastrava-social-card.png',
   ogType: 'website',
 }]));
 

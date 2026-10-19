@@ -63,7 +63,7 @@ export const LearnPillar = () => {
                 About {pillar.name}
               </motion.p>
               <motion.h2 variants={itemVariants} className="text-4xl font-bold text-gray-900 dark:text-white mb-6">
-                Master In-Demand Skills
+                Practical Learning and Mentoring
               </motion.h2>
               <motion.p variants={itemVariants} className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl">
                 {pillar.description}
@@ -83,7 +83,7 @@ export const LearnPillar = () => {
               viewport={{ once: true }}
             >
               <motion.h3 variants={itemVariants} className="text-3xl font-bold text-gray-900 dark:text-white mb-12">
-                Our Courses & Programs
+                Learning Options
               </motion.h3>
 
               <motion.div
@@ -110,15 +110,15 @@ export const LearnPillar = () => {
                     <ul className="space-y-2 mb-6">
                       <li className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
                         <Icons.CheckCircle size={16} style={{ color: pillar.color.primary }} />
-                        Expert Instructors
+                        Goals agreed in advance
                       </li>
                       <li className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
                         <Icons.CheckCircle size={16} style={{ color: pillar.color.primary }} />
-                        Live Projects
+                        Practical exercises
                       </li>
                       <li className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
                         <Icons.CheckCircle size={16} style={{ color: pillar.color.primary }} />
-                        Job Support
+                        Optional project guidance
                       </li>
                     </ul>
                     <Button
@@ -126,7 +126,7 @@ export const LearnPillar = () => {
                       style={{ backgroundColor: pillar.color.primary, color: contrastTextColor(pillar.color.primary) }}
                       action="openContact"
                     >
-                      Enroll Now
+                      Discuss learning options
                     </Button>
                   </motion.div>
                 ))}
@@ -149,7 +149,7 @@ export const LearnPillar = () => {
               style={{ backgroundColor: pillar.color.primary, color: contrastTextColor(pillar.color.primary) }}
               action="openContact"
             >
-              Explore Courses
+              Discuss learning options
             </Button>
           </div>
         </section>

@@ -14,7 +14,6 @@ export const ResearchPreview = ({
   date,
   category,
   readTime,
-  downloads,
   onClick,
   downloadLink,
   index = 0
@@ -59,14 +58,8 @@ export const ResearchPreview = ({
 
         {/* Meta */}
         <div className="space-y-2 mb-4 text-xs text-gray-500 border-t border-navy-700 pt-4">
-          <div className="flex justify-between">
-            <span>by {author}</span>
-            <span>{date}</span>
-          </div>
-          <div className="flex justify-between">
-            <span>{readTime} min read</span>
-            <span>{downloads} downloads</span>
-          </div>
+          {author && date && <div className="flex justify-between"><span>by {author}</span><span>{date}</span></div>}
+          {readTime && <div>{readTime} min read</div>}
         </div>
 
         {/* Actions */}

@@ -6,6 +6,7 @@ const publicRoutes = [
   '/faq', '/support', '/success-stories', '/case-studies', '/research', '/publications',
   '/open-source', '/achievements', '/cybersecurity', '/cybersecurity/penetration-testing',
   '/cybersecurity/security-audits', '/ai', '/ai/genai', '/digital-marketing', '/digital-marketing/seo',
+  '/tools/seo-aeo-checker', '/tools/ai-roi-calculator', '/tools/security-checklist',
 ];
 const staticDocument = (route) => route === '/' ? '/index.html' : `${route}/index.html`;
 
@@ -17,7 +18,7 @@ for (const route of publicRoutes) {
     expect(html).toMatch(/<title>[^<]+<\/title>/);
     expect(html).toMatch(/<meta name="description" content="[^"]+"\s*\/>/);
     expect(html).toContain(`<link rel="canonical" href="https://sastrava.com${route === '/' ? '/' : route}" />`);
-    expect(html).toContain('https://sastrava.com/images/sastrava-social-card.png');
+    expect(html).toMatch(/<meta property="og:image" content="https:\/\/sastrava\.com\/images\/[^>]+/);
     const schemaMatch = html.match(/<script id="sastrava-json-ld" type="application\/ld\+json">([\s\S]*?)<\/script>/);
     expect(schemaMatch).not.toBeNull();
     expect(JSON.parse(schemaMatch[1])['@graph'].some((entry) => Array.isArray(entry['@type'])
@@ -46,36 +47,36 @@ test('Google Search Console ownership file is served from the site root', async 
 
 test('homepage browser tab title identifies SASTRAVA as a business consultant', async ({ page }) => {
   await page.goto('/', { waitUntil: 'networkidle' });
-  await expect(page).toHaveTitle(/Business Consultant \| SASTRAVA/);
+  await expect(page).toHaveTitle(/Business Consultant & SEO in Tadepalli \| SASTRAVA/);
 });
 
 test('homepage publishes the SASTRAVA favicon and platform icon set', async ({ request }) => {
   const homeResponse = await request.get('/');
   const homeHtml = await homeResponse.text();
-  expect(homeHtml.indexOf('href="/favicon.ico?v=20261012"')).toBeLessThan(homeHtml.indexOf('href="/favicon.svg?v=20261012"'));
+  expect(homeHtml.indexOf('href="/sastrava-favicon.png?v=20261019"')).toBeLessThan(homeHtml.indexOf('href="/favicon.svg?v=20261019"'));
   for (const href of [
-    '/sastrava-favicon.png',
-    '/favicon.ico?v=20261012',
-    '/favicon.png?v=20261012',
-    '/favicon-48x48.png?v=20261012',
-    '/favicon-32x32.png?v=20261012',
-    '/favicon-16x16.png?v=20261012',
-    '/apple-touch-icon.png?v=20261012',
-    '/favicon.svg?v=20261012',
-    '/site.webmanifest',
+    '/sastrava-favicon.png?v=20261019',
+    '/favicon.ico?v=20261019',
+    '/favicon.png?v=20261019',
+    '/favicon-48x48.png?v=20261019',
+    '/favicon-32x32.png?v=20261019',
+    '/favicon-16x16.png?v=20261019',
+    '/apple-touch-icon.png?v=20261019',
+    '/favicon.svg?v=20261019',
+    '/site.webmanifest?v=20261019',
   ]) {
     expect(homeHtml).toContain(`href="${href}"`);
   }
 
-  const svgResponse = await request.get('/favicon.svg?v=20261012');
+  const svgResponse = await request.get('/favicon.svg?v=20261019');
   expect(svgResponse.status(), 'SVG favicon should be served').toBe(200);
   expect(svgResponse.headers()['content-type']).toContain('image/svg+xml');
-  expect(await svgResponse.text()).toContain('href="/logo.png"');
+  expect(await svgResponse.text()).toContain('href="/logo.png?v=20261019"');
 
   const icoResponse = await request.get('/favicon.ico');
   expect(icoResponse.status(), 'legacy favicon URL should be served').toBe(200);
   const icoBytes = await icoResponse.body();
-  expect([...icoBytes.subarray(0, 6)]).toEqual([0, 0, 1, 0, 4, 0]);
+  expect([...icoBytes.subarray(0, 6)]).toEqual([0, 0, 1, 0, 3, 0]);
 
   for (const path of [
     '/favicon-16x16.png',
@@ -91,13 +92,23 @@ test('homepage publishes the SASTRAVA favicon and platform icon set', async ({ r
     expect(response.headers()['content-type']).toContain('image/png');
   }
 
-  const manifestResponse = await request.get('/site.webmanifest');
+  const manifestResponse = await request.get('/site.webmanifest?v=20261019');
   const manifest = await manifestResponse.json();
   expect(manifest.name).toBe('SASTRAVA');
   expect(manifest.icons.map(({ src }) => src)).toEqual([
-    '/android-chrome-192x192.png?v=20261012',
-    '/android-chrome-512x512.png?v=20261012',
+    '/android-chrome-192x192.png?v=20261019',
+    '/android-chrome-512x512.png?v=20261019',
   ]);
+});
+
+test('primary favicon uses the supplied square SASTRAVA logo asset', async ({ request }) => {
+  const response = await request.get('/sastrava-favicon.png?v=20261019');
+  expect(response.status()).toBe(200);
+  expect(response.headers()['content-type']).toContain('image/png');
+  const { default: sharp } = await import('sharp');
+  const { width, height } = await sharp(await response.body()).metadata();
+  expect(width).toBe(512);
+  expect(height).toBe(512);
 });
 
 test('SEO, AEO, and GEO answer is visible on the SEO page', async ({ request }) => {

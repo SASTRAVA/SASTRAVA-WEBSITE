@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { ChevronDown, Menu, X } from 'lucide-react';
 import { Logo } from '../ui/Logo';
+import { primaryNavigation } from '../../config/siteNavigation.js';
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -25,13 +27,7 @@ export const Navbar = () => {
     return () => window.removeEventListener('keydown', closeOnEscape);
   }, [isOpen]);
 
-  const navLinks = [
-    { name: 'Home', href: '/' },
-    { name: 'About', href: '/about' },
-    { name: 'Services', href: '/services' },
-    { name: 'Portfolio', href: '/portfolio' },
-    { name: 'Contact', href: '/contact' },
-  ];
+  const navLinks = primaryNavigation;
 
   const linkVariants = {
     hidden: { opacity: 0, y: -20 },
@@ -98,9 +94,34 @@ export const Navbar = () => {
                 initial="hidden"
                 animate="visible"
               >
-                <NavLink to={link.href} end={link.href === '/'} className={navClassName}>
-                  {link.name}
-                </NavLink>
+                <div className="relative flex items-center">
+                  <NavLink to={link.href} end={link.href === '/'} className={navClassName} onClick={() => setIsServicesOpen(false)}>
+                    {link.name}
+                  </NavLink>
+                  {link.children && (
+                    <>
+                      <button
+                        type="button"
+                        className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg text-offwhite/75 transition-colors hover:bg-gold-DEFAULT/10 hover:text-gold-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-light"
+                        aria-label="Toggle service links"
+                        aria-expanded={isServicesOpen}
+                        onClick={() => setIsServicesOpen((open) => !open)}
+                      >
+                        <ChevronDown className={`h-4 w-4 transition-transform ${isServicesOpen ? 'rotate-180' : ''}`} aria-hidden="true" />
+                      </button>
+                      {isServicesOpen && (
+                        <div className="absolute left-0 top-full z-50 mt-2 grid w-[30rem] grid-cols-2 gap-1 rounded-xl border border-gold-DEFAULT/20 bg-navy-950 p-3 shadow-2xl">
+                          <NavLink to="/services" onClick={() => setIsServicesOpen(false)} className="col-span-2 rounded-lg px-3 py-2.5 text-sm font-semibold text-gold-light hover:bg-white/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-light">All services</NavLink>
+                          {link.children.map((child) => (
+                            <NavLink key={child.href} to={child.href} onClick={() => setIsServicesOpen(false)} className="rounded-lg px-3 py-2.5 text-sm text-offwhite/80 hover:bg-white/5 hover:text-gold-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-light">
+                              {child.name}
+                            </NavLink>
+                          ))}
+                        </div>
+                      )}
+                    </>
+                  )}
+                </div>
               </motion.div>
             ))}
           </div>
@@ -133,14 +154,38 @@ export const Navbar = () => {
                   initial="hidden"
                   animate="visible"
                 >
-                  <NavLink
-                    to={link.href}
-                    end={link.href === '/'}
-                    className={mobileNavClassName}
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {link.name}
-                  </NavLink>
+                  <div>
+                    <div className="flex items-center gap-1">
+                      <NavLink
+                        to={link.href}
+                        end={link.href === '/'}
+                        className={`${mobileNavClassName} flex-1`}
+                        onClick={() => { setIsOpen(false); setIsServicesOpen(false); }}
+                      >
+                        {link.name}
+                      </NavLink>
+                      {link.children && (
+                        <button
+                          type="button"
+                          className="inline-flex min-h-12 min-w-12 items-center justify-center rounded-lg text-offwhite hover:bg-white/5 hover:text-gold-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-light"
+                          aria-label="Toggle service links"
+                          aria-expanded={isServicesOpen}
+                          onClick={() => setIsServicesOpen((open) => !open)}
+                        >
+                          <ChevronDown className={`h-4 w-4 transition-transform ${isServicesOpen ? 'rotate-180' : ''}`} aria-hidden="true" />
+                        </button>
+                      )}
+                    </div>
+                    {link.children && isServicesOpen && (
+                      <div className="ml-4 mt-1 border-l border-gold-DEFAULT/25 pl-3">
+                        {link.children.map((child) => (
+                          <NavLink key={child.href} to={child.href} className={mobileNavClassName} onClick={() => { setIsOpen(false); setIsServicesOpen(false); }}>
+                            {child.name}
+                          </NavLink>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 </motion.div>
               ))}
             </motion.div>

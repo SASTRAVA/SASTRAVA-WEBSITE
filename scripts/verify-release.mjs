@@ -26,6 +26,8 @@ const requiredFiles = [
   '.env.example',
   'src/components/AnalyticsConsent.jsx',
   'src/config/seoRoutes.js',
+  'src/config/siteNavigation.js',
+  'src/pages/Tools.jsx',
   'scripts/generate-seo-pages.mjs',
 ];
 const publicRoutes = [
@@ -34,6 +36,7 @@ const publicRoutes = [
   '/faq', '/support', '/success-stories', '/case-studies', '/research', '/publications',
   '/open-source', '/achievements', '/cybersecurity', '/cybersecurity/penetration-testing',
   '/cybersecurity/security-audits', '/ai', '/ai/genai', '/digital-marketing', '/digital-marketing/seo',
+  '/tools/seo-aeo-checker', '/tools/ai-roi-calculator', '/tools/security-checklist',
 ];
 const fail = (message) => {
   console.error(`Release verification failed: ${message}`);
@@ -46,20 +49,20 @@ for (const file of requiredFiles) {
 
 const htmlHead = readFileSync('index.html', 'utf8');
 for (const asset of [
-  '/sastrava-favicon.png',
-  '/favicon.ico?v=20261012',
-  '/favicon.png?v=20261012',
-  '/favicon-48x48.png?v=20261012',
-  '/favicon-32x32.png?v=20261012',
-  '/favicon-16x16.png?v=20261012',
-  '/apple-touch-icon.png?v=20261012',
-  '/favicon.svg?v=20261012',
-  '/site.webmanifest',
+  '/sastrava-favicon.png?v=20261019',
+  '/favicon.ico?v=20261019',
+  '/favicon.png?v=20261019',
+  '/favicon-48x48.png?v=20261019',
+  '/favicon-32x32.png?v=20261019',
+  '/favicon-16x16.png?v=20261019',
+  '/apple-touch-icon.png?v=20261019',
+  '/favicon.svg?v=20261019',
+  '/site.webmanifest?v=20261019',
 ]) {
   if (!htmlHead.includes(`href="${asset}"`)) fail(`home page head does not reference ${asset}`);
 }
 const webManifest = JSON.parse(readFileSync('public/site.webmanifest', 'utf8'));
-for (const icon of ['/android-chrome-192x192.png?v=20261012', '/android-chrome-512x512.png?v=20261012']) {
+for (const icon of ['/android-chrome-192x192.png?v=20261019', '/android-chrome-512x512.png?v=20261019']) {
   if (!webManifest.icons?.some(({ src }) => src === icon)) fail(`web manifest missing ${icon}`);
 }
 const faviconIco = readFileSync('public/favicon.ico');
@@ -111,6 +114,11 @@ for (const route of publicRoutes) {
   if (!seoSource.includes(`'${route}':`)) fail(`SEO metadata missing for ${route}`);
 }
 if (!/\/courses':\s*\{[^}]*noindex:\s*true/.test(seoSource)) fail('hidden courses route must publish noindex metadata');
+
+const siteNavigation = readFileSync('src/config/siteNavigation.js', 'utf8');
+for (const route of publicRoutes.filter((route) => route !== '/')) {
+  if (!siteNavigation.includes(`'${route}'`) && !siteNavigation.includes(`"${route}"`)) fail(`internal navigation missing ${route}`);
+}
 
 const contact = readFileSync('api/contact.js', 'utf8');
 for (const unsafePattern of ['localStorage', 'api.ipify.org']) {

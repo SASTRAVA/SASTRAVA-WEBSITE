@@ -11,18 +11,7 @@ export const CertificationGrid = ({
   certifications = [],
   title = 'Industry Certifications & Credentials'
 }) => {
-  const defaultCertifications = [
-    { name: 'ISO 27001', issuer: 'Information Security', year: 2022 },
-    { name: 'SOC 2 Type II', issuer: 'Security & Availability', year: 2023 },
-    { name: 'AWS Advanced Partner', issuer: 'Amazon Web Services', year: 2023 },
-    { name: 'Microsoft Gold Partner', issuer: 'Microsoft', year: 2023 },
-    { name: 'Google Cloud Certified', issuer: 'Google Cloud', year: 2022 },
-    { name: 'NASSCOM DSCI', issuer: 'Data Security', year: 2023 },
-    { name: 'CMMI Level 3', issuer: 'Software Engineering', year: 2022 },
-    { name: 'Great Place to Work', issuer: 'Employee Culture', year: 2023 },
-  ];
-
-  const displayCerts = certifications.length > 0 ? certifications : defaultCertifications;
+  const displayCerts = certifications;
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -47,7 +36,7 @@ export const CertificationGrid = ({
         </h3>
       )}
 
-      <motion.div
+      {displayCerts.length > 0 ? <motion.div
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -74,7 +63,7 @@ export const CertificationGrid = ({
             </div>
           </motion.div>
         ))}
-      </motion.div>
+      </motion.div> : <p className="mx-auto max-w-2xl text-center text-sm leading-relaxed text-gray-400">SASTRAVA does not claim organizational certifications here. Any verified credential will be listed with its issuer and scope.</p>}
     </div>
   );
 };

@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Camera, Mail, Send, Share2 } from 'lucide-react';
 import { motion as Motion } from 'framer-motion';
+import { footerSections } from '../../config/siteNavigation.js';
+import { googleMapsListingAddress, googleMapsListingName, googleMapsListingUrl } from '../../config/businessProfile.js';
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -13,33 +15,6 @@ export const Footer = () => {
     { icon: Camera, href: 'https://www.instagram.com/sastrava_/', label: 'Instagram / @sastrava_' },
   ];
 
-  const footerLinks = [
-    {
-      title: 'Company',
-      links: [
-        { name: 'Home', href: '/' },
-        { name: 'About', href: '/about' },
-        { name: 'Services', href: '/services' },
-      ],
-    },
-    {
-      title: 'Learning',
-      links: [
-        { name: 'Learning Services', href: '/learn' },
-        { name: 'Portfolio', href: '/portfolio' },
-        { name: 'Blog', href: '/blog' },
-      ],
-    },
-    {
-      title: 'Resources',
-      links: [
-        { name: 'FAQ', href: '/faq' },
-        { name: 'Support', href: '/support' },
-        { name: 'Contact', href: '/contact' },
-      ],
-    },
-  ];
-
   return (
     <Motion.footer
       initial={{ opacity: 0 }}
@@ -49,19 +24,26 @@ export const Footer = () => {
       className="bg-navy-950 border-t border-gold-DEFAULT/10 py-16 md:py-20"
     >
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+        <div className="grid grid-cols-1 gap-10 mb-12 sm:grid-cols-2 xl:grid-cols-6 xl:gap-8">
           <Motion.div
+            className="xl:col-span-2"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <p className="text-2xl font-bold text-transparent bg-gradient-gold bg-clip-text mb-3">
+            <Link to="/" className="inline-flex text-2xl font-bold text-transparent bg-gradient-gold bg-clip-text mb-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-light">
               SASTRAVA
-            </p>
+            </Link>
             <p className="text-offwhite/70 text-sm leading-relaxed mb-6">
-              Business consulting, innovation, and incubation from Tadepalli, Andhra Pradesh, supporting organizations across Vijayawada, Guntur, Amaravati, and India.
+              Business consulting, innovation, and incubation based in Tadepalli, Guntur District, near Vijayawada and Amaravati. Working with teams across India.
             </p>
+            <address className="mb-5 space-y-2 not-italic text-sm leading-relaxed text-offwhite/65">
+              <p>{googleMapsListingAddress}</p>
+              <a href="tel:+917981576083" className="block min-h-11 py-2 hover:text-gold-light">+91 7981 576083</a>
+              <a href="mailto:neeraj@sastrava.com" className="block min-h-11 py-2 hover:text-gold-light">neeraj@sastrava.com</a>
+              <a href={googleMapsListingUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center py-2 text-peacock-light underline underline-offset-4 hover:text-gold-light">Find {googleMapsListingName} on Google Maps</a>
+            </address>
             <div className="flex gap-4">
               {socialLinks.map(({ icon: Graphic, href, label }) => (
                 <Motion.a
@@ -80,21 +62,22 @@ export const Footer = () => {
             </div>
           </Motion.div>
 
-          {footerLinks.map((section, idx) => (
+          {footerSections.map((section, idx) => (
             <Motion.div
               key={section.title}
+              className="min-w-0"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: (idx + 1) * 0.1 }}
               viewport={{ once: true }}
             >
               <p className="text-gold-light font-semibold mb-4">{section.title}</p>
-              <ul className="space-y-3">
+              <ul className="space-y-1">
                 {section.links.map((link) => (
                   <li key={`${section.title}-${link.name}`}>
                     <Link
                       to={link.href}
-                      className="inline-flex min-h-12 min-w-12 items-center text-offwhite/70 text-sm hover:text-gold-light transition-colors duration-300"
+                      className="inline-flex min-h-11 items-center py-2 text-offwhite/70 text-sm leading-snug hover:text-gold-light transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-light"
                     >
                       {link.name}
                     </Link>

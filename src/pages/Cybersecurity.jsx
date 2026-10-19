@@ -28,7 +28,7 @@ const CybersecurityHub = () => {
       icon: Shield,
       title: 'Security Audits',
       subtitle: 'Complete Security Infrastructure Review',
-      description: 'End-to-end security assessment aligned with ISO 27001 and SOC 2',
+      description: 'Scoped security assessment mapped to the controls and risk criteria relevant to your environment',
       path: '/cybersecurity/security-audits',
       color: '#1ECDB0'
     },
@@ -44,7 +44,7 @@ const CybersecurityHub = () => {
       icon: CheckCircle,
       title: 'Compliance',
       subtitle: 'Regulatory Framework Implementation',
-      description: 'ISO 27001, SOC 2, GDPR, PCI-DSS compliance automation',
+      description: 'Control mapping and compliance-readiness support against requirements selected by your organization',
       path: '/contact',
       color: '#1ECDB0'
     },

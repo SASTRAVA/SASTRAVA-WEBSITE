@@ -229,10 +229,10 @@ export const HeroSection = () => {
           className="grid grid-cols-2 md:grid-cols-4 gap-6 w-full mt-6"
         >
           {[
-            { label: '500+', description: 'Students', icon: '👥' },
-            { label: '50+', description: 'Courses', icon: '📚' },
-            { label: '100%', description: 'Job Ready', icon: '🎯' },
-            { label: '24/7', description: 'Support', icon: '💬' },
+            { label: 'Learn', description: 'Digital learning', icon: '👥' },
+            { label: 'Build', description: 'Software & AI', icon: '📚' },
+            { label: 'Grow', description: 'Business & marketing', icon: '🎯' },
+            { label: 'Secure', description: 'Cybersecurity', icon: '💬' },
           ].map((stat, idx) => (
             <motion.div
               key={idx}

@@ -4,12 +4,12 @@ import { googleMapsListingAddress, googleMapsListingUrl } from './businessProfil
 import { teamProfiles } from './teamProfiles.js';
 
 const organizationName = 'SASTRAVA';
-const defaultDescription = 'Tadepalli business consultant, innovator and incubator for digital marketing, software, AI automation, security audits and digital learning.';
+const defaultDescription = 'Tadepalli business consultant & startup incubator for Vijayawada, Amaravati and India. SASTRAVA offers SEO, AI automation, software, security & learning.';
 
 export const seoRoutes = {
   '/': {
-    title: 'Business Consultant in Tadepalli | SASTRAVA',
-    ogTitle: 'Business Consultant in Tadepalli | SASTRAVA',
+    title: 'Business Consultant & SEO in Tadepalli | SASTRAVA',
+    ogTitle: 'Business Consulting, SEO & AI Automation | SASTRAVA',
     ogImage: '/images/sastrava-social-card.png',
     ogImageAlt: 'SASTRAVA business consulting and digital growth in Tadepalli, Andhra Pradesh',
     description: defaultDescription,
@@ -21,7 +21,7 @@ export const seoRoutes = {
     ogImageAlt: 'SASTRAVA team and its business consulting and technology work',
     pageHeading: 'Business consulting, innovation and technology with purpose',
     intro: 'SASTRAVA partners with founders, businesses, and institutions to make complex work clearer and more achievable. Based in Tadepalli, the team brings together business consulting, startup support, digital products, automation, security, marketing, and learning.',
-    description: 'Learn how SASTRAVA supports founders, businesses, and institutions through consulting, incubation, technology, security, digital growth, and practical learning.',
+    description: 'Meet SASTRAVA, a Tadepalli consulting team supporting founders with incubation, software, AI automation, security, marketing, and practical learning.',
     sections: [
       { heading: 'A partner for turning challenges into progress', paragraph: 'SASTRAVA works with founders, businesses, and institutions to understand what is getting in the way and identify a useful next step. Our work connects business consulting and incubation support with digital products, AI and workflow automation, cybersecurity, marketing, and digital learning.', items: ['Start with the organization’s goals, people, and constraints', 'Agree priorities, scope, and the evidence needed to guide decisions', 'Bring the right mix of strategy and delivery support to the work'] },
       { heading: 'Local perspective, flexible collaboration', paragraph: 'SASTRAVA is based in Tadepalli, Andhra Pradesh, and works with teams locally and across India. Engagements are shaped to the client’s context, whether the need is a focused advisory conversation, a defined technical project, or a learning program.', items: ['Business and startup guidance grounded in the brief', 'Technology and security work with a clear scope', 'Remote and in-person collaboration arranged around the engagement'] },
@@ -29,14 +29,25 @@ export const seoRoutes = {
     process: ['Listen to the challenge and understand the context.', 'Set a clear scope, priorities, and expected deliverables.', 'Review progress and agree practical next steps together.'],
     teamProfiles,
   },
-  '/domains': { title: 'Industries & Technology Domains | SASTRAVA', description: 'Explore the technology domains and business challenges SASTRAVA supports through learning, digital product development, AI, and security.' },
+  '/domains': {
+    title: 'Industries & Technology Domains | SASTRAVA',
+    pageHeading: 'Business and technology domains we support',
+    intro: 'SASTRAVA works with founders, businesses, and institutions facing practical challenges in growth, software, automation, security, marketing, and digital learning. This page describes the kinds of context our services can support; it does not imply sector-specific certifications or client results.',
+    description: 'Explore the business and technology domains SASTRAVA supports, from startups and education to software, AI, cybersecurity, and digital growth across India.',
+    sections: [
+      { heading: 'Business and innovation', paragraph: 'Early-stage founders and established teams may need help understanding customers, prioritizing opportunities, planning a product, or improving an operating workflow. Consulting begins with the goals, evidence, and constraints of each organization.', items: ['Business model discovery and startup support', 'Product and go-to-market planning', 'Workflow improvement and automation opportunity mapping'] },
+      { heading: 'Digital products and emerging technology', paragraph: 'Technology work is scoped around the user need, data, systems, and delivery capacity. AI is considered where it adds value; simpler software, integrations, or process changes may be a better fit.', items: ['Websites, applications, and digital products', 'AI, generative AI, and business process automation', 'Data-aware implementation and integration planning'] },
+      { heading: 'Trust, visibility, and skills', paragraph: 'Organizations also need secure systems, clear communication, discoverable services, and practical skills. SASTRAVA can discuss scoped assessments, content and marketing, and learning programs aligned to an agreed audience.', items: ['Authorized security reviews and remediation planning', 'Brand, SEO, local search, content, and campaign measurement', 'Technology workshops and project-based learning'] },
+    ],
+    process: ['Describe the audience, challenge, and desired change.', 'Agree the scope, evidence, and capabilities that fit.', 'Review progress and next steps with the people responsible for delivery.'],
+  },
   '/services': {
-    title: 'Business Consulting, AI, Software & Marketing Services | SASTRAVA',
+    title: 'Business Consulting, AI & Marketing Services | SASTRAVA',
     ogImage: '/images/og/sastrava-services.png',
     ogImageAlt: 'SASTRAVA consulting, AI, software, cybersecurity, marketing, and learning services',
     pageHeading: 'Practical business and technology services for measurable progress',
     intro: 'Bring strategy and delivery together around the challenge you need to solve. SASTRAVA works across business consulting, incubation, software, automation, cybersecurity, marketing, media, and practical digital learning.',
-    description: 'Explore SASTRAVA business consulting and incubation, software, AI and automation, security reviews, digital marketing, content, and technical learning services.',
+    description: 'Explore SASTRAVA consulting, incubation, software, AI automation, security, digital marketing, content, and practical learning services for organizations.',
     serviceType: 'Business consulting and technology services',
     sections: [
       { heading: 'Strategy, consulting and incubation', paragraph: 'Clarify the problem, customer, and opportunity before committing resources. Consulting and incubation support can help founders and teams review business models, set priorities, and plan practical routes to market.', items: ['Business model and market discovery', 'Startup orientation, mentoring, and incubation support', 'Positioning, go-to-market, and operating priorities'] },
@@ -51,7 +62,7 @@ export const seoRoutes = {
     ogImageAlt: 'SASTRAVA digital learning workshops and technology mentoring',
     pageHeading: 'Digital learning workshops and technology mentoring',
     intro: 'SASTRAVA plans practical workshops and mentoring for learners, teams, and institutions. Programs can cover software, AI, data, automation, and cybersecurity, with the format and exercises matched to the audience and agreed goals.',
-    description: 'Build practical software, AI, data, and cybersecurity skills with SASTRAVA workshops, mentoring, and project-based digital learning.',
+    description: 'Build practical software, AI, data, and security skills through SASTRAVA workshops, mentoring, and project-based learning for teams and learners.',
     serviceType: 'Digital learning and technology training',
     sections: [
       { heading: 'Learning built around practical work', paragraph: 'SASTRAVA supports learners and teams who want to understand technology by applying it to useful tasks and projects.', items: ['Software development and digital product foundations', 'Artificial intelligence, data, and automation concepts', 'Cybersecurity awareness and secure development practices'] },
@@ -122,12 +133,12 @@ export const seoRoutes = {
     ],
   },
   '/digital-marketing': {
-    title: 'Digital Marketing Consultant | Brand & Performance | SASTRAVA',
+    title: 'Digital Marketing & Performance Growth | SASTRAVA',
     ogImage: '/images/og/sastrava-marketing.png',
     ogImageAlt: 'SASTRAVA brand and performance marketing services',
     pageHeading: 'Brand and performance marketing for sustainable digital growth',
     intro: 'Connect clear brand positioning with useful content, organic discovery, paid campaigns, and conversion measurement. The channel mix and success measures should fit the audience, offer, and available budget.',
-    description: 'Build your brand and demand with SASTRAVA: performance marketing, SEO, AEO, GEO, paid campaigns, content, and conversion measurement.',
+    description: 'Build your brand and demand with SASTRAVA through performance marketing, SEO, AEO, GEO, paid campaigns, content, and conversion measurement for India.',
     keywords: ['digital marketing consultant India', 'brand marketing strategy', 'performance marketing', 'SEO AEO GEO', 'paid media management', 'conversion optimization'],
     serviceType: 'Brand and performance digital marketing services',
     sections: [
@@ -147,7 +158,7 @@ export const seoRoutes = {
     ogImageAlt: 'SASTRAVA cybersecurity reviews, remediation, and retesting',
     pageHeading: 'Cybersecurity audits, testing and remediation support',
     intro: 'A useful security review starts with written authorization and a defined scope. SASTRAVA can assess agreed applications, APIs, infrastructure, and controls, then help teams prioritize fixes and retesting.',
-    description: 'SASTRAVA provides scoped cybersecurity reviews, vulnerability testing, security audits, remediation planning, and retesting support.',
+    description: 'Plan scoped cybersecurity reviews, vulnerability testing, audits, remediation, and retesting with SASTRAVA. Testing requires written authorization.',
     serviceType: 'Cybersecurity audit and testing services',
     sections: [
       { heading: 'A scoped, authorized assessment', paragraph: 'Agree what is in scope, what is excluded, and how sensitive findings will be handled before any testing starts.', items: ['Application and infrastructure review', 'Vulnerability assessment and penetration testing', 'Control and configuration review against agreed criteria'] },
@@ -166,7 +177,7 @@ export const seoRoutes = {
     ogImageAlt: 'SASTRAVA AI and workflow automation consulting',
     pageHeading: 'AI and workflow automation consulting',
     intro: 'Identify a repetitive workflow or user problem before choosing an AI tool. SASTRAVA helps teams map processes, assess data and risk, define a bounded pilot, and evaluate whether an automation is useful enough to expand.',
-    description: 'Identify practical AI and automation opportunities, validate a focused use case, and plan secure workflows with SASTRAVA.',
+    description: 'Identify AI and workflow opportunities, validate a focused use case, and plan secure automation for business teams with SASTRAVA and clear scope.',
     serviceType: 'AI development and business automation consulting',
     sections: [
       { heading: 'Start with the workflow', paragraph: 'Identify repetitive work, decision points, data requirements, and failure costs before selecting an AI or automation approach.', items: ['Workflow discovery and automation opportunity mapping', 'AI assistants and business process integrations', 'Prototype planning and evaluation criteria'] },
@@ -180,12 +191,12 @@ export const seoRoutes = {
   },
   '/courses': { title: 'Courses Temporarily Unavailable | SASTRAVA', description: 'SASTRAVA is updating its course catalog. Explore learning and training services or contact the team.', noindex: true },
   '/portfolio': {
-    title: 'SASTRAVA Capabilities & Team Portfolio | Consulting and Technology',
+    title: 'SASTRAVA Team Portfolio | Consulting & Technology',
     ogImage: '/images/og/sastrava-portfolio.png',
     ogImageAlt: 'SASTRAVA team members and professional portfolio profiles',
     pageHeading: 'People and capabilities behind the work',
     intro: 'Meet the people and capabilities behind SASTRAVA’s business, technology, security, marketing, and learning work. Individual profiles describe team members; project outcomes are published only when their details are verified and approved.',
-    description: 'Explore SASTRAVA capabilities across consulting, incubation, software, automation, security, digital marketing, and technical learning, plus team portfolios.',
+    description: 'Explore SASTRAVA team profiles and capabilities in consulting, incubation, software, automation, security, marketing, and digital learning services.',
     sections: [
       { heading: 'A multidisciplinary team portfolio', paragraph: 'The portfolio introduces SASTRAVA’s team and the capabilities connected to its work: business consulting, startup support, software and digital products, automation, cybersecurity, marketing, media, and learning.', items: ['Meet team members and review their areas of focus', 'Explore service capabilities and the kinds of work they support', 'Use the contact page to discuss a project or collaboration'] },
       { heading: 'Clear evidence matters', paragraph: 'Project outcomes and client details are shared only when they are documented and approved for publication. If a case study is not available for a capability, this page describes the service scope without inventing metrics, client endorsements, or results.', items: ['Published work should state the challenge and agreed scope', 'Results should include context and a verifiable source', 'Client names, quotes, and visuals require permission'] },
@@ -193,19 +204,19 @@ export const seoRoutes = {
     teamProfiles,
   },
   '/blog': {
-    title: 'Business, Technology & Digital Growth Insights | SASTRAVA',
+    title: 'Business, Technology & Growth Insights | SASTRAVA',
     ogImage: '/images/og/sastrava-insights.png',
     ogImageAlt: 'SASTRAVA practical guides about AI, security, marketing, and business',
     pageHeading: 'Insights for better business and technology decisions',
     intro: 'These practical guides help founders and business teams think through AI automation, cybersecurity, local marketing, and early-stage business decisions. Each guide explains a useful starting point, trade-offs, and next steps without promising specific results.',
-    description: 'Read SASTRAVA insights on AI, cybersecurity, software development, digital marketing, and technology learning.',
+    description: 'Read practical SASTRAVA guides on AI, cybersecurity, software, digital marketing, business planning, and technology learning, with useful next steps.',
     sections: [
       { heading: 'Practical guidance, grounded in real questions', paragraph: 'SASTRAVA’s insights focus on decisions that founders, business teams, and learners face when adopting technology or planning growth. Useful topics include choosing an automation use case, preparing for a security review, building a digital product, and measuring marketing activity.', items: ['Business consulting, startup planning, and innovation', 'AI, automation, software delivery, and cybersecurity', 'Brand strategy, SEO, digital marketing, and digital learning'] },
       { heading: 'Editorial standards', paragraph: 'Advice should explain its assumptions, distinguish general information from a project-specific recommendation, and avoid promises about rankings, security, or commercial outcomes. New guides are published when they are ready for review.', items: ['Use clear sources and explain technical terms', 'Keep recommendations proportionate to the evidence', 'Contact SASTRAVA to discuss a specific organizational context'] },
     ],
     articles: insights,
   },
-  '/careers': { title: 'Careers & Opportunities | SASTRAVA', description: 'Explore career and collaboration opportunities with SASTRAVA across technology, learning, and business.' },
+  '/careers': { title: 'Careers & Opportunities | SASTRAVA', description: 'Explore career and collaboration opportunities across SASTRAVA technology, learning, and business work. Contact the team about current openings.' },
   '/contact': {
     title: 'Contact SASTRAVA | Business Consultant in Tadepalli',
     ogImage: '/images/og/sastrava-contact.png',
@@ -218,24 +229,24 @@ export const seoRoutes = {
       { heading: 'Based in Tadepalli, Andhra Pradesh', paragraph: 'SASTRAVA is based in Tadepalli and works with clients in the surrounding region, including Vijayawada, Guntur, and Amaravati, as well as teams elsewhere in India. These are service areas; meetings and delivery formats are agreed for each engagement.', items: ['Email: neeraj@sastrava.com', 'Phone and WhatsApp: +91 7981 576083', 'Use the contact form or message the team directly'] },
     ],
   },
-  '/privacy': { title: 'Privacy Policy | SASTRAVA', description: 'Read how SASTRAVA handles personal information and privacy on this website.' },
-  '/terms': { title: 'Terms of Use | SASTRAVA', description: 'Read the terms that apply when using the SASTRAVA website and its services.' },
-  '/security': { title: 'Report a Security Concern | SASTRAVA', description: 'Find how to contact SASTRAVA about a security concern involving this website.' },
-  '/faq': { title: 'Frequently Asked Questions | SASTRAVA', pageHeading: 'Frequently asked questions about SASTRAVA', description: 'Find answers to common questions about SASTRAVA services, learning programs, and contacting the team.', faqs: faqSchemaEntries },
-  '/support': { title: 'SASTRAVA Support | Services & Learning', description: 'Get support for SASTRAVA services, learning programs, or an existing inquiry.' },
-  '/success-stories': { title: 'Digital Learning Approach | SASTRAVA', pageHeading: 'Learning and engagement approach', description: 'Explore SASTRAVA digital learning workshops and mentoring. Learner stories and outcomes are published only when verified and shared with permission.' },
-  '/case-studies': { title: 'Project Capabilities & Approach | SASTRAVA', pageHeading: 'Project capabilities', description: 'Learn how SASTRAVA scopes consulting, software, marketing, automation, and security work. Client names, results, and testimonials are published only with evidence and permission.' },
-  '/research': { title: 'Technology Research | SASTRAVA', description: 'Explore research topics and work shared by SASTRAVA across emerging technology and learning.' },
-  '/publications': { title: 'Research & Technology Publications | SASTRAVA', description: 'Browse research and technology publications shared by SASTRAVA.' },
-  '/open-source': { title: 'Open-Source Projects | SASTRAVA', description: 'Explore open-source projects and tools shared by SASTRAVA.' },
-  '/achievements': { title: 'Milestones & Achievements | SASTRAVA', description: 'Explore verified milestones and achievements shared by SASTRAVA.' },
+  '/privacy': { title: 'Privacy Policy | SASTRAVA', description: 'Review how SASTRAVA handles personal information, what website data it collects, your privacy choices, and how to contact the team for help.' },
+  '/terms': { title: 'Terms of Use | SASTRAVA', description: 'Read the website terms covering access, acceptable use, third-party services, and important information about SASTRAVA services and your responsibilities.' },
+  '/security': { title: 'Report a Security Concern | SASTRAVA', description: 'Report a website security concern to SASTRAVA. Find our contact channel, scope expectations, and guidance for responsible security disclosures.' },
+  '/faq': { title: 'Frequently Asked Questions | SASTRAVA', pageHeading: 'Frequently asked questions about SASTRAVA', description: 'Get practical answers about SASTRAVA consulting, AI, software, marketing, security, digital learning, engagement scope, and how to contact the team.', faqs: faqSchemaEntries },
+  '/support': { title: 'SASTRAVA Support | Services & Learning', description: 'Contact SASTRAVA for help with a service, learning program, or existing inquiry. Share what you need so the team can guide your next step.' },
+  '/success-stories': { title: 'SASTRAVA Learning Stories & Outcomes', pageHeading: 'Learning programs, experiences, and outcomes', description: 'Explore SASTRAVA digital learning workshops, mentoring, and learning approach. Stories and outcomes are published only when verified and approved.' },
+  '/case-studies': { title: 'Project Case Studies & Delivery | SASTRAVA', pageHeading: 'Project case studies and delivery approach', description: 'Explore SASTRAVA consulting, software, automation, security, and marketing approaches. Client outcomes are shared only with evidence and permission.' },
+  '/research': { title: 'Technology Research | SASTRAVA', description: 'Explore SASTRAVA research themes in emerging technology, software, AI, cybersecurity, and digital learning, with context for practical application.' },
+  '/publications': { title: 'Research & Technology Publications | SASTRAVA', description: 'Browse SASTRAVA technology publications, with authorship, subject matter, publication details, and project context for items shared here.' },
+  '/open-source': { title: 'Open-Source Projects | SASTRAVA', description: 'Explore SASTRAVA open-source projects, purpose, documentation, licenses, and contribution guidance for tools shared with the community.' },
+  '/achievements': { title: 'Milestones & Achievements | SASTRAVA', description: 'Review milestones and achievements shared by SASTRAVA, with supporting details and context. Only verified accomplishments are presented here.' },
   '/cybersecurity/penetration-testing': {
     title: 'VAPT & Penetration Testing Services in India | SASTRAVA',
     ogImage: '/images/og/sastrava-security.png',
     ogImageAlt: 'SASTRAVA authorized vulnerability assessment and penetration testing',
     pageHeading: 'Authorized vulnerability assessment and penetration testing',
     intro: 'Assess agreed web applications, APIs, and infrastructure for potential weaknesses through controlled, authorized testing. The scope, methods, schedule, and rules of engagement are agreed in writing before testing begins.',
-    description: 'Learn about vulnerability assessment and penetration testing for web applications, APIs, and infrastructure with SASTRAVA.',
+    description: 'Plan authorized VAPT for web applications, APIs, and infrastructure with SASTRAVA, including clear scope, evidence-led findings, fixes, and retesting.',
     keywords: ['VAPT services India', 'penetration testing services', 'web application penetration testing', 'API security testing'],
     serviceType: 'Vulnerability assessment and penetration testing',
     sections: [
@@ -255,7 +266,7 @@ export const seoRoutes = {
     ogImageAlt: 'SASTRAVA cybersecurity reviews, remediation, and retesting',
     pageHeading: 'Cybersecurity audits and security control reviews',
     intro: 'A security audit can help an organization understand whether selected policies, controls, configurations, and evidence match its requirements. SASTRAVA agrees audit goals and boundaries first, then documents observations and practical next steps.',
-    description: 'Explore cybersecurity audit support to review security controls, identify gaps, and prioritize remediation for your organization.',
+    description: 'Review cybersecurity controls, identify gaps, and prioritize remediation with a defined scope and practical findings for your organization.',
     keywords: ['cybersecurity audit services', 'information security audit', 'security controls assessment', 'security audit India'],
     serviceType: 'Cybersecurity audit services',
     sections: [
@@ -275,7 +286,7 @@ export const seoRoutes = {
     ogImageAlt: 'SASTRAVA generative AI and retrieval-augmented generation services',
     pageHeading: 'Generative AI and retrieval-augmented generation',
     intro: 'Explore whether a language model or AI assistant fits your users and information needs. SASTRAVA can help scope a bounded prototype, connect selected reference material, and plan evaluation, privacy, and human review.',
-    description: 'Explore generative AI development, LLM integrations, retrieval-augmented generation (RAG), and AI assistants with SASTRAVA.',
+    description: 'Plan generative AI, LLM integrations, RAG, and assistant prototypes with SASTRAVA, including evaluation, data safeguards, and human review.',
     keywords: ['generative AI development India', 'RAG development services', 'LLM integration services', 'AI chatbot development'],
     serviceType: 'Generative AI and large language model solutions',
     sections: [
@@ -295,7 +306,7 @@ export const seoRoutes = {
     ogImageAlt: 'SASTRAVA technical, content, and local search optimization services',
     pageHeading: 'Search engine optimization and local search services',
     intro: 'Improve how people discover and understand your site with technical review, query research, useful content, and consistent local business information. SEO work is prioritized against your audience, competition, and implementation capacity; rankings cannot be guaranteed.',
-    description: 'Explore technical SEO, keyword research, on-page optimization, content strategy, and local search support from SASTRAVA.',
+    description: 'Plan technical SEO, keyword research, content, and local search improvements with SASTRAVA for Tadepalli businesses and teams across India.',
     keywords: ['SEO services India', 'technical SEO services', 'keyword research and content strategy', 'local SEO Tadepalli'],
     serviceType: 'Search engine optimization services',
     sections: [
@@ -309,6 +320,51 @@ export const seoRoutes = {
       ['What is your SEO approach?', 'We follow Google guidelines using white-hat techniques: quality content, technical optimization, authority building, and user experience.'],
       ['Can you improve existing rankings?', 'Yes, we analyze current rankings, identify gaps, and develop strategies to improve positions for underperforming keywords.'],
       ['What is the difference between SEO, AEO, and GEO?', 'SEO helps people discover useful pages in search. Answer engine optimization (AEO) makes clear answers easy to find and understand. Generative engine optimization (GEO) helps generative search systems interpret trustworthy, useful information. None can guarantee inclusion or a particular ranking.'],
+    ],
+  },
+  '/tools/seo-aeo-checker': {
+    title: 'Free SEO, AEO & GEO Readiness Checker | SASTRAVA',
+    pageHeading: 'SEO, AEO & GEO readiness checker',
+    intro: 'Use this ten-point self-check to spot practical search-readiness gaps across technical SEO, local visibility, useful answers, mobile experience, and measurement. Mark items only when you can verify them.',
+    description: 'Review ten practical SEO, AEO, and local search checks for your website. Get an instant readiness score and a prioritized checklist to copy and use.',
+    ogImage: '/images/og/sastrava-marketing.png',
+    sections: [
+      { heading: 'Check the foundations first', paragraph: 'Crawl access, a useful page structure, clear titles, and mobile usability help search systems and people understand your website. The checker makes a short list of these fundamentals visible in one place.', items: ['Review indexability, canonicals, titles, and headings', 'Connect useful pages with descriptive internal links', 'Check mobile layout, image quality, and local information'] },
+      { heading: 'Use the result as a practical action plan', paragraph: 'A higher checklist score does not guarantee a ranking, AI answer, or number of leads. Use any unchecked items to decide what to validate or improve next, then review Search Console and relevant conversion data.', items: ['Mark only items you have confirmed', 'Copy the remaining actions for your planning notes', 'Recheck after updates and measure meaningful outcomes'] },
+    ],
+    faqs: [
+      ['Does the readiness score predict Google rankings?', 'No. The score is an educational checklist, not a ranking prediction or technical audit. Search visibility depends on many factors and cannot be guaranteed.'],
+      ['Does this tool send my website or answers to SASTRAVA?', 'No. The checklist runs in your browser. It does not crawl a website or transmit your answers.'],
+    ],
+  },
+  '/tools/ai-roi-calculator': {
+    title: 'AI Automation ROI Calculator | SASTRAVA',
+    pageHeading: 'AI & workflow automation ROI calculator',
+    intro: 'Estimate the time and labor value a bounded automation might return. Enter the team size, time spent on a recurring workflow, labor cost, and your expected reduction; adjust assumptions before making a decision.',
+    description: 'Estimate monthly hours and labor value from a workflow automation using your team size, time spent, hourly cost, and an adjustable assumption.',
+    ogImage: '/images/og/sastrava-ai.png',
+    sections: [
+      { heading: 'How the estimate is calculated', paragraph: 'The calculator multiplies people involved by weekly hours and 4.33 weeks per month, then applies the percentage of time you think automation could reduce. Estimated labor value is the returned hours multiplied by your hourly cost.', items: ['Potential hours returned = people × hours per week × 4.33 × reduction rate', 'Illustrative monthly labor value = potential hours × hourly labor cost', 'Annual value is a simple monthly estimate multiplied by twelve'] },
+      { heading: 'Treat ROI as a hypothesis to test', paragraph: 'The estimate does not include implementation, integration, hosting, support, exception handling, quality checks, or change-management costs. A pilot should measure actual time saved and error rates while protecting customer data and retaining human review where needed.', items: ['Start with a repeatable, bounded process', 'Include exception handling and ongoing operating costs', 'Compare measured results with the initial assumptions'] },
+    ],
+    faqs: [
+      ['Is the calculator a guaranteed savings forecast?', 'No. It is a scenario estimate based on values you enter. Actual benefits and costs depend on the process, implementation, adoption, and quality controls.'],
+      ['Are my numbers saved or sent to SASTRAVA?', 'No. The calculation runs locally in your browser and does not send your inputs to SASTRAVA.'],
+    ],
+  },
+  '/tools/security-checklist': {
+    title: 'Website Security Readiness Checklist | SASTRAVA',
+    pageHeading: 'Website security readiness checklist',
+    intro: 'Review eight foundational controls for a website or small application. Your answers create a preliminary priority tier in your browser; this tool does not scan or test any system.',
+    description: 'Review eight website security controls, identify items for follow-up, and get a preliminary priority tier. This checklist does not scan your site.',
+    ogImage: '/images/og/sastrava-security.png',
+    sections: [
+      { heading: 'Controls included in the self-check', paragraph: 'The questions cover common operational foundations: administrative MFA, patching, backups, least-privilege access, form and API protections, server-side secrets, logging, and security response planning.', items: ['Mark “Not sure” when a control has not been verified', 'Give each gap an owner and a review date', 'Confirm backup restoration and incident contacts periodically'] },
+      { heading: 'A self-check is not a security test', paragraph: 'This checklist does not access a website or assess its code, configuration, or defenses. A security assessment requires the system owner’s written authorization, a defined scope, controlled testing, and appropriate handling of findings.', items: ['Do not enter credentials, domains, or sensitive information', 'Use written permission before any security testing', 'Request remediation support only for systems you own or are authorized to assess'] },
+    ],
+    faqs: [
+      ['Does this tool perform a vulnerability scan?', 'No. It only scores the answers you select in your browser and never connects to your website.'],
+      ['Can a completed checklist prove a website is secure?', 'No. It covers selected foundational practices and cannot prove that a system is secure or compliant.'],
     ],
   },
   '/login': { title: 'Login | SASTRAVA', description: 'Sign in to your SASTRAVA account.', noindex: true },
@@ -331,7 +387,7 @@ export const buildStructuredData = (pathname) => {
   const entry = getSeoEntry(path);
   const canonical = `https://sastrava.com${path === '/' ? '/' : path}`;
   const organization = {
-    '@type': ['Organization', 'ProfessionalService'],
+    '@type': ['Organization', 'LocalBusiness'],
     '@id': 'https://sastrava.com/#organization',
     name: organizationName,
     url: 'https://sastrava.com/',
@@ -387,12 +443,27 @@ export const buildStructuredData = (pathname) => {
     const itemListElement = [{ '@type': 'ListItem', position: 1, name: 'Home', item: 'https://sastrava.com/' }];
     labels.forEach((name, index) => {
       const itemPath = `/${path.split('/').filter(Boolean).slice(0, index + 1).join('/')}`;
-      itemListElement.push({ '@type': 'ListItem', position: index + 2, name, item: `https://sastrava.com${itemPath}` });
+      if (seoRoutes[itemPath]) itemListElement.push({ '@type': 'ListItem', position: itemListElement.length + 1, name, item: `https://sastrava.com${itemPath}` });
     });
     graph.push({ '@type': 'BreadcrumbList', '@id': `${canonical}#breadcrumb`, itemListElement });
   }
   if (entry.serviceType) {
-    graph.push({ '@type': 'Service', '@id': `${canonical}#service`, name: entry.serviceType, serviceType: entry.serviceType, description: entry.description, url: canonical, provider: { '@id': organization['@id'] }, areaServed: { '@type': 'Country', name: 'India' } });
+    graph.push({
+      '@type': 'Service',
+      '@id': `${canonical}#service`,
+      name: entry.serviceType,
+      serviceType: entry.serviceType,
+      description: entry.description,
+      url: canonical,
+      provider: { '@id': organization['@id'] },
+      areaServed: [
+        { '@type': 'City', name: 'Tadepalli' },
+        { '@type': 'City', name: 'Vijayawada' },
+        { '@type': 'City', name: 'Guntur' },
+        { '@type': 'City', name: 'Amaravati' },
+        { '@type': 'Country', name: 'India' },
+      ],
+    });
   }
   if (entry.teamProfiles) {
     graph.push(...entry.teamProfiles.map((member) => ({

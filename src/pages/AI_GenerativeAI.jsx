@@ -72,7 +72,7 @@ const GenerativeAI = () => {
     },
     {
       q: 'What about data privacy and security?',
-      a: 'Data stays within your infrastructure. We implement enterprise-grade security, encryption, and comply with GDPR/HIPAA.'
+      a: 'Data handling, access controls, hosting, and retention are agreed during discovery and depend on the selected tools and deployment. We do not claim blanket regulatory compliance.'
     },
   ];
 

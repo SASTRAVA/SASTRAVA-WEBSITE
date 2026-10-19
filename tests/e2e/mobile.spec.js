@@ -46,7 +46,7 @@ test('mobile navigation exposes all core pages and closes after selection', asyn
   await expect(menuButton).toHaveAttribute('aria-expanded', 'true');
 
   const primaryNavigation = page.getByRole('navigation', { name: 'Primary' });
-  for (const label of ['Home', 'About', 'Services', 'Portfolio', 'Contact']) {
+  for (const label of ['Home', 'About', 'Services', 'Portfolio', 'Insights', 'Contact']) {
     await expect(primaryNavigation.getByRole('link', { name: label, exact: true })).toBeVisible();
   }
 
