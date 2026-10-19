@@ -23,6 +23,7 @@ export const SEO_CONFIG = {
     language: 'en-IN',
     locale: 'en_IN',
     contactEmail: 'neeraj@sastrava.com',
+    additionalContactEmail: 'siri@sastrava.com',
   },
   PAGES: pages,
   ROBOTS: {

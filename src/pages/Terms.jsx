@@ -26,7 +26,7 @@ const sections = [
   },
   {
     title: 'Contact',
-    body: 'Questions about these terms can be sent to neeraj@sastrava.com.',
+    body: 'Questions about these terms can be sent to neeraj@sastrava.com or siri@sastrava.com.',
   },
 ];
 

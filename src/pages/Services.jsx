@@ -233,6 +233,20 @@ export const Services = () => {
           </div>
         </section>
 
+        <section aria-labelledby="services-proof-links-title" className="bg-navy-900 px-6 py-14 md:py-18">
+          <div className="mx-auto flex max-w-7xl flex-col gap-6 rounded-2xl border border-peacock-light/20 bg-navy-950/70 p-6 md:flex-row md:items-center md:justify-between md:p-8">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-peacock-light">How our work takes shape</p>
+              <h2 id="services-proof-links-title" className="mt-2 font-display text-2xl font-bold text-offwhite md:text-3xl">Explore project and learning approaches.</h2>
+              <p className="mt-2 max-w-3xl text-sm leading-relaxed text-offwhite/65">See how we scope engagements and plan practical learning. Client results and learner stories are shared when documented and approved.</p>
+            </div>
+            <div className="flex shrink-0 flex-wrap gap-3">
+              <Link to="/case-studies" className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-gold-DEFAULT/30 px-4 text-sm font-semibold text-gold-light hover:bg-gold-DEFAULT/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-light">Project case studies <ArrowUpRight className="h-4 w-4" aria-hidden="true" /></Link>
+              <Link to="/success-stories" className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-peacock-light/30 px-4 text-sm font-semibold text-peacock-light hover:bg-peacock-light/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-peacock-light">Learning stories <ArrowUpRight className="h-4 w-4" aria-hidden="true" /></Link>
+            </div>
+          </div>
+        </section>
+
         {/* Bottom CTA Section */}
         <section className="relative py-section overflow-hidden">
           {/* Animated Peacock Gradient Background */}

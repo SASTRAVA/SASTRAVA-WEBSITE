@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 const consentStorageKey = 'sastrava-analytics-consent';
+const defaultMeasurementId = 'G-744LFGFCXQ';
 
 function enableGoogleAnalytics(measurementId) {
   if (window.sastravaAnalyticsInitialized) return;
@@ -37,7 +38,7 @@ function saveConsent(value) {
 
 export function AnalyticsConsent() {
   const { pathname } = useLocation();
-  const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID?.trim();
+  const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID?.trim() || defaultMeasurementId;
   const [consent, setConsent] = useState(() => (typeof window === 'undefined' ? null : readConsent()));
 
   useEffect(() => {

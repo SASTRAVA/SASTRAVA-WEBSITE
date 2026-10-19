@@ -31,7 +31,7 @@ const Publications = () => {
             <div className="rounded-2xl border border-gold/20 bg-navy-900 p-8 text-center">
               <p className="text-lg font-semibold text-white">No linked media coverage is available yet.</p>
               <p className="mt-2 text-gray-300">When published coverage is added, each item will link directly to its source.</p>
-              <a href="mailto:neeraj@sastrava.com?subject=Press%20inquiry" className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-lg px-4 font-semibold text-gold-light hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-light">
+              <a href="mailto:neeraj@sastrava.com,siri@sastrava.com?subject=Press%20inquiry" className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-lg px-4 font-semibold text-gold-light hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-light">
                 Contact SASTRAVA for media enquiries <ExternalLink size={14} aria-hidden="true" />
               </a>
             </div>
@@ -78,8 +78,8 @@ const Publications = () => {
                 We'd love to share our story and insights with your audience. Contact our PR team for interviews, quotes, or collaboration opportunities.
               </p>
               <div className="flex gap-4">
-                <a href="mailto:neeraj@sastrava.com?subject=Press%20inquiry" className="text-gold hover:text-gold/80 font-semibold flex items-center gap-2">
-                  neeraj@sastrava.com
+                <a href="mailto:neeraj@sastrava.com,siri@sastrava.com?subject=Press%20inquiry" className="text-gold hover:text-gold/80 font-semibold flex items-center gap-2">
+                  neeraj@sastrava.com · siri@sastrava.com
                   <ExternalLink size={14} />
                 </a>
                 <a href="tel:+917981576083" className="text-gold hover:text-gold/80 font-semibold flex items-center gap-2">

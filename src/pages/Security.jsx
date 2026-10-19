@@ -15,7 +15,7 @@ export default function Security() {
           <div className="mt-10 rounded-2xl border border-gold-DEFAULT/25 bg-navy-900 p-6">
             <h2 className="text-xl font-semibold text-offwhite">Report a concern</h2>
             <p className="mt-3 text-offwhite/75">Please include the affected URL, a concise description, and safe reproduction steps. Do not include passwords, personal data, or exploit payloads.</p>
-            <a className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-xl bg-gold-DEFAULT px-4 font-semibold text-navy-950" href="mailto:neeraj@sastrava.com?subject=Security%20report%20for%20sastrava.com">
+            <a className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-xl bg-gold-DEFAULT px-4 font-semibold text-navy-950" href="mailto:neeraj@sastrava.com,siri@sastrava.com?subject=Security%20report%20for%20sastrava.com">
               <Mail className="h-4 w-4" aria-hidden="true" /> Report a security concern
             </a>
           </div>

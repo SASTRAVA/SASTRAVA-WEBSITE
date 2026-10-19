@@ -227,6 +227,18 @@ const About = () => (
             </div>
           </section>
 
+          <section aria-labelledby="about-proof-links-title" className="mt-12 rounded-2xl border border-gold-DEFAULT/20 bg-navy-900/70 p-6 md:flex md:items-center md:justify-between md:gap-8 md:p-8">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-gold-light">Explore further</p>
+              <h2 id="about-proof-links-title" className="mt-2 font-display text-2xl font-bold text-offwhite">See our project and learning approach.</h2>
+              <p className="mt-2 max-w-2xl text-sm leading-relaxed text-offwhite/65">Our public pages explain how engagements are scoped and how learning programs are planned. Client results and learner stories are published when documented and approved.</p>
+            </div>
+            <div className="mt-5 flex shrink-0 flex-wrap gap-3 md:mt-0">
+              <Link to="/case-studies" className="inline-flex min-h-11 items-center rounded-lg border border-gold-DEFAULT/30 px-4 text-sm font-semibold text-gold-light hover:bg-gold-DEFAULT/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-light">Project case studies</Link>
+              <Link to="/success-stories" className="inline-flex min-h-11 items-center rounded-lg border border-peacock-light/30 px-4 text-sm font-semibold text-peacock-light hover:bg-peacock-light/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-peacock-light">Learning stories</Link>
+            </div>
+          </section>
+
           <section id="our-approach" aria-labelledby="our-approach-title" className="mt-20 scroll-mt-28 md:mt-24">
             <motion.div
               initial={{ opacity: 0, y: 16 }}

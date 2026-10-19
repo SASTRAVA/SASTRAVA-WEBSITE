@@ -111,6 +111,26 @@ export const Home = () => (
         </div>
       </section>
 
+      <section aria-labelledby="proof-links-title" className="bg-navy-950 px-6 py-14 md:py-18">
+        <div className="mx-auto grid max-w-7xl gap-7 rounded-3xl border border-gold-DEFAULT/20 bg-gradient-to-br from-navy-900 to-navy-950 p-7 shadow-elevation md:grid-cols-[0.8fr_1.2fr] md:items-center md:p-10">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold-light">Explore our work</p>
+            <h2 id="proof-links-title" className="mt-3 font-display text-3xl font-bold leading-tight text-offwhite md:text-4xl">See how we approach projects and learning.</h2>
+            <p className="mt-4 max-w-xl text-sm leading-relaxed text-offwhite/65">Review our engagement approach and the way learning programs are planned. Published client results and learner stories are added when they are documented and approved.</p>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2">
+            <Link to="/case-studies" className="group flex min-h-36 items-start gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-5 transition-colors hover:border-gold-DEFAULT/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-light">
+              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-gold-DEFAULT/20 bg-gold-DEFAULT/10 text-gold-light"><BriefcaseBusiness className="h-5 w-5" aria-hidden="true" /></span>
+              <span><span className="block font-semibold text-offwhite">Project case studies</span><span className="mt-2 block text-sm leading-relaxed text-offwhite/60">How we scope and deliver client work.</span><span className="mt-3 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-gold-light">Explore case studies <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" /></span></span>
+            </Link>
+            <Link to="/success-stories" className="group flex min-h-36 items-start gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-5 transition-colors hover:border-peacock-light/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-peacock-light">
+              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-peacock-light/20 bg-peacock-light/10 text-peacock-light"><GraduationCap className="h-5 w-5" aria-hidden="true" /></span>
+              <span><span className="block font-semibold text-offwhite">Learning stories</span><span className="mt-2 block text-sm leading-relaxed text-offwhite/60">Our approach to workshops and mentoring.</span><span className="mt-3 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-peacock-light">Explore learning stories <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" /></span></span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <section className="relative overflow-hidden bg-navy-950 py-20 md:py-28">
         <div className="pointer-events-none absolute -right-28 top-10 h-80 w-80 rounded-full bg-gold-DEFAULT/10 blur-3xl" />
         <div className="relative mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">

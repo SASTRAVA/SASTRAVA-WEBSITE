@@ -229,7 +229,7 @@ export const seoRoutes = {
     description: 'Contact SASTRAVA in Tadepalli, Andhra Pradesh, to discuss consulting, incubation, software, automation, security, digital marketing, or technical learning.',
     sections: [
       { heading: 'Start with the challenge', paragraph: 'Tell us what you are trying to accomplish, who the work is for, and what constraints or deadlines matter. SASTRAVA can discuss business consulting, startup incubation, software, AI automation, security audits, marketing, content, and digital learning.', items: ['Describe the goal and the current situation', 'Share the service area or decision where support is needed', 'Include a preferred way and time to follow up'] },
-      { heading: 'Based in Tadepalli, Andhra Pradesh', paragraph: 'SASTRAVA is based in Tadepalli and works with clients in the surrounding region, including Vijayawada, Guntur, and Amaravati, as well as teams elsewhere in India. These are service areas; meetings and delivery formats are agreed for each engagement.', items: ['Email: neeraj@sastrava.com', 'Phone and WhatsApp: +91 7981 576083', 'Use the contact form or message the team directly'] },
+      { heading: 'Based in Tadepalli, Andhra Pradesh', paragraph: 'SASTRAVA is based in Tadepalli and works with clients in the surrounding region, including Vijayawada, Guntur, and Amaravati, as well as teams elsewhere in India. These are service areas; meetings and delivery formats are agreed for each engagement.', items: ['Email: neeraj@sastrava.com or siri@sastrava.com', 'Phone and WhatsApp: +91 7981 576083', 'Use the contact form or message the team directly'] },
     ],
   },
   '/privacy': { title: 'Privacy Policy | SASTRAVA', description: 'Review how SASTRAVA handles personal information, what website data it collects, your privacy choices, and how to contact the team for help.' },
@@ -400,6 +400,7 @@ export const buildStructuredData = (pathname) => {
     logo: { '@type': 'ImageObject', url: 'https://sastrava.com/logo.png', width: 512, height: 512 },
     description: defaultDescription,
     email: 'neeraj@sastrava.com',
+    contactPoint: [{ '@type': 'ContactPoint', contactType: 'business inquiries', email: 'siri@sastrava.com', availableLanguage: ['English'] }],
     telephone: '+91 7981 576083',
     address: {
       '@type': 'PostalAddress',

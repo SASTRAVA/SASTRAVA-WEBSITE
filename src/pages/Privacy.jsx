@@ -26,11 +26,11 @@ const sections = [
   },
   {
     title: 'Your choices',
-    body: 'You may request access, correction, or deletion of personal information we hold about you by emailing neeraj@sastrava.com. We will respond within a reasonable timeframe.',
+    body: 'You may request access, correction, or deletion of personal information we hold about you by emailing neeraj@sastrava.com or siri@sastrava.com. We will respond within a reasonable timeframe.',
   },
   {
     title: 'Contact',
-    body: 'For privacy questions, contact SASTRAVA at neeraj@sastrava.com or +91 7981 576083.',
+    body: 'For privacy questions, contact SASTRAVA at neeraj@sastrava.com or siri@sastrava.com, or call +91 7981 576083.',
   },
 ];
 

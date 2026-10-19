@@ -42,7 +42,7 @@ function ToolResultActions({ toolName, summary, report, shareParams = {} }) {
   };
 
   const download = () => {
-    const blob = new Blob([`${report}\n\nSASTRAVA | https://sastrava.com\nContact: neeraj@sastrava.com | +91 7981 576083\n\nThis planning report is based on your inputs. It is not a guarantee, audit, or professional determination.\n`], { type: 'text/plain;charset=utf-8' });
+    const blob = new Blob([`${report}\n\nSASTRAVA | https://sastrava.com\nContact: neeraj@sastrava.com | siri@sastrava.com | +91 7981 576083\n\nThis planning report is based on your inputs. It is not a guarantee, audit, or professional determination.\n`], { type: 'text/plain;charset=utf-8' });
     const objectUrl = URL.createObjectURL(blob);
     const anchor = document.createElement('a');
     anchor.href = objectUrl;

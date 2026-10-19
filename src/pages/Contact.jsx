@@ -14,9 +14,9 @@ export const Contact = () => {
     {
       icon: Mail,
       label: 'Email',
-      value: 'neeraj@sastrava.com',
+      value: 'neeraj@sastrava.com · siri@sastrava.com',
       action: 'email',
-      href: 'mailto:neeraj@sastrava.com',
+      href: 'mailto:neeraj@sastrava.com,siri@sastrava.com',
     },
     {
       icon: Phone,

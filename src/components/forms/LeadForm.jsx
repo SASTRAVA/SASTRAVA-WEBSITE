@@ -188,8 +188,8 @@ export const LeadForm = ({
             <div>
               <p className="font-semibold text-red-300">Error</p>
               <p className="text-red-100 text-sm mt-1">{successMessage}</p>
-              <a className="mt-2 inline-block text-sm font-semibold text-red-100 underline underline-offset-2" href="mailto:neeraj@sastrava.com">
-                Email neeraj@sastrava.com
+              <a className="mt-2 inline-block text-sm font-semibold text-red-100 underline underline-offset-2" href="mailto:neeraj@sastrava.com,siri@sastrava.com">
+                Email neeraj@sastrava.com or siri@sastrava.com
               </a>
             </div>
           </motion.div>

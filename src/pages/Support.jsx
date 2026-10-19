@@ -15,8 +15,8 @@ const channels = [
   },
   {
     title: 'Email',
-    detail: 'neeraj@sastrava.com — best for detailed context and attachments.',
-    href: 'mailto:neeraj@sastrava.com',
+    detail: 'neeraj@sastrava.com or siri@sastrava.com — best for detailed context and attachments.',
+    href: 'mailto:neeraj@sastrava.com,siri@sastrava.com',
     Icon: Mail,
   },
   {

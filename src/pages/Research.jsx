@@ -145,7 +145,7 @@ const Research = () => {
               <h3 className="mt-7 font-semibold text-peacock">Summary</h3>
               <p className="mt-2 leading-relaxed text-offwhite/80">{selectedPaper.description}</p>
               <p className="mt-5 text-sm text-offwhite/60">SASTRAVA topic guide · Contact us for scope-specific discussion.</p>
-              <Button className="mt-7" action="email" actionConfig={{ email: 'neeraj@sastrava.com', subject: `Research inquiry: ${selectedPaper.title}`, body: `Hello SASTRAVA,\n\nI would like to learn more about “${selectedPaper.title}”.` }}>Ask about this research</Button>
+              <Button className="mt-7" action="email" actionConfig={{ email: 'neeraj@sastrava.com,siri@sastrava.com', subject: `Research inquiry: ${selectedPaper.title}`, body: `Hello SASTRAVA,\n\nI would like to learn more about “${selectedPaper.title}”.` }}>Ask about this research</Button>
             </section>
           </div>
         )}
@@ -159,7 +159,7 @@ const Research = () => {
             <p className="text-gray-300 mb-6">
               We currently handle research update requests by email.
             </p>
-            <Button variant="primary" action="email" actionConfig={{ email: 'neeraj@sastrava.com', subject: 'Practical guide updates request', body: 'Hello SASTRAVA,\n\nPlease contact me about future practical guides.' }}>Request updates by email</Button>
+            <Button variant="primary" action="email" actionConfig={{ email: 'neeraj@sastrava.com,siri@sastrava.com', subject: 'Practical guide updates request', body: 'Hello SASTRAVA,\n\nPlease contact me about future practical guides.' }}>Request updates by email</Button>
           </div>
         </section>
       </main>
