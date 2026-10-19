@@ -1,0 +1,41 @@
+SASTRAVA | AI & Workflow Automation Audit Template
+https://sastrava.com
+
+Use this worksheet to decide whether a recurring process is suitable for automation. Estimates are hypotheses; validate them in a bounded pilot.
+
+1. PROCESS
+Process name: ______________________________________________
+Owner / people involved: ____________________________________
+Trigger and expected output: ________________________________
+Steps repeated today: _______________________________________
+Volume and frequency: ______________________________________
+
+2. PAIN POINT & BASELINE
+Delay, rework, or handoff to improve: _______________________
+Current time per task / period: ____________________________
+How accuracy and quality are measured: _____________________
+Known exceptions and failure costs: ________________________
+
+3. DATA & RISK
+Data sources and permissions: ______________________________
+Personal, confidential, or regulated data involved? _________
+Required retention, access, and deletion controls: __________
+Human review and escalation owner: _________________________
+Safe fallback if the automation fails: ______________________
+
+4. PILOT PLAN
+Smallest useful pilot: _____________________________________
+Test cases, including edge cases: ___________________________
+Success and stop criteria: _________________________________
+Quality, time, and exception measures: _____________________
+Implementation, support, and operating costs: ______________
+Pilot review date and decision owner: _______________________
+
+5. DECISION
+[ ] Continue with the bounded pilot
+[ ] Revise the workflow or controls
+[ ] Do not automate yet
+Evidence and next action: __________________________________
+____________________________________________________________
+
+General planning material from SASTRAVA. Do not enter sensitive information into a shared copy.

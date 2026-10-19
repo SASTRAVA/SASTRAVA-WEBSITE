@@ -6,6 +6,7 @@ import { NotFound } from './pages/NotFound';
 import { RouteMeta } from './components/RouteMeta';
 import { AnalyticsConsent } from './components/AnalyticsConsent';
 import { ErrorBoundary } from './components/ErrorBoundary';
+import { trackEvent } from './services/conversionTracking.js';
 
 // Lazy load non-critical pages to reduce initial bundle size
 const About = lazy(() => import('./pages/About'));
@@ -98,6 +99,10 @@ function AppRoutes() {
         <Route path="/services-hub/build" element={<Navigate to="/build" replace />} />
         <Route path="/services-hub/grow" element={<Navigate to="/grow" replace />} />
         <Route path="/services-hub/secure" element={<Navigate to="/secure" replace />} />
+        <Route path="/services-hub/ai" element={<Navigate to="/ai" replace />} />
+        <Route path="/services-hub/cybersecurity" element={<Navigate to="/cybersecurity" replace />} />
+        <Route path="/services-hub/digital-marketing" element={<Navigate to="/digital-marketing" replace />} />
+        <Route path="/insights" element={<Navigate to="/blog" replace />} />
         <Route path="/learn" element={<PageWrapper><Learn /></PageWrapper>} />
         <Route path="/build" element={<PageWrapper><Build /></PageWrapper>} />
         <Route path="/grow" element={<PageWrapper><Grow /></PageWrapper>} />
@@ -150,6 +155,20 @@ function AppRoutes() {
 
 function App() {
   const location = useLocation();
+
+  useEffect(() => {
+    const handleContactLinkClick = (event) => {
+      const anchor = event.target.closest?.('a[href]');
+      if (!anchor) return;
+      const url = new URL(anchor.href, window.location.href);
+      const eventParams = { source_page: window.location.pathname };
+      if (url.hostname === 'wa.me') trackEvent('whatsapp_cta_click', eventParams);
+      if (url.hostname === 'www.google.com' && url.pathname.startsWith('/maps/')) trackEvent('gbp_maps_click', eventParams);
+      if (url.hostname === 'search.google.com' && url.pathname.includes('writereview')) trackEvent('gbp_review_click', eventParams);
+    };
+    document.addEventListener('click', handleContactLinkClick);
+    return () => document.removeEventListener('click', handleContactLinkClick);
+  }, [location.pathname]);
 
   return (
     <ErrorBoundary>

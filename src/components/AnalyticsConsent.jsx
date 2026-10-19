@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const consentStorageKey = 'sastrava-analytics-consent';
 
@@ -10,7 +10,7 @@ function enableGoogleAnalytics(measurementId) {
   window.dataLayer = window.dataLayer || [];
   window.gtag = (...args) => window.dataLayer.push(args);
   window.gtag('js', new Date());
-  window.gtag('config', measurementId, { send_page_view: true });
+  window.gtag('config', measurementId, { send_page_view: false });
 
   const script = document.createElement('script');
   script.async = true;
@@ -36,12 +36,18 @@ function saveConsent(value) {
 }
 
 export function AnalyticsConsent() {
+  const { pathname } = useLocation();
   const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID?.trim();
   const [consent, setConsent] = useState(() => (typeof window === 'undefined' ? null : readConsent()));
 
   useEffect(() => {
     if (measurementId && consent === 'accepted') enableGoogleAnalytics(measurementId);
   }, [consent, measurementId]);
+
+  useEffect(() => {
+    if (!measurementId || consent !== 'accepted' || !window.sastravaAnalyticsInitialized) return;
+    window.gtag('event', 'page_view', { page_path: pathname, page_title: document.title });
+  }, [consent, measurementId, pathname]);
 
   if (!measurementId || consent) return null;
 

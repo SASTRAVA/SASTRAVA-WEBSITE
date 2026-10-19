@@ -3,6 +3,7 @@ import { Navbar } from '../components/layout/Navbar';
 import { Footer } from '../components/layout/Footer';
 import { PageHero } from '../components/sections/PageHero';
 import { Button } from '../components/ui/Button';
+import { googleMapsReviewUrl } from '../config/businessProfile.js';
 
 const SuccessStories = () => (
   <>
@@ -30,6 +31,7 @@ const SuccessStories = () => (
             ))}
           </div>
           <p className="mt-8 rounded-xl border border-white/10 bg-white/5 p-5 leading-relaxed text-offwhite/75">The public course catalog is currently being updated. Program availability, delivery format, and any completion documentation are confirmed during planning; jobs, certifications, and other outcomes are not guaranteed.</p>
+          <p className="mt-6 text-sm leading-relaxed text-offwhite/70">If you have worked with SASTRAVA, you can <a href={googleMapsReviewUrl} target="_blank" rel="noopener noreferrer" className="font-semibold text-peacock-light underline underline-offset-4 hover:text-gold-light">read or leave an honest review on Google</a>.</p>
           <div className="mt-8 flex flex-wrap gap-4">
             <Button action="navigate" actionConfig={{ path: '/learn' }}>Explore digital learning</Button>
             <Button variant="secondary" action="navigate" actionConfig={{ path: '/contact' }}>Ask about a workshop</Button>

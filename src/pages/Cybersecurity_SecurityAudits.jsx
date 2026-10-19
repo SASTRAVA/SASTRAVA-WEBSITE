@@ -1,4 +1,5 @@
 import { SeoAnswers } from '../components/seo/SeoAnswers';
+import { DownloadableResources } from '../components/sections/DownloadableResources.jsx';
 /**
  * Security Audits Service Page
  * Comprehensive system security evaluation and compliance verification
@@ -212,6 +213,8 @@ const SecurityAudits = () => {
             </motion.div>
           </div>
         </section>
+
+        <DownloadableResources templateIds={['security']} />
 
         {/* CTA */}
         <section className="py-20 bg-gradient-to-r from-gold/10 to-peacock/10 border-y border-gold/20">

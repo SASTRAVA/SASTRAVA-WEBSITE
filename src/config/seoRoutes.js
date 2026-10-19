@@ -1,14 +1,15 @@
 import { faqSchemaEntries } from './faqContent.js';
 import { insights } from './insights.js';
+import { downloadTemplates } from './downloadTemplates.js';
 import { googleMapsListingAddress, googleMapsListingUrl } from './businessProfile.js';
 import { teamProfiles } from './teamProfiles.js';
 
 const organizationName = 'SASTRAVA';
-const defaultDescription = 'Tadepalli business consultant & startup incubator for Vijayawada, Amaravati and India. SASTRAVA offers SEO, AI automation, software, security & learning.';
+const defaultDescription = 'Grow with SASTRAVA in Tadepalli, Vijayawada and across India. Business consulting, SEO, AI automation, software and authorized security reviews.';
 
 export const seoRoutes = {
   '/': {
-    title: 'Business Consultant & SEO in Tadepalli | SASTRAVA',
+    title: 'Business Consultant & SEO Agency in Tadepalli | SASTRAVA',
     ogTitle: 'Business Consulting, SEO & AI Automation | SASTRAVA',
     ogImage: '/images/sastrava-social-card.png',
     ogImageAlt: 'SASTRAVA business consulting and digital growth in Tadepalli, Andhra Pradesh',
@@ -153,12 +154,12 @@ export const seoRoutes = {
     ],
   },
   '/cybersecurity': {
-    title: 'Cybersecurity Audit & Testing Services | SASTRAVA',
+    title: 'Cybersecurity Audit & VAPT in Vijayawada | SASTRAVA',
     ogImage: '/images/og/sastrava-security.png',
     ogImageAlt: 'SASTRAVA cybersecurity reviews, remediation, and retesting',
     pageHeading: 'Cybersecurity audits, testing and remediation support',
     intro: 'A useful security review starts with written authorization and a defined scope. SASTRAVA can assess agreed applications, APIs, infrastructure, and controls, then help teams prioritize fixes and retesting.',
-    description: 'Plan scoped cybersecurity reviews, vulnerability testing, audits, remediation, and retesting with SASTRAVA. Testing requires written authorization.',
+    description: 'Plan authorized security audits, VAPT, application testing, and remediation support in Vijayawada and across India. Define scope before testing.',
     serviceType: 'Cybersecurity audit and testing services',
     sections: [
       { heading: 'A scoped, authorized assessment', paragraph: 'Agree what is in scope, what is excluded, and how sensitive findings will be handled before any testing starts.', items: ['Application and infrastructure review', 'Vulnerability assessment and penetration testing', 'Control and configuration review against agreed criteria'] },
@@ -172,13 +173,14 @@ export const seoRoutes = {
     ],
   },
   '/ai': {
-    title: 'AI & Business Automation Consulting | SASTRAVA',
+    title: 'AI Automation Services & ROI Calculator | SASTRAVA India',
     ogImage: '/images/og/sastrava-ai.png',
     ogImageAlt: 'SASTRAVA AI and workflow automation consulting',
     pageHeading: 'AI and workflow automation consulting',
     intro: 'Identify a repetitive workflow or user problem before choosing an AI tool. SASTRAVA helps teams map processes, assess data and risk, define a bounded pilot, and evaluate whether an automation is useful enough to expand.',
-    description: 'Identify AI and workflow opportunities, validate a focused use case, and plan secure automation for business teams with SASTRAVA and clear scope.',
+    description: 'Plan AI workflows, CRM automation and GenAI pilots for Indian startups and SMBs. Estimate time and labor value with our free calculator.',
     serviceType: 'AI development and business automation consulting',
+    downloads: [downloadTemplates.find(({ id }) => id === 'automation')],
     sections: [
       { heading: 'Start with the workflow', paragraph: 'Identify repetitive work, decision points, data requirements, and failure costs before selecting an AI or automation approach.', items: ['Workflow discovery and automation opportunity mapping', 'AI assistants and business process integrations', 'Prototype planning and evaluation criteria'] },
       { heading: 'Design for responsible use', paragraph: 'Privacy, security, human review, and fallback behavior are considered as part of the use case and delivery scope.', items: ['Data and risk review for the selected use case', 'A bounded pilot with measurable acceptance criteria', 'Operational handover and improvement recommendations'] },
@@ -210,6 +212,7 @@ export const seoRoutes = {
     pageHeading: 'Insights for better business and technology decisions',
     intro: 'These practical guides help founders and business teams think through AI automation, cybersecurity, local marketing, and early-stage business decisions. Each guide explains a useful starting point, trade-offs, and next steps without promising specific results.',
     description: 'Read practical SASTRAVA guides on AI, cybersecurity, software, digital marketing, business planning, and technology learning, with useful next steps.',
+    localSummaryTelugu: 'స్థానిక శోధనలో కనిపించడానికి వ్యాపార పేరు, చిరునామా, ఫోన్ వివరాలను వెబ్‌సైట్ మరియు అధికారిక వ్యాపార ప్రొఫైల్‌లో ఒకేలా ఉంచండి. ప్రతి సేవా పేజీ వినియోగదారుల ప్రశ్నలకు స్పష్టంగా సమాధానం ఇవ్వాలి. SEO/AEO/GEO ఫలితాలకు హామీ లేదు; Search Consoleలో కవరేజ్ మరియు సంబంధిత సంప్రదింపు చర్యలను కొలవండి.',
     sections: [
       { heading: 'Practical guidance, grounded in real questions', paragraph: 'SASTRAVA’s insights focus on decisions that founders, business teams, and learners face when adopting technology or planning growth. Useful topics include choosing an automation use case, preparing for a security review, building a digital product, and measuring marketing activity.', items: ['Business consulting, startup planning, and innovation', 'AI, automation, software delivery, and cybersecurity', 'Brand strategy, SEO, digital marketing, and digital learning'] },
       { heading: 'Editorial standards', paragraph: 'Advice should explain its assumptions, distinguish general information from a project-specific recommendation, and avoid promises about rankings, security, or commercial outcomes. New guides are published when they are ready for review.', items: ['Use clear sources and explain technical terms', 'Keep recommendations proportionate to the evidence', 'Contact SASTRAVA to discuss a specific organizational context'] },
@@ -269,6 +272,7 @@ export const seoRoutes = {
     description: 'Review cybersecurity controls, identify gaps, and prioritize remediation with a defined scope and practical findings for your organization.',
     keywords: ['cybersecurity audit services', 'information security audit', 'security controls assessment', 'security audit India'],
     serviceType: 'Cybersecurity audit services',
+    downloads: [downloadTemplates.find(({ id }) => id === 'security')],
     sections: [
       { heading: 'Review the controls that matter', paragraph: 'The review can focus on agreed applications, infrastructure, operational practices, and supporting documentation. Criteria and evidence sources are selected with the organization before work starts.', items: ['Application and infrastructure security review', 'Access, configuration, backup, and incident process checks', 'Control evidence mapped to agreed criteria'] },
       { heading: 'Prioritize remediation', paragraph: 'Findings should distinguish observed evidence from assumptions and explain practical actions. An audit describes the scope reviewed at a point in time; it cannot guarantee complete security or compliance.', items: ['Documented gaps and supporting evidence', 'Risk-based remediation priorities', 'Optional patch guidance and retesting scope'] },
@@ -301,14 +305,16 @@ export const seoRoutes = {
     ],
   },
   '/digital-marketing/seo': {
-    title: 'SEO Services in India | Technical & Local SEO | SASTRAVA',
+    title: 'SEO, AEO & GEO Services in Vijayawada | SASTRAVA',
     ogImage: '/images/og/sastrava-marketing.png',
     ogImageAlt: 'SASTRAVA technical, content, and local search optimization services',
     pageHeading: 'Search engine optimization and local search services',
     intro: 'Improve how people discover and understand your site with technical review, query research, useful content, and consistent local business information. SEO work is prioritized against your audience, competition, and implementation capacity; rankings cannot be guaranteed.',
-    description: 'Plan technical SEO, keyword research, content, and local search improvements with SASTRAVA for Tadepalli businesses and teams across India.',
+    description: 'Improve local search and AI discovery with technical SEO, keyword research, and useful content for Tadepalli, Vijayawada, Amaravati, and India.',
+    localSummaryTelugu: 'SEO అంటే వెబ్‌సైట్‌ను శోధనలో సులభంగా కనుగొనగలిగేలా చేయడం. స్థానిక వ్యాపారాలు తమ సేవలు, ప్రాంతం, సంప్రదింపు వివరాలు మరియు ఉపయోగకరమైన సమాధానాలను వెబ్‌సైట్‌, Google Business Profileలో ఒకేలా ఉంచాలి. AEO స్పష్టమైన ప్రశ్నలకు సమాధానాలను అందిస్తుంది; GEO జనరేటివ్ శోధన వ్యవస్థలు సమాచారాన్ని అర్థం చేసుకునేందుకు సహాయపడుతుంది. విజయవాడ, తాడేపల్లి, గుంటూరు, అమరావతి వ్యాపారాలకు ఫలితాలు హామీ ఇవ్వలేము; పురోగతిని Search Console మరియు సంప్రదింపు చర్యలతో కొలవాలి.',
     keywords: ['SEO services India', 'technical SEO services', 'keyword research and content strategy', 'local SEO Tadepalli'],
     serviceType: 'Search engine optimization services',
+    downloads: [downloadTemplates.find(({ id }) => id === 'localSeo')],
     sections: [
       { heading: 'Fix crawlability and page foundations', paragraph: 'Start with indexable, useful pages, consistent canonicals, descriptive titles, clear headings, fast mobile experiences, and internal links that help visitors move through relevant content.', items: ['Technical crawl and indexability review', 'Page titles, descriptions, headings, and structured data', 'Mobile experience and internal-link improvements'] },
       { heading: 'Create content for real search intent', paragraph: 'Query research can reveal what customers are trying to solve. Build focused service pages and genuinely useful answers rather than repeating keywords or making unsupported claims.', items: ['Keyword and audience-intent research', 'Service and editorial content planning', 'Local business information consistency'] },
@@ -428,6 +434,7 @@ export const buildStructuredData = (pathname) => {
       'https://www.linkedin.com/in/sastrava-aa3097429/',
       'https://x.com/SASTRAVA_',
       'https://www.instagram.com/sastrava_/',
+      googleMapsListingUrl,
     ],
   };
   const graph = [

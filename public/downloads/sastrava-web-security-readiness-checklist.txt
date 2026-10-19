@@ -1,0 +1,32 @@
+SASTRAVA | Web Application Security Readiness Checklist
+https://sastrava.com
+
+Planning aid only. This checklist does not scan, test, or certify a system. Obtain written authorization and define a safe scope before security testing.
+
+SCOPE & CONTACTS
+[ ] Confirm system ownership and written authorization for every in-scope asset.
+[ ] List domains, applications, APIs, cloud accounts, and excluded systems.
+[ ] Agree test windows, rate limits, prohibited actions, and emergency contacts.
+[ ] Use test accounts and synthetic data where possible; avoid production customer data.
+
+FOUNDATIONAL CONTROLS
+[ ] Require multi-factor authentication for administrators and cloud accounts.
+[ ] Patch operating systems, dependencies, frameworks, and exposed services.
+[ ] Limit access by role and remove unused accounts and tokens.
+[ ] Keep secrets out of client bundles, public repositories, and logs.
+[ ] Validate form/API input and apply suitable access checks and rate limits.
+[ ] Protect backups and periodically test restoration.
+[ ] Review security logging, alerting, incident contacts, and response steps.
+[ ] Check HTTPS and hosting security headers for the deployed application.
+
+AFTER A REVIEW
+[ ] Record each finding with evidence, affected asset, impact, and confidence.
+[ ] Assign remediation owners and target dates based on business risk.
+[ ] Patch or mitigate within the agreed scope and track changes.
+[ ] Retest findings with authorization and document closure or remaining risk.
+
+Scope / owner / review date:
+____________________________________________________________
+____________________________________________________________
+
+General planning material from SASTRAVA. A checklist is not a vulnerability assessment or a compliance attestation.

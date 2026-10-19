@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Camera, Mail, Send, Share2 } from 'lucide-react';
 import { motion as Motion } from 'framer-motion';
 import { footerSections } from '../../config/siteNavigation.js';
-import { googleMapsListingAddress, googleMapsListingName, googleMapsListingUrl } from '../../config/businessProfile.js';
+import { googleMapsListingAddress, googleMapsListingName, googleMapsListingUrl, googleMapsReviewUrl } from '../../config/businessProfile.js';
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -43,6 +43,7 @@ export const Footer = () => {
               <a href="tel:+917981576083" className="block min-h-11 py-2 hover:text-gold-light">+91 7981 576083</a>
               <a href="mailto:neeraj@sastrava.com" className="block min-h-11 py-2 hover:text-gold-light">neeraj@sastrava.com</a>
               <a href={googleMapsListingUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center py-2 text-peacock-light underline underline-offset-4 hover:text-gold-light">Find {googleMapsListingName} on Google Maps</a>
+              <a href={googleMapsReviewUrl} target="_blank" rel="noopener noreferrer" className="block min-h-11 py-2 text-peacock-light underline underline-offset-4 hover:text-gold-light">Read or leave an honest review on Google</a>
             </address>
             <div className="flex gap-4">
               {socialLinks.map(({ icon: Graphic, href, label }) => (

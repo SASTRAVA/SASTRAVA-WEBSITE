@@ -1,0 +1,35 @@
+SASTRAVA | Local SEO & Google Business Profile Checklist (2026)
+https://sastrava.com
+
+Use this checklist to plan a local search review. Search visibility and Google features can change; completing it does not guarantee rankings or leads.
+
+BUSINESS INFORMATION
+[ ] Use the same public business name, address, and phone on the website and business profiles.
+[ ] Confirm that map links open the correct, owner-managed business listing.
+[ ] Keep service areas accurate; do not create near-duplicate city pages.
+[ ] Add real opening hours and contact options where customers can verify them.
+
+WEBSITE
+[ ] Give each important service page a useful, distinct title, description, and main heading.
+[ ] Explain who the service helps, its scope, process, and next step.
+[ ] Link service pages to relevant guidance, tools, and contact information.
+[ ] Keep pages mobile-friendly, secure, accessible, and quick to use.
+[ ] Maintain an XML sitemap and review crawl/index status in Search Console.
+
+CONTENT & ANSWERS
+[ ] Research customer questions and search intent before writing.
+[ ] Provide clear answers, local context, and evidence for factual claims.
+[ ] Include author or organization details where they help readers evaluate the page.
+[ ] Review stale details and update content when facts change.
+
+MEASUREMENT
+[ ] Define a qualified inquiry and how it will be counted.
+[ ] Track calls, forms, and messaging only with an appropriate privacy choice.
+[ ] Review Search Console queries, landing pages, and indexing issues regularly.
+[ ] Compare lead quality and cost before increasing paid-media spend.
+
+Notes / owner / review date:
+____________________________________________________________
+____________________________________________________________
+
+General planning material from SASTRAVA. Verify Google Business Profile and Search Console details in the official account.

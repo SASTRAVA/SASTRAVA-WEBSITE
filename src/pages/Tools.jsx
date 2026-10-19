@@ -1,8 +1,69 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { ArrowRight, Bot, Check, Clipboard, Globe2, RotateCcw, ShieldCheck } from 'lucide-react';
+import { ArrowRight, Bot, Check, Clipboard, Download, Globe2, MessageCircle, RotateCcw, Share2, ShieldCheck } from 'lucide-react';
 import { Navbar } from '../components/layout/Navbar';
 import { Footer } from '../components/layout/Footer';
+import { trackEvent } from '../services/conversionTracking.js';
+
+function useToolTracking(toolName) {
+  const started = useRef(false);
+  const resultCreated = useRef(false);
+  const start = () => {
+    if (started.current) return;
+    started.current = true;
+    trackEvent('tool_interaction_start', { tool_name: toolName });
+  };
+  const result = (scoreOrTier = 'completed') => {
+    start();
+    if (resultCreated.current) return;
+    resultCreated.current = true;
+    trackEvent('tool_result_generated', { tool_name: toolName, score_or_tier: String(scoreOrTier) });
+  };
+  return { start, result };
+}
+
+function ToolResultActions({ toolName, summary, report, shareParams = {} }) {
+  const [status, setStatus] = useState('');
+  const link = new URL(window.location.pathname, window.location.origin);
+  Object.entries(shareParams).forEach(([key, value]) => link.searchParams.set(key, String(value)));
+  const message = `Hi SASTRAVA, I used the ${toolName}. ${summary} I would like to discuss practical next steps.`;
+
+  const share = async () => {
+    const url = link.toString();
+    try {
+      if (navigator.share) await navigator.share({ title: `SASTRAVA ${toolName}`, text: summary, url });
+      else {
+        await navigator.clipboard.writeText(`${summary}\n${url}`);
+        setStatus('Assessment summary and link copied.');
+      }
+    } catch (error) {
+      if (error.name !== 'AbortError') setStatus('Sharing is unavailable in this browser.');
+    }
+  };
+
+  const download = () => {
+    const blob = new Blob([`${report}\n\nSASTRAVA | https://sastrava.com\nContact: neeraj@sastrava.com | +91 7981 576083\n\nThis planning report is based on your inputs. It is not a guarantee, audit, or professional determination.\n`], { type: 'text/plain;charset=utf-8' });
+    const objectUrl = URL.createObjectURL(blob);
+    const anchor = document.createElement('a');
+    anchor.href = objectUrl;
+    anchor.download = `sastrava-${toolName}-action-plan.txt`;
+    anchor.click();
+    window.setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
+    trackEvent('tool_report_downloaded', { tool_name: toolName });
+    setStatus('Your action plan was downloaded.');
+  };
+
+  return (
+    <div className="mt-6 border-t border-white/10 pt-5">
+      <div className="flex flex-wrap gap-2">
+        <button type="button" onClick={share} className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-white/15 px-3 text-sm font-semibold text-offwhite hover:border-peacock-light/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-light"><Share2 className="h-4 w-4" aria-hidden="true" />Share assessment link</button>
+        <button type="button" onClick={download} className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-white/15 px-3 text-sm font-semibold text-offwhite hover:border-peacock-light/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-light"><Download className="h-4 w-4" aria-hidden="true" />Download action plan</button>
+        <a href={`https://wa.me/917981576083?text=${encodeURIComponent(message)}`} target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-peacock-light/30 px-3 text-sm font-semibold text-peacock-light hover:bg-peacock-light/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-light"><MessageCircle className="h-4 w-4" aria-hidden="true" />Open WhatsApp draft</a>
+      </div>
+      <p className="mt-2 min-h-5 text-xs leading-relaxed text-offwhite/55" role="status">{status || 'WhatsApp opens a message draft. It is sent only if you choose Send.'}</p>
+    </div>
+  );
+}
 
 const tools = {
   '/tools/seo-aeo-checker': {
@@ -53,6 +114,17 @@ const toolLinks = Object.entries(tools).map(([href, tool]) => ({ href, title: to
 
 function ToolShell({ tool, children }) {
   const Icon = tool.icon;
+  const { search } = useLocation();
+  const params = new URLSearchParams(search);
+  const sharedScoreValue = params.get('score');
+  const sharedScore = sharedScoreValue === null ? Number.NaN : Number(sharedScoreValue);
+  const sharedMessage = Number.isInteger(sharedScore) && sharedScore >= 0 && sharedScore <= 100
+    ? `Shared SEO/AEO/GEO readiness score: ${sharedScore} out of 100.`
+    : params.get('calculation') === 'estimate-ready'
+      ? 'A shared automation ROI calculator link was opened. Values are not included in the link.'
+      : params.get('assessment') === 'complete'
+        ? 'A shared security checklist link was opened. Individual answers and priority tier are not included in the link.'
+        : '';
   return (
     <>
       <Navbar />
@@ -72,6 +144,7 @@ function ToolShell({ tool, children }) {
             <h1 className="font-display text-4xl font-bold leading-tight md:text-6xl">{tool.title}</h1>
             <p className="mt-5 text-lg leading-relaxed text-offwhite/70">{tool.intro}</p>
           </header>
+          {sharedMessage && <p className="mb-6 rounded-xl border border-peacock-light/20 bg-peacock-light/5 p-4 text-sm text-peacock-light" role="status">{sharedMessage}</p>}
           {children}
           <section className="mt-14 rounded-2xl border border-white/10 bg-white/[0.03] p-6 md:p-8" aria-labelledby="other-tools-heading">
             <h2 id="other-tools-heading" className="font-display text-2xl font-semibold">Explore the other free tools</h2>
@@ -99,11 +172,15 @@ function ToolShell({ tool, children }) {
 function SeoChecker({ tool }) {
   const [selected, setSelected] = useState([]);
   const [copyStatus, setCopyStatus] = useState('');
+  const tracking = useToolTracking('seo-aeo-checker');
   const score = selected.length * 10;
   const missing = seoChecks.filter((_, index) => !selected.includes(index));
-  const toggle = (index) => setSelected((current) => current.includes(index)
-    ? current.filter((item) => item !== index)
-    : [...current, index]);
+  const toggle = (index) => setSelected((current) => {
+    const next = current.includes(index) ? current.filter((item) => item !== index) : [...current, index];
+    tracking.start();
+    tracking.result(`score-${next.length * 10}`);
+    return next;
+  });
 
   const copyPlan = async () => {
     const plan = missing.length
@@ -149,6 +226,7 @@ function SeoChecker({ tool }) {
           </button>
           <p className="mt-2 min-h-5 text-sm text-peacock-light" role="status">{copyStatus}</p>
           <p className="mt-4 text-xs leading-relaxed text-offwhite/45">This score is a planning aid, not a ranking prediction or a technical audit. Search platforms change and do not guarantee visibility.</p>
+          <ToolResultActions toolName="seo-aeo-readiness" summary={`SEO, AEO & GEO readiness score: ${score} out of 100.`} report={`SEO, AEO & GEO readiness score: ${score}/100\n\nNext checks:\n${missing.length ? missing.map((item) => `- ${item}`).join('\n') : '- All ten checklist items are marked complete.'}`} shareParams={{ score }} />
         </aside>
       </div>
     </ToolShell>
@@ -160,6 +238,7 @@ function RoiCalculator({ tool }) {
   const [hoursPerWeek, setHoursPerWeek] = useState(4);
   const [hourlyCost, setHourlyCost] = useState(500);
   const [automationRate, setAutomationRate] = useState(35);
+  const tracking = useToolTracking('ai-roi-calculator');
   const estimate = useMemo(() => {
     const monthlyHours = Number(teamSize) * Number(hoursPerWeek) * 4.33;
     const savedHours = monthlyHours * (Number(automationRate) / 100);
@@ -181,7 +260,7 @@ function RoiCalculator({ tool }) {
           {fields.map((field) => (
             <label key={field.id} htmlFor={field.id} className="block text-sm font-medium text-offwhite/80">
               {field.label}
-              <input id={field.id} type="number" min={field.min} max={field.max} step={field.step} value={field.value} onChange={(event) => field.setValue(event.target.value)} className="mt-2 block min-h-12 w-full rounded-xl border border-white/15 bg-navy-950 px-4 text-base text-offwhite focus:border-gold-light focus:outline-none focus:ring-2 focus:ring-gold-light/30" />
+              <input id={field.id} type="number" min={field.min} max={field.max} step={field.step} value={field.value} onChange={(event) => { tracking.start(); tracking.result('estimate-generated'); field.setValue(event.target.value); }} className="mt-2 block min-h-12 w-full rounded-xl border border-white/15 bg-navy-950 px-4 text-base text-offwhite focus:border-gold-light focus:outline-none focus:ring-2 focus:ring-gold-light/30" />
             </label>
           ))}
           <p className="flex gap-2 rounded-xl border border-gold-DEFAULT/15 bg-gold-DEFAULT/5 p-4 text-sm leading-relaxed text-offwhite/65"><Check className="mt-0.5 h-4 w-4 shrink-0 text-gold-light" aria-hidden="true" />Your inputs stay in this browser. This page does not send the calculation to SASTRAVA.</p>
@@ -195,6 +274,7 @@ function RoiCalculator({ tool }) {
             <div><dt className="text-sm text-offwhite/55">Illustrative annual labor value</dt><dd className="mt-1 font-display text-3xl font-bold text-offwhite">{currency(estimate.annualValue)}</dd></div>
           </dl>
           <p className="mt-7 border-t border-white/10 pt-5 text-xs leading-relaxed text-offwhite/45">This is not a savings guarantee or a complete ROI calculation. Validate process quality, implementation and support costs, exception handling, security, and human review before deciding to automate.</p>
+          <ToolResultActions toolName="ai-automation-roi" summary={`Illustrative estimate: ${estimate.savedHours.toLocaleString('en-IN', { maximumFractionDigits: 1 })} hours returned each month and annual labor value of ${currency(estimate.annualValue)}.`} report={`AI & workflow automation planning estimate\n\nPotential hours returned per month: ${estimate.savedHours.toLocaleString('en-IN', { maximumFractionDigits: 1 })}\nIllustrative monthly labor value: ${currency(estimate.monthlyValue)}\nIllustrative annual labor value: ${currency(estimate.annualValue)}\n\nAssumptions entered:\nTeam size: ${teamSize}\nHours per person each week: ${hoursPerWeek}\nLabor cost per hour: ${currency(hourlyCost)}\nPotential time reduction assumption: ${automationRate}%\n\nValidate implementation, support, exception handling, quality, security, and human review costs before making a decision.`} shareParams={{ calculation: 'estimate-ready' }} />
         </section>
       </div>
     </ToolShell>
@@ -203,6 +283,7 @@ function RoiCalculator({ tool }) {
 
 function SecurityChecklist({ tool }) {
   const [answers, setAnswers] = useState({});
+  const tracking = useToolTracking('security-checklist');
   const answered = Object.keys(answers).length === securityChecks.length;
   const gaps = securityChecks.reduce((count, _, index) => count + (answers[index] === 'yes' ? 0 : 1), 0);
   const tier = gaps >= 6 ? { name: 'Critical gaps to address', tone: 'text-red-300', advice: 'Prioritize access controls, patching, backups, and a scoped review with an authorized security professional.' }
@@ -223,7 +304,7 @@ function SecurityChecklist({ tool }) {
                   <div className="mt-3 flex flex-wrap gap-2">
                     {[['yes', 'Yes'], ['no', 'No'], ['unknown', 'Not sure']].map(([value, label]) => (
                       <label key={value} className="inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-lg border border-white/10 px-3 text-sm text-offwhite/75 hover:border-peacock-light/30 has-[:checked]:border-gold-DEFAULT/50 has-[:checked]:bg-gold-DEFAULT/10">
-                        <input type="radio" name={`security-${index}`} value={value} checked={answers[index] === value} onChange={() => setAnswers((current) => ({ ...current, [index]: value }))} className="h-4 w-4 accent-teal-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-light" />
+                        <input type="radio" name={`security-${index}`} value={value} checked={answers[index] === value} onChange={() => setAnswers((current) => { const next = { ...current, [index]: value }; tracking.start(); if (Object.keys(next).length === securityChecks.length) tracking.result('completed'); return next; })} className="h-4 w-4 accent-teal-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-light" />
                         {label}
                       </label>
                     ))}
@@ -244,6 +325,7 @@ function SecurityChecklist({ tool }) {
             </>
           )}
           <p className="mt-6 border-t border-white/10 pt-5 text-xs leading-relaxed text-offwhite/45">This educational self-assessment runs only in your browser. It does not scan, test, or transmit information about your website. A security review requires written authorization and a defined scope.</p>
+          {answered && <ToolResultActions toolName="security-checklist" summary={`Security self-check: ${tier.name}. ${gaps} of 8 controls need follow-up.`} report={`Website security readiness self-check\n\nResult: ${tier.name}\nFollow-up controls: ${gaps} of 8\n\n${tier.advice}\n\nAnswers:\n${securityChecks.map((check, index) => `- ${check}: ${answers[index] === 'yes' ? 'Yes' : answers[index] === 'no' ? 'No' : 'Not sure'}`).join('\n')}\n\nThis is a browser-based planning aid. It does not scan, test, or certify a system.`} shareParams={{ assessment: 'complete' }} />}
         </aside>
       </div>
     </ToolShell>

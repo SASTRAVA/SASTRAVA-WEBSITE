@@ -106,6 +106,7 @@ export const LeadForm = ({
         // GA4 is only initialized after the visitor accepts optional analytics.
         // Never send submitted form values or other personal data as event params.
         trackEvent('generate_lead', { form_type: leadType });
+        trackEvent('contact_form_submit', { form_type: leadType, source_page: metadata.sourcePage ?? 'unknown' });
 
         // Call success callback
         if (onSuccess) {

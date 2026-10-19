@@ -1,10 +1,14 @@
 {
   "redirects": [
-    { "source": "/services-hub", "destination": "/services", "permanent": true },
-    { "source": "/services-hub/learn", "destination": "/learn", "permanent": true },
-    { "source": "/services-hub/build", "destination": "/build", "permanent": true },
-    { "source": "/services-hub/grow", "destination": "/grow", "permanent": true },
-    { "source": "/services-hub/secure", "destination": "/secure", "permanent": true }
+    { "source": "/services-hub/learn", "destination": "/learn", "statusCode": 301 },
+    { "source": "/services-hub/build", "destination": "/build", "statusCode": 301 },
+    { "source": "/services-hub/grow", "destination": "/grow", "statusCode": 301 },
+    { "source": "/services-hub/secure", "destination": "/secure", "statusCode": 301 },
+    { "source": "/services-hub/ai", "destination": "/ai", "statusCode": 301 },
+    { "source": "/services-hub/cybersecurity", "destination": "/cybersecurity", "statusCode": 301 },
+    { "source": "/services-hub/digital-marketing", "destination": "/digital-marketing", "statusCode": 301 },
+    { "source": "/services-hub", "destination": "/services", "statusCode": 301 },
+    { "source": "/insights", "destination": "/blog", "statusCode": 301 }
   ],
   "rewrites": [
     { "source": "/about", "destination": "/about/index.html" },

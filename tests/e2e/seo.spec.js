@@ -47,7 +47,28 @@ test('Google Search Console ownership file is served from the site root', async 
 
 test('homepage browser tab title identifies SASTRAVA as a business consultant', async ({ page }) => {
   await page.goto('/', { waitUntil: 'networkidle' });
-  await expect(page).toHaveTitle(/Business Consultant & SEO in Tadepalli \| SASTRAVA/);
+  await expect(page).toHaveTitle(/Business Consultant & SEO Agency in Tadepalli \| SASTRAVA/);
+});
+
+test('static service and insights pages expose the verified Google Maps listing and downloadable resources', async ({ request }) => {
+  const placeId = 'ChIJlYxjegDxNToRXheR3VcmS54';
+  for (const route of ['/contact', '/blog', '/digital-marketing/seo', '/ai', '/cybersecurity/security-audits']) {
+    const response = await request.get(staticDocument(route));
+    expect(response.status()).toBe(200);
+    const html = await response.text();
+    expect(html).toContain(placeId);
+  }
+
+  for (const path of [
+    '/downloads/sastrava-local-seo-checklist-2026.txt',
+    '/downloads/sastrava-web-security-readiness-checklist.txt',
+    '/downloads/sastrava-automation-audit-template.txt',
+  ]) {
+    const response = await request.get(path);
+    expect(response.status(), `${path} should be publicly downloadable`).toBe(200);
+    expect(response.headers()['content-type']).toContain('text/plain');
+    expect((await response.text()).length).toBeGreaterThan(200);
+  }
 });
 
 test('homepage publishes the SASTRAVA favicon and platform icon set', async ({ request }) => {

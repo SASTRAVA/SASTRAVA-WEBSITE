@@ -1,4 +1,5 @@
 import { SeoAnswers } from '../components/seo/SeoAnswers';
+import { DownloadableResources } from '../components/sections/DownloadableResources.jsx';
 /**
  * AI Business Division Hub Page
  * Enterprise AI and Machine Learning Solutions
@@ -208,6 +209,8 @@ const AIHub = () => {
             </div>
           </div>
         </section>
+
+        <DownloadableResources templateIds={['automation']} />
 
         {/* CTA */}
         <section className="py-20 bg-gradient-to-r from-peacock/10 to-gold/10 border-y border-peacock/20">

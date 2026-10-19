@@ -29,6 +29,11 @@ const requiredFiles = [
   'src/config/siteNavigation.js',
   'src/pages/Tools.jsx',
   'scripts/generate-seo-pages.mjs',
+  'src/config/downloadTemplates.js',
+  'src/components/sections/DownloadableResources.jsx',
+  'public/downloads/sastrava-local-seo-checklist-2026.txt',
+  'public/downloads/sastrava-web-security-readiness-checklist.txt',
+  'public/downloads/sastrava-automation-audit-template.txt',
 ];
 const publicRoutes = [
   '/', '/about', '/domains', '/services', '/learn', '/build', '/grow', '/secure',
@@ -79,15 +84,20 @@ for (const route of publicRoutes.filter((route) => route !== '/')) {
 }
 if (rewritten.get('/login/:role') !== '/login/index.html') fail('login role route must use the noindex login metadata page');
 if (rewritten.get('/courses') !== '/courses/index.html') fail('hidden courses route must serve its noindex metadata before client redirect');
-const redirects = new Map((vercel.redirects ?? []).map(({ source, destination }) => [source, destination]));
+const redirects = new Map((vercel.redirects ?? []).map(({ source, destination, statusCode }) => [source, { destination, statusCode }]));
 for (const [source, destination] of Object.entries({
   '/services-hub': '/services',
   '/services-hub/learn': '/learn',
   '/services-hub/build': '/build',
   '/services-hub/grow': '/grow',
   '/services-hub/secure': '/secure',
+  '/services-hub/ai': '/ai',
+  '/services-hub/cybersecurity': '/cybersecurity',
+  '/services-hub/digital-marketing': '/digital-marketing',
+  '/insights': '/blog',
 })) {
-  if (redirects.get(source) !== destination) fail(`legacy route ${source} must redirect to ${destination}`);
+  const redirect = redirects.get(source);
+  if (redirect?.destination !== destination || redirect.statusCode !== 301) fail(`legacy route ${source} must issue a 301 redirect to ${destination}`);
 }
 
 const sitemap = readFileSync('public/sitemap.xml', 'utf8');
@@ -114,6 +124,10 @@ for (const route of publicRoutes) {
   if (!seoSource.includes(`'${route}':`)) fail(`SEO metadata missing for ${route}`);
 }
 if (!/\/courses':\s*\{[^}]*noindex:\s*true/.test(seoSource)) fail('hidden courses route must publish noindex metadata');
+
+const businessProfile = readFileSync('src/config/businessProfile.js', 'utf8');
+if (!businessProfile.includes('ChIJlYxjegDxNToRXheR3VcmS54')) fail('Google Maps listing Place ID is missing');
+if (!businessProfile.includes('place_id:${googleMapsPlaceId}')) fail('Google Maps listing URL must use the verified Place ID');
 
 const siteNavigation = readFileSync('src/config/siteNavigation.js', 'utf8');
 for (const route of publicRoutes.filter((route) => route !== '/')) {

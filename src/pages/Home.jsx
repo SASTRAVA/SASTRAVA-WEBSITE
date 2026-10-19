@@ -139,8 +139,8 @@ export const Home = () => (
       <section className="bg-navy-950 py-20 md:py-24" aria-labelledby="free-tools-heading">
         <div className="mx-auto max-w-7xl px-6">
           <motion.div {...reveal} className="mb-10 max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-peacock-light">Free planning tools</p>
-            <h2 id="free-tools-heading" className="mt-4 font-display text-3xl font-bold text-offwhite md:text-4xl">Start with a clearer view of the opportunity.</h2>
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-peacock-light">Free founder tools</p>
+            <h2 id="free-tools-heading" className="mt-4 font-display text-3xl font-bold text-offwhite md:text-4xl">Benchmark your marketing, automation, and security readiness.</h2>
             <p className="mt-4 leading-relaxed text-offwhite/65">Try a quick self-check or estimate before you decide what to improve. These browser-based tools do not submit your answers to SASTRAVA.</p>
           </motion.div>
           <div className="grid gap-4 md:grid-cols-3">

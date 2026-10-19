@@ -10,6 +10,7 @@ import { Footer } from '../components/layout/Footer';
 import { PageHero } from '../components/sections/PageHero';
 import { Button } from '../components/ui/Button';
 import { CheckCircle, Search, TrendingUp, BarChart3 } from 'lucide-react';
+import { DownloadableResources } from '../components/sections/DownloadableResources.jsx';
 
 const SEO = () => {
   const phases = [
@@ -102,6 +103,15 @@ const SEO = () => {
           description="Strategic SEO to increase visibility, drive organic traffic, and generate qualified leads"
         />
 
+        <section className="bg-navy-950 py-8" aria-label="Local search summary in Telugu">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+            <details className="rounded-xl border border-peacock-light/20 bg-peacock-light/5 p-5 text-gray-200">
+              <summary className="min-h-11 cursor-pointer font-semibold text-peacock-light">స్థానిక వ్యాపారాల కోసం తెలుగు సారాంశం</summary>
+              <p lang="te" className="mt-3 leading-relaxed">SEO అంటే వెబ్‌సైట్‌ను శోధనలో సులభంగా కనుగొనగలిగేలా చేయడం. స్థానిక వ్యాపారాలు తమ సేవలు, ప్రాంతం, సంప్రదింపు వివరాలు మరియు ఉపయోగకరమైన సమాధానాలను వెబ్‌సైట్‌, Google Business Profileలో ఒకేలా ఉంచాలి. AEO స్పష్టమైన ప్రశ్నలకు సమాధానాలను అందిస్తుంది; GEO జనరేటివ్ శోధన వ్యవస్థలు సమాచారాన్ని అర్థం చేసుకునేందుకు సహాయపడుతుంది. విజయవాడ, తాడేపల్లి, గుంటూరు, అమరావతి వ్యాపారాలకు ఫలితాలు హామీ ఇవ్వలేము; పురోగతిని Search Console మరియు సంప్రదింపు చర్యలతో కొలవాలి.</p>
+            </details>
+          </div>
+        </section>
+
         {/* Methodology */}
         <section className="py-20 bg-gradient-to-b from-navy-950 to-navy-900">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -186,6 +196,8 @@ const SEO = () => {
             </motion.div>
           </div>
         </section>
+
+        <DownloadableResources templateIds={['localSeo']} />
 
         {/* FAQs */}
         <section className="py-20 bg-gradient-to-b from-navy-950 to-navy-900">
