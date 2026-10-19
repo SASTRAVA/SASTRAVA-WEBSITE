@@ -18,14 +18,11 @@ test('GA4 initializes with the configured stream only after analytics consent', 
   const analyticsScript = page.locator('script[data-sastrava-analytics="true"]');
   await expect(analyticsScript).toHaveAttribute('src', new RegExp(`id=${measurementId}`));
 
-  const { dataLayer, title } = await page.evaluate(() => ({ dataLayer: window.dataLayer, title: document.title }));
-  expect(dataLayer).toContainEqual(['config', measurementId, { send_page_view: false }]);
-  expect(dataLayer.some(([type, name, details]) => type === 'event'
-    && name === 'page_view'
-    && details.page_path === '/'
-    && details.page_title === title)).toBe(true);
+  const dataLayer = await page.evaluate(() => window.dataLayer);
+  expect(dataLayer).toContainEqual(['config', measurementId, { send_page_view: true }]);
 
-  await page.goto('/tools/seo-aeo-checker', { waitUntil: 'networkidle' });
+  await page.getByRole('link', { name: /SEO, AEO & GEO readiness/ }).first().click();
+  await expect(page).toHaveURL(/\/tools\/seo-aeo-checker$/);
   await page.getByRole('checkbox').first().check();
   const toolEvents = await page.evaluate(() => window.dataLayer);
   expect(toolEvents.some(([type, name, details]) => type === 'event'

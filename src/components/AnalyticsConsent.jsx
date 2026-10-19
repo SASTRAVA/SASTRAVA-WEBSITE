@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 const consentStorageKey = 'sastrava-analytics-consent';
@@ -11,7 +11,7 @@ function enableGoogleAnalytics(measurementId) {
   window.dataLayer = window.dataLayer || [];
   window.gtag = (...args) => window.dataLayer.push(args);
   window.gtag('js', new Date());
-  window.gtag('config', measurementId, { send_page_view: false });
+  window.gtag('config', measurementId, { send_page_view: true });
 
   const script = document.createElement('script');
   script.async = true;
@@ -40,6 +40,7 @@ export function AnalyticsConsent() {
   const { pathname } = useLocation();
   const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID?.trim() || defaultMeasurementId;
   const [consent, setConsent] = useState(() => (typeof window === 'undefined' ? null : readConsent()));
+  const lastPageViewPath = useRef(null);
 
   useEffect(() => {
     if (measurementId && consent === 'accepted') enableGoogleAnalytics(measurementId);
@@ -47,7 +48,13 @@ export function AnalyticsConsent() {
 
   useEffect(() => {
     if (!measurementId || consent !== 'accepted' || !window.sastravaAnalyticsInitialized) return;
+    if (lastPageViewPath.current === null) {
+      lastPageViewPath.current = pathname;
+      return;
+    }
+    if (lastPageViewPath.current === pathname) return;
     window.gtag('event', 'page_view', { page_path: pathname, page_title: document.title });
+    lastPageViewPath.current = pathname;
   }, [consent, measurementId, pathname]);
 
   if (!measurementId || consent) return null;
