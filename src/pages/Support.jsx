@@ -4,6 +4,7 @@ import { Mail, MessageCircle, Phone } from 'lucide-react';
 import { Navbar } from '../components/layout/Navbar';
 import { Footer } from '../components/layout/Footer';
 import { PageHero } from '../components/sections/PageHero';
+import { OrbitalHubShowcase } from '../components/interactive/OrbitalHubShowcase';
 import { edutechInstagramUrl } from '../config/learningCatalog.js';
 
 const channels = [
@@ -66,12 +67,14 @@ export const Support = () => (
               Go to Contact
             </Link>
           </div>
-          <section className="mt-12" aria-labelledby="support-triage-title"><h2 id="support-triage-title" className="text-2xl font-bold text-offwhite">Quick help: choose the right route</h2><div className="mt-5 grid gap-4 md:grid-cols-2">{[
-            { title: 'Project and consulting inquiries', text: 'Business discovery, software, automation, marketing, or a scoped project.', href: '/contact', label: 'Discuss a project' },
-            { title: 'Sastrava Edutech workshops and internships', text: 'Ask about learner groups, workshops, mentoring, and current program scope.', href: edutechInstagramUrl, label: 'Visit @sastrava_edutech', external: true },
-            { title: 'Security and VAPT scope requests', text: 'Include system ownership, written authorization, targets, timing, and safe boundaries.', href: '/cybersecurity/security-audits', label: 'Review security services' },
-            { title: 'Technical and website support', text: 'Share the page or tool, what you expected, what happened, and relevant screenshots.', href: '/contact', label: 'Contact support' },
-          ].map((item)=><article key={item.title} className="rounded-xl border border-white/10 bg-navy-900 p-5"><h3 className="font-semibold text-white">{item.title}</h3><p className="mt-2 text-sm leading-relaxed text-offwhite/70">{item.text}</p><a className="mt-3 inline-flex min-h-11 items-center font-semibold text-peacock-light underline" href={item.href} target={item.external?'_blank':undefined} rel={item.external?'noreferrer':undefined}>{item.label}</a></article>)}</div><div className="mt-5 flex flex-wrap gap-5">{[['FAQ','/faq'],['SEO readiness tool','/tools/seo-aeo-checker'],['AI ROI calculator','/tools/ai-roi-calculator'],['Security checklist','/tools/security-checklist']].map(([label,href])=><Link key={href} className="inline-flex min-h-11 items-center text-peacock-light underline" to={href}>{label}</Link>)}</div></section>
+          <div className="mt-12 overflow-hidden rounded-3xl border border-peacock-light/20">
+            <OrbitalHubShowcase eyebrow="Support routing" title="Choose the right support path." description="Select the topic that best matches your request to see what information helps the team respond." items={[
+              { title: 'Project and consulting inquiries', description: 'Business discovery, software, automation, marketing, or a scoped project.', focus: 'Share the goal, constraints, and decision you need to make.', href: '/contact' },
+              { title: 'Edutech workshops and internships', description: 'Ask about learner groups, workshops, mentoring, and current program scope.', focus: 'Include learner level, topic, cohort size, and preferred timing.', href: edutechInstagramUrl },
+              { title: 'Security and VAPT requests', description: 'Include system ownership, written authorization, targets, timing, and safe boundaries.', focus: 'Testing starts only after written permission and scope agreement.', href: '/cybersecurity/security-audits' },
+              { title: 'Technical and website support', description: 'Share the page or tool, what you expected, what happened, and relevant screenshots.', focus: 'Include browser/device details and steps to reproduce.', href: '/contact' },
+            ]} />
+          </div>
         </div>
       </section>
     </main>

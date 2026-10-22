@@ -1,163 +1,41 @@
-/**
- * Secure Pillar Page
- * Cybersecurity, compliance, protection, and enterprise solutions
- */
-
 import React from 'react';
-import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { ArrowRight, CloudCog, KeyRound, LockKeyhole, RefreshCw } from 'lucide-react';
 import { Navbar } from '../components/layout/Navbar';
 import { Footer } from '../components/layout/Footer';
+import { ServiceLegalNote } from '../components/sections/ServiceLegalNote';
 import { PageHero } from '../components/sections/PageHero';
-import { ECOSYSTEM_PILLARS } from '../config/businessModel';
-import * as Icons from 'lucide-react';
-import { Button } from '../components/ui/Button';
-import { contrastTextColor } from '../utils/contrastText';
+import { OrbitalHubShowcase } from '../components/interactive/OrbitalHubShowcase';
+import { QuickDiagnostic } from '../components/interactive/QuickDiagnostic';
+import { DeliverablesBento } from '../components/interactive/DeliverablesBento';
+import { DownloadableResources } from '../components/sections/DownloadableResources.jsx';
 import { SeoAnswers } from '../components/seo/SeoAnswers';
+import { deliverables } from '../config/phase7Experiences';
 
-export const SecurePillar = () => {
-  const pillar = ECOSYSTEM_PILLARS.SECURE;
+const foundations = [
+  { icon: KeyRound, title: 'Identity and secrets', description: 'Make access visible, require MFA for privileged accounts, keep secrets server-side, and plan safe rotation.' },
+  { icon: CloudCog, title: 'Cloud configuration', description: 'Review environments, database policies, storage access, backups, and service permissions in context.' },
+  { icon: LockKeyhole, title: 'Secure product defaults', description: 'Use input validation, least privilege, safe error handling, dependency review, and protected administrative flows.' },
+  { icon: RefreshCw, title: 'Release and recovery', description: 'Keep preview and production settings separate, verify changes, and make recovery steps usable by the team.' },
+];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.1
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6 }
-    }
-  };
-
-  return (
-    <>
-      <Navbar />
-      <main>
-        {/* Hero Section */}
-        <PageHero
-          title={`${pillar.name}: ${pillar.tagline}`}
-          subtitle={pillar.description}
-          backgroundImage="gradient"
-        />
-
-        {/* Main Content Section */}
-        <section className="py-24 bg-white dark:bg-gray-900">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            {/* Overview */}
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="mb-16"
-            >
-              <motion.p variants={itemVariants} className="text-[#087F2E] font-semibold uppercase mb-4">
-                About {pillar.name}
-              </motion.p>
-              <motion.h2 variants={itemVariants} className="text-4xl font-bold text-gray-900 dark:text-white mb-6">
-                Protect What Matters Most
-              </motion.h2>
-              <motion.p variants={itemVariants} className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl">
-                {pillar.description}
-              </motion.p>
-            </motion.div>
-
-            <div className="mb-16 rounded-2xl border border-gold/20 bg-gray-50 p-6 dark:bg-gray-800 md:p-8">
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white">A scope shaped around your goals</h3>
-              <p className="mt-3 max-w-3xl leading-relaxed text-gray-600 dark:text-gray-300">We agree the audience, priorities, deliverables, and review measures before work begins. The right approach depends on your context and the requirements of the engagement.</p>
-            </div>
-
-            {/* Services */}
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-            >
-              <motion.h3 variants={itemVariants} className="text-3xl font-bold text-gray-900 dark:text-white mb-12">
-                Our Services
-              </motion.h3>
-
-              <motion.div
-                variants={containerVariants}
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-              >
-                {pillar.services.map((service, index) => (
-                  <motion.div
-                    key={index}
-                    variants={itemVariants}
-                    className="p-8 rounded-xl border-2 hover:shadow-xl transition-all group"
-                    style={{
-                      borderColor: pillar.color.primary + '40',
-                      backgroundColor: pillar.color.primary + '05'
-                    }}
-                    whileHover={{ y: -10 }}
-                  >
-                    <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-green-600 transition-colors">
-                      {service}
-                    </h4>
-                    <p className="text-gray-600 dark:text-gray-400 mb-6">
-                      Scoped security assessment and remediation support shaped around your systems and requirements.
-                    </p>
-                    <ul className="space-y-2 mb-6">
-                      <li className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
-                        <Icons.CheckCircle size={16} style={{ color: pillar.color.primary }} />
-                        Authorized, scoped reviews
-                      </li>
-                      <li className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
-                        <Icons.CheckCircle size={16} style={{ color: pillar.color.primary }} />
-                        Risk-ranked findings
-                      </li>
-                      <li className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
-                        <Icons.CheckCircle size={16} style={{ color: pillar.color.primary }} />
-                        Remediation and retesting options
-                      </li>
-                    </ul>
-                    <Button
-                      className="w-full"
-                      style={{ backgroundColor: pillar.color.primary, color: contrastTextColor(pillar.color.primary) }}
-                      action="openContact"
-                    >
-                      Get Security Audit
-                    </Button>
-                  </motion.div>
-                ))}
-              </motion.div>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="py-16" style={{ backgroundColor: pillar.color.primary + '10' }}>
-          <div className="max-w-4xl mx-auto px-4 text-center">
-            <h3 className="text-3xl font-bold text-offwhite mb-4">
-              Secure Your Business Today
-            </h3>
-            <p className="text-lg text-offwhite/85 mb-8">
-              Discuss the systems, scope, and security questions you want reviewed.
-            </p>
-            <Button
-              className="font-bold"
-              style={{ backgroundColor: pillar.color.primary, color: contrastTextColor(pillar.color.primary) }}
-              action="openContact"
-            >
-              Schedule Security Assessment
-            </Button>
-          </div>
-        </section>
-        <SeoAnswers />
-      </main>
-      <Footer />
-    </>
-  );
-};
-
-export default SecurePillar;
+export default function SecurePillar() {
+  return <><Navbar/><main id="main-content">
+    <PageHero title="Secure-by-design software & digital hygiene" subtitle="Practical security for founders and growing teams" description="Build security into product decisions, cloud configuration, account access, and releases. SASTRAVA helps founders and SMB teams strengthen everyday engineering practices and prepare for growth." />
+    <OrbitalHubShowcase eyebrow="Founder & SMB digital hygiene" title="Build security into everyday product work." description="Select a practice area to see how product engineering, hosting, and operations work together." items={[
+      { title: 'Identity & MFA', description: 'Protect administrator access with MFA, least privilege, secure recovery, and clear ownership.', focus: 'Access control & account hygiene' },
+      { title: 'Secrets & environments', description: 'Keep credentials server-side, separate environments, and plan rotation and incident response.', focus: 'Secrets management' },
+      { title: 'Cloud & Supabase', description: 'Review policies, database access, backups, and service boundaries around the product.', focus: 'Cloud configuration' },
+      { title: 'Vercel & CI/CD', description: 'Use protected previews, build checks, security headers, and controlled production releases.', focus: 'Deployment hardening' },
+      { title: 'Secure engineering', description: 'Add dependency review, input validation, threat-aware design, and verification after fixes.', focus: 'DevSecOps practice' },
+    ]} />
+    <section className="bg-navy-900 px-6 py-16 md:py-20" aria-labelledby="secure-foundations-title"><div className="mx-auto max-w-7xl"><p className="text-xs font-bold uppercase tracking-[0.2em] text-peacock-light">Secure product foundations</p><h2 id="secure-foundations-title" className="mt-3 text-3xl font-bold text-white md:text-4xl">A manageable baseline for small engineering teams.</h2><div className="mt-8 grid gap-4 md:grid-cols-2">{foundations.map(({icon:Icon,title,description},index)=><article key={title} className="rounded-2xl border border-white/10 bg-navy-950/70 p-6"><span className="grid h-11 w-11 place-items-center rounded-xl border border-gold-light/25 bg-gold-light/10 text-gold-light"><Icon className="h-5 w-5" aria-hidden="true" /></span><p className="mt-4 text-xs font-bold uppercase tracking-wider text-peacock-light">Practice {String(index+1).padStart(2,'0')}</p><h3 className="mt-2 text-xl font-semibold text-white">{title}</h3><p className="mt-2 leading-relaxed text-offwhite/70">{description}</p></article>)}</div></div></section>
+    <QuickDiagnostic kind="secureHygiene" />
+    <DownloadableResources templateIds={['security']} />
+    <DeliverablesBento items={deliverables.secure} title="Secure-by-design outputs" />
+    <p className="bg-navy-950 px-6 pb-8 text-center text-sm text-offwhite/55">Security guidance depends on the systems and authorization in scope. Read our <Link className="underline underline-offset-4 hover:text-gold-light" to="/terms">terms</Link> and <Link className="underline underline-offset-4 hover:text-gold-light" to="/privacy">privacy policy</Link>.</p>
+    <section className="bg-navy-900 px-6 py-14"><div className="mx-auto max-w-5xl rounded-3xl border border-gold-light/20 bg-navy-950 p-7 text-center md:p-10"><p className="text-xs font-bold uppercase tracking-[0.2em] text-gold-light">Plan your next improvement</p><h2 className="mt-3 text-3xl font-bold text-white">Strengthen the product foundations before complexity grows.</h2><p className="mx-auto mt-3 max-w-2xl leading-relaxed text-offwhite/70">Discuss your current stack, access model, release process, and the areas where the team needs practical support.</p><Link to="/contact" className="mt-6 inline-flex min-h-12 items-center gap-2 rounded-xl bg-gradient-gold px-5 font-bold text-navy-950">Discuss secure product engineering <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link><p className="mt-5 text-sm text-offwhite/65">For an authorized penetration test or enterprise security audit, visit <Link to="/cybersecurity" className="font-semibold text-peacock-light underline underline-offset-4">Cybersecurity services</Link>.</p></div></section>
+    <SeoAnswers />
+  <ServiceLegalNote />
+      </main><Footer/></>;
+}

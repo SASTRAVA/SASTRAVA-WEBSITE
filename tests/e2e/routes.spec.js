@@ -38,13 +38,15 @@ test('legacy service hub routes redirect to canonical pages', async ({ page }) =
 
 test('open source page does not list or link to the website repository', async ({ page }) => {
   await page.goto('/open-source', { waitUntil: 'networkidle' });
-  await expect(page.getByRole('heading', { name: /SEO, AEO & GEO readiness checker/i })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /Free tools and community resources/i })).toBeVisible();
   await expect(page.locator('a[href*="github.com/SASTRAVA/SASTRAVA-WEBSITE"]')).toHaveCount(0);
 });
 
 test('learning catalog lists every domain and has non-duplicated service copy', async ({ page }) => {
   await page.goto('/domains', { waitUntil: 'networkidle' });
-  for (const domain of allLearningDomains) await expect(page.getByRole('link', { name: new RegExp(domain.name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')) }).first()).toBeVisible();
+  const domainTabs = page.getByRole('tablist', { name: 'Choose a topic' }).getByRole('tab');
+  await expect(domainTabs).toHaveCount(allLearningDomains.length);
+  for (const domain of allLearningDomains) await expect(domainTabs.filter({ hasText: domain.name })).toHaveCount(1);
   await expect(page.getByRole('heading', { name: /currently under development/i })).toHaveCount(0);
   for (const route of ['/learn', '/grow', '/build']) {
     await page.goto(route, { waitUntil: 'networkidle' });
@@ -53,11 +55,15 @@ test('learning catalog lists every domain and has non-duplicated service copy', 
   }
 });
 
-test('modern navigation and complete contact footer appear on public routes', async ({ page }) => {
+test('modern navigation and complete contact footer appear on public routes', async ({ page, isMobile }) => {
   const publicRoutes = routes.filter((route) => !['/courses', '/login'].includes(route));
   for (const route of publicRoutes) {
     await page.goto(route, { waitUntil: 'networkidle' });
-    await expect(page.locator('nav[aria-label="Primary"] a[href="/blog"]').first()).toHaveAttribute('href', '/blog');
+    if (isMobile) {
+      await expect(page.getByRole('button', { name: /toggle navigation menu/i })).toBeVisible();
+    } else {
+      await expect(page.locator('nav[aria-label="Primary"] a[href="/blog"]').first()).toHaveAttribute('href', '/blog');
+    }
     await expect(page.getByText('+91 7981 576083 · neeraj@sastrava.com · siri@sastrava.com', { exact: true })).toBeVisible();
     await expect(page.getByRole('link', { name: 'Instagram / @sastrava_edutech' })).toBeVisible();
   }

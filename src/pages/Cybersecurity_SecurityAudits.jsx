@@ -1,5 +1,9 @@
 import { SeoAnswers } from '../components/seo/SeoAnswers';
 import { DownloadableResources } from '../components/sections/DownloadableResources.jsx';
+import { ExplodedAnatomyStage } from '../components/interactive/ExplodedAnatomyStage';
+import { DeliverablesBento } from '../components/interactive/DeliverablesBento';
+import { QuickDiagnostic } from '../components/interactive/QuickDiagnostic';
+import { securityAuditSteps, deliverables } from '../config/phase7Experiences';
 /**
  * Security Audits Service Page
  * Comprehensive system security evaluation and compliance verification
@@ -9,38 +13,12 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Navbar } from '../components/layout/Navbar';
 import { Footer } from '../components/layout/Footer';
+import { ServiceLegalNote } from '../components/sections/ServiceLegalNote';
 import { PageHero } from '../components/sections/PageHero';
 import { Button } from '../components/ui/Button';
 import { CheckCircle, Shield, ClipboardList, Zap } from 'lucide-react';
 
 const SecurityAudits = () => {
-  const phases = [
-    {
-      phase: 'Phase 1',
-      name: 'Planning & Scope',
-      description: 'Define audit objectives, scope, and compliance requirements',
-      tasks: ['Requirement Analysis', 'Asset Inventory', 'Risk Assessment']
-    },
-    {
-      phase: 'Phase 2',
-      name: 'Assessment',
-      description: 'Evaluate security controls, policies, and infrastructure',
-      tasks: ['Control Review', 'Policy Audit', 'Infrastructure Analysis']
-    },
-    {
-      phase: 'Phase 3',
-      name: 'Testing & Validation',
-      description: 'Verify effectiveness of security controls through testing',
-      tasks: ['Control Testing', 'Compliance Validation', 'Gap Analysis']
-    },
-    {
-      phase: 'Phase 4',
-      name: 'Reporting',
-      description: 'Comprehensive audit report with remediation roadmap',
-      tasks: ['Findings Report', 'Risk Prioritization', 'Action Plan']
-    },
-  ];
-
   const benefits = [
     'Verify compliance with regulatory requirements',
     'Identify security gaps and weaknesses',
@@ -50,45 +28,7 @@ const SecurityAudits = () => {
     'Reduce organizational risk and liability',
   ];
 
-  const deliverables = [
-    { name: 'Audit Report', desc: 'Complete findings with risk ratings' },
-    { name: 'Compliance Matrix', desc: 'Requirements vs current state' },
-    { name: 'Gap Analysis', desc: 'Missing controls and capabilities' },
-    { name: 'Remediation Plan', desc: 'Prioritized action items' },
-    { name: 'Executive Summary', desc: 'High-level overview for leadership' },
-    { name: 'Implementation Guidance', desc: 'Steps to close gaps' },
-  ];
-  const faqs = [
-    {
-      q: 'How long does a security audit take?',
-      a: 'Typically 2-4 weeks depending on organization size and complexity. Small organizations 1-2 weeks, enterprises 3-4 weeks.'
-    },
-    {
-      q: 'What compliance standards do you cover?',
-      a: 'We can scope a review against the security controls or regulatory requirements your organization identifies. This does not imply certification or legal compliance advice.'
-    },
-    {
-      q: 'Will you help implement remediation?',
-      a: 'Yes, we provide detailed remediation plans and can support implementation through our consulting services.'
-    },
-    {
-      q: 'How often should we conduct audits?',
-      a: 'Annually is recommended. For highly regulated industries, semi-annual or quarterly audits may be required.'
-    },
-  ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1 }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
-  };
 
   return (
     <>
@@ -99,39 +39,11 @@ const SecurityAudits = () => {
           subtitle="Comprehensive Security Assessment"
           description="Evaluate your security posture against industry standards and identify improvement areas"
         />
+        <ExplodedAnatomyStage eyebrow="Security audit & control review" title="Turn evidence into prioritized remediation." description="Select an audit chapter to see how scope, control evidence, risk context, and verification fit together." steps={securityAuditSteps} />
+        <QuickDiagnostic kind="security" />
+        <DeliverablesBento items={deliverables.cyberAudit} title="Security audit outputs" />
 
-        {/* Methodology */}
-        <section className="py-20 bg-gradient-to-b from-navy-950 to-navy-900">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-white mb-12">Our Audit Process</h2>
 
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"
-            >
-              {phases.map((phase, idx) => (
-                <motion.div key={idx} variants={itemVariants}>
-                  <div className="bg-gradient-to-br from-navy-800 to-navy-900 rounded-lg border border-gold/20 p-6 h-full hover:border-gold/40 transition-all">
-                    <p className="text-sm font-bold text-gold mb-2">{phase.phase}</p>
-                    <h4 className="text-lg font-bold text-white mb-2">{phase.name}</h4>
-                    <p className="text-sm text-gray-400 mb-4">{phase.description}</p>
-                    <ul className="space-y-2">
-                      {phase.tasks.map((task, tidx) => (
-                        <li key={tidx} className="flex items-center gap-2 text-xs text-gray-300">
-                          <CheckCircle size={14} className="text-gold flex-shrink-0" />
-                          {task}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </section>
 
         {/* Benefits */}
         <section className="py-20 bg-navy-900">
@@ -156,63 +68,8 @@ const SecurityAudits = () => {
           </div>
         </section>
 
-        {/* Deliverables */}
-        <section className="py-20 bg-gradient-to-b from-navy-950 to-navy-900">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-white mb-12">Audit Deliverables</h2>
 
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-            >
-              {deliverables.map((item, idx) => (
-                <motion.div
-                  key={idx}
-                  variants={itemVariants}
-                  className="bg-gradient-to-br from-navy-800 to-navy-900 rounded-lg border border-gold/20 p-6 hover:border-gold/40 transition-all"
-                >
-                  <div className="w-10 h-10 rounded-lg bg-gold/20 flex items-center justify-center mb-3">
-                    <ClipboardList size={20} className="text-gold" />
-                  </div>
-                  <h4 className="font-bold text-white mb-2">{item.name}</h4>
-                  <p className="text-sm text-gray-400">{item.desc}</p>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </section>
 
-        {/* FAQs */}
-        <section className="py-20 bg-gradient-to-b from-navy-950 to-navy-900">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-white mb-12">Frequently Asked Questions</h2>
-
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="space-y-4"
-            >
-              {faqs.map((faq, idx) => (
-                <motion.div
-                  key={idx}
-                  variants={itemVariants}
-                  className="bg-gradient-to-br from-navy-800 to-navy-900 rounded-lg border border-gold/20 p-6 hover:border-gold/40 transition-all"
-                >
-                  <h4 className="font-bold text-white mb-2 flex items-center gap-2">
-                    <Zap size={18} className="text-gold" />
-                    {faq.q}
-                  </h4>
-                  <p className="text-gray-400 ml-8">{faq.a}</p>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </section>
 
         <DownloadableResources templateIds={['security']} />
 
@@ -234,6 +91,7 @@ const SecurityAudits = () => {
             </div>
           </div>
         </section>
+      <ServiceLegalNote />
       </main>
       <Footer />
     </>

@@ -4,6 +4,7 @@ import { ArrowRight, Bot, Check, Clipboard, Download, Globe2, MessageCircle, Rot
 import { Navbar } from '../components/layout/Navbar';
 import { Footer } from '../components/layout/Footer';
 import { trackEvent } from '../services/conversionTracking.js';
+import { OrbitalHubShowcase } from '../components/interactive/OrbitalHubShowcase';
 
 function useToolTracking(toolName) {
   const started = useRef(false);
@@ -110,11 +111,10 @@ const securityChecks = [
   'There is a response contact and a written scope for any security testing.',
 ];
 
-const toolLinks = Object.entries(tools).map(([href, tool]) => ({ href, title: tool.title, Icon: tool.icon }));
 
 function ToolShell({ tool, children }) {
   const Icon = tool.icon;
-  const { search } = useLocation();
+  const { search, pathname } = useLocation();
   const params = new URLSearchParams(search);
   const sharedScoreValue = params.get('score');
   const sharedScore = sharedScoreValue === null ? Number.NaN : Number(sharedScoreValue);
@@ -146,19 +146,10 @@ function ToolShell({ tool, children }) {
           </header>
           {sharedMessage && <p className="mb-6 rounded-xl border border-peacock-light/20 bg-peacock-light/5 p-4 text-sm text-peacock-light" role="status">{sharedMessage}</p>}
           {children}
-          <section className="mt-14 rounded-2xl border border-white/10 bg-white/[0.03] p-6 md:p-8" aria-labelledby="other-tools-heading">
-            <h2 id="other-tools-heading" className="font-display text-2xl font-semibold">Explore the other free tools</h2>
-            <ul className="mt-5 grid gap-3 md:grid-cols-3">
-              {toolLinks.map(({ href, title, Icon: ToolIcon }) => (
-                <li key={href}>
-                  <Link to={href} className="flex min-h-14 items-center gap-3 rounded-xl border border-white/10 px-4 py-3 text-sm font-medium text-offwhite/80 transition-colors hover:border-gold-DEFAULT/40 hover:text-gold-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-light">
-                    <ToolIcon className="h-4 w-4 shrink-0 text-peacock-light" aria-hidden="true" />
-                    <span>{title}</span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            <Link to="/contact" className="mt-6 inline-flex min-h-12 items-center gap-2 font-semibold text-gold-light hover:text-peacock-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-light">
+          <section className="mt-14 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03]" aria-labelledby="other-tools-heading">
+            <h2 id="other-tools-heading" className="sr-only">Explore the other free tools</h2>
+            <OrbitalHubShowcase eyebrow="SASTRAVA tools" title="Continue with a related planning tool." description="Each tool runs in your browser. Your entries stay local unless you choose to share or contact the team." initialIndex={Math.max(0, Object.keys(tools).indexOf(pathname))} items={Object.entries(tools).map(([href, item]) => ({ title: item.title, description: item.intro, focus: 'Open this free browser-based tool', href }))} />
+            <Link to="/contact" className="mx-6 mb-6 inline-flex min-h-12 items-center gap-2 font-semibold text-gold-light hover:text-peacock-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-light md:mx-8">
               Discuss your next step <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
           </section>

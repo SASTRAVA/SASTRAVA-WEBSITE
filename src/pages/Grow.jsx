@@ -7,12 +7,17 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Navbar } from '../components/layout/Navbar';
 import { Footer } from '../components/layout/Footer';
+import { ServiceLegalNote } from '../components/sections/ServiceLegalNote';
 import { PageHero } from '../components/sections/PageHero';
 import { ECOSYSTEM_PILLARS } from '../config/businessModel';
 import * as Icons from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { contrastTextColor } from '../utils/contrastText';
 import { SeoAnswers } from '../components/seo/SeoAnswers';
+import { ExplodedAnatomyStage } from '../components/interactive/ExplodedAnatomyStage';
+import { DeliverablesBento } from '../components/interactive/DeliverablesBento';
+import { QuickDiagnostic } from '../components/interactive/QuickDiagnostic';
+import { growthSteps, deliverables } from '../config/phase7Experiences';
 
 export const GrowPillar = () => {
   const pillar = ECOSYSTEM_PILLARS.GROW;
@@ -78,10 +83,9 @@ export const GrowPillar = () => {
               </motion.p>
             </motion.div>
 
-            <div className="mb-16 rounded-2xl border border-gold/20 bg-gray-50 p-6 dark:bg-gray-800 md:p-8">
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white">A scope shaped around your goals</h3>
-              <p className="mt-3 max-w-3xl leading-relaxed text-gray-600 dark:text-gray-300">We agree the audience, priorities, deliverables, and review measures before work begins. The right approach depends on your context and the requirements of the engagement.</p>
-            </div>
+            <ExplodedAnatomyStage eyebrow="Venture & growth stages" title="Move from market questions to repeatable growth." description="Select the stage that reflects your next decision. Each chapter surfaces the practical work and outputs that can support it." steps={growthSteps} />
+            <QuickDiagnostic kind="startup" />
+            <DeliverablesBento items={deliverables.grow} />
 
             {/* Services */}
             <motion.div
@@ -151,6 +155,7 @@ export const GrowPillar = () => {
           </div>
         </section>
         <SeoAnswers />
+      <ServiceLegalNote />
       </main>
       <Footer />
     </>

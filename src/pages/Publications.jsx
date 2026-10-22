@@ -12,6 +12,31 @@ import { Button } from '../components/ui/Button';
 import { ExternalLink } from 'lucide-react';
 import { downloadTemplates } from '../config/downloadTemplates.js';
 import { insights } from '../config/insights.js';
+import { InteractiveBlueprintFilter } from '../components/interactive/InteractiveBlueprintFilter';
+
+const publicationItems = [
+  ...downloadTemplates.map((resource) => ({
+    category: 'Worksheet',
+    title: resource.title,
+    problem: resource.summary,
+    anatomy: 'Download the checklist, review the prompts with your team, and tailor the actions to your systems and responsibilities.',
+    deliverables: `Downloadable resource · ${resource.filename}`,
+    verification: 'Use as a planning aid and validate decisions with the appropriate owner or qualified professional.',
+    href: resource.href,
+    download: resource.filename,
+    linkLabel: 'Download worksheet',
+  })),
+  ...insights.map((article) => ({
+    category: 'Field guide',
+    title: article.title,
+    problem: article.summary,
+    anatomy: 'Read the context, practical sequence, and questions to consider before planning implementation.',
+    deliverables: `${article.readTime} · SASTRAVA field guide`,
+    verification: 'Use the guide as educational context and adapt recommendations to your organization.',
+    href: `/blog#${article.slug}`,
+    linkLabel: 'Read field guide',
+  })),
+];
 
 const Publications = () => {
   return (
@@ -25,22 +50,7 @@ const Publications = () => {
           description="Browse SASTRAVA media resources or contact the team for interviews and press enquiries."
         />
 
-        {/* Press Releases */}
-        <section className="py-20 bg-gradient-to-b from-navy-950 to-navy-900">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-white mb-12">Media Coverage</h2>
-
-            <div className="rounded-2xl border border-gold/20 bg-navy-900 p-8 text-center">
-              <p className="text-lg font-semibold text-white">No linked media coverage is available yet.</p>
-              <p className="mt-2 text-gray-300">When published coverage is added, each item will link directly to its source.</p>
-              <a href="mailto:neeraj@sastrava.com,siri@sastrava.com?subject=Press%20inquiry" className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-lg px-4 font-semibold text-gold-light hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-light">
-                Contact SASTRAVA for media enquiries <ExternalLink size={14} aria-hidden="true" />
-              </a>
-            </div>
-          </div>
-        </section>
-
-        <section className="bg-navy-950 py-16"><div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8"><h2 className="text-3xl font-bold text-white">Practical guides and worksheets</h2><p className="mt-3 max-w-3xl text-gray-300">Download planning resources and read the SASTRAVA field guides. They are educational starting points; adapt them to your organization and have qualified professionals review decisions where needed.</p><div className="mt-8 grid gap-6 lg:grid-cols-2"><div><h3 className="text-xl font-semibold text-gold-light">Downloadable templates</h3><ul className="mt-4 space-y-3">{downloadTemplates.map((item)=><li key={item.id} className="rounded-xl border border-white/10 p-4"><a className="font-semibold text-white underline decoration-gold-light underline-offset-4" href={item.href} download={item.filename}>{item.title}</a><p className="mt-2 text-sm text-gray-300">{item.summary}</p></li>)}</ul></div><div><h3 className="text-xl font-semibold text-gold-light">Field guides</h3><ul className="mt-4 space-y-3">{insights.map((article)=><li key={article.slug} className="rounded-xl border border-white/10 p-4"><a className="font-semibold text-white underline decoration-gold-light underline-offset-4" href={`/blog#${article.slug}`}>{article.title}</a><p className="mt-2 text-sm text-gray-300">{article.summary}</p></li>)}</ul></div></div></div></section>
+        <section className="bg-navy-950 px-6 py-16 md:py-20" aria-labelledby="publication-library-title"><div className="mx-auto max-w-7xl"><p className="text-xs font-bold uppercase tracking-[0.2em] text-peacock-light">Interactive publication library</p><h2 id="publication-library-title" className="mt-3 text-3xl font-bold text-white">Guides and worksheets you can use.</h2><p className="mt-3 max-w-3xl text-offwhite/70">Filter the current library by resource type. Download worksheets directly or open a field guide for more detail.</p><div className="mt-7"><InteractiveBlueprintFilter items={publicationItems} categories={['All', 'Worksheet', 'Field guide']} /></div></div></section>
 
         {/* Press Kit */}
         <section className="py-20 bg-navy-900">
@@ -70,9 +80,9 @@ const Publications = () => {
                 whileHover={{ scale: 1.05 }}
                 className="bg-gradient-to-br from-navy-800 to-navy-900 rounded-lg border border-gold/20 p-8 text-center hover:border-gold/40 transition-all"
               >
-                <h3 className="text-xl font-bold text-white mb-3">Team Profiles</h3>
-                <p className="text-gray-400 mb-6">Meet the people behind SASTRAVA</p>
-                <Button size="sm" variant="secondary" action="navigate" actionConfig={{ path: '/portfolio' }}>View profiles</Button>
+                <h3 className="text-xl font-bold text-white mb-3">About SASTRAVA</h3>
+                <p className="text-gray-400 mb-6">Learn about SASTRAVA, its approach, and leadership</p>
+                <Button size="sm" variant="secondary" action="navigate" actionConfig={{ path: '/about' }}>Read about us</Button>
               </motion.div>
             </div>
 

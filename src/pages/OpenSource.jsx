@@ -4,27 +4,13 @@
  */
 
 import React from 'react';
-import { motion } from 'framer-motion';
 import { Navbar } from '../components/layout/Navbar';
 import { Footer } from '../components/layout/Footer';
 import { PageHero } from '../components/sections/PageHero';
-import { ExternalLink, FileText } from 'lucide-react';
+import { InteractiveBlueprintFilter } from '../components/interactive/InteractiveBlueprintFilter';
 import { downloadTemplates } from '../config/downloadTemplates.js';
 
 const OpenSource = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1 }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
-  };
-
   return (
     <>
       <Navbar />
@@ -36,26 +22,16 @@ const OpenSource = () => {
           description="Use SASTRAVA’s free browser-based planning tools and downloadable worksheets. Open-source repositories are listed only when a public code repository and license are available."
         />
 
-        {/* Projects */}
-        <section className="py-20 bg-gradient-to-b from-navy-950 to-navy-900">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-white mb-5">Community projects</h2>
-            <p className="mb-12 max-w-3xl text-gray-300">These public utilities run in your browser. They are planning aids, not professional audits or forecasts. The website source repository is not listed here.</p>
-
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-            >
-              {[
-                ['/tools/seo-aeo-checker','SEO, AEO & GEO readiness checker','Review discoverability and page clarity.'],
-                ['/tools/ai-roi-calculator','AI automation ROI calculator','Explore time and cost assumptions before a bounded pilot.'],
-                ['/tools/security-checklist','Website security checklist','Review foundational security readiness and next actions.'],
-              ].map(([href,title,description])=><motion.article key={href} variants={itemVariants} className="rounded-2xl border border-gold/20 bg-gradient-to-br from-navy-800 to-navy-900 p-7"><ExternalLink className="mb-4 text-gold" aria-hidden="true"/><h3 className="text-xl font-bold text-white">{title}</h3><p className="mt-3 text-gray-300">{description}</p><a className="mt-4 inline-flex min-h-11 items-center font-semibold text-peacock-light underline" href={href}>Open browser tool</a></motion.article>)}
-              {downloadTemplates.map((item)=><motion.article key={item.id} variants={itemVariants} className="rounded-2xl border border-white/10 bg-navy-900 p-7"><FileText className="mb-4 text-peacock-light" aria-hidden="true"/><h3 className="text-xl font-bold text-white">{item.title}</h3><p className="mt-3 text-gray-300">{item.summary}</p><a className="mt-4 inline-flex min-h-11 items-center font-semibold text-peacock-light underline" href={item.href} download={item.filename}>Download worksheet</a></motion.article>)}
-            </motion.div>
+        <section className="bg-navy-950 px-6 py-16 md:py-20" aria-labelledby="community-library-title">
+          <div className="mx-auto max-w-7xl">
+            <h2 id="community-library-title" className="text-3xl font-bold text-white">Free tools and community resources</h2>
+            <p className="mt-4 max-w-3xl leading-relaxed text-offwhite/70">These browser tools and worksheets are planning aids, not professional audits or forecasts. The website source repository is not listed here.</p>
+            <div className="mt-8"><InteractiveBlueprintFilter filterLabel="Filter open resources" categories={['All', 'Browser tool', 'Worksheet']} items={[
+              { category: 'Browser tool', title: 'SEO, AEO & GEO readiness checker', problem: 'Review discoverability and page clarity.', anatomy: 'Check crawlability, page structure, local information, and measurement.', deliverables: 'A browser-based readiness score and action checklist.', verification: 'Use the checklist to plan a review; results are not a ranking prediction.', href: '/tools/seo-aeo-checker', linkLabel: 'Open browser tool' },
+              { category: 'Browser tool', title: 'AI automation ROI calculator', problem: 'Explore time and labor assumptions before a bounded pilot.', anatomy: 'Adjust workload and time estimates, then compare scenarios.', deliverables: 'An illustrative estimate based on your inputs.', verification: 'Validate assumptions against observed work and actual costs.', href: '/tools/ai-roi-calculator', linkLabel: 'Open browser tool' },
+              { category: 'Browser tool', title: 'Website security checklist', problem: 'Review foundational security readiness and next actions.', anatomy: 'Check account access, patching, backups, permissions, forms, secrets, and response.', deliverables: 'A local checklist and prioritized reflection prompts.', verification: 'This tool does not scan or test a website.', href: '/tools/security-checklist', linkLabel: 'Open browser tool' },
+              ...downloadTemplates.map((item) => ({ category: 'Worksheet', title: item.title, problem: item.summary, anatomy: 'Download the worksheet and review its prompts with the relevant system or business owner.', deliverables: `Text worksheet · ${item.filename}`, verification: 'Adapt actions to your context and validate decisions with the appropriate owner.', href: item.href, download: item.filename, linkLabel: 'Download worksheet' })),
+            ]} /></div>
           </div>
         </section>
 

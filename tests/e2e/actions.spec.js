@@ -34,9 +34,14 @@ test('home omits the team section and primary navigation reaches all core pages'
     await expect(page.getByRole('heading', { name: heading }).first()).toBeVisible();
   }
 
+  await page.goto('/about');
+  await expect(page.getByRole('heading', { name: /meet the people guiding each practice/i })).toBeVisible();
+  const siriProfile = page.locator('#our-team [role=tab]').filter({ hasText: 'Siri Perumalla' });
+  await siriProfile.click();
+  await page.locator('#our-team').getByRole('link', { name: 'Explore this area' }).click();
+  await expect(page).toHaveURL(/05_P_Prasanna_Siri\.html$/);
   await page.goto('/portfolio');
-  await expect(page.getByRole('heading', { name: /people behind the work/i })).toBeVisible();
-  await expect(page.getByRole('link', { name: /view siri perumalla portfolio/i })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /people behind the work/i })).toHaveCount(0);
 });
 
 test('route navigation resets the viewport to the top', async ({ page, isMobile }) => {
@@ -110,15 +115,16 @@ test('courses stay out of navigation and the retired URL redirects to learning s
   await expect(page).toHaveURL(/\/learn$/);
 });
 
-test('research summary opens and closes from a keyboard-accessible control', async ({ page }) => {
+test('research topics filter and expand with keyboard-accessible disclosure controls', async ({ page }) => {
   await page.goto('/research');
-  const readButton = page.getByRole('button', { name: /read summary/i }).first();
-  await readButton.focus();
+  const topic = page.getByText('Responsible AI adoption', { exact: true });
+  await expect(topic).toBeVisible();
+  await page.getByRole('group', { name: 'Filter project blueprints' }).getByRole('button', { name: 'Cybersecurity' }).click();
+  await expect(page.getByText('Responsible AI adoption', { exact: true })).toHaveCount(0);
+  const disclosure = page.locator('details').filter({ hasText: 'Security review and remediation' }).locator('summary');
+  await disclosure.focus();
   await page.keyboard.press('Enter');
-  const dialog = page.getByRole('dialog');
-  await expect(dialog).toBeVisible();
-  await dialog.getByRole('button', { name: /close research summary/i }).click();
-  await expect(dialog).toHaveCount(0);
+  await expect(page.getByText(/Written authorization → bounded assessment/i)).toBeVisible();
 });
 
 test('case studies explain evidence standards and offer a consultation path', async ({ page }) => {
@@ -156,12 +162,12 @@ test('pillar CTAs always lead to the contact journey', async ({ page }) => {
     ['/learn', /discuss learning options/i],
     ['/build', /start project/i],
     ['/grow', /start growth plan/i],
-    ['/secure', /get security audit/i],
+    ['/secure', /discuss secure product engineering/i],
   ];
 
   for (const [route, name] of ctas) {
     await page.goto(route);
-    await page.getByRole('button', { name }).first().click();
+    await page.getByText(name).first().click();
     await expect(page).toHaveURL(/\/contact$/);
   }
 });
@@ -178,7 +184,7 @@ test('services page separates offerings into icon-led groups with working catego
   await expect(page.getByRole('heading', { name: /decide where to go/i })).toBeVisible();
   await expect(page.getByRole('heading', { name: /make useful ideas work in the real world/i })).toBeVisible();
   await expect(page.getByRole('heading', { name: /build confidence into the systems and skills/i })).toBeVisible();
-  await expect(page.locator('#service-offerings article')).toHaveCount(7);
+  await expect(page.locator('#service-offerings article')).toHaveCount(8);
 
   const categoryNavigation = page.getByRole('navigation', { name: 'Service categories' });
   await categoryNavigation.getByRole('link', { name: 'Protect & enable' }).click();
@@ -195,7 +201,8 @@ test('about page groups its story, purpose, work, and approach into clear sectio
   await expect(page.getByRole('heading', { name: /practical thinking, shaped around real needs/i })).toBeVisible();
   await expect(page.locator('#our-purpose article')).toHaveCount(3);
   await expect(page.locator('#our-work article')).toHaveCount(5);
-  await expect(page.locator('#our-approach article')).toHaveCount(3);
+  await expect(page.locator('#our-evolution [role=tab]')).toHaveCount(3);
+  await expect(page.locator('#our-team [role=tab]')).toHaveCount(5);
 
   const sectionNavigation = page.getByRole('navigation', { name: 'About page sections' });
   await sectionNavigation.getByRole('link', { name: 'Our work' }).click();

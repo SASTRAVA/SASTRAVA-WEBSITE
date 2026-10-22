@@ -1,5 +1,9 @@
 import { SeoAnswers } from '../components/seo/SeoAnswers';
 import { DownloadableResources } from '../components/sections/DownloadableResources.jsx';
+import { ExplodedAnatomyStage } from '../components/interactive/ExplodedAnatomyStage';
+import { RoiSlider } from '../components/interactive/QuickDiagnostic';
+import { DeliverablesBento } from '../components/interactive/DeliverablesBento';
+import { aiSteps, deliverables } from '../config/phase7Experiences';
 /**
  * AI Business Division Hub Page
  * Enterprise AI and Machine Learning Solutions
@@ -10,6 +14,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Navbar } from '../components/layout/Navbar';
 import { Footer } from '../components/layout/Footer';
+import { ServiceLegalNote } from '../components/sections/ServiceLegalNote';
 import { PageHero } from '../components/sections/PageHero';
 import { Button } from '../components/ui/Button';
 import { Brain, Zap, TrendingUp, Users, Database, Code } from 'lucide-react';
@@ -65,7 +70,8 @@ const AIHub = () => {
       color: '#1ECDB0'
     },
   ];
-  const useCases = [
+
+  const useCases = [
     'Customer Churn Prediction',
     'Fraud Detection & Prevention',
     'Recommendation Engines',
@@ -99,6 +105,10 @@ const AIHub = () => {
           subtitle="Enterprise-grade artificial intelligence solutions"
           description="From strategy to deployment: custom AI solutions that drive business growth and operational excellence"
         />
+
+        <ExplodedAnatomyStage eyebrow="AI workflow pipeline" title="Make the human and system handoffs visible." description="Explore a bounded automation pipeline from approved inputs to logged actions, including where people review the work." steps={aiSteps} tone="teal" />
+        <RoiSlider />
+        <DeliverablesBento items={deliverables.ai} />
 
         {/* Services */}
         <section className="py-20 bg-gradient-to-b from-navy-950 to-navy-900">
@@ -230,6 +240,7 @@ const AIHub = () => {
             </div>
           </div>
         </section>
+      <ServiceLegalNote />
       </main>
       <Footer />
     </>

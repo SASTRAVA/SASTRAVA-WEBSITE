@@ -6,27 +6,26 @@ import {
   Bot,
   BriefcaseBusiness,
   CheckCircle2,
-  Compass,
   GraduationCap,
-  Lightbulb,
   Megaphone,
   Rocket,
   ShieldCheck,
   Star,
   Target,
-  Workflow,
 } from 'lucide-react';
 import { Navbar } from '../components/layout/Navbar';
 import { Footer } from '../components/layout/Footer';
 import { PageHero } from '../components/sections/PageHero';
 import { teamProfiles } from '../config/teamProfiles.js';
+import { googleMapsListingUrl } from '../config/businessProfile.js';
+import { OrbitalHubShowcase } from '../components/interactive/OrbitalHubShowcase';
 
 const ABOUT_SECTIONS = [
   { id: 'our-story', label: 'Our story' },
   { id: 'our-purpose', label: 'Our purpose' },
   { id: 'our-work', label: 'Our work' },
   { id: 'our-team', label: 'Our team' },
-  { id: 'our-approach', label: 'Our approach' },
+  { id: 'our-evolution', label: 'Our evolution' },
 ];
 
 const PURPOSE_CARDS = [
@@ -80,27 +79,6 @@ const WORK_AREAS = [
     description: 'Support learners and teams with practical workshops, mentoring, and project guidance.',
     Icon: GraduationCap,
     tone: 'gold',
-  },
-];
-
-const APPROACH_STEPS = [
-  {
-    number: '01',
-    title: 'Listen',
-    description: 'Understand the people, process, context, and opportunity behind the brief.',
-    Icon: Compass,
-  },
-  {
-    number: '02',
-    title: 'Shape',
-    description: 'Agree priorities, scope, and a practical route forward before work begins.',
-    Icon: Lightbulb,
-  },
-  {
-    number: '03',
-    title: 'Deliver',
-    description: 'Build, learn, and refine with the people who will use or maintain the result.',
-    Icon: Workflow,
   },
 ];
 
@@ -239,53 +217,32 @@ const About = () => (
             </div>
           </section>
 
-          <section id="our-approach" aria-labelledby="our-approach-title" className="mt-20 scroll-mt-28 md:mt-24">
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4 }}
-              viewport={{ once: true, margin: '-60px' }}
-              className="mb-8 max-w-3xl"
-            >
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-light">How we work</p>
-              <h2 id="our-approach-title" className="mt-3 font-display text-3xl font-bold leading-tight text-offwhite md:text-4xl">Listen carefully. Make the next step clear.</h2>
-            </motion.div>
-
-            <div className="grid gap-4 md:grid-cols-3">
-              {APPROACH_STEPS.map(({ number, title, description, Icon }, index) => (
-                <motion.article
-                  key={number}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: index * 0.06 }}
-                  viewport={{ once: true, margin: '-60px' }}
-                  className="rounded-2xl border border-white/10 bg-white/[0.025] p-6 md:p-7"
-                >
-                  <div className="flex items-center justify-between gap-4">
-                    <span className="grid h-11 w-11 place-items-center rounded-xl border border-peacock-light/20 bg-peacock-light/10 text-peacock-light"><Icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" /></span>
-                    <span className="font-display text-xs tracking-[0.2em] text-gold-light">{number}</span>
-                  </div>
-                  <h3 className="mt-6 text-xl font-semibold text-offwhite">{title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-offwhite/65">{description}</p>
-                </motion.article>
-              ))}
+          <section id="our-evolution" aria-labelledby="our-evolution-title" className="mt-20 scroll-mt-28 md:mt-24">
+            <div className="mb-8 max-w-3xl">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-light">October 2024 → present · Tadepalli</p>
+              <h2 id="our-evolution-title" className="mt-3 font-display text-3xl font-bold leading-tight text-offwhite md:text-4xl">A practice shaped by learning and delivery.</h2>
+              <p className="mt-4 text-sm leading-relaxed text-offwhite/65">Select a milestone to explore how the work has grown from technical mentoring into connected business and technology support.</p>
             </div>
+            <OrbitalHubShowcase eyebrow="SASTRAVA evolution" title="From technical foundations to integrated practice." items={[
+              { title: 'Technical foundations', description: 'Early work centered on cybersecurity, AI/ML, technical mentorship, and curriculum design.', focus: 'Cybersecurity · AI/ML · technical learning' },
+              { title: 'Sastrava Edutech', description: 'Learning expanded into workshops, internships, mentoring, and career guidance across the 22-domain catalog.', focus: 'Learn · Intern · Grow', href: 'https://www.instagram.com/sastrava_edutech/' },
+              { title: 'Connected services from Tadepalli', description: 'Today the practice brings consulting, incubation support, software, automation, security, and digital growth together for organizations across India.', focus: 'Tadepalli · Guntur District · Andhra Pradesh', href: googleMapsListingUrl },
+            ]} />
           </section>
 
           <section id="our-team" aria-labelledby="our-team-title" className="mt-20 scroll-mt-28 md:mt-24">
             <div className="mb-8 max-w-3xl">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-peacock-light">The people behind the work</p>
-              <h2 id="our-team-title" className="mt-3 font-display text-3xl font-bold leading-tight text-offwhite md:text-4xl">Meet the SASTRAVA team.</h2>
-              <p className="mt-4 text-sm leading-relaxed text-offwhite/65">Explore each team member’s role and professional portfolio.</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-peacock-light">Leadership & practice heads</p>
+              <h2 id="our-team-title" className="mt-3 font-display text-3xl font-bold leading-tight text-offwhite md:text-4xl">Meet the people guiding each practice.</h2>
+              <p className="mt-4 text-sm leading-relaxed text-offwhite/65">Select a profile to explore a team member’s role and professional portfolio.</p>
             </div>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-              {teamProfiles.map((member) => (
-                <a key={member.profile} href={member.profile} aria-label={`View ${member.name}'s portfolio`} className="group overflow-hidden rounded-2xl border border-white/10 bg-navy-900/70 transition-colors hover:border-peacock-light/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-light">
-                  <img src={member.image} alt={`${member.name}, ${member.designation}`} width={member.width} height={member.height} loading="lazy" decoding="async" className="h-56 w-full bg-navy-950/70 object-contain" />
-                  <div className="p-4"><h3 className="font-semibold text-offwhite group-hover:text-gold-light">{member.name}</h3><p className="mt-1 text-sm text-offwhite/65">{member.designation}</p></div>
-                </a>
-              ))}
-            </div>
+            <OrbitalHubShowcase eyebrow="Leadership & practice heads" title="A connected team across strategy, technology, and learning." items={teamProfiles.map((member) => ({
+              title: member.name,
+              image: member.image,
+              description: `${member.name} leads the ${member.designation.toLowerCase()} practice at SASTRAVA.`,
+              focus: member.designation,
+              href: member.profile,
+            }))} />
           </section>
 
           <motion.section

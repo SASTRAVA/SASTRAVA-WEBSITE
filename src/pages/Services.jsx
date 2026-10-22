@@ -2,7 +2,10 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Navbar } from '../components/layout/Navbar';
 import { Footer } from '../components/layout/Footer';
+import { ServiceLegalNote } from '../components/sections/ServiceLegalNote';
 import { PageHero } from '../components/sections/PageHero';
+import { ServiceScopeMatcher } from '../components/interactive/ServiceScopeMatcher';
+import { scopeStages } from '../config/phase7Experiences';
 import { Button } from '../components/ui/Button';
 import { Link } from 'react-router-dom';
 import {
@@ -178,7 +181,7 @@ export const Services = () => {
         <PageHero
           title="Business, marketing and technology services."
           subtitle="Our Services"
-          description="SASTRAVA combines business consulting and incubation with software, AI and automation, security reviews, digital marketing, content, and practical learning. We agree the scope and work with you toward the outcome that matters."
+          description="SASTRAVA combines business consulting and incubation with software, AI and automation, security reviews, digital marketing, content, and practical learning. Every engagement starts with a clear objective. A scope shaped around your goals brings the audience, priorities, deliverables, and measures together before work begins."
         />
 
         <section id="service-offerings" className="relative overflow-hidden bg-navy-950 py-section">
@@ -204,6 +207,10 @@ export const Services = () => {
                 </a>
               ))}
             </nav>
+
+            <div className="mb-16 overflow-hidden rounded-3xl border border-peacock-light/20">
+              <ServiceScopeMatcher stages={scopeStages} />
+            </div>
 
             <div className="space-y-20 md:space-y-24">
               {SERVICE_GROUPS.map((group) => (
@@ -352,6 +359,7 @@ export const Services = () => {
             </motion.div>
           </div>
         </section>
+      <ServiceLegalNote />
       </main>
       <Footer />
     </>

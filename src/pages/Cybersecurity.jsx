@@ -1,4 +1,9 @@
 import { SeoAnswers } from '../components/seo/SeoAnswers';
+import { DownloadableResources } from '../components/sections/DownloadableResources.jsx';
+import { OrbitalHubShowcase } from '../components/interactive/OrbitalHubShowcase';
+import { QuickDiagnostic } from '../components/interactive/QuickDiagnostic';
+import { DeliverablesBento } from '../components/interactive/DeliverablesBento';
+import { cyberSteps, deliverables } from '../config/phase7Experiences';
 /**
  * Cybersecurity Hub Page
  * Enterprise security solutions and services
@@ -9,6 +14,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Navbar } from '../components/layout/Navbar';
 import { Footer } from '../components/layout/Footer';
+import { ServiceLegalNote } from '../components/sections/ServiceLegalNote';
 import { PageHero } from '../components/sections/PageHero';
 import { Button } from '../components/ui/Button';
 import { Card } from '../components/ui/Card';
@@ -65,7 +71,8 @@ const CybersecurityHub = () => {
       color: '#1ECDB0'
     },
   ];
-  const containerVariants = {
+
+  const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -84,10 +91,15 @@ const CybersecurityHub = () => {
       <main>
         {/* Hero */}
         <PageHero
-          title="Cybersecurity Services"
-          subtitle="Enterprise-grade security protecting your infrastructure"
-          description="Zero-trust architecture, real-time threat detection, and compliance management for organizations of all sizes"
+          title="Enterprise VAPT, security audits & penetration testing"
+          subtitle="Authorized security assessment and remediation support"
+          description="Scope application, API, infrastructure, and control reviews with written authorization, clear test boundaries, prioritized findings, and a practical retest plan."
         />
+
+        <OrbitalHubShowcase eyebrow="Enterprise VAPT & security audits" title="Map the attack surface and the defense work." description="Select an area to see a focused review and remediation topic. All testing requires written authorization and an agreed asset scope." items={cyberSteps.map((step) => ({ title: step.title, description: step.detail, focus: step.outcome }))} />
+        <QuickDiagnostic kind="security" />
+        <DownloadableResources templateIds={['security']} />
+        <DeliverablesBento items={deliverables.cyber} title="Security review outputs" />
 
         {/* Services Grid */}
         <section className="py-20 bg-gradient-to-b from-navy-950 to-navy-900">
@@ -206,6 +218,7 @@ const CybersecurityHub = () => {
             </div>
           </div>
         </section>
+      <ServiceLegalNote />
       </main>
       <Footer />
     </>

@@ -4,6 +4,12 @@ import { Footer } from '../components/layout/Footer';
 import { PageHero } from '../components/sections/PageHero';
 import { Button } from '../components/ui/Button';
 import { DeliveryShowcase } from '../components/sections/DeliveryShowcase';
+import { InteractiveBlueprintFilter } from '../components/interactive/InteractiveBlueprintFilter';
+const caseReviewBlueprints = [
+  { category: 'Planning', title: 'Evidence and scope record', problem: 'Before work begins, both teams need a shared record of goals, ownership, constraints, and approved assets.', anatomy: 'Stakeholder questions → asset and data inventory → assumptions and exclusions → signed scope.', deliverables: 'Scope summary, responsibility map, assumptions, and review checkpoints.', verification: 'Confirm the scope with the accountable owner before delivery work starts.' },
+  { category: 'Delivery', title: 'Reviewable delivery checkpoints', problem: 'A project needs visible progress and a clear way to raise issues before final handover.', anatomy: 'Milestone plan → working review → feedback log → agreed change or acceptance.', deliverables: 'Review notes, acceptance criteria, change record, and handover materials.', verification: 'Check each agreed output against documented acceptance criteria.' },
+  { category: 'Verification', title: 'Outcome and next-step review', problem: 'Teams need to understand what changed and what evidence supports their next decision.', anatomy: 'Baseline → agreed measure → post-delivery evidence → limitations and next decision.', deliverables: 'Outcome notes, open issues, owner actions, and a follow-up plan.', verification: 'Report only evidence gathered for the agreed measure; avoid unsupported outcome claims.' },
+];
 
 const CaseStudies = () => (
   <>
@@ -38,6 +44,7 @@ const CaseStudies = () => (
         </div>
       </section>
       <DeliveryShowcase />
+      <section className="bg-navy-900 px-6 py-16 md:py-20" aria-labelledby="case-blueprints-title"><div className="mx-auto max-w-7xl"><p className="text-xs font-bold uppercase tracking-[0.2em] text-peacock-light">Split-stage blueprints</p><h2 id="case-blueprints-title" className="mt-3 text-3xl font-bold text-white">Inspect example project anatomy.</h2><p className="mt-3 max-w-3xl text-offwhite/70">These patterns help explain scope and verification. They are representative approaches, not published client case results.</p><div className="mt-7"><InteractiveBlueprintFilter items={caseReviewBlueprints} categories={['All', 'Planning', 'Delivery', 'Verification']} /></div></div></section>
     </main>
     <Footer />
   </>

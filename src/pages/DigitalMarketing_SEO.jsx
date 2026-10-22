@@ -7,39 +7,17 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Navbar } from '../components/layout/Navbar';
 import { Footer } from '../components/layout/Footer';
+import { ServiceLegalNote } from '../components/sections/ServiceLegalNote';
 import { PageHero } from '../components/sections/PageHero';
 import { Button } from '../components/ui/Button';
 import { CheckCircle, Search, TrendingUp, BarChart3 } from 'lucide-react';
 import { DownloadableResources } from '../components/sections/DownloadableResources.jsx';
+import { ExplodedAnatomyStage } from '../components/interactive/ExplodedAnatomyStage';
+import { QuickDiagnostic } from '../components/interactive/QuickDiagnostic';
+import { DeliverablesBento } from '../components/interactive/DeliverablesBento';
+import { seoSteps, deliverables } from '../config/phase7Experiences';
 
 const SEO = () => {
-  const phases = [
-    {
-      phase: 'Phase 1',
-      name: 'Audit & Analysis',
-      description: 'Comprehensive website and competitor SEO analysis',
-      tasks: ['Site Audit', 'Keyword Analysis', 'Competitor Benchmarking']
-    },
-    {
-      phase: 'Phase 2',
-      name: 'Strategy & Planning',
-      description: 'Develop SEO strategy with realistic targets',
-      tasks: ['Keyword Planning', 'Content Strategy', 'Technical Roadmap']
-    },
-    {
-      phase: 'Phase 3',
-      name: 'Implementation',
-      description: 'Execute on-page, technical, and off-page optimization',
-      tasks: ['On-Page Optimization', 'Technical SEO', 'Content Creation']
-    },
-    {
-      phase: 'Phase 4',
-      name: 'Monitoring & Optimization',
-      description: 'Continuous monitoring and optimization for better results',
-      tasks: ['Rank Tracking', 'Performance Analysis', 'Continuous Improvement']
-    },
-  ];
-
   const benefits = [
     'Increase organic visibility for target keywords',
     'Drive qualified traffic to your website',
@@ -49,49 +27,7 @@ const SEO = () => {
     'Establish authority in your industry',
   ];
 
-  const deliverables = [
-    { name: 'SEO Audit Report', desc: 'Detailed findings with recommendations' },
-    { name: 'Keyword Strategy', desc: 'Priority keywords with traffic potential' },
-    { name: 'Content Calendar', desc: '12-month content plan' },
-    { name: 'Technical Improvements', desc: 'Site optimization for search' },
-    { name: 'Monthly Reports', desc: 'Ranking and traffic analytics' },
-    { name: 'Strategy Calls', desc: 'Bi-weekly optimization discussions' },
-  ];
-  const faqs = [
-    {
-      q: 'How long before we see SEO results?',
-      a: 'Typically 3-6 months to see meaningful improvements. Competitive keywords may take 6-12 months. We focus on sustainable growth.'
-    },
-    {
-      q: 'Do you guarantee rankings?',
-      a: 'No legitimate SEO company guarantees rankings. We guarantee effort, transparency, and best practices. Results depend on market competition.'
-    },
-    {
-      q: 'What is your SEO approach?',
-      a: 'We follow Google guidelines using white-hat techniques: quality content, technical optimization, authority building, and user experience.'
-    },
-    {
-      q: 'Can you improve existing rankings?',
-      a: 'Yes, we analyze current rankings, identify gaps, and develop strategies to improve positions for underperforming keywords.'
-    },
-    {
-      q: 'What is the difference between SEO, AEO, and GEO?',
-      a: 'SEO helps people discover useful pages in search. Answer engine optimization (AEO) makes clear answers easy to find and understand. Generative engine optimization (GEO) helps generative search systems interpret trustworthy, useful information. None can guarantee inclusion or a particular ranking.'
-    },
-  ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1 }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
-  };
 
   return (
     <>
@@ -111,39 +47,11 @@ const SEO = () => {
             </details>
           </div>
         </section>
+        <ExplodedAnatomyStage eyebrow="Local and organic search anatomy" title="Build search visibility on useful site foundations." description="Move through technical crawlability, keyword intent, answer-ready content, and measurement to shape an actionable search plan." steps={seoSteps} />
+        <QuickDiagnostic kind="seo" />
+        <DeliverablesBento items={deliverables.seo} title="SEO, AEO & GEO review outputs" />
 
-        {/* Methodology */}
-        <section className="py-20 bg-gradient-to-b from-navy-950 to-navy-900">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-white mb-12">Our SEO Process</h2>
 
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"
-            >
-              {phases.map((phase, idx) => (
-                <motion.div key={idx} variants={itemVariants}>
-                  <div className="bg-gradient-to-br from-navy-800 to-navy-900 rounded-lg border border-gold/20 p-6 h-full hover:border-gold/40 transition-all">
-                    <p className="text-sm font-bold text-gold mb-2">{phase.phase}</p>
-                    <h4 className="text-lg font-bold text-white mb-2">{phase.name}</h4>
-                    <p className="text-sm text-gray-400 mb-4">{phase.description}</p>
-                    <ul className="space-y-2">
-                      {phase.tasks.map((task, tidx) => (
-                        <li key={tidx} className="flex items-center gap-2 text-xs text-gray-300">
-                          <CheckCircle size={14} className="text-gold flex-shrink-0" />
-                          {task}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </section>
 
         {/* Benefits */}
         <section className="py-20 bg-navy-900">
@@ -168,65 +76,10 @@ const SEO = () => {
           </div>
         </section>
 
-        {/* Deliverables */}
-        <section className="py-20 bg-gradient-to-b from-navy-950 to-navy-900">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-white mb-12">What's Included</h2>
 
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-            >
-              {deliverables.map((item, idx) => (
-                <motion.div
-                  key={idx}
-                  variants={itemVariants}
-                  className="bg-gradient-to-br from-navy-800 to-navy-900 rounded-lg border border-gold/20 p-6 hover:border-gold/40 transition-all"
-                >
-                  <div className="w-10 h-10 rounded-lg bg-gold/20 flex items-center justify-center mb-3">
-                    <BarChart3 size={20} className="text-gold" />
-                  </div>
-                  <h4 className="font-bold text-white mb-2">{item.name}</h4>
-                  <p className="text-sm text-gray-400">{item.desc}</p>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </section>
+
 
         <DownloadableResources templateIds={['localSeo']} />
-
-        {/* FAQs */}
-        <section className="py-20 bg-gradient-to-b from-navy-950 to-navy-900">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-white mb-12">SEO Questions Answered</h2>
-
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="space-y-4"
-            >
-              {faqs.map((faq, idx) => (
-                <motion.div
-                  key={idx}
-                  variants={itemVariants}
-                  className="bg-gradient-to-br from-navy-800 to-navy-900 rounded-lg border border-gold/20 p-6 hover:border-gold/40 transition-all"
-                >
-                  <h4 className="font-bold text-white mb-2 flex items-center gap-2">
-                    <TrendingUp size={18} className="text-gold" />
-                    {faq.q}
-                  </h4>
-                  <p className="text-gray-400 ml-8">{faq.a}</p>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </section>
 
         {/* CTA */}
         <section className="py-20 bg-gradient-to-r from-gold/10 to-peacock/10 border-y border-gold/20">
@@ -244,6 +97,7 @@ const SEO = () => {
             </div>
           </div>
         </section>
+      <ServiceLegalNote />
       </main>
       <Footer />
     </>

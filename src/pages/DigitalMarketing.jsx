@@ -1,4 +1,9 @@
 import { SeoAnswers } from '../components/seo/SeoAnswers';
+import { ExplodedAnatomyStage } from '../components/interactive/ExplodedAnatomyStage';
+import { QuickDiagnostic } from '../components/interactive/QuickDiagnostic';
+import { DeliverablesBento } from '../components/interactive/DeliverablesBento';
+import { DownloadableResources } from '../components/sections/DownloadableResources.jsx';
+import { marketingSteps, deliverables } from '../config/phase7Experiences';
 /**
  * Digital Marketing Division Hub Page
  * Growth and revenue-driving marketing solutions
@@ -9,6 +14,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Navbar } from '../components/layout/Navbar';
 import { Footer } from '../components/layout/Footer';
+import { ServiceLegalNote } from '../components/sections/ServiceLegalNote';
 import { PageHero } from '../components/sections/PageHero';
 import { Button } from '../components/ui/Button';
 import { TrendingUp, Target, Share2, PenTool, BarChart3, Users, Megaphone, LineChart } from 'lucide-react';
@@ -72,7 +78,8 @@ const DigitalMarketingHub = () => {
       color: '#C9A84C'
     },
   ];
-  const services_breakdown = [
+
+  const services_breakdown = [
     {
       category: 'Brand & Positioning',
       items: ['Audience and market research', 'Brand positioning and messaging', 'Visual identity and brand consistency', 'Brand awareness and campaign planning']
@@ -118,6 +125,11 @@ const DigitalMarketingHub = () => {
           subtitle="Growth-driven marketing strategies"
           description="Build brand preference and grow demand through performance marketing, SEO, content, paid campaigns, conversion improvements, and clear measurement."
         />
+
+        <ExplodedAnatomyStage eyebrow="Full-funnel acquisition visualizer" title="Connect discovery, acquisition, conversion, and retention." description="Select a funnel stage to see the work and measurement that connects it with the next step." steps={marketingSteps} />
+        <QuickDiagnostic kind="seo" />
+        <DownloadableResources templateIds={['localSeo']} />
+        <DeliverablesBento items={deliverables.marketing} />
 
         {/* Core Services */}
         <section className="py-20 bg-gradient-to-b from-navy-950 to-navy-900">
@@ -225,36 +237,6 @@ const DigitalMarketingHub = () => {
           </div>
         </section>
 
-        {/* Our Approach */}
-        <section className="py-20 bg-gradient-to-b from-navy-950 to-navy-900">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-white mb-12">Our Approach</h2>
-
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-              {[
-                { step: '1', title: 'Audit', desc: 'Comprehensive analysis of current marketing' },
-                { step: '2', title: 'Strategy', desc: 'Customized roadmap and goal setting' },
-                { step: '3', title: 'Execution', desc: 'Implementation across all channels' },
-                { step: '4', title: 'Optimization', desc: 'Continuous testing and improvement' },
-              ].map((approach, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: idx * 0.1 }}
-                  className="bg-gradient-to-br from-navy-800 to-navy-900 rounded-lg border border-gold/20 p-6 text-center hover:border-gold/40 transition-all"
-                >
-                  <div className="w-12 h-12 rounded-full bg-gold/20 flex items-center justify-center mx-auto mb-4">
-                    <span className="text-2xl font-bold text-gold">{approach.step}</span>
-                  </div>
-                  <h4 className="font-bold text-white mb-2">{approach.title}</h4>
-                  <p className="text-sm text-gray-400">{approach.desc}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
 
         {/* CTA */}
         <section className="py-20 bg-gradient-to-r from-gold/10 to-peacock/10 border-y border-gold/20">
@@ -274,6 +256,7 @@ const DigitalMarketingHub = () => {
             </div>
           </div>
         </section>
+      <ServiceLegalNote />
       </main>
       <Footer />
     </>

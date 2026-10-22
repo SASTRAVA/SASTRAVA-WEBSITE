@@ -7,12 +7,16 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Navbar } from '../components/layout/Navbar';
 import { Footer } from '../components/layout/Footer';
+import { ServiceLegalNote } from '../components/sections/ServiceLegalNote';
 import { PageHero } from '../components/sections/PageHero';
 import { ECOSYSTEM_PILLARS } from '../config/businessModel';
 import * as Icons from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { contrastTextColor } from '../utils/contrastText';
 import { SeoAnswers } from '../components/seo/SeoAnswers';
+import { ExplodedAnatomyStage } from '../components/interactive/ExplodedAnatomyStage';
+import { DeliverablesBento } from '../components/interactive/DeliverablesBento';
+import { buildSteps, deliverables } from '../config/phase7Experiences';
 
 export const BuildPillar = () => {
   const pillar = ECOSYSTEM_PILLARS.BUILD;
@@ -78,10 +82,8 @@ export const BuildPillar = () => {
               </motion.p>
             </motion.div>
 
-            <div className="mb-16 rounded-2xl border border-gold/20 bg-gray-50 p-6 dark:bg-gray-800 md:p-8">
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white">A scope shaped around your goals</h3>
-              <p className="mt-3 max-w-3xl leading-relaxed text-gray-600 dark:text-gray-300">We agree the audience, priorities, deliverables, and review measures before work begins. The right approach depends on your context and the requirements of the engagement.</p>
-            </div>
+            <ExplodedAnatomyStage eyebrow="Software architecture stack" title="Explore the layers behind a maintainable product." description="Select a layer to see how product experience, application logic, infrastructure, and release practice fit together." steps={buildSteps} tone="teal" />
+            <DeliverablesBento items={deliverables.build} />
 
             {/* Services */}
             <motion.div
@@ -151,6 +153,7 @@ export const BuildPillar = () => {
           </div>
         </section>
         <SeoAnswers />
+      <ServiceLegalNote />
       </main>
       <Footer />
     </>

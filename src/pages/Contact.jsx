@@ -7,6 +7,7 @@ import { PageHero } from '../components/sections/PageHero';
 import { LeadForm } from '../components/forms/LeadForm';
 import { CONTACT_FORM_CONFIG, LEAD_TYPES } from '../services/leadTypes';
 import { googleMapsListingAddress, googleMapsListingName, googleMapsListingUrl, googleMapsReviewUrl } from '../config/businessProfile.js';
+import { DepartmentRoutingSelector } from '../components/interactive/DepartmentRoutingSelector';
 
 
 export const Contact = () => {
@@ -107,6 +108,7 @@ export const Contact = () => {
                   <a href={googleMapsReviewUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center font-semibold text-peacock-light underline underline-offset-4 hover:text-gold-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-light">Read or leave an honest review on Google</a>
                 </div>
               </div>
+              <DepartmentRoutingSelector />
             </motion.div>
 
             {/* RIGHT COLUMN: CONTACT FORM */}
