@@ -9,6 +9,7 @@ const RATE_LIMIT_MAX_SUBMISSIONS = 8;
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const submissionWindows = new Map();
 let databasePool;
+let privacyConsentColumnReady;
 
 function json(response, status, body) {
   response.status(status).setHeader('Content-Type', 'application/json; charset=utf-8');
@@ -62,6 +63,18 @@ function getDatabasePool() {
   return databasePool;
 }
 
+async function ensurePrivacyConsentColumn(pool) {
+  if (!privacyConsentColumnReady) {
+    privacyConsentColumnReady = pool.query(
+      'ALTER TABLE public.contact_leads ADD COLUMN IF NOT EXISTS privacy_consent_at TIMESTAMPTZ',
+    ).then(() => true).catch((error) => {
+      privacyConsentColumnReady = undefined;
+      throw error;
+    });
+  }
+  await privacyConsentColumnReady;
+}
+
 async function sendEmailFallback(lead) {
   const apiKey = process.env.RESEND_API_KEY;
   const from = process.env.CONTACT_FROM_EMAIL;
@@ -85,6 +98,7 @@ async function sendEmailFallback(lead) {
         `Phone: ${lead.phone || 'Not provided'}`,
         `Company: ${lead.company || 'Not provided'}`,
         `Source page: ${lead.sourcePage || 'Not provided'}`,
+        `Privacy response consent recorded: ${lead.privacyConsentAt}`,
         '',
         'Message:',
         lead.message,
@@ -132,8 +146,10 @@ export default async function contact(request, response) {
     company: clean(body.company),
     message: clean(body.message, MAX_MESSAGE_LENGTH),
     sourcePage: clean(body.sourcePage, 200),
+    privacyConsentAt: new Date().toISOString(),
     submittedAt: new Date().toISOString(),
   };
+  if (body.privacyConsent !== true) return json(response, 400, { error: 'Please consent to the use of your details to respond to this inquiry.' });
   if (!lead.firstName || !lead.lastName || !emailPattern.test(lead.email) || !lead.message) {
     return json(response, 400, { error: 'Please provide your name, a valid email address, and a message.' });
   }
@@ -148,10 +164,11 @@ export default async function contact(request, response) {
   if (!pool) return deliverUnavailableLead(response, lead);
 
   try {
+    await ensurePrivacyConsentColumn(pool);
     await pool.query(
-      `INSERT INTO contact_leads (id, first_name, last_name, email, phone, company, message, source_page, submitted_at)
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
-      [lead.id, lead.firstName, lead.lastName, lead.email, lead.phone || null, lead.company || null, lead.message, lead.sourcePage || null, lead.submittedAt],
+      `INSERT INTO contact_leads (id, first_name, last_name, email, phone, company, message, source_page, privacy_consent_at, submitted_at)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`,
+      [lead.id, lead.firstName, lead.lastName, lead.email, lead.phone || null, lead.company || null, lead.message, lead.sourcePage || null, lead.privacyConsentAt, lead.submittedAt],
     );
     try {
       await sendEmailFallback(lead);

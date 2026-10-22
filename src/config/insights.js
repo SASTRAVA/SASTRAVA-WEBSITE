@@ -1,6 +1,8 @@
 export const insights = [
   {
     slug: 'choose-a-first-ai-automation',
+    publishedAt: '2026-10-15',
+    updatedAt: '2026-10-15',
     title: 'How to choose a useful first AI automation',
     summary: 'Start with a recurring workflow and a measurable problem. Decide whether AI is needed only after you understand the task, data, and risk.',
     readTime: '5 minute guide',
@@ -14,6 +16,8 @@ export const insights = [
   },
   {
     slug: 'small-business-website-security-review',
+    publishedAt: '2026-10-15',
+    updatedAt: '2026-10-15',
     title: 'What to include in a small business website security review',
     summary: 'A practical review checks the site, its hosting and integrations, how data is handled, and whether the team can respond to findings.',
     readTime: '6 minute guide',
@@ -27,6 +31,8 @@ export const insights = [
   },
   {
     slug: 'local-growth-search-and-marketing',
+    publishedAt: '2026-10-15',
+    updatedAt: '2026-10-15',
     title: 'A practical local growth plan: search, brand and paid media',
     summary: 'Connect local search visibility and brand communication to a clear offer, useful landing page, and conversion measurement before increasing spend.',
     readTime: '5 minute guide',
@@ -40,6 +46,8 @@ export const insights = [
   },
   {
     slug: 'early-stage-business-discovery',
+    publishedAt: '2026-10-15',
+    updatedAt: '2026-10-15',
     title: 'A first business discovery plan for early-stage founders',
     summary: 'A focused discovery plan helps founders test a customer problem, clarify the offer, and decide what evidence they need before building.',
     readTime: '5 minute guide',

@@ -66,6 +66,11 @@ export const LeadForm = ({
     }
   };
 
+  const handleConsentChange = (e) => {
+    setFormData((prev) => ({ ...prev, privacyConsent: e.target.checked }));
+    if (errors.privacyConsent) setErrors((prev) => ({ ...prev, privacyConsent: '' }));
+  };
+
   const handleBlur = (e) => {
     const { name, value } = e.target;
     let error = '';
@@ -88,6 +93,10 @@ export const LeadForm = ({
 
     // Validate all required fields
     const validationErrors = validateFormData(formData, requiredFields);
+
+    if (leadType === LEAD_TYPES.CONTACT_INQUIRY && formData.privacyConsent !== true) {
+      validationErrors.privacyConsent = 'Please consent to the use of your details to respond to this inquiry.';
+    }
 
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
@@ -277,6 +286,27 @@ export const LeadForm = ({
               </motion.div>
             ))}
           </div>
+
+          {leadType === LEAD_TYPES.CONTACT_INQUIRY && (
+            <div className="rounded-xl border border-white/10 bg-navy-950/50 p-4">
+              <label htmlFor="contact-privacy-consent" className="flex cursor-pointer items-start gap-3 text-sm leading-relaxed text-offwhite/75">
+                <input
+                  id="contact-privacy-consent"
+                  name="privacyConsent"
+                  type="checkbox"
+                  checked={formData.privacyConsent === true}
+                  onChange={handleConsentChange}
+                  aria-invalid={Boolean(errors.privacyConsent)}
+                  aria-describedby={errors.privacyConsent ? 'contact-privacy-consent-error' : 'contact-privacy-consent-note'}
+                  className="mt-1 h-4 w-4 shrink-0 accent-[#e3ad42] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-light"
+                />
+                <span>I agree that SASTRAVA may use the contact details I submit to respond to this inquiry. See the <Link to="/privacy" className="font-semibold text-peacock-light underline underline-offset-2">Privacy &amp; Data Protection Notice</Link>. I can contact <a href="mailto:siri@sastrava.com" className="font-semibold text-peacock-light underline underline-offset-2">siri@sastrava.com</a> to ask about my information.</span>
+              </label>
+              {errors.privacyConsent
+                ? <p id="contact-privacy-consent-error" role="alert" className="mt-2 text-sm text-red-300">{errors.privacyConsent}</p>
+                : <p id="contact-privacy-consent-note" className="mt-2 text-xs text-offwhite/55">This consent covers replying to your request; it does not subscribe you to marketing.</p>}
+            </div>
+          )}
 
           {/* Submit Button */}
           <motion.div

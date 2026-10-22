@@ -5,6 +5,7 @@ import { Navbar } from '../components/layout/Navbar';
 import { Footer } from '../components/layout/Footer';
 import { trackEvent } from '../services/conversionTracking.js';
 import { OrbitalHubShowcase } from '../components/interactive/OrbitalHubShowcase';
+import { PreferredSourceBadge } from '../components/seo/PreferredSourceBadge.jsx';
 
 function useToolTracking(toolName) {
   const started = useRef(false);
@@ -14,11 +15,11 @@ function useToolTracking(toolName) {
     started.current = true;
     trackEvent('tool_interaction_start', { tool_name: toolName });
   };
-  const result = (scoreOrTier = 'completed') => {
+  const result = () => {
     start();
     if (resultCreated.current) return;
     resultCreated.current = true;
-    trackEvent('tool_result_generated', { tool_name: toolName, score_or_tier: String(scoreOrTier) });
+    trackEvent('tool_result_generated', { tool_name: toolName, result: 'completed' });
   };
   return { start, result };
 }
@@ -145,6 +146,7 @@ function ToolShell({ tool, children }) {
             <p className="mt-5 text-lg leading-relaxed text-offwhite/70">{tool.intro}</p>
           </header>
           {sharedMessage && <p className="mb-6 rounded-xl border border-peacock-light/20 bg-peacock-light/5 p-4 text-sm text-peacock-light" role="status">{sharedMessage}</p>}
+          {pathname === '/tools/seo-aeo-checker' && <div className="mb-8"><PreferredSourceBadge variant="callout" /></div>}
           {children}
           <section className="mt-14 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03]" aria-labelledby="other-tools-heading">
             <h2 id="other-tools-heading" className="sr-only">Explore the other free tools</h2>
@@ -217,7 +219,7 @@ function SeoChecker({ tool }) {
           </button>
           <p className="mt-2 min-h-5 text-sm text-peacock-light" role="status">{copyStatus}</p>
           <p className="mt-4 text-xs leading-relaxed text-offwhite/45">This score is a planning aid, not a ranking prediction or a technical audit. Search platforms change and do not guarantee visibility.</p>
-          <ToolResultActions toolName="seo-aeo-readiness" summary={`SEO, AEO & GEO readiness score: ${score} out of 100.`} report={`SEO, AEO & GEO readiness score: ${score}/100\n\nNext checks:\n${missing.length ? missing.map((item) => `- ${item}`).join('\n') : '- All ten checklist items are marked complete.'}`} shareParams={{ score }} />
+          <ToolResultActions toolName="seo-aeo-readiness" summary={`SEO, AEO & GEO readiness score: ${score} out of 100.`} report={`SEO, AEO & GEO readiness score: ${score}/100\n\nNext checks:\n${missing.length ? missing.map((item) => `- ${item}`).join('\n') : '- All ten checklist items are marked complete.'}`} shareParams={{ assessment: 'complete' }} />
         </aside>
       </div>
     </ToolShell>

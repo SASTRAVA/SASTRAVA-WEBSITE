@@ -31,6 +31,7 @@ const request = {
     company: 'Example Co',
     message: 'I would like to discuss a project.',
     sourcePage: '/contact',
+    privacyConsent: true,
   },
 };
 
@@ -127,6 +128,19 @@ test('contact API validates required fields before attempting delivery', async (
   await contact({ ...request, body: { ...request.body, email: 'invalid' } }, response);
 
   assert.equal(response.statusCode, 400);
+  assert.equal(fetchCalled, false);
+});
+
+test('contact API requires affirmative privacy consent before processing an inquiry', async () => {
+  resetEnvironment();
+  let fetchCalled = false;
+  globalThis.fetch = async () => { fetchCalled = true; };
+
+  const response = makeResponse();
+  await contact({ ...request, body: { ...request.body, privacyConsent: false } }, response);
+
+  assert.equal(response.statusCode, 400);
+  assert.match(response.body.error, /consent/i);
   assert.equal(fetchCalled, false);
 });
 

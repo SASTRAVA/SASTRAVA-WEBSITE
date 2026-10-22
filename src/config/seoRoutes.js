@@ -4,6 +4,7 @@ import { downloadTemplates } from './downloadTemplates.js';
 import { googleMapsListingAddress, googleMapsListingUrl } from './businessProfile.js';
 import { teamProfiles } from './teamProfiles.js';
 import { learningDomainGroups, edutechInstagramUrl, allLearningDomains } from './learningCatalog.js';
+import { researchBlueprints } from './researchBlueprints.js';
 
 const organizationName = 'SASTRAVA';
 const defaultDescription = 'Grow with SASTRAVA in Tadepalli, Vijayawada and across India. Business consulting, SEO, AI automation, software and authorized security reviews.';
@@ -234,9 +235,37 @@ export const seoRoutes = {
       { heading: 'Based in Tadepalli, Andhra Pradesh', paragraph: 'SASTRAVA is based in Tadepalli and works with clients in the surrounding region, including Vijayawada, Guntur, and Amaravati, as well as teams elsewhere in India. These are service areas; meetings and delivery formats are agreed for each engagement.', items: ['Email: neeraj@sastrava.com or siri@sastrava.com', 'Phone and WhatsApp: +91 7981 576083', 'Use the contact form or message the team directly'] },
     ],
   },
-  '/privacy': { title: 'Privacy Policy | SASTRAVA', description: 'Review how SASTRAVA handles personal information, what website data it collects, your privacy choices, and how to contact the team for help.' },
-  '/terms': { title: 'Terms of Use | SASTRAVA', description: 'Read the website terms covering access, acceptable use, third-party services, and important information about SASTRAVA services and your responsibilities.' },
-  '/security': { title: 'Report a Security Concern | SASTRAVA', description: 'Report a website security concern to SASTRAVA. Find our contact channel, scope expectations, and guidance for responsible security disclosures.' },
+  '/privacy': {
+    title: 'Privacy & Data Protection Notice | SASTRAVA', pageHeading: 'Privacy & Data Protection Notice',
+    description: 'Learn what SASTRAVA collects through its contact form and optional analytics, how browser tools work, and how to request access, correction, or erasure.',
+    intro: 'This notice describes the information SASTRAVA handles through sastrava.com, the reasons it is used, and how visitors can make a privacy request.',
+    sections: [
+      { heading: 'Digital Personal Data Protection Act, 2023', paragraph: 'The DPDP Act and DPDP Rules have phased commencement dates. This notice describes current website practices and practical request channels; it does not claim every provision is already in force or that SASTRAVA has a formally appointed statutory Data Protection Officer.', items: ['Organization: SASTRAVA', 'Listed business contact location: Tadepalli, Andhra Pradesh 522501, India', 'Privacy contact: siri@sastrava.com; copy neeraj@sastrava.com'] },
+      { heading: 'Contact information and purpose', paragraph: 'When you submit the contact form, SASTRAVA processes the name, email, phone, optional company, and inquiry message you provide to respond to that request. A server timestamp and source page are also recorded. Submission is not a marketing subscription.', items: ['The form requires an affirmative checkbox before submission', 'Consent time is recorded with each inquiry', 'You may request access, correction, or erasure by contacting us'] },
+      { heading: 'Browser tools, analytics, and sharing', paragraph: 'The SEO/AEO/GEO checker, AI and workflow estimate, and security checklist calculate results in your browser. SASTRAVA does not send tool answers or scores to its contact API or analytics events. Optional GA4 loads only after permission and receives limited page and interaction events, never form values or tool results. Choosing download saves a report to your device; using Share or WhatsApp can disclose its contents to the selected app or recipient.', items: ['Analytics can be accepted or withdrawn in the preferences control', 'Shared tool URLs contain only a generic completion marker', 'Third-party links follow the provider’s own privacy terms'] },
+      { heading: 'Requests, retention, and children', paragraph: 'Inquiry records are retained for follow-up and ordinary business recordkeeping; no automatic deletion period is promised. Ask us about information held, corrections, or erasure, subject to lawful retention needs. The public form is intended for adults and organizations; for a learning program involving a person under 18, an authorized institution or parent/guardian should contact us first.', items: ['SASTRAVA aims to acknowledge privacy requests within two business days', 'Target response update: within 15 business days; this is a service target, not a statutory SLA', 'Email siri@sastrava.com or call +91 7981 576083'] },
+    ],
+  },
+  '/terms': {
+    title: 'Terms of Use | SASTRAVA', pageHeading: 'Terms of Use',
+    description: 'Read SASTRAVA website terms for planning tools, consulting, authorized security testing, learning programs, intellectual property, and use of this website.',
+    intro: 'These terms describe the general conditions for browsing sastrava.com and using its free planning resources. A separate written agreement governs a specific engagement.',
+    sections: [
+      { heading: 'Website information and planning tools', paragraph: 'Guides and calculators are general educational resources, not legal, financial, security, or professional advice. Estimates depend on visitor-entered assumptions and do not guarantee results.', items: ['Verify information before making consequential decisions', 'External links and services are operated under third-party terms'] },
+      { heading: 'Consulting and security testing', paragraph: 'Engagement scope, responsibilities, fees, timeline, and deliverables are confirmed in a written agreement. Security scanning, VAPT, or other testing requires prior written system-owner authorization and agreed rules of engagement.', items: ['No testing begins without approved targets, methods, schedule, and exclusions', 'Only the agreed assets and test methods may be used'] },
+      { heading: 'Digital learning', paragraph: 'Learning programs support skill development and do not guarantee employment, placement, certification, income, or admission. Program-specific eligibility, fees, schedules, supervision, and completion terms are shared separately.', items: ['Learners and institutions are responsible for meeting program requirements', 'Use of a completion record is subject to program-specific terms'] },
+      { heading: 'Intellectual property and governing law', paragraph: 'SASTRAVA or its licensors own the site’s branding, original text, and design except where otherwise identified. Do not reuse these materials commercially without permission. These terms are governed by Indian law; subject to mandatory jurisdiction rules, courts with competent jurisdiction in Guntur or Vijayawada, Andhra Pradesh may hear disputes.', items: ['Contact neeraj@sastrava.com or siri@sastrava.com with questions'] },
+    ],
+  },
+  '/security': {
+    title: 'Responsible Security Disclosure | SASTRAVA', pageHeading: 'Responsible Security Disclosure',
+    description: 'Report a potential website security issue to SASTRAVA. Review safe disclosure scope, reporting contacts, and our coordinated response approach.',
+    intro: 'SASTRAVA welcomes responsible reports of potential vulnerabilities affecting systems we operate. Do not test systems without written authorization.',
+    sections: [
+      { heading: 'Contact and safe reporting', paragraph: 'Email neeraj@sastrava.com or siri@sastrava.com with the affected URL, a concise description, and safe reproduction steps. Do not include credentials, personal data, or weaponized files.', items: ['Report only issues affecting assets you are authorized to assess', 'Avoid accessing, modifying, or retaining another person’s information', 'We aim to acknowledge within two business days; this is a response target, not a reward or statutory commitment'] },
+      { heading: 'Testing boundaries', paragraph: 'Do not run high-volume automation, denial-of-service tests, social engineering, authentication attacks, or tests against third-party systems. Coordinate any validation with SASTRAVA first.', items: ['Written scope is required before any security testing', 'Findings are reviewed and remediation decisions are coordinated with the system owner'] },
+    ],
+  },
   '/faq': { title: 'Frequently Asked Questions | SASTRAVA', pageHeading: 'Frequently asked questions about SASTRAVA', description: 'Get practical answers about SASTRAVA consulting, AI, software, marketing, security, digital learning, engagement scope, and how to contact the team.', faqs: faqSchemaEntries },
   '/support': { title: 'SASTRAVA Support | Services & Learning', description: 'Contact SASTRAVA for help with a service, learning program, or existing inquiry. Share what you need so the team can guide your next step.' },
   '/success-stories': { title: 'SASTRAVA Learning Stories & Outcomes', pageHeading: 'Learning programs, experiences, and outcomes', description: 'Explore SASTRAVA digital learning workshops, mentoring, and learning approach. Stories and outcomes are published only when verified and approved.' },
@@ -447,6 +476,32 @@ export const buildStructuredData = (pathname) => {
     { '@type': 'WebSite', '@id': 'https://sastrava.com/#website', url: 'https://sastrava.com/', name: organizationName, publisher: { '@id': organization['@id'] }, inLanguage: 'en-IN' },
     { '@type': 'WebPage', '@id': `${canonical}#webpage`, url: canonical, name: entry.title, description: entry.description, isPartOf: { '@id': 'https://sastrava.com/#website' }, inLanguage: 'en-IN' },
   ];
+  if (path === '/blog') {
+    graph.push(...insights.map((article) => ({
+      '@type': 'BlogPosting',
+      '@id': `${canonical}#${article.slug}`,
+      headline: article.title,
+      description: article.summary,
+      datePublished: article.publishedAt,
+      dateModified: article.updatedAt,
+      mainEntityOfPage: `${canonical}#${article.slug}`,
+      author: { '@type': 'Organization', '@id': organization['@id'], name: organizationName },
+      publisher: { '@type': 'Organization', '@id': organization['@id'], name: organizationName, logo: { '@type': 'ImageObject', url: 'https://sastrava.com/logo.png' } },
+    })));
+  }
+  if (path === '/research') {
+    graph.push(...researchBlueprints.map((guide) => ({
+      '@type': 'TechArticle',
+      '@id': `${canonical}#${guide.slug}`,
+      headline: guide.title,
+      description: guide.problem,
+      datePublished: guide.publishedAt,
+      dateModified: guide.updatedAt,
+      mainEntityOfPage: `${canonical}#${guide.slug}`,
+      author: { '@type': 'Organization', '@id': organization['@id'], name: organizationName },
+      publisher: { '@type': 'Organization', '@id': organization['@id'], name: organizationName, logo: { '@type': 'ImageObject', url: 'https://sastrava.com/logo.png' } },
+    })));
+  }
   if (path !== '/') {
     const labels = path.split('/').filter(Boolean).map((part) => part
       .split('-')

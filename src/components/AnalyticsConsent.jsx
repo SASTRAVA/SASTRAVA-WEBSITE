@@ -1,11 +1,18 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-
-const consentStorageKey = 'sastrava-analytics-consent';
-const defaultMeasurementId = 'G-744LFGFCXQ';
+import { analyticsMeasurementId, readAnalyticsConsent, setAnalyticsConsent } from '../services/analyticsConsent.js';
 
 function enableGoogleAnalytics(measurementId) {
-  if (window.sastravaAnalyticsInitialized) return;
+  if (window.sastravaAnalyticsInitialized) {
+    window[`ga-disable-${measurementId}`] = false;
+    window.gtag?.('consent', 'update', {
+      analytics_storage: 'granted',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+    });
+    return;
+  }
 
   window.sastravaAnalyticsInitialized = true;
   window.dataLayer = window.dataLayer || [];
@@ -14,6 +21,12 @@ function enableGoogleAnalytics(measurementId) {
     window.dataLayer.push(arguments);
   };
   window[`ga-disable-${measurementId}`] = false;
+  window.gtag('consent', 'default', {
+    analytics_storage: 'granted',
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+  });
   window.gtag('js', new Date());
   window.gtag('config', measurementId, {
     send_page_view: true,
@@ -29,27 +42,21 @@ function enableGoogleAnalytics(measurementId) {
   document.head.append(script);
 }
 
-function readConsent() {
-  try {
-    return window.localStorage.getItem(consentStorageKey);
-  } catch {
-    return null;
-  }
-}
-
-function saveConsent(value) {
-  try {
-    window.localStorage.setItem(consentStorageKey, value);
-  } catch {
-    // The current-page choice still applies when browser storage is unavailable.
-  }
-}
-
 export function AnalyticsConsent() {
   const { pathname } = useLocation();
-  const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID?.trim() || defaultMeasurementId;
-  const [consent, setConsent] = useState(() => (typeof window === 'undefined' ? null : readConsent()));
+  const measurementId = analyticsMeasurementId;
+  const [consent, setConsent] = useState(() => (typeof window === 'undefined' ? null : readAnalyticsConsent()));
   const lastPageViewPath = useRef(null);
+
+  useEffect(() => {
+    const syncConsent = (event) => setConsent(event.detail ?? readAnalyticsConsent());
+    window.addEventListener('sastrava-analytics-consent-change', syncConsent);
+    window.addEventListener('storage', syncConsent);
+    return () => {
+      window.removeEventListener('sastrava-analytics-consent-change', syncConsent);
+      window.removeEventListener('storage', syncConsent);
+    };
+  }, []);
 
   useEffect(() => {
     if (measurementId && consent === 'accepted') enableGoogleAnalytics(measurementId);
@@ -74,8 +81,7 @@ export function AnalyticsConsent() {
   if (!measurementId || consent) return null;
 
   const choose = (value) => {
-    saveConsent(value);
-    setConsent(value);
+    setAnalyticsConsent(value);
   };
 
   return (

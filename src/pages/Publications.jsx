@@ -13,6 +13,7 @@ import { ExternalLink } from 'lucide-react';
 import { downloadTemplates } from '../config/downloadTemplates.js';
 import { insights } from '../config/insights.js';
 import { InteractiveBlueprintFilter } from '../components/interactive/InteractiveBlueprintFilter';
+import { PreferredSourceBadge } from '../components/seo/PreferredSourceBadge.jsx';
 
 const publicationItems = [
   ...downloadTemplates.map((resource) => ({
@@ -49,6 +50,7 @@ const Publications = () => {
           subtitle="Media coverage and press releases"
           description="Browse SASTRAVA media resources or contact the team for interviews and press enquiries."
         />
+        <section className="bg-navy-950 px-6 pt-10"><div className="mx-auto max-w-7xl"><PreferredSourceBadge variant="callout" /></div></section>
 
         <section className="bg-navy-950 px-6 py-16 md:py-20" aria-labelledby="publication-library-title"><div className="mx-auto max-w-7xl"><p className="text-xs font-bold uppercase tracking-[0.2em] text-peacock-light">Interactive publication library</p><h2 id="publication-library-title" className="mt-3 text-3xl font-bold text-white">Guides and worksheets you can use.</h2><p className="mt-3 max-w-3xl text-offwhite/70">Filter the current library by resource type. Download worksheets directly or open a field guide for more detail.</p><div className="mt-7"><InteractiveBlueprintFilter items={publicationItems} categories={['All', 'Worksheet', 'Field guide']} /></div></div></section>
 
@@ -104,6 +106,7 @@ const Publications = () => {
             </div>
           </div>
         </section>
+        <section className="bg-navy-950 px-6 pb-10"><div className="mx-auto max-w-7xl"><PreferredSourceBadge variant="callout" /></div></section>
       </main>
       <Footer />
     </>

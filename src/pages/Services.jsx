@@ -140,7 +140,7 @@ const ServiceCard = ({ service, index }) => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: (index % 3) * 0.06 }}
       viewport={{ once: true, margin: '-60px' }}
-      className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-gold-DEFAULT/15 bg-navy-950/75 p-6 shadow-elevation transition-all duration-300 hover:-translate-y-1 hover:border-peacock-light/30 hover:shadow-glow-gold md:p-7"
+      className="phase8-colonnade-card group relative flex h-full flex-col overflow-hidden rounded-2xl border border-gold-DEFAULT/15 bg-navy-950/75 p-6 shadow-elevation transition-all duration-300 hover:-translate-y-1 hover:border-peacock-light/30 hover:shadow-glow-gold md:p-7"
     >
       <div className="pointer-events-none absolute -right-12 -top-12 h-36 w-36 rounded-full bg-gold-DEFAULT/5 blur-3xl transition-colors group-hover:bg-peacock-light/10" />
       <div className="relative flex items-start justify-between gap-4">

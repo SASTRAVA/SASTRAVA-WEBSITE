@@ -20,8 +20,10 @@ try {
     source_page VARCHAR(200),
     status VARCHAR(32) NOT NULL DEFAULT 'new',
     submitted_at TIMESTAMPTZ NOT NULL,
+    privacy_consent_at TIMESTAMPTZ,
     received_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
   )`);
+  await client.query('ALTER TABLE contact_leads ADD COLUMN IF NOT EXISTS privacy_consent_at TIMESTAMPTZ');
   await client.query('CREATE INDEX IF NOT EXISTS contact_leads_received_at_idx ON contact_leads (received_at DESC)');
   await client.query('CREATE INDEX IF NOT EXISTS contact_leads_status_received_at_idx ON contact_leads (status, received_at DESC)');
   console.log('contact_leads table is ready.');

@@ -12,7 +12,7 @@ export default function Security() {
           <ShieldCheck className="h-10 w-10 text-gold-light" aria-hidden="true" />
           <h1 className="mt-5 text-4xl font-bold text-offwhite">Security at SASTRAVA</h1>
           <p className="mt-5 text-lg leading-relaxed text-offwhite/75">We welcome responsible reports of potential security issues affecting our public website.</p>
-          <div className="mt-10 rounded-2xl border border-gold-DEFAULT/25 bg-navy-900 p-6">
+          <div className="phase8-policy-card mt-10 rounded-2xl border border-gold-DEFAULT/25 bg-navy-900 p-6 md:p-8">
             <h2 className="text-xl font-semibold text-offwhite">Report a concern</h2>
             <p className="mt-3 text-offwhite/75">Please include the affected URL, a concise description, and safe reproduction steps. Do not include passwords, personal data, or exploit payloads.</p>
             <a className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-xl bg-gold-DEFAULT px-4 font-semibold text-navy-950" href="mailto:neeraj@sastrava.com,siri@sastrava.com?subject=Security%20report%20for%20sastrava.com">
@@ -21,6 +21,15 @@ export default function Security() {
           </div>
           <h2 className="mt-10 text-xl font-semibold text-offwhite">Safe-harbour boundaries</h2>
           <p className="mt-3 leading-relaxed text-offwhite/75">Do not access other users’ data, disrupt services, use automated high-volume testing, or attempt authentication attacks. We may request additional details before validating a report.</p>
+          <div className="phase8-policy-card mt-8 rounded-2xl border border-white/10 bg-navy-900/70 p-6">
+            <h2 className="text-xl font-semibold text-offwhite">What to include</h2>
+            <ul className="mt-3 list-disc space-y-2 pl-5 leading-relaxed text-offwhite/70">
+              <li>Affected public URL and the type of issue observed.</li>
+              <li>Safe, concise steps to reproduce, without accessing or retaining another person’s data.</li>
+              <li>A way to contact you for clarification. Please do not send credentials, personal data, or weaponized files.</li>
+            </ul>
+            <p className="mt-4 text-sm leading-relaxed text-offwhite/55">We aim to acknowledge reports within two business days and will coordinate any validation before further testing. This is a response target, not a statutory resolution commitment or a promise of a reward.</p>
+          </div>
         </section>
       </main>
       <Footer />

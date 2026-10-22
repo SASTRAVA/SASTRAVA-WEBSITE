@@ -4,6 +4,8 @@ import { Camera, Mail, Send, Share2 } from 'lucide-react';
 import { motion as Motion } from 'framer-motion';
 import { footerSections } from '../../config/siteNavigation.js';
 import { googleMapsListingAddress, googleMapsListingName, googleMapsListingUrl, googleMapsReviewUrl } from '../../config/businessProfile.js';
+import { AnalyticsPreferencesControl } from '../AnalyticsPreferencesControl.jsx';
+import { PreferredSourceBadge } from '../seo/PreferredSourceBadge.jsx';
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -60,6 +62,10 @@ export const Footer = () => {
                   {React.createElement(Graphic, { size: 18 })}
                 </Motion.a>
               ))}
+            </div>
+            <div className="mt-5 space-y-3">
+              <PreferredSourceBadge />
+              <AnalyticsPreferencesControl />
             </div>
           </Motion.div>
 

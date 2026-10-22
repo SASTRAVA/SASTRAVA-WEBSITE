@@ -81,6 +81,7 @@ test('contact form reports validation errors without submitting data', async ({ 
   await expect(page.getByText(/email is required/i)).toBeVisible();
   await expect(page.getByText(/phone is required/i)).toBeVisible();
   await expect(page.getByText(/message is required/i)).toBeVisible();
+  await expect(page.getByText(/please consent to the use of your details/i)).toBeVisible();
 });
 
 test('contact form handles a successful server response', async ({ page }) => {
@@ -91,6 +92,7 @@ test('contact form handles a successful server response', async ({ page }) => {
   await page.getByLabel(/email/i).first().fill('test@example.com');
   await page.getByLabel(/phone/i).first().fill('7981576083');
   await page.getByLabel(/message/i).first().fill('Synthetic test message.');
+  await page.getByRole('checkbox', { name: /i agree that sastrava may use the contact details/i }).check();
   await page.getByRole('button', { name: /^submit$/i }).first().click();
   await expect(page.getByText(/thank you\. we will be in touch shortly/i)).toBeVisible();
 });
@@ -103,6 +105,7 @@ test('contact form exposes a safe delivery failure', async ({ page }) => {
   await page.getByLabel(/email/i).first().fill('test@example.com');
   await page.getByLabel(/phone/i).first().fill('7981576083');
   await page.getByLabel(/message/i).first().fill('Synthetic test message.');
+  await page.getByRole('checkbox', { name: /i agree that sastrava may use the contact details/i }).check();
   await page.getByRole('button', { name: /^submit$/i }).first().click();
   await expect(page.getByText(/contact service is not configured/i)).toBeVisible();
   await expect(page.getByRole('link', { name: 'Email neeraj@sastrava.com or siri@sastrava.com', exact: true }).last()).toHaveAttribute('href', 'mailto:neeraj@sastrava.com,siri@sastrava.com');

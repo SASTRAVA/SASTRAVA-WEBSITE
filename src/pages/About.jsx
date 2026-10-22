@@ -217,7 +217,7 @@ const About = () => (
             </div>
           </section>
 
-          <section id="our-evolution" aria-labelledby="our-evolution-title" className="mt-20 scroll-mt-28 md:mt-24">
+          <section id="our-evolution" aria-labelledby="our-evolution-title" className="phase8-roadmap mt-20 scroll-mt-28 md:mt-24">
             <div className="mb-8 max-w-3xl">
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-light">October 2024 → present · Tadepalli</p>
               <h2 id="our-evolution-title" className="mt-3 font-display text-3xl font-bold leading-tight text-offwhite md:text-4xl">A practice shaped by learning and delivery.</h2>

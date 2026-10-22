@@ -35,7 +35,7 @@ test('GA4 initializes with the configured stream only after analytics consent', 
     && name === 'page_view'
     && details.page_path === '/tools/seo-aeo-checker')).toBe(true);
   expect(toolEvents).toContainEqual(['event', 'tool_interaction_start', { tool_name: 'seo-aeo-checker' }]);
-  expect(toolEvents).toContainEqual(['event', 'tool_result_generated', { tool_name: 'seo-aeo-checker', score_or_tier: 'score-10' }]);
+  expect(toolEvents).toContainEqual(['event', 'tool_result_generated', { tool_name: 'seo-aeo-checker', result: 'completed' }]);
 });
 
 test('accepting analytics consent sends a GA4 collect beacon successfully', async ({ page }) => {

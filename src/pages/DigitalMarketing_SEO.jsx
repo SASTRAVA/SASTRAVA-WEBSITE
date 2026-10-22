@@ -16,6 +16,7 @@ import { ExplodedAnatomyStage } from '../components/interactive/ExplodedAnatomyS
 import { QuickDiagnostic } from '../components/interactive/QuickDiagnostic';
 import { DeliverablesBento } from '../components/interactive/DeliverablesBento';
 import { seoSteps, deliverables } from '../config/phase7Experiences';
+import { PreferredSourceBadge } from '../components/seo/PreferredSourceBadge.jsx';
 
 const SEO = () => {
   const benefits = [
@@ -38,6 +39,7 @@ const SEO = () => {
           subtitle="Organic Rankings & Qualified Traffic"
           description="Strategic SEO to increase visibility, drive organic traffic, and generate qualified leads"
         />
+        <section className="bg-navy-950 px-6 pt-10"><div className="mx-auto max-w-7xl"><PreferredSourceBadge variant="callout" /></div></section>
 
         <section lang="te" className="bg-navy-950 py-8" aria-label="Local search summary in Telugu">
           <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -80,6 +82,7 @@ const SEO = () => {
 
 
         <DownloadableResources templateIds={['localSeo']} />
+        <section className="bg-navy-950 px-6 py-8"><div className="mx-auto max-w-7xl"><PreferredSourceBadge variant="callout" /></div></section>
 
         {/* CTA */}
         <section className="py-20 bg-gradient-to-r from-gold/10 to-peacock/10 border-y border-gold/20">

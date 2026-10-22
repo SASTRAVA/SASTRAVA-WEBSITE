@@ -8,6 +8,7 @@ import { insights } from '../config/insights.js';
 import { downloadTemplates } from '../config/downloadTemplates.js';
 import { InteractiveBlueprintFilter } from '../components/interactive/InteractiveBlueprintFilter';
 import { trackEvent } from '../services/conversionTracking.js';
+import { PreferredSourceBadge } from '../components/seo/PreferredSourceBadge.jsx';
 
 export const Blog = () => (
   <>
@@ -20,6 +21,7 @@ export const Blog = () => (
       />
       <section className="bg-navy-950 py-16 md:py-24">
         <div className="mx-auto max-w-6xl space-y-8 px-6">
+          <PreferredSourceBadge variant="callout" />
           <div className="max-w-3xl">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-peacock-light">Field notes and practical guides</p>
             <h2 className="mt-3 font-display text-3xl font-bold text-offwhite md:text-4xl">Start with a useful question.</h2>
@@ -46,10 +48,12 @@ export const Blog = () => (
           <section aria-labelledby="insights-library-title" className="rounded-2xl border border-peacock-light/20 bg-navy-900/55 p-5 md:p-7">
             <h2 id="insights-library-title" className="sr-only">Filter SASTRAVA field guides</h2>
             <InteractiveBlueprintFilter filterLabel="Filter SASTRAVA field guides" categories={['All', 'AI & automation', 'Cybersecurity', 'Digital growth', 'Business discovery']} items={insights.map((article, index) => ({
+              id: article.slug,
               category: ['AI & automation', 'Cybersecurity', 'Digital growth', 'Business discovery'][index],
               title: article.title,
               problem: article.summary,
               anatomy: article.sections.map((section) => section.heading).join(' → '),
+              articleSections: article.sections,
               deliverables: `${article.readTime} · practical guide`,
               verification: 'Use as general information and adapt decisions to your evidence, budget, and operating context.',
               href: `/blog#${article.slug}`,
@@ -57,6 +61,7 @@ export const Blog = () => (
             }))} />
           </section>
           <p className="border-t border-white/10 pt-6 text-sm text-offwhite/55">For a recommendation tailored to your goals and constraints, <Link to="/contact" className="font-semibold text-gold-light hover:text-peacock-light">talk with SASTRAVA</Link>.</p>
+          <PreferredSourceBadge variant="callout" />
         </div>
       </section>
     </main>

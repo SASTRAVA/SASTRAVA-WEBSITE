@@ -102,6 +102,9 @@ export const submitLead = async (formData, leadType = LEAD_TYPES.GENERAL_INQUIRY
     // Validate
     const requiredFields = ['firstName', 'lastName', 'email'];
     const errors = validateFormData(formData, requiredFields);
+    if (leadType === LEAD_TYPES.CONTACT_INQUIRY && formData.privacyConsent !== true) {
+      errors.privacyConsent = 'Please consent to the use of your details to respond to this inquiry.';
+    }
     
     if (Object.keys(errors).length > 0) {
       return {
