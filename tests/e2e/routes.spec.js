@@ -28,7 +28,7 @@ test('legacy service hub routes redirect to canonical pages', async ({ page }) =
     ['/services-hub/learn', '/learn'],
     ['/services-hub/build', '/build'],
     ['/services-hub/grow', '/grow'],
-    ['/services-hub/secure', '/secure'],
+    ['/services-hub/secure', '/cybersecurity'],
   ];
   for (const [legacyPath, canonicalPath] of redirects) {
     await page.goto(legacyPath, { waitUntil: 'networkidle' });

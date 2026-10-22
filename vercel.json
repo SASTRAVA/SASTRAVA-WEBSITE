@@ -3,7 +3,7 @@
     { "source": "/services-hub/learn", "destination": "/learn", "statusCode": 301 },
     { "source": "/services-hub/build", "destination": "/build", "statusCode": 301 },
     { "source": "/services-hub/grow", "destination": "/grow", "statusCode": 301 },
-    { "source": "/services-hub/secure", "destination": "/secure", "statusCode": 301 },
+    { "source": "/services-hub/secure", "destination": "/cybersecurity", "statusCode": 301 },
     { "source": "/services-hub/ai", "destination": "/ai", "statusCode": 301 },
     { "source": "/services-hub/cybersecurity", "destination": "/cybersecurity", "statusCode": 301 },
     { "source": "/services-hub/digital-marketing", "destination": "/digital-marketing", "statusCode": 301 },

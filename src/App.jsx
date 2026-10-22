@@ -98,7 +98,7 @@ function AppRoutes() {
         <Route path="/services-hub/learn" element={<Navigate to="/learn" replace />} />
         <Route path="/services-hub/build" element={<Navigate to="/build" replace />} />
         <Route path="/services-hub/grow" element={<Navigate to="/grow" replace />} />
-        <Route path="/services-hub/secure" element={<Navigate to="/secure" replace />} />
+        <Route path="/services-hub/secure" element={<Navigate to="/cybersecurity" replace />} />
         <Route path="/services-hub/ai" element={<Navigate to="/ai" replace />} />
         <Route path="/services-hub/cybersecurity" element={<Navigate to="/cybersecurity" replace />} />
         <Route path="/services-hub/digital-marketing" element={<Navigate to="/digital-marketing" replace />} />

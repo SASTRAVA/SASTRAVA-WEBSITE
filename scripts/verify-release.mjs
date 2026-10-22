@@ -90,7 +90,7 @@ for (const [source, destination] of Object.entries({
   '/services-hub/learn': '/learn',
   '/services-hub/build': '/build',
   '/services-hub/grow': '/grow',
-  '/services-hub/secure': '/secure',
+  '/services-hub/secure': '/cybersecurity',
   '/services-hub/ai': '/ai',
   '/services-hub/cybersecurity': '/cybersecurity',
   '/services-hub/digital-marketing': '/digital-marketing',
