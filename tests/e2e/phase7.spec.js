@@ -72,6 +72,16 @@ test('canonical section owners are unique across the site', async ({ page }) => 
   }
 });
 
+test('static SEO portfolio content belongs to project examples, with team profiles only on About', async () => {
+  const aboutHtml = readFileSync(new URL('../../dist/about/index.html', import.meta.url), 'utf8');
+  const portfolioHtml = readFileSync(new URL('../../dist/portfolio/index.html', import.meta.url), 'utf8');
+  expect(aboutHtml).toContain('Neeraj Kumar');
+  expect(portfolioHtml).toContain('Explore project blueprints and interactive demos');
+  expect(portfolioHtml).not.toContain('Neeraj Kumar');
+  expect(portfolioHtml).not.toContain('A multidisciplinary team portfolio');
+  expect(portfolioHtml).not.toContain('Meet the team and view portfolios');
+});
+
 test('all sitemap URLs return HTTP 200 and Vercel declares permanent legacy redirects', async ({ request }) => {
   const sitemap = await request.get('/sitemap.xml');
   expect(sitemap.status()).toBe(200);
