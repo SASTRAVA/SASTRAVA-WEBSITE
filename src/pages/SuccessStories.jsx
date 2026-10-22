@@ -4,6 +4,7 @@ import { Footer } from '../components/layout/Footer';
 import { PageHero } from '../components/sections/PageHero';
 import { Button } from '../components/ui/Button';
 import { googleMapsReviewUrl } from '../config/businessProfile.js';
+import { edutechInstagramUrl, allLearningDomains } from '../config/learningCatalog.js';
 
 const SuccessStories = () => (
   <>
@@ -30,7 +31,7 @@ const SuccessStories = () => (
               </article>
             ))}
           </div>
-          <p className="mt-8 rounded-xl border border-white/10 bg-white/5 p-5 leading-relaxed text-offwhite/75">The public course catalog is currently being updated. Program availability, delivery format, and any completion documentation are confirmed during planning; jobs, certifications, and other outcomes are not guaranteed.</p>
+          <div className="mt-8 rounded-xl border border-white/10 bg-white/5 p-5 leading-relaxed text-offwhite/75"><h3 className="font-semibold text-white">Learn · Build · Transform</h3><p className="mt-2">The Sastrava Edutech topic catalog spans {allLearningDomains.length} learning and career areas. Programs may include college workshops, project-based internships, mentoring, and career-readiness activities; availability, mentors, documentation, and outcomes are confirmed for each engagement. The portfolio identifies Suhas Raj as Digital Learning Head; named team profiles are available on the portfolio page.</p><p className="mt-3 flex flex-wrap gap-4"><a className="inline-flex min-h-11 items-center font-semibold text-peacock-light underline" href={edutechInstagramUrl} target="_blank" rel="noreferrer">Follow Sastrava Edutech on Instagram</a><a className="inline-flex min-h-11 items-center font-semibold text-peacock-light underline" href="/portfolio">Meet the team</a></p></div>
           <p className="mt-6 text-sm leading-relaxed text-offwhite/70">If you have worked with SASTRAVA, you can <a href={googleMapsReviewUrl} target="_blank" rel="noopener noreferrer" className="font-semibold text-peacock-light underline underline-offset-4 hover:text-gold-light">read or leave an honest review on Google</a>.</p>
           <div className="mt-8 flex flex-wrap gap-4">
             <Button action="navigate" actionConfig={{ path: '/learn' }}>Explore digital learning</Button>

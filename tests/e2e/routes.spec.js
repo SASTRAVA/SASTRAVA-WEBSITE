@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import { allLearningDomains } from '../../src/config/learningCatalog.js';
 
 const routes = [
   '/', '/about', '/domains', '/services', '/learn', '/build', '/grow', '/secure',
@@ -37,8 +38,29 @@ test('legacy service hub routes redirect to canonical pages', async ({ page }) =
 
 test('open source page does not list or link to the website repository', async ({ page }) => {
   await page.goto('/open-source', { waitUntil: 'networkidle' });
-  await expect(page.getByRole('heading', { name: 'Selected projects coming soon' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /SEO, AEO & GEO readiness checker/i })).toBeVisible();
   await expect(page.locator('a[href*="github.com/SASTRAVA/SASTRAVA-WEBSITE"]')).toHaveCount(0);
+});
+
+test('learning catalog lists every domain and has non-duplicated service copy', async ({ page }) => {
+  await page.goto('/domains', { waitUntil: 'networkidle' });
+  for (const domain of allLearningDomains) await expect(page.getByRole('link', { name: new RegExp(domain.name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')) }).first()).toBeVisible();
+  await expect(page.getByRole('heading', { name: /currently under development/i })).toHaveCount(0);
+  for (const route of ['/learn', '/grow', '/build']) {
+    await page.goto(route, { waitUntil: 'networkidle' });
+    const descriptions = await page.locator('main h4').evaluateAll((headings) => headings.map((heading) => heading.nextElementSibling?.textContent?.trim()).filter(Boolean));
+    expect(new Set(descriptions).size, `${route} card descriptions should be unique`).toBe(descriptions.length);
+  }
+});
+
+test('modern navigation and complete contact footer appear on public routes', async ({ page }) => {
+  const publicRoutes = routes.filter((route) => !['/courses', '/login'].includes(route));
+  for (const route of publicRoutes) {
+    await page.goto(route, { waitUntil: 'networkidle' });
+    await expect(page.locator('nav[aria-label="Primary"] a[href="/blog"]').first()).toHaveAttribute('href', '/blog');
+    await expect(page.getByText('+91 7981 576083 · neeraj@sastrava.com · siri@sastrava.com', { exact: true })).toBeVisible();
+    await expect(page.getByRole('link', { name: 'Instagram / @sastrava_edutech' })).toBeVisible();
+  }
 });
 
 test('free planning tools provide working browser-based estimates and checklists', async ({ page }) => {

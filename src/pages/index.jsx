@@ -7,6 +7,7 @@ import AboutPage from './About';
 import { Contact as ContactPage } from './Contact';
 import { Services as ServicesPage } from './Services';
 import { Portfolio as PortfolioPage } from './Portfolio';
+import DomainsPage from './Domains';
 
 const PlaceholderPage = ({ title, subtitle, description }) => (
   <>
@@ -54,13 +55,7 @@ const PlaceholderPage = ({ title, subtitle, description }) => (
 
 export const About = AboutPage;
 
-export const Domains = () => (
-  <PlaceholderPage 
-    title="Specialized Domains" 
-    subtitle="Expertise Areas"
-    description="Explore focused capability areas across consulting, software, marketing, learning, cybersecurity, and AI — each shaped around practical outcomes for organizations and learners." 
-  />
-);
+export const Domains = DomainsPage;
 
 export const Services = ServicesPage;
 

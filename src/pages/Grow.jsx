@@ -16,6 +16,14 @@ import { SeoAnswers } from '../components/seo/SeoAnswers';
 
 export const GrowPillar = () => {
   const pillar = ECOSYSTEM_PILLARS.GROW;
+  const serviceDetails = [
+    { description: 'Assess the venture, customer problem, and market evidence to prioritize a viable next experiment.', bullets: ['Customer and competitor discovery', 'Business model and market validation', 'Prioritized venture roadmap'] },
+    { description: 'Clarify what the business stands for and make its value easier for the intended audience to recognize.', bullets: ['Positioning and audience definition', 'Messaging and visual direction', 'Brand consistency guide'] },
+    { description: 'Improve organic and local discovery with useful content, technical foundations, and clear service-area signals.', bullets: ['Keyword and intent map', 'Local SEO and Google Business Profile review', 'AEO/GEO content recommendations'] },
+    { description: 'Plan a repeatable content engine that connects expertise to audience needs and business goals.', bullets: ['Editorial themes and calendar', 'Channel-ready content briefs', 'Engagement and conversion measures'] },
+    { description: 'Build a sustainable social presence through a clear community purpose and a manageable publishing rhythm.', bullets: ['Channel and community audit', 'Content and response playbook', 'Reach and qualified inquiry reporting'] },
+    { description: 'Turn founder priorities into an operating plan with milestones, owners, and regular decision points.', bullets: ['Current-state and constraint review', '90-day operating roadmap', 'Milestone and decision review'] },
+  ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -105,21 +113,10 @@ export const GrowPillar = () => {
                       {service}
                     </h4>
                     <p className="text-gray-600 dark:text-gray-400 mb-6">
-                      Data-driven strategies designed to scale your business and revenue
+                      {serviceDetails[index].description}
                     </p>
                     <ul className="space-y-2 mb-6">
-                      <li className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
-                        <Icons.CheckCircle size={16} style={{ color: pillar.color.primary }} />
-                        ROI Focused
-                      </li>
-                      <li className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
-                        <Icons.CheckCircle size={16} style={{ color: pillar.color.primary }} />
-                        Real-Time Analytics
-                      </li>
-                      <li className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
-                        <Icons.CheckCircle size={16} style={{ color: pillar.color.primary }} />
-                        Continuous Optimization
-                      </li>
+                      {serviceDetails[index].bullets.map((bullet) => <li key={bullet} className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300"><Icons.CheckCircle size={16} style={{ color: pillar.color.primary }} />{bullet}</li>)}
                     </ul>
                     <Button
                       className="w-full"

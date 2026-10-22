@@ -10,6 +10,8 @@ import { Footer } from '../components/layout/Footer';
 import { PageHero } from '../components/sections/PageHero';
 import { Button } from '../components/ui/Button';
 import { ExternalLink } from 'lucide-react';
+import { downloadTemplates } from '../config/downloadTemplates.js';
+import { insights } from '../config/insights.js';
 
 const Publications = () => {
   return (
@@ -37,6 +39,8 @@ const Publications = () => {
             </div>
           </div>
         </section>
+
+        <section className="bg-navy-950 py-16"><div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8"><h2 className="text-3xl font-bold text-white">Practical guides and worksheets</h2><p className="mt-3 max-w-3xl text-gray-300">Download planning resources and read the SASTRAVA field guides. They are educational starting points; adapt them to your organization and have qualified professionals review decisions where needed.</p><div className="mt-8 grid gap-6 lg:grid-cols-2"><div><h3 className="text-xl font-semibold text-gold-light">Downloadable templates</h3><ul className="mt-4 space-y-3">{downloadTemplates.map((item)=><li key={item.id} className="rounded-xl border border-white/10 p-4"><a className="font-semibold text-white underline decoration-gold-light underline-offset-4" href={item.href} download={item.filename}>{item.title}</a><p className="mt-2 text-sm text-gray-300">{item.summary}</p></li>)}</ul></div><div><h3 className="text-xl font-semibold text-gold-light">Field guides</h3><ul className="mt-4 space-y-3">{insights.map((article)=><li key={article.slug} className="rounded-xl border border-white/10 p-4"><a className="font-semibold text-white underline decoration-gold-light underline-offset-4" href={`/blog#${article.slug}`}>{article.title}</a><p className="mt-2 text-sm text-gray-300">{article.summary}</p></li>)}</ul></div></div></div></section>
 
         {/* Press Kit */}
         <section className="py-20 bg-navy-900">

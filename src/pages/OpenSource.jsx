@@ -8,7 +8,8 @@ import { motion } from 'framer-motion';
 import { Navbar } from '../components/layout/Navbar';
 import { Footer } from '../components/layout/Footer';
 import { PageHero } from '../components/sections/PageHero';
-import { GitBranch } from 'lucide-react';
+import { ExternalLink, FileText } from 'lucide-react';
+import { downloadTemplates } from '../config/downloadTemplates.js';
 
 const OpenSource = () => {
   const containerVariants = {
@@ -32,14 +33,14 @@ const OpenSource = () => {
         <PageHero
           title="Open Source"
           subtitle="Contributing to the global developer community"
-          description="SASTRAVA shares selected tools and learning resources with the developer community. Public projects will be featured here as they become available."
+          description="Use SASTRAVA’s free browser-based planning tools and downloadable worksheets. Open-source repositories are listed only when a public code repository and license are available."
         />
 
         {/* Projects */}
         <section className="py-20 bg-gradient-to-b from-navy-950 to-navy-900">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl font-bold text-white mb-5">Community projects</h2>
-            <p className="mb-12 max-w-3xl text-gray-300">We are preparing reusable tools and resources for public release. Check back here for projects with clear documentation, licensing, and contribution guidance.</p>
+            <p className="mb-12 max-w-3xl text-gray-300">These public utilities run in your browser. They are planning aids, not professional audits or forecasts. The website source repository is not listed here.</p>
 
             <motion.div
               variants={containerVariants}
@@ -48,14 +49,12 @@ const OpenSource = () => {
               viewport={{ once: true }}
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
             >
-              <motion.article
-                variants={itemVariants}
-                className="rounded-2xl border border-gold/20 bg-gradient-to-br from-navy-800 to-navy-900 p-7 md:col-span-2 lg:col-span-3"
-              >
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-gold/15 text-gold"><GitBranch size={22} aria-hidden="true" /></div>
-                <h3 className="text-xl font-bold text-white">Selected projects coming soon</h3>
-                <p className="mt-3 max-w-2xl text-gray-300">This page will list public community projects when their documentation and contribution details are ready.</p>
-              </motion.article>
+              {[
+                ['/tools/seo-aeo-checker','SEO, AEO & GEO readiness checker','Review discoverability and page clarity.'],
+                ['/tools/ai-roi-calculator','AI automation ROI calculator','Explore time and cost assumptions before a bounded pilot.'],
+                ['/tools/security-checklist','Website security checklist','Review foundational security readiness and next actions.'],
+              ].map(([href,title,description])=><motion.article key={href} variants={itemVariants} className="rounded-2xl border border-gold/20 bg-gradient-to-br from-navy-800 to-navy-900 p-7"><ExternalLink className="mb-4 text-gold" aria-hidden="true"/><h3 className="text-xl font-bold text-white">{title}</h3><p className="mt-3 text-gray-300">{description}</p><a className="mt-4 inline-flex min-h-11 items-center font-semibold text-peacock-light underline" href={href}>Open browser tool</a></motion.article>)}
+              {downloadTemplates.map((item)=><motion.article key={item.id} variants={itemVariants} className="rounded-2xl border border-white/10 bg-navy-900 p-7"><FileText className="mb-4 text-peacock-light" aria-hidden="true"/><h3 className="text-xl font-bold text-white">{item.title}</h3><p className="mt-3 text-gray-300">{item.summary}</p><a className="mt-4 inline-flex min-h-11 items-center font-semibold text-peacock-light underline" href={item.href} download={item.filename}>Download worksheet</a></motion.article>)}
             </motion.div>
           </div>
         </section>
@@ -65,7 +64,7 @@ const OpenSource = () => {
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-3xl rounded-2xl border border-peacock/20 bg-navy-800 p-8 text-center">
               <h2 className="text-3xl font-bold text-white">Build with the community</h2>
-              <p className="mt-4 text-gray-300">We will publish project links, licenses, and contribution instructions here as individual resources are ready to share.</p>
+              <p className="mt-4 text-gray-300">SASTRAVA’s public browser tools and worksheets are free to use. For code contributions, we will add a project only when its source repository, license, and contribution process are published.</p>
             </div>
           </div>
         </section>

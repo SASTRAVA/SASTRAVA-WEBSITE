@@ -13,6 +13,7 @@ import * as Icons from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { contrastTextColor } from '../utils/contrastText';
 import { SeoAnswers } from '../components/seo/SeoAnswers';
+import { edutechInstagramUrl, learningPrograms, learningDomainGroups, technologyExplainers, technologyHistoryTopics } from '../config/learningCatalog';
 
 export const LearnPillar = () => {
   const pillar = ECOSYSTEM_PILLARS.LEARN;
@@ -90,7 +91,7 @@ export const LearnPillar = () => {
                 variants={containerVariants}
                 className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
               >
-                {pillar.services.map((service, index) => (
+                {learningPrograms.map((program, index) => (
                   <motion.div
                     key={index}
                     variants={itemVariants}
@@ -102,24 +103,13 @@ export const LearnPillar = () => {
                     whileHover={{ y: -10 }}
                   >
                     <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-gold-500 transition-colors">
-                      {service}
+                      {program.service}
                     </h4>
                     <p className="text-gray-600 dark:text-gray-400 mb-6">
-                      Practical workshops and mentoring planned around the learner’s goals and experience.
+                      {program.description}
                     </p>
                     <ul className="space-y-2 mb-6">
-                      <li className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
-                        <Icons.CheckCircle size={16} style={{ color: pillar.color.primary }} />
-                        Goals agreed in advance
-                      </li>
-                      <li className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
-                        <Icons.CheckCircle size={16} style={{ color: pillar.color.primary }} />
-                        Practical exercises
-                      </li>
-                      <li className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
-                        <Icons.CheckCircle size={16} style={{ color: pillar.color.primary }} />
-                        Optional project guidance
-                      </li>
+                      {program.deliverables.map((deliverable) => <li key={deliverable} className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300"><Icons.CheckCircle size={16} style={{ color: pillar.color.primary }} />{deliverable}</li>)}
                     </ul>
                     <Button
                       className="w-full"
@@ -132,6 +122,11 @@ export const LearnPillar = () => {
                 ))}
               </motion.div>
             </motion.div>
+            <section className="mt-20" aria-labelledby="learning-domains-title">
+              <div className="mb-8 flex flex-wrap items-end justify-between gap-4"><div><p className="text-sm font-semibold uppercase tracking-wide text-[#725300]">Sastrava Edutech</p><h2 id="learning-domains-title" className="mt-2 text-3xl font-bold text-gray-900 dark:text-white">22 learning and career domains</h2><p className="mt-2 max-w-3xl text-gray-600 dark:text-gray-300">Explore the topic areas and formats that can be shaped into workshops, mentoring, or project-based learning.</p></div><a className="inline-flex min-h-11 items-center rounded-lg border border-[#725300] px-4 font-semibold text-[#725300] hover:bg-gold-50 dark:text-yellow-300" href={edutechInstagramUrl} target="_blank" rel="noreferrer">Follow @sastrava_edutech</a></div>
+              <div className="grid gap-6 lg:grid-cols-2">{learningDomainGroups.map((group) => <article key={group.id} className="rounded-2xl border border-gray-200 bg-gray-50 p-6 dark:border-white/10 dark:bg-gray-800"><h3 className="text-xl font-bold text-gray-900 dark:text-white">{group.title}</h3><p className="mt-2 text-sm text-gray-600 dark:text-gray-300">{group.description}</p><ul className="mt-5 grid gap-2 sm:grid-cols-2">{group.domains.map(({ number, name, href }) => <li key={number}><a className="block rounded-lg border border-gray-200 bg-white p-3 text-sm font-medium text-gray-800 hover:border-gold-500 dark:border-white/10 dark:bg-gray-900 dark:text-gray-200" href={href}><span className="mr-2 text-gold-600">{number}</span>{name}</a></li>)}</ul></article>)}</div>
+            </section>
+            <section className="mt-20" aria-labelledby="microlearning-title"><h2 id="microlearning-title" className="text-3xl font-bold text-gray-900 dark:text-white">Tech explained simply</h2><div className="mt-6 grid gap-5 md:grid-cols-2">{technologyExplainers.map((topic) => <article key={topic.title} className="rounded-2xl border border-gray-200 p-6 dark:border-white/10"><h3 className="text-xl font-semibold text-gray-900 dark:text-white">{topic.title}</h3><p className="mt-3 text-gray-600 dark:text-gray-300">{topic.description}</p><a className="mt-4 inline-flex min-h-11 items-center font-semibold text-teal-700 underline dark:text-teal-300" href={topic.href}>{topic.label}</a></article>)}</div><h3 className="mt-10 text-2xl font-bold text-gray-900 dark:text-white">Technology foundations: how it began</h3><ul className="mt-5 grid gap-4 md:grid-cols-2">{technologyHistoryTopics.map((topic) => <li key={topic.title} className="rounded-xl border border-gray-200 p-5 dark:border-white/10"><h4 className="font-semibold text-gray-900 dark:text-white">{topic.title}</h4><p className="mt-2 text-sm text-gray-600 dark:text-gray-300">{topic.description}</p><a className="mt-2 inline-flex min-h-10 items-center text-sm text-teal-700 underline dark:text-teal-300" href={topic.source} target="_blank" rel="noreferrer">Read the source</a></li>)}</ul></section>
           </div>
         </section>
 

@@ -142,6 +142,24 @@ test('SEO, AEO, and GEO answer is visible on the SEO page', async ({ request }) 
   expect(faq.mainEntity.some(({ name }) => name === 'What is the difference between SEO, AEO, and GEO?')).toBe(true);
 });
 
+test('SEO page serves clean Telugu content in static HTML', async ({ request }) => {
+  const response = await request.get(staticDocument('/digital-marketing/seo'));
+  const html = await response.text();
+  expect(html).toContain('తెలుగులో సమాచారం');
+  expect(html).not.toContain('🕮');
+  expect(html).not.toContain('\uFFFD');
+});
+
+test('learning structured data includes Sastrava Edutech and learning topics', async ({ request }) => {
+  const response = await request.get(staticDocument('/learn'));
+  const html = await response.text();
+  const schemaMatch = html.match(/<script id="sastrava-json-ld" type="application\/ld\+json">([\s\S]*?)<\/script>/);
+  const graph = JSON.parse(schemaMatch[1])['@graph'];
+  const school = graph.find((entry) => entry['@type'] === 'EducationalOrganization');
+  expect(school.sameAs).toContain('https://www.instagram.com/sastrava_edutech/');
+  expect(school.hasCourse.length).toBe(22);
+});
+
 test('private account routes receive noindex before JavaScript', async ({ request }) => {
   for (const route of ['/login', '/student-dashboard']) {
     const response = await request.get(staticDocument(route));

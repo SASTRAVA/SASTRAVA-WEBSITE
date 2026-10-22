@@ -3,6 +3,7 @@ import { insights } from './insights.js';
 import { downloadTemplates } from './downloadTemplates.js';
 import { googleMapsListingAddress, googleMapsListingUrl } from './businessProfile.js';
 import { teamProfiles } from './teamProfiles.js';
+import { learningDomainGroups, edutechInstagramUrl, allLearningDomains } from './learningCatalog.js';
 
 const organizationName = 'SASTRAVA';
 const defaultDescription = 'Grow with SASTRAVA in Tadepalli, Vijayawada and across India. Business consulting, SEO, AI automation, software and authorized security reviews.';
@@ -39,6 +40,7 @@ export const seoRoutes = {
       { heading: 'Business and innovation', paragraph: 'Early-stage founders and established teams may need help understanding customers, prioritizing opportunities, planning a product, or improving an operating workflow. Consulting begins with the goals, evidence, and constraints of each organization.', items: ['Business model discovery and startup support', 'Product and go-to-market planning', 'Workflow improvement and automation opportunity mapping'] },
       { heading: 'Digital products and emerging technology', paragraph: 'Technology work is scoped around the user need, data, systems, and delivery capacity. AI is considered where it adds value; simpler software, integrations, or process changes may be a better fit.', items: ['Websites, applications, and digital products', 'AI, generative AI, and business process automation', 'Data-aware implementation and integration planning'] },
       { heading: 'Trust, visibility, and skills', paragraph: 'Organizations also need secure systems, clear communication, discoverable services, and practical skills. SASTRAVA can discuss scoped assessments, content and marketing, and learning programs aligned to an agreed audience.', items: ['Authorized security reviews and remediation planning', 'Brand, SEO, local search, content, and campaign measurement', 'Technology workshops and project-based learning'] },
+      ...learningDomainGroups.map((group) => ({ heading: `Sastrava Edutech: ${group.title}`, paragraph: group.description, items: group.domains.map(({ name, href }) => `${name} — ${href}`) })),
     ],
     process: ['Describe the audience, challenge, and desired change.', 'Agree the scope, evidence, and capabilities that fit.', 'Review progress and next steps with the people responsible for delivery.'],
   },
@@ -68,11 +70,12 @@ export const seoRoutes = {
     sections: [
       { heading: 'Learning built around practical work', paragraph: 'SASTRAVA supports learners and teams who want to understand technology by applying it to useful tasks and projects.', items: ['Software development and digital product foundations', 'Artificial intelligence, data, and automation concepts', 'Cybersecurity awareness and secure development practices'] },
       { heading: 'Flexible formats for learners and teams', paragraph: 'Learning can be shaped around the audience, available time, and goals agreed before a program begins.', items: ['Interactive workshops and guided practice', 'Project mentoring and structured learning plans', 'Team sessions aligned to an agreed technology need'] },
+      ...learningDomainGroups.map((group) => ({ heading: group.title, paragraph: group.description, items: group.domains.map(({ name, href }) => `${name} — ${href}`) })),
     ],
     process: ['Set the audience, outcomes, and starting level.', 'Choose topics, format, and practical exercises.', 'Review progress and recommend useful next steps.'],
     faqs: [
       ['What topics can a learning program cover?', 'Programs can cover software, AI, data, automation, cybersecurity, and related digital skills based on the learner’s goals and the agreed scope.'],
-      ['Are courses currently available for direct enrollment?', 'The public course catalog is being updated. Contact SASTRAVA to ask about workshops, mentoring, or a team learning program.'],
+      ['What learning areas can be discussed?', `SASTRAVA Edutech lists ${allLearningDomains.length} learning and career topic areas. Contact the team to discuss current availability, audience, format, and scope.`],
       ['How are workshops planned?', 'The audience, starting level, intended outcomes, format, and practical exercises are agreed before a workshop or mentoring program begins.'],
     ],
   },
@@ -311,7 +314,8 @@ export const seoRoutes = {
     pageHeading: 'Search engine optimization and local search services',
     intro: 'Improve how people discover and understand your site with technical review, query research, useful content, and consistent local business information. SEO work is prioritized against your audience, competition, and implementation capacity; rankings cannot be guaranteed.',
     description: 'Improve local search and AI discovery with technical SEO, keyword research, and useful content for Tadepalli, Vijayawada, Amaravati, and India.',
-    localSummaryTelugu: 'SEO అంటే వెబ్‌సైట్‌ను శోధనలో సులభంగా కనుగొనగలిగేలా చేయడం. స్థానిక వ్యాపారాలు తమ సేవలు, ప్రాంతం, సంప్రదింపు వివరాలు మరియు ఉపయోగకరమైన సమాధానాలను వెబ్‌సైట్‌, Google Business Profileలో ఒకేలా ఉంచాలి. AEO స్పష్టమైన ప్రశ్నలకు సమాధానాలను అందిస్తుంది; GEO జనరేటివ్ శోధన వ్యవస్థలు సమాచారాన్ని అర్థం చేసుకునేందుకు సహాయపడుతుంది. విజయవాడ, తాడేపల్లి, గుంటూరు, అమరావతి వ్యాపారాలకు ఫలితాలు హామీ ఇవ్వలేము; పురోగతిని Search Console మరియు సంప్రదింపు చర్యలతో కొలవాలి.',
+    localSummaryHeading: 'తెలుగులో సమాచారం: విజయవాడ, తాడేపల్లి, గుంటూరు & అమరావతి వ్యాపారాల కోసం SEO మరియు డిజిటల్ మార్కెటింగ్',
+    localSummaryTelugu: 'మీ వ్యాపారం గూగుల్ సెర్చ్ (Google Search), గూగుల్ మ్యాప్స్ (Google Maps), మరియు AI సెర్చ్ ఇంజన్లలో (ChatGPT, Perplexity, Gemini) మెరుగ్గా కనిపించేలా SASTRAVA SEO, AEO & GEO సేవలతో సహాయపడుతుంది. స్థానిక కస్టమర్లను ఆకర్షించడానికి మరియు మీ బ్రాండ్ డిజిటల్ గుర్తింపును బలోపేతం చేయడానికి మాతో సంప్రదించండి. శోధన ఫలితాల్లో స్థానం లేదా వ్యాపార ఫలితాలకు హామీ ఉండదు.',
     keywords: ['SEO services India', 'technical SEO services', 'keyword research and content strategy', 'local SEO Tadepalli'],
     serviceType: 'Search engine optimization services',
     downloads: [downloadTemplates.find(({ id }) => id === 'localSeo')],
@@ -435,6 +439,7 @@ export const buildStructuredData = (pathname) => {
       'https://www.linkedin.com/in/sastrava-aa3097429/',
       'https://x.com/SASTRAVA_',
       'https://www.instagram.com/sastrava_/',
+      edutechInstagramUrl,
       googleMapsListingUrl,
     ],
   };
@@ -471,6 +476,17 @@ export const buildStructuredData = (pathname) => {
         { '@type': 'City', name: 'Amaravati' },
         { '@type': 'Country', name: 'India' },
       ],
+    });
+  }
+  if (path === '/learn') {
+    graph.push({
+      '@type': 'EducationalOrganization',
+      '@id': `${canonical}#educational-organization`,
+      name: 'SASTRAVA Edutech',
+      url: canonical,
+      sameAs: [edutechInstagramUrl],
+      parentOrganization: { '@id': organization['@id'] },
+      hasCourse: allLearningDomains.map(({ name, href }) => ({ '@type': 'Course', name, url: `https://sastrava.com${href}`, provider: { '@id': `${canonical}#educational-organization` } })),
     });
   }
   if (entry.teamProfiles) {

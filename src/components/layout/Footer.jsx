@@ -13,6 +13,7 @@ export const Footer = () => {
     { icon: Share2, href: 'https://www.linkedin.com/in/sastrava-aa3097429/', label: 'LinkedIn' },
     { icon: Send, href: 'https://x.com/SASTRAVA_', label: 'X / @SASTRAVA_' },
     { icon: Camera, href: 'https://www.instagram.com/sastrava_/', label: 'Instagram / @sastrava_' },
+    { icon: Camera, href: 'https://www.instagram.com/sastrava_edutech/', label: 'Instagram / @sastrava_edutech' },
   ];
 
   return (
@@ -40,8 +41,7 @@ export const Footer = () => {
             </p>
             <address className="mb-5 space-y-2 not-italic text-sm leading-relaxed text-offwhite/65">
               <p>{googleMapsListingAddress}</p>
-              <a href="tel:+917981576083" className="block min-h-11 py-2 hover:text-gold-light">+91 7981 576083</a>
-              <a href="mailto:neeraj@sastrava.com,siri@sastrava.com" className="block min-h-11 py-2 hover:text-gold-light">neeraj@sastrava.com · siri@sastrava.com</a>
+              <p className="flex min-h-11 flex-wrap items-center gap-x-2 py-2"><a href="tel:+917981576083" className="inline-flex min-h-11 items-center hover:text-gold-light">+91 7981 576083</a>{' · '}<a href="mailto:neeraj@sastrava.com,siri@sastrava.com" className="inline-flex min-h-11 items-center hover:text-gold-light">neeraj@sastrava.com · siri@sastrava.com</a></p>
               <a href={googleMapsListingUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center py-2 text-peacock-light underline underline-offset-4 hover:text-gold-light">Find {googleMapsListingName} on Google Maps</a>
               <a href={googleMapsReviewUrl} target="_blank" rel="noopener noreferrer" className="block min-h-11 py-2 text-peacock-light underline underline-offset-4 hover:text-gold-light">Read or leave an honest review on Google</a>
             </address>

@@ -3,6 +3,7 @@ import { Navbar } from '../components/layout/Navbar';
 import { Footer } from '../components/layout/Footer';
 import { PageHero } from '../components/sections/PageHero';
 import { Button } from '../components/ui/Button';
+import { DeliveryShowcase } from '../components/sections/DeliveryShowcase';
 
 const CaseStudies = () => (
   <>
@@ -36,6 +37,7 @@ const CaseStudies = () => (
           </div>
         </div>
       </section>
+      <DeliveryShowcase />
     </main>
     <Footer />
   </>

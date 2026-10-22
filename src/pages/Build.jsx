@@ -16,6 +16,14 @@ import { SeoAnswers } from '../components/seo/SeoAnswers';
 
 export const BuildPillar = () => {
   const pillar = ECOSYSTEM_PILLARS.BUILD;
+  const serviceDetails = [
+    { description: 'Design and deliver websites and applications with accessible interfaces, maintainable architecture, and clear acceptance criteria.', bullets: ['Requirements and system architecture', 'Responsive interface and API implementation', 'Release, handover, and support plan'] },
+    { description: 'Identify suitable workflow automation and AI integrations, with human review and safe failure handling built into the scope.', bullets: ['Workflow and data assessment', 'Integration and model evaluation', 'Human review and fallback design'] },
+    { description: 'Reduce product uncertainty with a focused prototype or MVP based on user needs and testable assumptions.', bullets: ['User and problem definition', 'Prototype and prioritized backlog', 'Feedback and validation plan'] },
+    { description: 'Explore applied research questions and technical options before investing in a larger implementation.', bullets: ['Research question and constraints', 'Feasibility review or proof of concept', 'Findings and recommended next steps'] },
+    { description: 'Support startup teams with product, technology, and operating guidance matched to their current stage.', bullets: ['Product and technical discovery', 'Milestones and resource priorities', 'Founder review and iteration checkpoints'] },
+    { description: 'Create reusable developer resources with documentation, maintenance expectations, and licensing considered before release.', bullets: ['Reusable component or workflow design', 'Usage and contribution documentation', 'License and maintenance plan'] },
+  ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -105,21 +113,10 @@ export const BuildPillar = () => {
                       {service}
                     </h4>
                     <p className="text-gray-600 dark:text-gray-400 mb-6">
-                      Enterprise-grade solutions delivered with precision and expertise
+                      {serviceDetails[index].description}
                     </p>
                     <ul className="space-y-2 mb-6">
-                      <li className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
-                        <Icons.CheckCircle size={16} style={{ color: pillar.color.primary }} />
-                        Agile Development
-                      </li>
-                      <li className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
-                        <Icons.CheckCircle size={16} style={{ color: pillar.color.primary }} />
-                        Full Stack Team
-                      </li>
-                      <li className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
-                        <Icons.CheckCircle size={16} style={{ color: pillar.color.primary }} />
-                        Post-Launch Support
-                      </li>
+                      {serviceDetails[index].bullets.map((bullet) => <li key={bullet} className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300"><Icons.CheckCircle size={16} style={{ color: pillar.color.primary }} />{bullet}</li>)}
                     </ul>
                     <Button
                       className="w-full"

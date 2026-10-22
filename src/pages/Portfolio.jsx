@@ -4,6 +4,7 @@ import { Navbar } from '../components/layout/Navbar';
 import { Footer } from '../components/layout/Footer';
 import { Brain, Lock, Code, BookOpen, TrendingUp, Target, BriefcaseBusiness, ShieldCheck } from 'lucide-react';
 import { teamProfiles } from '../config/teamProfiles.js';
+import { DeliveryShowcase } from '../components/sections/DeliveryShowcase';
 
 // Static data arrays - moved outside components for memoization
 const PORTFOLIO_DOMAINS = [
@@ -540,6 +541,7 @@ function Portfolio() {
       <main>
         <PortfolioHero />
         <DomainsSection />
+        <DeliveryShowcase />
         <TeamCarouselSection />
         <ImpactSection />
         <MissionSection />

@@ -103,11 +103,11 @@ const SEO = () => {
           description="Strategic SEO to increase visibility, drive organic traffic, and generate qualified leads"
         />
 
-        <section className="bg-navy-950 py-8" aria-label="Local search summary in Telugu">
+        <section lang="te" className="bg-navy-950 py-8" aria-label="Local search summary in Telugu">
           <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
             <details className="rounded-xl border border-peacock-light/20 bg-peacock-light/5 p-5 text-gray-200">
-              <summary className="min-h-11 cursor-pointer font-semibold text-peacock-light">స్థానిక వ్యాపారాల కోసం తెలుగు సారాంశం</summary>
-              <p lang="te" className="mt-3 leading-relaxed">SEO అంటే వెబ్‌సైట్‌ను శోధనలో సులభంగా కనుగొనగలిగేలా చేయడం. స్థానిక వ్యాపారాలు తమ సేవలు, ప్రాంతం, సంప్రదింపు వివరాలు మరియు ఉపయోగకరమైన సమాధానాలను వెబ్‌సైట్‌, Google Business Profileలో ఒకేలా ఉంచాలి. AEO స్పష్టమైన ప్రశ్నలకు సమాధానాలను అందిస్తుంది; GEO జనరేటివ్ శోధన వ్యవస్థలు సమాచారాన్ని అర్థం చేసుకునేందుకు సహాయపడుతుంది. విజయవాడ, తాడేపల్లి, గుంటూరు, అమరావతి వ్యాపారాలకు ఫలితాలు హామీ ఇవ్వలేము; పురోగతిని Search Console మరియు సంప్రదింపు చర్యలతో కొలవాలి.</p>
+              <summary className="min-h-11 cursor-pointer font-semibold text-peacock-light">తెలుగులో సమాచారం: విజయవాడ, తాడేపల్లి, గుంటూరు &amp; అమరావతి వ్యాపారాల కోసం SEO మరియు డిజిటల్ మార్కెటింగ్</summary>
+              <p className="mt-3 leading-relaxed">మీ వ్యాపారం గూగుల్ సెర్చ్ (Google Search), గూగుల్ మ్యాప్స్ (Google Maps), మరియు AI సెర్చ్ ఇంజన్లలో (ChatGPT, Perplexity, Gemini) మెరుగ్గా కనిపించేలా SASTRAVA SEO, AEO &amp; GEO సేవలతో సహాయపడుతుంది. స్థానిక కస్టమర్లను ఆకర్షించడానికి మరియు మీ బ్రాండ్ డిజిటల్ గుర్తింపును బలోపేతం చేయడానికి మాతో సంప్రదించండి. శోధన ఫలితాల్లో స్థానం లేదా వ్యాపార ఫలితాలకు హామీ ఉండదు.</p>
             </details>
           </div>
         </section>

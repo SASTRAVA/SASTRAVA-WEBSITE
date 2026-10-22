@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+:lang(te) { font-family: "Noto Sans Telugu", "Gautami", "Nirmala UI", sans-serif; }
+
 @theme {
   --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Syne", ui-sans-serif, sans-serif;
